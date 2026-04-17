@@ -76,24 +76,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getItemID() const;
     bool itemIDIsSet() const;
     void unsetItemID();
@@ -235,25 +217,12 @@ public:
 
     void setParentFileUploadID(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getAccountHolderID() const;
-    bool accountHolderIDIsSet() const;
-    void unsetAccountHolderID();
-
-    void setAccountHolderID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_ItemID;
     bool m_ItemIDIsSet;
     bool m_IsItemMozaicBG;
@@ -286,8 +255,6 @@ protected:
     bool m_SocialProfileIDIsSet;
     utility::string_t m_ParentFileUploadID;
     bool m_ParentFileUploadIDIsSet;
-    utility::string_t m_AccountHolderID;
-    bool m_AccountHolderIDIsSet;
 };
 
 

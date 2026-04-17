@@ -33,10 +33,6 @@ ItemCategoryCreateDto::ItemCategoryCreateDto()
     m_DescriptionIsSet = false;
     m_ImageURL = utility::conversions::to_string_t("");
     m_ImageURLIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_ParentItemCategoryID = utility::conversions::to_string_t("");
     m_ParentItemCategoryIDIsSet = false;
 }
@@ -74,14 +70,6 @@ web::json::value ItemCategoryCreateDto::toJson() const
     if(m_ImageURLIsSet)
     {
         val[utility::conversions::to_string_t(U("imageURL"))] = ModelBase::toJson(m_ImageURL);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_ParentItemCategoryIDIsSet)
     {
@@ -145,26 +133,6 @@ bool ItemCategoryCreateDto::fromJson(const web::json::value& val)
             setImageURL(refVal_setImageURL);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("parentItemCategoryID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentItemCategoryID")));
@@ -204,14 +172,6 @@ void ItemCategoryCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_ImageURLIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("imageURL")), m_ImageURL));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_ParentItemCategoryIDIsSet)
     {
@@ -257,18 +217,6 @@ bool ItemCategoryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setImageURL;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("imageURL"))), refVal_setImageURL );
         setImageURL(refVal_setImageURL);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parentItemCategoryID"))))
     {
@@ -378,46 +326,6 @@ bool ItemCategoryCreateDto::imageURLIsSet() const
 void ItemCategoryCreateDto::unsetImageURL()
 {
     m_ImageURLIsSet = false;
-}
-utility::string_t ItemCategoryCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemCategoryCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemCategoryCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemCategoryCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t ItemCategoryCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void ItemCategoryCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool ItemCategoryCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void ItemCategoryCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t ItemCategoryCreateDto::getParentItemCategoryID() const
 {

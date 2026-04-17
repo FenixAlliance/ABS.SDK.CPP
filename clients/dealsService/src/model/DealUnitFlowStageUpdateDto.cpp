@@ -29,8 +29,6 @@ DealUnitFlowStageUpdateDto::DealUnitFlowStageUpdateDto()
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_DealUnitFlowId = utility::conversions::to_string_t("");
     m_DealUnitFlowIdIsSet = false;
     m_ParentBusinessProcessStageId = utility::conversions::to_string_t("");
@@ -62,10 +60,6 @@ web::json::value DealUnitFlowStageUpdateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_DealUnitFlowIdIsSet)
     {
@@ -113,16 +107,6 @@ bool DealUnitFlowStageUpdateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("dealUnitFlowId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("dealUnitFlowId")));
@@ -165,10 +149,6 @@ void DealUnitFlowStageUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_DealUnitFlowIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dealUnitFlowId")), m_DealUnitFlowId));
@@ -205,12 +185,6 @@ bool DealUnitFlowStageUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("dealUnitFlowId"))))
     {
@@ -286,26 +260,6 @@ bool DealUnitFlowStageUpdateDto::descriptionIsSet() const
 void DealUnitFlowStageUpdateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t DealUnitFlowStageUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void DealUnitFlowStageUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool DealUnitFlowStageUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void DealUnitFlowStageUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t DealUnitFlowStageUpdateDto::getDealUnitFlowId() const
 {

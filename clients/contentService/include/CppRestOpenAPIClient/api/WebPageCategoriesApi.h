@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/WebPageCategoryCreateDto.h"
 #include "CppRestOpenAPIClient/model/WebPageCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageCategoryDtoListEnvelope.h"
@@ -49,6 +50,20 @@ public:
 
     virtual ~WebPageCategoriesApi();
 
+    /// <summary>
+    /// Count web page categories
+    /// </summary>
+    /// <remarks>
+    /// Counts all web page categories for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> countWebPageCategoriesAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
     /// <summary>
     /// Create a web page category
     /// </summary>

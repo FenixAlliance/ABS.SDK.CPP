@@ -29,8 +29,6 @@ TenantPositionUpdateDto::TenantPositionUpdateDto()
     m_DescriptionIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 TenantPositionUpdateDto::~TenantPositionUpdateDto()
@@ -58,10 +56,6 @@ web::json::value TenantPositionUpdateDto::toJson() const
     if(m_TypeIsSet)
     {
         val[utility::conversions::to_string_t(U("type"))] = ModelBase::toJson(m_Type);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
 
     return val;
@@ -101,16 +95,6 @@ bool TenantPositionUpdateDto::fromJson(const web::json::value& val)
             setType(refVal_setType);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     return ok;
 }
 
@@ -132,10 +116,6 @@ void TenantPositionUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     if(m_TypeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("type")), m_Type));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
 }
 
@@ -165,12 +145,6 @@ bool TenantPositionUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         utility::string_t refVal_setType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("type"))), refVal_setType );
         setType(refVal_setType);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     return ok;
 }
@@ -234,26 +208,6 @@ bool TenantPositionUpdateDto::typeIsSet() const
 void TenantPositionUpdateDto::unsetType()
 {
     m_TypeIsSet = false;
-}
-utility::string_t TenantPositionUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void TenantPositionUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool TenantPositionUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void TenantPositionUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

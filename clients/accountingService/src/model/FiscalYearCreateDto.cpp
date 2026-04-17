@@ -33,14 +33,12 @@ FiscalYearCreateDto::FiscalYearCreateDto()
     m_DescriptionIsSet = false;
     m_Closed = false;
     m_ClosedIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_EndDate = utility::datetime();
     m_EndDateIsSet = false;
     m_StartDate = utility::datetime();
     m_StartDateIsSet = false;
+    m_FiscalAuthorityId = utility::conversions::to_string_t("");
+    m_FiscalAuthorityIdIsSet = false;
 }
 
 FiscalYearCreateDto::~FiscalYearCreateDto()
@@ -77,14 +75,6 @@ web::json::value FiscalYearCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("closed"))] = ModelBase::toJson(m_Closed);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
     if(m_EndDateIsSet)
     {
         val[utility::conversions::to_string_t(U("endDate"))] = ModelBase::toJson(m_EndDate);
@@ -92,6 +82,10 @@ web::json::value FiscalYearCreateDto::toJson() const
     if(m_StartDateIsSet)
     {
         val[utility::conversions::to_string_t(U("startDate"))] = ModelBase::toJson(m_StartDate);
+    }
+    if(m_FiscalAuthorityIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("fiscalAuthorityId"))] = ModelBase::toJson(m_FiscalAuthorityId);
     }
 
     return val;
@@ -151,26 +145,6 @@ bool FiscalYearCreateDto::fromJson(const web::json::value& val)
             setClosed(refVal_setClosed);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("endDate"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("endDate")));
@@ -189,6 +163,16 @@ bool FiscalYearCreateDto::fromJson(const web::json::value& val)
             utility::datetime refVal_setStartDate;
             ok &= ModelBase::fromJson(fieldValue, refVal_setStartDate);
             setStartDate(refVal_setStartDate);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("fiscalAuthorityId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("fiscalAuthorityId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFiscalAuthorityId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFiscalAuthorityId);
+            setFiscalAuthorityId(refVal_setFiscalAuthorityId);
         }
     }
     return ok;
@@ -221,14 +205,6 @@ void FiscalYearCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("closed")), m_Closed));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_EndDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("endDate")), m_EndDate));
@@ -236,6 +212,10 @@ void FiscalYearCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_StartDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("startDate")), m_StartDate));
+    }
+    if(m_FiscalAuthorityIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalAuthorityId")), m_FiscalAuthorityId));
     }
 }
 
@@ -278,18 +258,6 @@ bool FiscalYearCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("closed"))), refVal_setClosed );
         setClosed(refVal_setClosed);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("endDate"))))
     {
         utility::datetime refVal_setEndDate;
@@ -301,6 +269,12 @@ bool FiscalYearCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::datetime refVal_setStartDate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("startDate"))), refVal_setStartDate );
         setStartDate(refVal_setStartDate);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("fiscalAuthorityId"))))
+    {
+        utility::string_t refVal_setFiscalAuthorityId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fiscalAuthorityId"))), refVal_setFiscalAuthorityId );
+        setFiscalAuthorityId(refVal_setFiscalAuthorityId);
     }
     return ok;
 }
@@ -405,46 +379,6 @@ void FiscalYearCreateDto::unsetClosed()
 {
     m_ClosedIsSet = false;
 }
-utility::string_t FiscalYearCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void FiscalYearCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool FiscalYearCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void FiscalYearCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t FiscalYearCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void FiscalYearCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool FiscalYearCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void FiscalYearCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
 utility::datetime FiscalYearCreateDto::getEndDate() const
 {
     return m_EndDate;
@@ -484,6 +418,26 @@ bool FiscalYearCreateDto::startDateIsSet() const
 void FiscalYearCreateDto::unsetStartDate()
 {
     m_StartDateIsSet = false;
+}
+utility::string_t FiscalYearCreateDto::getFiscalAuthorityId() const
+{
+    return m_FiscalAuthorityId;
+}
+
+void FiscalYearCreateDto::setFiscalAuthorityId(const utility::string_t& value)
+{
+    m_FiscalAuthorityId = value;
+    m_FiscalAuthorityIdIsSet = true;
+}
+
+bool FiscalYearCreateDto::fiscalAuthorityIdIsSet() const
+{
+    return m_FiscalAuthorityIdIsSet;
+}
+
+void FiscalYearCreateDto::unsetFiscalAuthorityId()
+{
+    m_FiscalAuthorityIdIsSet = false;
 }
 }
 }

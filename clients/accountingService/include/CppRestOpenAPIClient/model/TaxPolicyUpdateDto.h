@@ -247,24 +247,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     bool isZero() const;
     bool zeroIsSet() const;
     void unsetZero();
@@ -342,10 +324,6 @@ protected:
     bool m_CustomCityIsSet;
     utility::string_t m_CityId;
     bool m_CityIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     bool m_Zero;
     bool m_ZeroIsSet;
     bool m_Reduced;

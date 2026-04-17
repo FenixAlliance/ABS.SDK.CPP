@@ -121,15 +121,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getItemCategoryID() const;
     bool itemCategoryIDIsSet() const;
     void unsetItemCategoryID();
@@ -161,8 +152,6 @@ protected:
     bool m_ImageURLIsSet;
     utility::string_t m_GoogleCategoryTaxonomy;
     bool m_GoogleCategoryTaxonomyIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::string_t m_ItemCategoryID;
     bool m_ItemCategoryIDIsSet;
     utility::string_t m_ItemGoogleCategoryID;

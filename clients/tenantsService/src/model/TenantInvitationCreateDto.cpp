@@ -29,10 +29,6 @@ TenantInvitationCreateDto::TenantInvitationCreateDto()
     m_TimestampIsSet = false;
     m_UserEmail = utility::conversions::to_string_t("");
     m_UserEmailIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 TenantInvitationCreateDto::~TenantInvitationCreateDto()
@@ -60,14 +56,6 @@ web::json::value TenantInvitationCreateDto::toJson() const
     if(m_UserEmailIsSet)
     {
         val[utility::conversions::to_string_t(U("userEmail"))] = ModelBase::toJson(m_UserEmail);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -107,26 +95,6 @@ bool TenantInvitationCreateDto::fromJson(const web::json::value& val)
             setUserEmail(refVal_setUserEmail);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -148,14 +116,6 @@ void TenantInvitationCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     if(m_UserEmailIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("userEmail")), m_UserEmail));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -185,18 +145,6 @@ bool TenantInvitationCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::string_t refVal_setUserEmail;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userEmail"))), refVal_setUserEmail );
         setUserEmail(refVal_setUserEmail);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -260,46 +208,6 @@ bool TenantInvitationCreateDto::userEmailIsSet() const
 void TenantInvitationCreateDto::unsetUserEmail()
 {
     m_UserEmailIsSet = false;
-}
-utility::string_t TenantInvitationCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void TenantInvitationCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool TenantInvitationCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void TenantInvitationCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t TenantInvitationCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void TenantInvitationCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool TenantInvitationCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void TenantInvitationCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

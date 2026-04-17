@@ -130,24 +130,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getSalaryId() const;
     bool salaryIdIsSet() const;
     void unsetSalaryId();
@@ -208,10 +190,6 @@ protected:
     bool m_AddedAmountIsSet;
     double m_TaxComission;
     bool m_TaxComissionIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_SalaryId;
     bool m_SalaryIdIsSet;
     utility::string_t m_EmisorWalletAccountId;

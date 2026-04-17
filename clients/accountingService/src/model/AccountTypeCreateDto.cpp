@@ -31,10 +31,6 @@ AccountTypeCreateDto::AccountTypeCreateDto()
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 AccountTypeCreateDto::~AccountTypeCreateDto()
@@ -66,14 +62,6 @@ web::json::value AccountTypeCreateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -123,26 +111,6 @@ bool AccountTypeCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -168,14 +136,6 @@ void AccountTypeCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -211,18 +171,6 @@ bool AccountTypeCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -306,46 +254,6 @@ bool AccountTypeCreateDto::descriptionIsSet() const
 void AccountTypeCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t AccountTypeCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void AccountTypeCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool AccountTypeCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void AccountTypeCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t AccountTypeCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void AccountTypeCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool AccountTypeCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void AccountTypeCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

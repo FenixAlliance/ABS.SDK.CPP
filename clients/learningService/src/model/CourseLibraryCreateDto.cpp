@@ -35,8 +35,6 @@ CourseLibraryCreateDto::CourseLibraryCreateDto()
     m_CourseIDIsSet = false;
     m_CourseUnitID = utility::conversions::to_string_t("");
     m_CourseUnitIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_ReleaseDateTime = utility::datetime();
     m_ReleaseDateTimeIsSet = false;
 }
@@ -78,10 +76,6 @@ web::json::value CourseLibraryCreateDto::toJson() const
     if(m_CourseUnitIDIsSet)
     {
         val[utility::conversions::to_string_t(U("courseUnitID"))] = ModelBase::toJson(m_CourseUnitID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
     if(m_ReleaseDateTimeIsSet)
     {
@@ -155,16 +149,6 @@ bool CourseLibraryCreateDto::fromJson(const web::json::value& val)
             setCourseUnitID(refVal_setCourseUnitID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("releaseDateTime"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("releaseDateTime")));
@@ -208,10 +192,6 @@ void CourseLibraryCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     if(m_CourseUnitIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("courseUnitID")), m_CourseUnitID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
     if(m_ReleaseDateTimeIsSet)
     {
@@ -263,12 +243,6 @@ bool CourseLibraryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         utility::string_t refVal_setCourseUnitID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("courseUnitID"))), refVal_setCourseUnitID );
         setCourseUnitID(refVal_setCourseUnitID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("releaseDateTime"))))
     {
@@ -398,26 +372,6 @@ bool CourseLibraryCreateDto::courseUnitIDIsSet() const
 void CourseLibraryCreateDto::unsetCourseUnitID()
 {
     m_CourseUnitIDIsSet = false;
-}
-utility::string_t CourseLibraryCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void CourseLibraryCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool CourseLibraryCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void CourseLibraryCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 utility::datetime CourseLibraryCreateDto::getReleaseDateTime() const
 {

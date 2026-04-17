@@ -29,8 +29,6 @@ DealUnitFlowUpdateDto::DealUnitFlowUpdateDto()
     m_DescriptionIsSet = false;
     m_ParentBusinessProcessId = utility::conversions::to_string_t("");
     m_ParentBusinessProcessIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_TenantEnrollmentId = utility::conversions::to_string_t("");
     m_TenantEnrollmentIdIsSet = false;
 }
@@ -60,10 +58,6 @@ web::json::value DealUnitFlowUpdateDto::toJson() const
     if(m_ParentBusinessProcessIdIsSet)
     {
         val[utility::conversions::to_string_t(U("parentBusinessProcessId"))] = ModelBase::toJson(m_ParentBusinessProcessId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_TenantEnrollmentIdIsSet)
     {
@@ -107,16 +101,6 @@ bool DealUnitFlowUpdateDto::fromJson(const web::json::value& val)
             setParentBusinessProcessId(refVal_setParentBusinessProcessId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("tenantEnrollmentId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantEnrollmentId")));
@@ -148,10 +132,6 @@ void DealUnitFlowUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_ParentBusinessProcessIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentBusinessProcessId")), m_ParentBusinessProcessId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_TenantEnrollmentIdIsSet)
     {
@@ -185,12 +165,6 @@ bool DealUnitFlowUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setParentBusinessProcessId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentBusinessProcessId"))), refVal_setParentBusinessProcessId );
         setParentBusinessProcessId(refVal_setParentBusinessProcessId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("tenantEnrollmentId"))))
     {
@@ -260,26 +234,6 @@ bool DealUnitFlowUpdateDto::parentBusinessProcessIdIsSet() const
 void DealUnitFlowUpdateDto::unsetParentBusinessProcessId()
 {
     m_ParentBusinessProcessIdIsSet = false;
-}
-utility::string_t DealUnitFlowUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void DealUnitFlowUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool DealUnitFlowUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void DealUnitFlowUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t DealUnitFlowUpdateDto::getTenantEnrollmentId() const
 {

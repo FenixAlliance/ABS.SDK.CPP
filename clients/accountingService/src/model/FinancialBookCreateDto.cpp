@@ -31,8 +31,6 @@ FinancialBookCreateDto::FinancialBookCreateDto()
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_TenantID = utility::conversions::to_string_t("");
-    m_TenantIDIsSet = false;
 }
 
 FinancialBookCreateDto::~FinancialBookCreateDto()
@@ -64,10 +62,6 @@ web::json::value FinancialBookCreateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_TenantIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantID"))] = ModelBase::toJson(m_TenantID);
     }
 
     return val;
@@ -117,16 +111,6 @@ bool FinancialBookCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantID);
-            setTenantID(refVal_setTenantID);
-        }
-    }
     return ok;
 }
 
@@ -152,10 +136,6 @@ void FinancialBookCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_TenantIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantID")), m_TenantID));
     }
 }
 
@@ -191,12 +171,6 @@ bool FinancialBookCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantID"))))
-    {
-        utility::string_t refVal_setTenantID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantID"))), refVal_setTenantID );
-        setTenantID(refVal_setTenantID);
     }
     return ok;
 }
@@ -280,26 +254,6 @@ bool FinancialBookCreateDto::descriptionIsSet() const
 void FinancialBookCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t FinancialBookCreateDto::getTenantID() const
-{
-    return m_TenantID;
-}
-
-void FinancialBookCreateDto::setTenantID(const utility::string_t& value)
-{
-    m_TenantID = value;
-    m_TenantIDIsSet = true;
-}
-
-bool FinancialBookCreateDto::tenantIDIsSet() const
-{
-    return m_TenantIDIsSet;
-}
-
-void FinancialBookCreateDto::unsetTenantID()
-{
-    m_TenantIDIsSet = false;
 }
 }
 }

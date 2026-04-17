@@ -27,10 +27,6 @@ TransactionCategoryUpdateDto::TransactionCategoryUpdateDto()
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
 }
 
 TransactionCategoryUpdateDto::~TransactionCategoryUpdateDto()
@@ -54,14 +50,6 @@ web::json::value TransactionCategoryUpdateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
 
     return val;
@@ -91,26 +79,6 @@ bool TransactionCategoryUpdateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     return ok;
 }
 
@@ -128,14 +96,6 @@ void TransactionCategoryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
 }
 
@@ -159,18 +119,6 @@ bool TransactionCategoryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormDa
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     return ok;
 }
@@ -214,46 +162,6 @@ bool TransactionCategoryUpdateDto::descriptionIsSet() const
 void TransactionCategoryUpdateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t TransactionCategoryUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void TransactionCategoryUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool TransactionCategoryUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void TransactionCategoryUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
-utility::string_t TransactionCategoryUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void TransactionCategoryUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool TransactionCategoryUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void TransactionCategoryUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 }
 }

@@ -27,8 +27,6 @@ TenantEnrollmentCreateDto::TenantEnrollmentCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_UserId = utility::conversions::to_string_t("");
     m_UserIdIsSet = false;
 }
@@ -54,10 +52,6 @@ web::json::value TenantEnrollmentCreateDto::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_UserIdIsSet)
     {
@@ -91,16 +85,6 @@ bool TenantEnrollmentCreateDto::fromJson(const web::json::value& val)
             setTimestamp(refVal_setTimestamp);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("userId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("userId")));
@@ -129,10 +113,6 @@ void TenantEnrollmentCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_UserIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("userId")), m_UserId));
@@ -159,12 +139,6 @@ bool TenantEnrollmentCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("userId"))))
     {
@@ -214,26 +188,6 @@ bool TenantEnrollmentCreateDto::timestampIsSet() const
 void TenantEnrollmentCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
-}
-utility::string_t TenantEnrollmentCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void TenantEnrollmentCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool TenantEnrollmentCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void TenantEnrollmentCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t TenantEnrollmentCreateDto::getUserId() const
 {

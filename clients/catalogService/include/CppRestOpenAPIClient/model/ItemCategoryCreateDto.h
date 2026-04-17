@@ -103,24 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getParentItemCategoryID() const;
     bool parentItemCategoryIDIsSet() const;
     void unsetParentItemCategoryID();
@@ -139,10 +121,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::string_t m_ImageURL;
     bool m_ImageURLIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_ParentItemCategoryID;
     bool m_ParentItemCategoryIDIsSet;
 };

@@ -103,24 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantID() const;
-    bool tenantIDIsSet() const;
-    void unsetTenantID();
-
-    void setTenantID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentID() const;
-    bool enrollmentIDIsSet() const;
-    void unsetEnrollmentID();
-
-    void setEnrollmentID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getParentJournalID() const;
     bool parentJournalIDIsSet() const;
     void unsetParentJournalID();
@@ -157,10 +139,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::datetime m_DateTime;
     bool m_DateTimeIsSet;
-    utility::string_t m_TenantID;
-    bool m_TenantIDIsSet;
-    utility::string_t m_EnrollmentID;
-    bool m_EnrollmentIDIsSet;
     utility::string_t m_ParentJournalID;
     bool m_ParentJournalIDIsSet;
     utility::string_t m_JournalTypeID;

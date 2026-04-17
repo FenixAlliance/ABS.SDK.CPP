@@ -85,15 +85,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getOrganizationProfileID() const;
     bool organizationProfileIDIsSet() const;
     void unsetOrganizationProfileID();
@@ -117,8 +108,6 @@ protected:
     bool m_DescriptionIsSet;
     bool m_Disabled;
     bool m_DisabledIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_OrganizationProfileID;
     bool m_OrganizationProfileIDIsSet;
     utility::string_t m_ParentDepartmentID;

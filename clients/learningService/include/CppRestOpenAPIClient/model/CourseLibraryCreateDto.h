@@ -112,15 +112,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::datetime getReleaseDateTime() const;
     bool releaseDateTimeIsSet() const;
     void unsetReleaseDateTime();
@@ -141,8 +132,6 @@ protected:
     bool m_CourseIDIsSet;
     utility::string_t m_CourseUnitID;
     bool m_CourseUnitIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::datetime m_ReleaseDateTime;
     bool m_ReleaseDateTimeIsSet;
 };

@@ -23,6 +23,10 @@ namespace model {
 
 DealUnitLineCreateDto::DealUnitLineCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_Closed = false;
     m_ClosedIsSet = false;
     m_ItemId = utility::conversions::to_string_t("");
@@ -35,10 +39,6 @@ DealUnitLineCreateDto::DealUnitLineCreateDto()
     m_ItemPrimaryImageUrlIsSet = false;
     m_ShippingPolicyId = utility::conversions::to_string_t("");
     m_ShippingPolicyIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
@@ -151,22 +151,22 @@ DealUnitLineCreateDto::DealUnitLineCreateDto()
     m_TotalDetailIsSet = false;
     m_TotalDetailCurrencyId = utility::conversions::to_string_t("");
     m_TotalDetailCurrencyIdIsSet = false;
-    m_TotalProfit = 0.0;
-    m_TotalProfitIsSet = false;
-    m_TotalProfitCurrencyId = utility::conversions::to_string_t("");
-    m_TotalProfitCurrencyIdIsSet = false;
     m_TotalDiscounts = 0.0;
     m_TotalDiscountsIsSet = false;
     m_TotalDiscountsCurrencyId = utility::conversions::to_string_t("");
     m_TotalDiscountsCurrencyIdIsSet = false;
-    m_TotalSurcharges = 0.0;
-    m_TotalSurchargesIsSet = false;
-    m_TotalSurchargesCurrencyId = utility::conversions::to_string_t("");
-    m_TotalSurchargesCurrencyIdIsSet = false;
     m_TotalTaxBase = 0.0;
     m_TotalTaxBaseIsSet = false;
     m_TotalTaxBaseCurrencyId = utility::conversions::to_string_t("");
     m_TotalTaxBaseCurrencyIdIsSet = false;
+    m_TotalSurcharges = 0.0;
+    m_TotalSurchargesIsSet = false;
+    m_TotalSurchargesCurrencyId = utility::conversions::to_string_t("");
+    m_TotalSurchargesCurrencyIdIsSet = false;
+    m_TotalProfit = 0.0;
+    m_TotalProfitIsSet = false;
+    m_TotalProfitCurrencyId = utility::conversions::to_string_t("");
+    m_TotalProfitCurrencyIdIsSet = false;
     m_TotalShippingCost = 0.0;
     m_TotalShippingCostIsSet = false;
     m_TotalShippingCostCurrencyId = utility::conversions::to_string_t("");
@@ -209,8 +209,6 @@ DealUnitLineCreateDto::DealUnitLineCreateDto()
     m_LocationIdIsSet = false;
     m_QuoteItemRecordId = utility::conversions::to_string_t("");
     m_QuoteItemRecordIdIsSet = false;
-    m_BusinessProfileRecordId = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIdIsSet = false;
     m_ParentBillingItemRecordId = utility::conversions::to_string_t("");
     m_ParentBillingItemRecordIdIsSet = false;
     m_DealUnitId = utility::conversions::to_string_t("");
@@ -231,6 +229,14 @@ web::json::value DealUnitLineCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_ClosedIsSet)
     {
         val[utility::conversions::to_string_t(U("closed"))] = ModelBase::toJson(m_Closed);
@@ -254,14 +260,6 @@ web::json::value DealUnitLineCreateDto::toJson() const
     if(m_ShippingPolicyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("shippingPolicyId"))] = ModelBase::toJson(m_ShippingPolicyId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_CurrencyIdIsSet)
     {
@@ -487,14 +485,6 @@ web::json::value DealUnitLineCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("totalDetailCurrencyId"))] = ModelBase::toJson(m_TotalDetailCurrencyId);
     }
-    if(m_TotalProfitIsSet)
-    {
-        val[utility::conversions::to_string_t(U("totalProfit"))] = ModelBase::toJson(m_TotalProfit);
-    }
-    if(m_TotalProfitCurrencyIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("totalProfitCurrencyId"))] = ModelBase::toJson(m_TotalProfitCurrencyId);
-    }
     if(m_TotalDiscountsIsSet)
     {
         val[utility::conversions::to_string_t(U("totalDiscounts"))] = ModelBase::toJson(m_TotalDiscounts);
@@ -502,6 +492,14 @@ web::json::value DealUnitLineCreateDto::toJson() const
     if(m_TotalDiscountsCurrencyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("totalDiscountsCurrencyId"))] = ModelBase::toJson(m_TotalDiscountsCurrencyId);
+    }
+    if(m_TotalTaxBaseIsSet)
+    {
+        val[utility::conversions::to_string_t(U("totalTaxBase"))] = ModelBase::toJson(m_TotalTaxBase);
+    }
+    if(m_TotalTaxBaseCurrencyIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))] = ModelBase::toJson(m_TotalTaxBaseCurrencyId);
     }
     if(m_TotalSurchargesIsSet)
     {
@@ -511,13 +509,13 @@ web::json::value DealUnitLineCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("totalSurchargesCurrencyId"))] = ModelBase::toJson(m_TotalSurchargesCurrencyId);
     }
-    if(m_TotalTaxBaseIsSet)
+    if(m_TotalProfitIsSet)
     {
-        val[utility::conversions::to_string_t(U("totalTaxBase"))] = ModelBase::toJson(m_TotalTaxBase);
+        val[utility::conversions::to_string_t(U("totalProfit"))] = ModelBase::toJson(m_TotalProfit);
     }
-    if(m_TotalTaxBaseCurrencyIdIsSet)
+    if(m_TotalProfitCurrencyIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))] = ModelBase::toJson(m_TotalTaxBaseCurrencyId);
+        val[utility::conversions::to_string_t(U("totalProfitCurrencyId"))] = ModelBase::toJson(m_TotalProfitCurrencyId);
     }
     if(m_TotalShippingCostIsSet)
     {
@@ -603,10 +601,6 @@ web::json::value DealUnitLineCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("quoteItemRecordId"))] = ModelBase::toJson(m_QuoteItemRecordId);
     }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordId"))] = ModelBase::toJson(m_BusinessProfileRecordId);
-    }
     if(m_ParentBillingItemRecordIdIsSet)
     {
         val[utility::conversions::to_string_t(U("parentBillingItemRecordId"))] = ModelBase::toJson(m_ParentBillingItemRecordId);
@@ -623,6 +617,26 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("closed"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("closed")));
@@ -681,26 +695,6 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setShippingPolicyId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShippingPolicyId);
             setShippingPolicyId(refVal_setShippingPolicyId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
@@ -1263,26 +1257,6 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             setTotalDetailCurrencyId(refVal_setTotalDetailCurrencyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("totalProfit"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalProfit")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setTotalProfit;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalProfit);
-            setTotalProfit(refVal_setTotalProfit);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("totalProfitCurrencyId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalProfitCurrencyId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTotalProfitCurrencyId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalProfitCurrencyId);
-            setTotalProfitCurrencyId(refVal_setTotalProfitCurrencyId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("totalDiscounts"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalDiscounts")));
@@ -1301,6 +1275,26 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setTotalDiscountsCurrencyId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalDiscountsCurrencyId);
             setTotalDiscountsCurrencyId(refVal_setTotalDiscountsCurrencyId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("totalTaxBase"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalTaxBase")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setTotalTaxBase;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTaxBase);
+            setTotalTaxBase(refVal_setTotalTaxBase);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTotalTaxBaseCurrencyId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTaxBaseCurrencyId);
+            setTotalTaxBaseCurrencyId(refVal_setTotalTaxBaseCurrencyId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("totalSurcharges"))))
@@ -1323,24 +1317,24 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             setTotalSurchargesCurrencyId(refVal_setTotalSurchargesCurrencyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("totalTaxBase"))))
+    if(val.has_field(utility::conversions::to_string_t(U("totalProfit"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalTaxBase")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalProfit")));
         if(!fieldValue.is_null())
         {
-            double refVal_setTotalTaxBase;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTaxBase);
-            setTotalTaxBase(refVal_setTotalTaxBase);
+            double refVal_setTotalProfit;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalProfit);
+            setTotalProfit(refVal_setTotalProfit);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))))
+    if(val.has_field(utility::conversions::to_string_t(U("totalProfitCurrencyId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalProfitCurrencyId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setTotalTaxBaseCurrencyId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalTaxBaseCurrencyId);
-            setTotalTaxBaseCurrencyId(refVal_setTotalTaxBaseCurrencyId);
+            utility::string_t refVal_setTotalProfitCurrencyId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTotalProfitCurrencyId);
+            setTotalProfitCurrencyId(refVal_setTotalProfitCurrencyId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("totalShippingCost"))))
@@ -1553,16 +1547,6 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             setQuoteItemRecordId(refVal_setQuoteItemRecordId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordId);
-            setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("parentBillingItemRecordId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentBillingItemRecordId")));
@@ -1593,6 +1577,14 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
+    }
     if(m_ClosedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("closed")), m_Closed));
@@ -1616,14 +1608,6 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_ShippingPolicyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shippingPolicyId")), m_ShippingPolicyId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_CurrencyIdIsSet)
     {
@@ -1849,14 +1833,6 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalDetailCurrencyId")), m_TotalDetailCurrencyId));
     }
-    if(m_TotalProfitIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalProfit")), m_TotalProfit));
-    }
-    if(m_TotalProfitCurrencyIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalProfitCurrencyId")), m_TotalProfitCurrencyId));
-    }
     if(m_TotalDiscountsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalDiscounts")), m_TotalDiscounts));
@@ -1864,6 +1840,14 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_TotalDiscountsCurrencyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalDiscountsCurrencyId")), m_TotalDiscountsCurrencyId));
+    }
+    if(m_TotalTaxBaseIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalTaxBase")), m_TotalTaxBase));
+    }
+    if(m_TotalTaxBaseCurrencyIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalTaxBaseCurrencyId")), m_TotalTaxBaseCurrencyId));
     }
     if(m_TotalSurchargesIsSet)
     {
@@ -1873,13 +1857,13 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalSurchargesCurrencyId")), m_TotalSurchargesCurrencyId));
     }
-    if(m_TotalTaxBaseIsSet)
+    if(m_TotalProfitIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalTaxBase")), m_TotalTaxBase));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalProfit")), m_TotalProfit));
     }
-    if(m_TotalTaxBaseCurrencyIdIsSet)
+    if(m_TotalProfitCurrencyIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalTaxBaseCurrencyId")), m_TotalTaxBaseCurrencyId));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalProfitCurrencyId")), m_TotalProfitCurrencyId));
     }
     if(m_TotalShippingCostIsSet)
     {
@@ -1965,10 +1949,6 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("quoteItemRecordId")), m_QuoteItemRecordId));
     }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordId")), m_BusinessProfileRecordId));
-    }
     if(m_ParentBillingItemRecordIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentBillingItemRecordId")), m_ParentBillingItemRecordId));
@@ -1988,6 +1968,18 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("closed"))))
     {
         bool refVal_setClosed;
@@ -2023,18 +2015,6 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setShippingPolicyId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("shippingPolicyId"))), refVal_setShippingPolicyId );
         setShippingPolicyId(refVal_setShippingPolicyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
     {
@@ -2372,18 +2352,6 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalDetailCurrencyId"))), refVal_setTotalDetailCurrencyId );
         setTotalDetailCurrencyId(refVal_setTotalDetailCurrencyId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("totalProfit"))))
-    {
-        double refVal_setTotalProfit;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalProfit"))), refVal_setTotalProfit );
-        setTotalProfit(refVal_setTotalProfit);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("totalProfitCurrencyId"))))
-    {
-        utility::string_t refVal_setTotalProfitCurrencyId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalProfitCurrencyId"))), refVal_setTotalProfitCurrencyId );
-        setTotalProfitCurrencyId(refVal_setTotalProfitCurrencyId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("totalDiscounts"))))
     {
         double refVal_setTotalDiscounts;
@@ -2395,6 +2363,18 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setTotalDiscountsCurrencyId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalDiscountsCurrencyId"))), refVal_setTotalDiscountsCurrencyId );
         setTotalDiscountsCurrencyId(refVal_setTotalDiscountsCurrencyId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("totalTaxBase"))))
+    {
+        double refVal_setTotalTaxBase;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalTaxBase"))), refVal_setTotalTaxBase );
+        setTotalTaxBase(refVal_setTotalTaxBase);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))))
+    {
+        utility::string_t refVal_setTotalTaxBaseCurrencyId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))), refVal_setTotalTaxBaseCurrencyId );
+        setTotalTaxBaseCurrencyId(refVal_setTotalTaxBaseCurrencyId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("totalSurcharges"))))
     {
@@ -2408,17 +2388,17 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalSurchargesCurrencyId"))), refVal_setTotalSurchargesCurrencyId );
         setTotalSurchargesCurrencyId(refVal_setTotalSurchargesCurrencyId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("totalTaxBase"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("totalProfit"))))
     {
-        double refVal_setTotalTaxBase;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalTaxBase"))), refVal_setTotalTaxBase );
-        setTotalTaxBase(refVal_setTotalTaxBase);
+        double refVal_setTotalProfit;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalProfit"))), refVal_setTotalProfit );
+        setTotalProfit(refVal_setTotalProfit);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("totalProfitCurrencyId"))))
     {
-        utility::string_t refVal_setTotalTaxBaseCurrencyId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalTaxBaseCurrencyId"))), refVal_setTotalTaxBaseCurrencyId );
-        setTotalTaxBaseCurrencyId(refVal_setTotalTaxBaseCurrencyId);
+        utility::string_t refVal_setTotalProfitCurrencyId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalProfitCurrencyId"))), refVal_setTotalProfitCurrencyId );
+        setTotalProfitCurrencyId(refVal_setTotalProfitCurrencyId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("totalShippingCost"))))
     {
@@ -2546,12 +2526,6 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("quoteItemRecordId"))), refVal_setQuoteItemRecordId );
         setQuoteItemRecordId(refVal_setQuoteItemRecordId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordId"))), refVal_setBusinessProfileRecordId );
-        setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parentBillingItemRecordId"))))
     {
         utility::string_t refVal_setParentBillingItemRecordId;
@@ -2567,6 +2541,46 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
     return ok;
 }
 
+utility::string_t DealUnitLineCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void DealUnitLineCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool DealUnitLineCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void DealUnitLineCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime DealUnitLineCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void DealUnitLineCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool DealUnitLineCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void DealUnitLineCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 bool DealUnitLineCreateDto::isClosed() const
 {
     return m_Closed;
@@ -2686,46 +2700,6 @@ bool DealUnitLineCreateDto::shippingPolicyIdIsSet() const
 void DealUnitLineCreateDto::unsetShippingPolicyId()
 {
     m_ShippingPolicyIdIsSet = false;
-}
-utility::string_t DealUnitLineCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void DealUnitLineCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool DealUnitLineCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void DealUnitLineCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t DealUnitLineCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void DealUnitLineCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool DealUnitLineCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void DealUnitLineCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t DealUnitLineCreateDto::getCurrencyId() const
 {
@@ -3847,46 +3821,6 @@ void DealUnitLineCreateDto::unsetTotalDetailCurrencyId()
 {
     m_TotalDetailCurrencyIdIsSet = false;
 }
-double DealUnitLineCreateDto::getTotalProfit() const
-{
-    return m_TotalProfit;
-}
-
-void DealUnitLineCreateDto::setTotalProfit(double value)
-{
-    m_TotalProfit = value;
-    m_TotalProfitIsSet = true;
-}
-
-bool DealUnitLineCreateDto::totalProfitIsSet() const
-{
-    return m_TotalProfitIsSet;
-}
-
-void DealUnitLineCreateDto::unsetTotalProfit()
-{
-    m_TotalProfitIsSet = false;
-}
-utility::string_t DealUnitLineCreateDto::getTotalProfitCurrencyId() const
-{
-    return m_TotalProfitCurrencyId;
-}
-
-void DealUnitLineCreateDto::setTotalProfitCurrencyId(const utility::string_t& value)
-{
-    m_TotalProfitCurrencyId = value;
-    m_TotalProfitCurrencyIdIsSet = true;
-}
-
-bool DealUnitLineCreateDto::totalProfitCurrencyIdIsSet() const
-{
-    return m_TotalProfitCurrencyIdIsSet;
-}
-
-void DealUnitLineCreateDto::unsetTotalProfitCurrencyId()
-{
-    m_TotalProfitCurrencyIdIsSet = false;
-}
 double DealUnitLineCreateDto::getTotalDiscounts() const
 {
     return m_TotalDiscounts;
@@ -3926,6 +3860,46 @@ bool DealUnitLineCreateDto::totalDiscountsCurrencyIdIsSet() const
 void DealUnitLineCreateDto::unsetTotalDiscountsCurrencyId()
 {
     m_TotalDiscountsCurrencyIdIsSet = false;
+}
+double DealUnitLineCreateDto::getTotalTaxBase() const
+{
+    return m_TotalTaxBase;
+}
+
+void DealUnitLineCreateDto::setTotalTaxBase(double value)
+{
+    m_TotalTaxBase = value;
+    m_TotalTaxBaseIsSet = true;
+}
+
+bool DealUnitLineCreateDto::totalTaxBaseIsSet() const
+{
+    return m_TotalTaxBaseIsSet;
+}
+
+void DealUnitLineCreateDto::unsetTotalTaxBase()
+{
+    m_TotalTaxBaseIsSet = false;
+}
+utility::string_t DealUnitLineCreateDto::getTotalTaxBaseCurrencyId() const
+{
+    return m_TotalTaxBaseCurrencyId;
+}
+
+void DealUnitLineCreateDto::setTotalTaxBaseCurrencyId(const utility::string_t& value)
+{
+    m_TotalTaxBaseCurrencyId = value;
+    m_TotalTaxBaseCurrencyIdIsSet = true;
+}
+
+bool DealUnitLineCreateDto::totalTaxBaseCurrencyIdIsSet() const
+{
+    return m_TotalTaxBaseCurrencyIdIsSet;
+}
+
+void DealUnitLineCreateDto::unsetTotalTaxBaseCurrencyId()
+{
+    m_TotalTaxBaseCurrencyIdIsSet = false;
 }
 double DealUnitLineCreateDto::getTotalSurcharges() const
 {
@@ -3967,45 +3941,45 @@ void DealUnitLineCreateDto::unsetTotalSurchargesCurrencyId()
 {
     m_TotalSurchargesCurrencyIdIsSet = false;
 }
-double DealUnitLineCreateDto::getTotalTaxBase() const
+double DealUnitLineCreateDto::getTotalProfit() const
 {
-    return m_TotalTaxBase;
+    return m_TotalProfit;
 }
 
-void DealUnitLineCreateDto::setTotalTaxBase(double value)
+void DealUnitLineCreateDto::setTotalProfit(double value)
 {
-    m_TotalTaxBase = value;
-    m_TotalTaxBaseIsSet = true;
+    m_TotalProfit = value;
+    m_TotalProfitIsSet = true;
 }
 
-bool DealUnitLineCreateDto::totalTaxBaseIsSet() const
+bool DealUnitLineCreateDto::totalProfitIsSet() const
 {
-    return m_TotalTaxBaseIsSet;
+    return m_TotalProfitIsSet;
 }
 
-void DealUnitLineCreateDto::unsetTotalTaxBase()
+void DealUnitLineCreateDto::unsetTotalProfit()
 {
-    m_TotalTaxBaseIsSet = false;
+    m_TotalProfitIsSet = false;
 }
-utility::string_t DealUnitLineCreateDto::getTotalTaxBaseCurrencyId() const
+utility::string_t DealUnitLineCreateDto::getTotalProfitCurrencyId() const
 {
-    return m_TotalTaxBaseCurrencyId;
-}
-
-void DealUnitLineCreateDto::setTotalTaxBaseCurrencyId(const utility::string_t& value)
-{
-    m_TotalTaxBaseCurrencyId = value;
-    m_TotalTaxBaseCurrencyIdIsSet = true;
+    return m_TotalProfitCurrencyId;
 }
 
-bool DealUnitLineCreateDto::totalTaxBaseCurrencyIdIsSet() const
+void DealUnitLineCreateDto::setTotalProfitCurrencyId(const utility::string_t& value)
 {
-    return m_TotalTaxBaseCurrencyIdIsSet;
+    m_TotalProfitCurrencyId = value;
+    m_TotalProfitCurrencyIdIsSet = true;
 }
 
-void DealUnitLineCreateDto::unsetTotalTaxBaseCurrencyId()
+bool DealUnitLineCreateDto::totalProfitCurrencyIdIsSet() const
 {
-    m_TotalTaxBaseCurrencyIdIsSet = false;
+    return m_TotalProfitCurrencyIdIsSet;
+}
+
+void DealUnitLineCreateDto::unsetTotalProfitCurrencyId()
+{
+    m_TotalProfitCurrencyIdIsSet = false;
 }
 double DealUnitLineCreateDto::getTotalShippingCost() const
 {
@@ -4426,26 +4400,6 @@ bool DealUnitLineCreateDto::quoteItemRecordIdIsSet() const
 void DealUnitLineCreateDto::unsetQuoteItemRecordId()
 {
     m_QuoteItemRecordIdIsSet = false;
-}
-utility::string_t DealUnitLineCreateDto::getBusinessProfileRecordId() const
-{
-    return m_BusinessProfileRecordId;
-}
-
-void DealUnitLineCreateDto::setBusinessProfileRecordId(const utility::string_t& value)
-{
-    m_BusinessProfileRecordId = value;
-    m_BusinessProfileRecordIdIsSet = true;
-}
-
-bool DealUnitLineCreateDto::businessProfileRecordIdIsSet() const
-{
-    return m_BusinessProfileRecordIdIsSet;
-}
-
-void DealUnitLineCreateDto::unsetBusinessProfileRecordId()
-{
-    m_BusinessProfileRecordIdIsSet = false;
 }
 utility::string_t DealUnitLineCreateDto::getParentBillingItemRecordId() const
 {

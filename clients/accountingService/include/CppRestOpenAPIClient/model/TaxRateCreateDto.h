@@ -202,15 +202,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCountryId() const;
     bool countryIdIsSet() const;
     void unsetCountryId();
@@ -243,15 +234,6 @@ public:
     void unsetTaxPolicyId();
 
     void setTaxPolicyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
 
 protected:
@@ -287,8 +269,6 @@ protected:
     bool m_FiscalAuthorityIdIsSet;
     utility::string_t m_FiscalYearId;
     bool m_FiscalYearIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_CountryId;
     bool m_CountryIdIsSet;
     utility::string_t m_TaxClassId;
@@ -297,8 +277,6 @@ protected:
     bool m_CurrencyIdIsSet;
     utility::string_t m_TaxPolicyId;
     bool m_TaxPolicyIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
 };
 
 

@@ -58,24 +58,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     int32_t getUnitPrice() const;
     bool unitPriceIsSet() const;
     void unsetUnitPrice();
@@ -102,10 +84,6 @@ public:
 
 
 protected:
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     int32_t m_UnitPrice;
     bool m_UnitPriceIsSet;
     int32_t m_Quantity;

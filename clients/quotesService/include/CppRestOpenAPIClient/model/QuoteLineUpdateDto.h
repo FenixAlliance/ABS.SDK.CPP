@@ -112,24 +112,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCurrencyId() const;
     bool currencyIdIsSet() const;
     void unsetCurrencyId();
@@ -895,15 +877,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordId() const;
-    bool businessProfileRecordIdIsSet() const;
-    void unsetBusinessProfileRecordId();
-
-    void setBusinessProfileRecordId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getParentBillingItemRecordId() const;
     bool parentBillingItemRecordIdIsSet() const;
     void unsetParentBillingItemRecordId();
@@ -924,10 +897,6 @@ protected:
     bool m_ItemPrimaryImageUrlIsSet;
     utility::string_t m_ShippingPolicyId;
     bool m_ShippingPolicyIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     utility::string_t m_Description;
@@ -1098,8 +1067,6 @@ protected:
     bool m_LocationIdIsSet;
     utility::string_t m_QuoteItemRecordId;
     bool m_QuoteItemRecordIdIsSet;
-    utility::string_t m_BusinessProfileRecordId;
-    bool m_BusinessProfileRecordIdIsSet;
     utility::string_t m_ParentBillingItemRecordId;
     bool m_ParentBillingItemRecordIdIsSet;
 };

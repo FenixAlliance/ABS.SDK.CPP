@@ -112,15 +112,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
@@ -148,15 +139,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getBusinessPortalApplicationID() const;
     bool businessPortalApplicationIDIsSet() const;
     void unsetBusinessPortalApplicationID();
@@ -177,16 +159,12 @@ protected:
     bool m_DomainIsSet;
     bool m_Disabled;
     bool m_DisabledIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
     utility::string_t m_WebsiteThemeID;
     bool m_WebsiteThemeIDIsSet;
     utility::string_t m_BusinessDomainID;
     bool m_BusinessDomainIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_BusinessPortalApplicationID;
     bool m_BusinessPortalApplicationIDIsSet;
 };

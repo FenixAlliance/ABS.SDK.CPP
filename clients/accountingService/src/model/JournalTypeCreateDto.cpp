@@ -29,10 +29,6 @@ JournalTypeCreateDto::JournalTypeCreateDto()
     m_TimestampIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 JournalTypeCreateDto::~JournalTypeCreateDto()
@@ -60,14 +56,6 @@ web::json::value JournalTypeCreateDto::toJson() const
     if(m_NameIsSet)
     {
         val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -107,26 +95,6 @@ bool JournalTypeCreateDto::fromJson(const web::json::value& val)
             setName(refVal_setName);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -148,14 +116,6 @@ void JournalTypeCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -185,18 +145,6 @@ bool JournalTypeCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
         setName(refVal_setName);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -260,46 +208,6 @@ bool JournalTypeCreateDto::nameIsSet() const
 void JournalTypeCreateDto::unsetName()
 {
     m_NameIsSet = false;
-}
-utility::string_t JournalTypeCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void JournalTypeCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool JournalTypeCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void JournalTypeCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t JournalTypeCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void JournalTypeCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool JournalTypeCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void JournalTypeCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

@@ -27,8 +27,6 @@ TenantIndustryUpdateDto::TenantIndustryUpdateDto()
     m_NameIsSet = false;
     m_ParentBusinessIndustryID = utility::conversions::to_string_t("");
     m_ParentBusinessIndustryIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 TenantIndustryUpdateDto::~TenantIndustryUpdateDto()
@@ -52,10 +50,6 @@ web::json::value TenantIndustryUpdateDto::toJson() const
     if(m_ParentBusinessIndustryIDIsSet)
     {
         val[utility::conversions::to_string_t(U("parentBusinessIndustryID"))] = ModelBase::toJson(m_ParentBusinessIndustryID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
 
     return val;
@@ -85,16 +79,6 @@ bool TenantIndustryUpdateDto::fromJson(const web::json::value& val)
             setParentBusinessIndustryID(refVal_setParentBusinessIndustryID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     return ok;
 }
 
@@ -112,10 +96,6 @@ void TenantIndustryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     if(m_ParentBusinessIndustryIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentBusinessIndustryID")), m_ParentBusinessIndustryID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
 }
 
@@ -139,12 +119,6 @@ bool TenantIndustryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         utility::string_t refVal_setParentBusinessIndustryID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentBusinessIndustryID"))), refVal_setParentBusinessIndustryID );
         setParentBusinessIndustryID(refVal_setParentBusinessIndustryID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     return ok;
 }
@@ -188,26 +162,6 @@ bool TenantIndustryUpdateDto::parentBusinessIndustryIDIsSet() const
 void TenantIndustryUpdateDto::unsetParentBusinessIndustryID()
 {
     m_ParentBusinessIndustryIDIsSet = false;
-}
-utility::string_t TenantIndustryUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void TenantIndustryUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool TenantIndustryUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void TenantIndustryUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

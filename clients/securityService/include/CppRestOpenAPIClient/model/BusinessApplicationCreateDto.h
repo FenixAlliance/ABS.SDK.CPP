@@ -193,24 +193,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     bool isRequireHttps() const;
     bool requireHttpsIsSet() const;
     void unsetRequireHttps();
@@ -438,10 +420,6 @@ protected:
     bool m_PrivacyPolicyURLIsSet;
     utility::string_t m_TermsAndConditionsURL;
     bool m_TermsAndConditionsURLIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     bool m_RequireHttps;
     bool m_RequireHttpsIsSet;
     bool m_RequireAppSecret;

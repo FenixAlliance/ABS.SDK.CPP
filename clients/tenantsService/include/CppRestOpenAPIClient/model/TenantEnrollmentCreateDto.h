@@ -76,15 +76,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getUserId() const;
     bool userIdIsSet() const;
     void unsetUserId();
@@ -97,8 +88,6 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_UserId;
     bool m_UserIdIsSet;
 };

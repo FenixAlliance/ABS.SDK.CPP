@@ -518,15 +518,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getPermalink() const;
     bool permalinkIsSet() const;
     void unsetPermalink();
@@ -739,15 +730,6 @@ public:
     void unsetQuestionsCount();
 
     void setQuestionsCount(int32_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -1717,8 +1699,6 @@ protected:
     bool m_OnDiscountIsSet;
     double m_TotalTax;
     bool m_TotalTaxIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_Permalink;
     bool m_PermalinkIsSet;
     utility::string_t m_BrandName;
@@ -1767,8 +1747,6 @@ protected:
     bool m_HasVariationsIsSet;
     int32_t m_QuestionsCount;
     bool m_QuestionsCountIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_SupplierCode;
     bool m_SupplierCodeIsSet;
     utility::datetime m_AuctionEnd;

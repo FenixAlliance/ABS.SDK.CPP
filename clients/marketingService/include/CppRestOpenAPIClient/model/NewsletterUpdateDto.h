@@ -76,24 +76,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -106,10 +88,6 @@ protected:
     bool m_CodeIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
 };

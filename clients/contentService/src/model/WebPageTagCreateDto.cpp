@@ -51,8 +51,6 @@ WebPageTagCreateDto::WebPageTagCreateDto()
     m_ImageIsSet = false;
     m_WebPortalID = utility::conversions::to_string_t("");
     m_WebPortalIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 WebPageTagCreateDto::~WebPageTagCreateDto()
@@ -124,10 +122,6 @@ web::json::value WebPageTagCreateDto::toJson() const
     if(m_WebPortalIDIsSet)
     {
         val[utility::conversions::to_string_t(U("webPortalID"))] = ModelBase::toJson(m_WebPortalID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
 
     return val;
@@ -277,16 +271,6 @@ bool WebPageTagCreateDto::fromJson(const web::json::value& val)
             setWebPortalID(refVal_setWebPortalID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     return ok;
 }
 
@@ -352,10 +336,6 @@ void WebPageTagCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_WebPortalIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webPortalID")), m_WebPortalID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
 }
 
@@ -451,12 +431,6 @@ bool WebPageTagCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_setWebPortalID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("webPortalID"))), refVal_setWebPortalID );
         setWebPortalID(refVal_setWebPortalID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     return ok;
 }
@@ -740,26 +714,6 @@ bool WebPageTagCreateDto::webPortalIDIsSet() const
 void WebPageTagCreateDto::unsetWebPortalID()
 {
     m_WebPortalIDIsSet = false;
-}
-utility::string_t WebPageTagCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void WebPageTagCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool WebPageTagCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void WebPageTagCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

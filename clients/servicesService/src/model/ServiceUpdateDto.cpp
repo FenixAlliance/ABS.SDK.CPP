@@ -125,8 +125,6 @@ ServiceUpdateDto::ServiceUpdateDto()
     m_OnDiscountIsSet = false;
     m_TotalTax = 0.0;
     m_TotalTaxIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_Permalink = utility::conversions::to_string_t("");
     m_PermalinkIsSet = false;
     m_BrandName = utility::conversions::to_string_t("");
@@ -175,8 +173,6 @@ ServiceUpdateDto::ServiceUpdateDto()
     m_HasVariationsIsSet = false;
     m_QuestionsCount = 0;
     m_QuestionsCountIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_SupplierCode = utility::conversions::to_string_t("");
     m_SupplierCodeIsSet = false;
     m_AuctionEnd = utility::datetime();
@@ -575,10 +571,6 @@ web::json::value ServiceUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("totalTax"))] = ModelBase::toJson(m_TotalTax);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_PermalinkIsSet)
     {
         val[utility::conversions::to_string_t(U("permalink"))] = ModelBase::toJson(m_Permalink);
@@ -674,10 +666,6 @@ web::json::value ServiceUpdateDto::toJson() const
     if(m_QuestionsCountIsSet)
     {
         val[utility::conversions::to_string_t(U("questionsCount"))] = ModelBase::toJson(m_QuestionsCount);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_SupplierCodeIsSet)
     {
@@ -1585,16 +1573,6 @@ bool ServiceUpdateDto::fromJson(const web::json::value& val)
             setTotalTax(refVal_setTotalTax);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("permalink"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("permalink")));
@@ -1833,16 +1811,6 @@ bool ServiceUpdateDto::fromJson(const web::json::value& val)
             int32_t refVal_setQuestionsCount;
             ok &= ModelBase::fromJson(fieldValue, refVal_setQuestionsCount);
             setQuestionsCount(refVal_setQuestionsCount);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("supplierCode"))))
@@ -3029,10 +2997,6 @@ void ServiceUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalTax")), m_TotalTax));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_PermalinkIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("permalink")), m_Permalink));
@@ -3128,10 +3092,6 @@ void ServiceUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_QuestionsCountIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("questionsCount")), m_QuestionsCount));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_SupplierCodeIsSet)
     {
@@ -3838,12 +3798,6 @@ bool ServiceUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalTax"))), refVal_setTotalTax );
         setTotalTax(refVal_setTotalTax);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("permalink"))))
     {
         utility::string_t refVal_setPermalink;
@@ -3987,12 +3941,6 @@ bool ServiceUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         int32_t refVal_setQuestionsCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("questionsCount"))), refVal_setQuestionsCount );
         setQuestionsCount(refVal_setQuestionsCount);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("supplierCode"))))
     {
@@ -5599,26 +5547,6 @@ void ServiceUpdateDto::unsetTotalTax()
 {
     m_TotalTaxIsSet = false;
 }
-utility::string_t ServiceUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void ServiceUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool ServiceUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void ServiceUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t ServiceUpdateDto::getPermalink() const
 {
     return m_Permalink;
@@ -6098,26 +6026,6 @@ bool ServiceUpdateDto::questionsCountIsSet() const
 void ServiceUpdateDto::unsetQuestionsCount()
 {
     m_QuestionsCountIsSet = false;
-}
-utility::string_t ServiceUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void ServiceUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool ServiceUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void ServiceUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t ServiceUpdateDto::getSupplierCode() const
 {

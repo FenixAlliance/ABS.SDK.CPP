@@ -29,8 +29,6 @@ TenantDepartmentUpdateDto::TenantDepartmentUpdateDto()
     m_DescriptionIsSet = false;
     m_Disabled = false;
     m_DisabledIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_OrganizationProfileID = utility::conversions::to_string_t("");
     m_OrganizationProfileIDIsSet = false;
     m_ParentDepartmentID = utility::conversions::to_string_t("");
@@ -62,10 +60,6 @@ web::json::value TenantDepartmentUpdateDto::toJson() const
     if(m_DisabledIsSet)
     {
         val[utility::conversions::to_string_t(U("disabled"))] = ModelBase::toJson(m_Disabled);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_OrganizationProfileIDIsSet)
     {
@@ -113,16 +107,6 @@ bool TenantDepartmentUpdateDto::fromJson(const web::json::value& val)
             setDisabled(refVal_setDisabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("organizationProfileID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("organizationProfileID")));
@@ -165,10 +149,6 @@ void TenantDepartmentUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("disabled")), m_Disabled));
     }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
-    }
     if(m_OrganizationProfileIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("organizationProfileID")), m_OrganizationProfileID));
@@ -205,12 +185,6 @@ bool TenantDepartmentUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         bool refVal_setDisabled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("disabled"))), refVal_setDisabled );
         setDisabled(refVal_setDisabled);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("organizationProfileID"))))
     {
@@ -286,26 +260,6 @@ bool TenantDepartmentUpdateDto::disabledIsSet() const
 void TenantDepartmentUpdateDto::unsetDisabled()
 {
     m_DisabledIsSet = false;
-}
-utility::string_t TenantDepartmentUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void TenantDepartmentUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool TenantDepartmentUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void TenantDepartmentUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t TenantDepartmentUpdateDto::getOrganizationProfileID() const
 {

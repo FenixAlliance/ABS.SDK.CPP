@@ -37,10 +37,6 @@ SalesLiteratureCreateDto::SalesLiteratureCreateDto()
     m_ModifiedDateIsSet = false;
     m_ExpirationDate = utility::datetime();
     m_ExpirationDateIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_SalesLiteratureTypeId = utility::conversions::to_string_t("");
     m_SalesLiteratureTypeIdIsSet = false;
 }
@@ -86,14 +82,6 @@ web::json::value SalesLiteratureCreateDto::toJson() const
     if(m_ExpirationDateIsSet)
     {
         val[utility::conversions::to_string_t(U("expirationDate"))] = ModelBase::toJson(m_ExpirationDate);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_SalesLiteratureTypeIdIsSet)
     {
@@ -177,26 +165,6 @@ bool SalesLiteratureCreateDto::fromJson(const web::json::value& val)
             setExpirationDate(refVal_setExpirationDate);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("salesLiteratureTypeId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("salesLiteratureTypeId")));
@@ -244,14 +212,6 @@ void SalesLiteratureCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mu
     if(m_ExpirationDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("expirationDate")), m_ExpirationDate));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_SalesLiteratureTypeIdIsSet)
     {
@@ -309,18 +269,6 @@ bool SalesLiteratureCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> 
         utility::datetime refVal_setExpirationDate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("expirationDate"))), refVal_setExpirationDate );
         setExpirationDate(refVal_setExpirationDate);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("salesLiteratureTypeId"))))
     {
@@ -470,46 +418,6 @@ bool SalesLiteratureCreateDto::expirationDateIsSet() const
 void SalesLiteratureCreateDto::unsetExpirationDate()
 {
     m_ExpirationDateIsSet = false;
-}
-utility::string_t SalesLiteratureCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void SalesLiteratureCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool SalesLiteratureCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void SalesLiteratureCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t SalesLiteratureCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void SalesLiteratureCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool SalesLiteratureCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void SalesLiteratureCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t SalesLiteratureCreateDto::getSalesLiteratureTypeId() const
 {

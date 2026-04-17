@@ -103,24 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::datetime getEndDate() const;
     bool endDateIsSet() const;
     void unsetEndDate();
@@ -136,6 +118,15 @@ public:
 
     void setStartDate(const utility::datetime& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getFiscalAuthorityId() const;
+    bool fiscalAuthorityIdIsSet() const;
+    void unsetFiscalAuthorityId();
+
+    void setFiscalAuthorityId(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -148,14 +139,12 @@ protected:
     bool m_DescriptionIsSet;
     bool m_Closed;
     bool m_ClosedIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::datetime m_EndDate;
     bool m_EndDateIsSet;
     utility::datetime m_StartDate;
     bool m_StartDateIsSet;
+    utility::string_t m_FiscalAuthorityId;
+    bool m_FiscalAuthorityIdIsSet;
 };
 
 

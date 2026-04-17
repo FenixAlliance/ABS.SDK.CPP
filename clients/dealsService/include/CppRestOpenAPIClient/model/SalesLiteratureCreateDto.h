@@ -121,24 +121,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getSalesLiteratureTypeId() const;
     bool salesLiteratureTypeIdIsSet() const;
     void unsetSalesLiteratureTypeId();
@@ -161,10 +143,6 @@ protected:
     bool m_ModifiedDateIsSet;
     utility::datetime m_ExpirationDate;
     bool m_ExpirationDateIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_SalesLiteratureTypeId;
     bool m_SalesLiteratureTypeIdIsSet;
 };

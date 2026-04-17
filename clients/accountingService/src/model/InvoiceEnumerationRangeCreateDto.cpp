@@ -47,10 +47,6 @@ InvoiceEnumerationRangeCreateDto::InvoiceEnumerationRangeCreateDto()
     m_ValidToIsSet = false;
     m_FiscalAuthorityId = utility::conversions::to_string_t("");
     m_FiscalAuthorityIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_DocumentType = utility::conversions::to_string_t("");
     m_DocumentTypeIsSet = false;
 }
@@ -116,14 +112,6 @@ web::json::value InvoiceEnumerationRangeCreateDto::toJson() const
     if(m_FiscalAuthorityIdIsSet)
     {
         val[utility::conversions::to_string_t(U("fiscalAuthorityId"))] = ModelBase::toJson(m_FiscalAuthorityId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_DocumentTypeIsSet)
     {
@@ -257,26 +245,6 @@ bool InvoiceEnumerationRangeCreateDto::fromJson(const web::json::value& val)
             setFiscalAuthorityId(refVal_setFiscalAuthorityId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("documentType"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("documentType")));
@@ -344,14 +312,6 @@ void InvoiceEnumerationRangeCreateDto::toMultipart(std::shared_ptr<MultipartForm
     if(m_FiscalAuthorityIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalAuthorityId")), m_FiscalAuthorityId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_DocumentTypeIsSet)
     {
@@ -439,18 +399,6 @@ bool InvoiceEnumerationRangeCreateDto::fromMultiPart(std::shared_ptr<MultipartFo
         utility::string_t refVal_setFiscalAuthorityId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fiscalAuthorityId"))), refVal_setFiscalAuthorityId );
         setFiscalAuthorityId(refVal_setFiscalAuthorityId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("documentType"))))
     {
@@ -700,46 +648,6 @@ bool InvoiceEnumerationRangeCreateDto::fiscalAuthorityIdIsSet() const
 void InvoiceEnumerationRangeCreateDto::unsetFiscalAuthorityId()
 {
     m_FiscalAuthorityIdIsSet = false;
-}
-utility::string_t InvoiceEnumerationRangeCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void InvoiceEnumerationRangeCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool InvoiceEnumerationRangeCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void InvoiceEnumerationRangeCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t InvoiceEnumerationRangeCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void InvoiceEnumerationRangeCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool InvoiceEnumerationRangeCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void InvoiceEnumerationRangeCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t InvoiceEnumerationRangeCreateDto::getDocumentType() const
 {

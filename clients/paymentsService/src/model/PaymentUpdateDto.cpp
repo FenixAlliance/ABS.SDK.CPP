@@ -25,8 +25,6 @@ PaymentUpdateDto::PaymentUpdateDto()
 {
     m_InvoiceId = utility::conversions::to_string_t("");
     m_InvoiceIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_EmisorWalletId = utility::conversions::to_string_t("");
     m_EmisorWalletIdIsSet = false;
     m_ReceiverWalletId = utility::conversions::to_string_t("");
@@ -129,8 +127,6 @@ PaymentUpdateDto::PaymentUpdateDto()
     m_PaymentGatewayIdIsSet = false;
     m_BankAccountId = utility::conversions::to_string_t("");
     m_BankAccountIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_BankId = utility::conversions::to_string_t("");
     m_BankIdIsSet = false;
     m_PaymentTokenId = utility::conversions::to_string_t("");
@@ -158,10 +154,6 @@ web::json::value PaymentUpdateDto::toJson() const
     if(m_InvoiceIdIsSet)
     {
         val[utility::conversions::to_string_t(U("invoiceId"))] = ModelBase::toJson(m_InvoiceId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_EmisorWalletIdIsSet)
     {
@@ -367,10 +359,6 @@ web::json::value PaymentUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("bankAccountId"))] = ModelBase::toJson(m_BankAccountId);
     }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
     if(m_BankIdIsSet)
     {
         val[utility::conversions::to_string_t(U("bankId"))] = ModelBase::toJson(m_BankId);
@@ -403,16 +391,6 @@ bool PaymentUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setInvoiceId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setInvoiceId);
             setInvoiceId(refVal_setInvoiceId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("emisorWalletId"))))
@@ -925,16 +903,6 @@ bool PaymentUpdateDto::fromJson(const web::json::value& val)
             setBankAccountId(refVal_setBankAccountId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("bankId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bankId")));
@@ -988,10 +956,6 @@ void PaymentUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_InvoiceIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("invoiceId")), m_InvoiceId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_EmisorWalletIdIsSet)
     {
@@ -1197,10 +1161,6 @@ void PaymentUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bankAccountId")), m_BankAccountId));
     }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_BankIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bankId")), m_BankId));
@@ -1233,12 +1193,6 @@ bool PaymentUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setInvoiceId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("invoiceId"))), refVal_setInvoiceId );
         setInvoiceId(refVal_setInvoiceId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("emisorWalletId"))))
     {
@@ -1546,12 +1500,6 @@ bool PaymentUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bankAccountId"))), refVal_setBankAccountId );
         setBankAccountId(refVal_setBankAccountId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("bankId"))))
     {
         utility::string_t refVal_setBankId;
@@ -1598,26 +1546,6 @@ bool PaymentUpdateDto::invoiceIdIsSet() const
 void PaymentUpdateDto::unsetInvoiceId()
 {
     m_InvoiceIdIsSet = false;
-}
-utility::string_t PaymentUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void PaymentUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool PaymentUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void PaymentUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t PaymentUpdateDto::getEmisorWalletId() const
 {
@@ -2638,26 +2566,6 @@ bool PaymentUpdateDto::bankAccountIdIsSet() const
 void PaymentUpdateDto::unsetBankAccountId()
 {
     m_BankAccountIdIsSet = false;
-}
-utility::string_t PaymentUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void PaymentUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool PaymentUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void PaymentUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t PaymentUpdateDto::getBankId() const
 {

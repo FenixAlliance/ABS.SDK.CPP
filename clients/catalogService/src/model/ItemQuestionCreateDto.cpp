@@ -35,8 +35,6 @@ ItemQuestionCreateDto::ItemQuestionCreateDto()
     m_QuestionIsSet = false;
     m_SocialProfileID = utility::conversions::to_string_t("");
     m_SocialProfileIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_ItemID = utility::conversions::to_string_t("");
     m_ItemIDIsSet = false;
 }
@@ -78,10 +76,6 @@ web::json::value ItemQuestionCreateDto::toJson() const
     if(m_SocialProfileIDIsSet)
     {
         val[utility::conversions::to_string_t(U("socialProfileID"))] = ModelBase::toJson(m_SocialProfileID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
     if(m_ItemIDIsSet)
     {
@@ -155,16 +149,6 @@ bool ItemQuestionCreateDto::fromJson(const web::json::value& val)
             setSocialProfileID(refVal_setSocialProfileID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("itemID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("itemID")));
@@ -208,10 +192,6 @@ void ItemQuestionCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_SocialProfileIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileID")), m_SocialProfileID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
     if(m_ItemIDIsSet)
     {
@@ -263,12 +243,6 @@ bool ItemQuestionCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setSocialProfileID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileID"))), refVal_setSocialProfileID );
         setSocialProfileID(refVal_setSocialProfileID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("itemID"))))
     {
@@ -398,26 +372,6 @@ bool ItemQuestionCreateDto::socialProfileIDIsSet() const
 void ItemQuestionCreateDto::unsetSocialProfileID()
 {
     m_SocialProfileIDIsSet = false;
-}
-utility::string_t ItemQuestionCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemQuestionCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemQuestionCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemQuestionCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 utility::string_t ItemQuestionCreateDto::getItemID() const
 {

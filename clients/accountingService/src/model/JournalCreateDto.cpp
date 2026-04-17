@@ -33,10 +33,6 @@ JournalCreateDto::JournalCreateDto()
     m_DescriptionIsSet = false;
     m_DateTime = utility::datetime();
     m_DateTimeIsSet = false;
-    m_TenantID = utility::conversions::to_string_t("");
-    m_TenantIDIsSet = false;
-    m_EnrollmentID = utility::conversions::to_string_t("");
-    m_EnrollmentIDIsSet = false;
     m_ParentJournalID = utility::conversions::to_string_t("");
     m_ParentJournalIDIsSet = false;
     m_JournalTypeID = utility::conversions::to_string_t("");
@@ -78,14 +74,6 @@ web::json::value JournalCreateDto::toJson() const
     if(m_DateTimeIsSet)
     {
         val[utility::conversions::to_string_t(U("dateTime"))] = ModelBase::toJson(m_DateTime);
-    }
-    if(m_TenantIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantID"))] = ModelBase::toJson(m_TenantID);
-    }
-    if(m_EnrollmentIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentID"))] = ModelBase::toJson(m_EnrollmentID);
     }
     if(m_ParentJournalIDIsSet)
     {
@@ -157,26 +145,6 @@ bool JournalCreateDto::fromJson(const web::json::value& val)
             setDateTime(refVal_setDateTime);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantID);
-            setTenantID(refVal_setTenantID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentID);
-            setEnrollmentID(refVal_setEnrollmentID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("parentJournalID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentJournalID")));
@@ -237,14 +205,6 @@ void JournalCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dateTime")), m_DateTime));
     }
-    if(m_TenantIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantID")), m_TenantID));
-    }
-    if(m_EnrollmentIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentID")), m_EnrollmentID));
-    }
     if(m_ParentJournalIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentJournalID")), m_ParentJournalID));
@@ -297,18 +257,6 @@ bool JournalCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::datetime refVal_setDateTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dateTime"))), refVal_setDateTime );
         setDateTime(refVal_setDateTime);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantID"))))
-    {
-        utility::string_t refVal_setTenantID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantID"))), refVal_setTenantID );
-        setTenantID(refVal_setTenantID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentID"))))
-    {
-        utility::string_t refVal_setEnrollmentID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentID"))), refVal_setEnrollmentID );
-        setEnrollmentID(refVal_setEnrollmentID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parentJournalID"))))
     {
@@ -430,46 +378,6 @@ bool JournalCreateDto::dateTimeIsSet() const
 void JournalCreateDto::unsetDateTime()
 {
     m_DateTimeIsSet = false;
-}
-utility::string_t JournalCreateDto::getTenantID() const
-{
-    return m_TenantID;
-}
-
-void JournalCreateDto::setTenantID(const utility::string_t& value)
-{
-    m_TenantID = value;
-    m_TenantIDIsSet = true;
-}
-
-bool JournalCreateDto::tenantIDIsSet() const
-{
-    return m_TenantIDIsSet;
-}
-
-void JournalCreateDto::unsetTenantID()
-{
-    m_TenantIDIsSet = false;
-}
-utility::string_t JournalCreateDto::getEnrollmentID() const
-{
-    return m_EnrollmentID;
-}
-
-void JournalCreateDto::setEnrollmentID(const utility::string_t& value)
-{
-    m_EnrollmentID = value;
-    m_EnrollmentIDIsSet = true;
-}
-
-bool JournalCreateDto::enrollmentIDIsSet() const
-{
-    return m_EnrollmentIDIsSet;
-}
-
-void JournalCreateDto::unsetEnrollmentID()
-{
-    m_EnrollmentIDIsSet = false;
 }
 utility::string_t JournalCreateDto::getParentJournalID() const
 {

@@ -53,10 +53,6 @@ BusinessApplicationCreateDto::BusinessApplicationCreateDto()
     m_PrivacyPolicyURLIsSet = false;
     m_TermsAndConditionsURL = utility::conversions::to_string_t("");
     m_TermsAndConditionsURLIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_RequireHttps = false;
     m_RequireHttpsIsSet = false;
     m_RequireAppSecret = false;
@@ -176,14 +172,6 @@ web::json::value BusinessApplicationCreateDto::toJson() const
     if(m_TermsAndConditionsURLIsSet)
     {
         val[utility::conversions::to_string_t(U("termsAndConditionsURL"))] = ModelBase::toJson(m_TermsAndConditionsURL);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_RequireHttpsIsSet)
     {
@@ -429,26 +417,6 @@ bool BusinessApplicationCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setTermsAndConditionsURL;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTermsAndConditionsURL);
             setTermsAndConditionsURL(refVal_setTermsAndConditionsURL);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("requireHttps"))))
@@ -741,14 +709,6 @@ void BusinessApplicationCreateDto::toMultipart(std::shared_ptr<MultipartFormData
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("termsAndConditionsURL")), m_TermsAndConditionsURL));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
-    }
     if(m_RequireHttpsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("requireHttps")), m_RequireHttps));
@@ -937,18 +897,6 @@ bool BusinessApplicationCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDa
         utility::string_t refVal_setTermsAndConditionsURL;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("termsAndConditionsURL"))), refVal_setTermsAndConditionsURL );
         setTermsAndConditionsURL(refVal_setTermsAndConditionsURL);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("requireHttps"))))
     {
@@ -1384,46 +1332,6 @@ bool BusinessApplicationCreateDto::termsAndConditionsURLIsSet() const
 void BusinessApplicationCreateDto::unsetTermsAndConditionsURL()
 {
     m_TermsAndConditionsURLIsSet = false;
-}
-utility::string_t BusinessApplicationCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void BusinessApplicationCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool BusinessApplicationCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void BusinessApplicationCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t BusinessApplicationCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void BusinessApplicationCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool BusinessApplicationCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void BusinessApplicationCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 bool BusinessApplicationCreateDto::isRequireHttps() const
 {

@@ -37,10 +37,6 @@ ShareTransferCreateDto::ShareTransferCreateDto()
     m_FormerShareHolderIdIsSet = false;
     m_ShareTransferReasonId = utility::conversions::to_string_t("");
     m_ShareTransferReasonIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
 }
 
 ShareTransferCreateDto::~ShareTransferCreateDto()
@@ -84,14 +80,6 @@ web::json::value ShareTransferCreateDto::toJson() const
     if(m_ShareTransferReasonIdIsSet)
     {
         val[utility::conversions::to_string_t(U("shareTransferReasonId"))] = ModelBase::toJson(m_ShareTransferReasonId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
 
     return val;
@@ -171,26 +159,6 @@ bool ShareTransferCreateDto::fromJson(const web::json::value& val)
             setShareTransferReasonId(refVal_setShareTransferReasonId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     return ok;
 }
 
@@ -228,14 +196,6 @@ void ShareTransferCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     if(m_ShareTransferReasonIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shareTransferReasonId")), m_ShareTransferReasonId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
 }
 
@@ -289,18 +249,6 @@ bool ShareTransferCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         utility::string_t refVal_setShareTransferReasonId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("shareTransferReasonId"))), refVal_setShareTransferReasonId );
         setShareTransferReasonId(refVal_setShareTransferReasonId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     return ok;
 }
@@ -444,46 +392,6 @@ bool ShareTransferCreateDto::shareTransferReasonIdIsSet() const
 void ShareTransferCreateDto::unsetShareTransferReasonId()
 {
     m_ShareTransferReasonIdIsSet = false;
-}
-utility::string_t ShareTransferCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void ShareTransferCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool ShareTransferCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void ShareTransferCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
-utility::string_t ShareTransferCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void ShareTransferCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool ShareTransferCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void ShareTransferCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 }
 }

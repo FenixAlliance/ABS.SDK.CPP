@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 CMakeLists.txt
 Config.cmake.in
 README.md
@@ -168,6 +167,7 @@ include/CppRestOpenAPIClient/model/WebPageUpdateDto.h
 include/CppRestOpenAPIClient/model/WebPortalCreateDto.h
 include/CppRestOpenAPIClient/model/WebPortalDto.h
 include/CppRestOpenAPIClient/model/WebPortalDtoEnvelope.h
+include/CppRestOpenAPIClient/model/WebPortalDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/WebPortalUpdateDto.h
 include/CppRestOpenAPIClient/model/WebTemplateCreateDto.h
 include/CppRestOpenAPIClient/model/WebTemplateDto.h
@@ -337,6 +337,7 @@ src/model/WebPageUpdateDto.cpp
 src/model/WebPortalCreateDto.cpp
 src/model/WebPortalDto.cpp
 src/model/WebPortalDtoEnvelope.cpp
+src/model/WebPortalDtoListEnvelope.cpp
 src/model/WebPortalUpdateDto.cpp
 src/model/WebTemplateCreateDto.cpp
 src/model/WebTemplateDto.cpp

@@ -58,24 +58,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getBusinessTeamID() const;
     bool businessTeamIDIsSet() const;
     void unsetBusinessTeamID();
@@ -84,10 +66,6 @@ public:
 
 
 protected:
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_BusinessTeamID;
     bool m_BusinessTeamIDIsSet;
 };

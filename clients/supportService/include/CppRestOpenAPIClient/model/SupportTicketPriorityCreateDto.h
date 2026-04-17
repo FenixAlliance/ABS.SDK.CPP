@@ -58,6 +58,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getId() const;
+    bool idIsSet() const;
+    void unsetId();
+
+    void setId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
@@ -76,15 +94,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getSupportEntitlementID() const;
     bool supportEntitlementIDIsSet() const;
     void unsetSupportEntitlementID();
@@ -93,12 +102,14 @@ public:
 
 
 protected:
+    utility::string_t m_Id;
+    bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::string_t m_SupportEntitlementID;
     bool m_SupportEntitlementIDIsSet;
 };

@@ -29,14 +29,10 @@ CourseCertificateTemplateCreateDto::CourseCertificateTemplateCreateDto()
     m_TimestampIsSet = false;
     m_CourseID = utility::conversions::to_string_t("");
     m_CourseIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_WebPortalID = utility::conversions::to_string_t("");
     m_WebPortalIDIsSet = false;
     m_WebsiteThemeID = utility::conversions::to_string_t("");
     m_WebsiteThemeIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_SocialProfileID = utility::conversions::to_string_t("");
     m_SocialProfileIDIsSet = false;
     m_ParentWebContentID = utility::conversions::to_string_t("");
@@ -71,10 +67,6 @@ web::json::value CourseCertificateTemplateCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("courseID"))] = ModelBase::toJson(m_CourseID);
     }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
     if(m_WebPortalIDIsSet)
     {
         val[utility::conversions::to_string_t(U("webPortalID"))] = ModelBase::toJson(m_WebPortalID);
@@ -82,10 +74,6 @@ web::json::value CourseCertificateTemplateCreateDto::toJson() const
     if(m_WebsiteThemeIDIsSet)
     {
         val[utility::conversions::to_string_t(U("websiteThemeID"))] = ModelBase::toJson(m_WebsiteThemeID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_SocialProfileIDIsSet)
     {
@@ -137,16 +125,6 @@ bool CourseCertificateTemplateCreateDto::fromJson(const web::json::value& val)
             setCourseID(refVal_setCourseID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("webPortalID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("webPortalID")));
@@ -165,16 +143,6 @@ bool CourseCertificateTemplateCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setWebsiteThemeID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setWebsiteThemeID);
             setWebsiteThemeID(refVal_setWebsiteThemeID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("socialProfileID"))))
@@ -229,10 +197,6 @@ void CourseCertificateTemplateCreateDto::toMultipart(std::shared_ptr<MultipartFo
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("courseID")), m_CourseID));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
     if(m_WebPortalIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webPortalID")), m_WebPortalID));
@@ -240,10 +204,6 @@ void CourseCertificateTemplateCreateDto::toMultipart(std::shared_ptr<MultipartFo
     if(m_WebsiteThemeIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("websiteThemeID")), m_WebsiteThemeID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_SocialProfileIDIsSet)
     {
@@ -286,12 +246,6 @@ bool CourseCertificateTemplateCreateDto::fromMultiPart(std::shared_ptr<Multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("courseID"))), refVal_setCourseID );
         setCourseID(refVal_setCourseID);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("webPortalID"))))
     {
         utility::string_t refVal_setWebPortalID;
@@ -303,12 +257,6 @@ bool CourseCertificateTemplateCreateDto::fromMultiPart(std::shared_ptr<Multipart
         utility::string_t refVal_setWebsiteThemeID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("websiteThemeID"))), refVal_setWebsiteThemeID );
         setWebsiteThemeID(refVal_setWebsiteThemeID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileID"))))
     {
@@ -391,26 +339,6 @@ void CourseCertificateTemplateCreateDto::unsetCourseID()
 {
     m_CourseIDIsSet = false;
 }
-utility::string_t CourseCertificateTemplateCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void CourseCertificateTemplateCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool CourseCertificateTemplateCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void CourseCertificateTemplateCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
 utility::string_t CourseCertificateTemplateCreateDto::getWebPortalID() const
 {
     return m_WebPortalID;
@@ -450,26 +378,6 @@ bool CourseCertificateTemplateCreateDto::websiteThemeIDIsSet() const
 void CourseCertificateTemplateCreateDto::unsetWebsiteThemeID()
 {
     m_WebsiteThemeIDIsSet = false;
-}
-utility::string_t CourseCertificateTemplateCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void CourseCertificateTemplateCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool CourseCertificateTemplateCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void CourseCertificateTemplateCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t CourseCertificateTemplateCreateDto::getSocialProfileID() const
 {

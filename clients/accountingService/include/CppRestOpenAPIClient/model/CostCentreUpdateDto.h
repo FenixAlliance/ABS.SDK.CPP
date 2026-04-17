@@ -94,15 +94,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCostCentresGroupId() const;
     bool costCentresGroupIdIsSet() const;
     void unsetCostCentresGroupId();
@@ -128,8 +119,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::string_t m_CostCentreType;
     bool m_CostCentreTypeIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_CostCentresGroupId;
     bool m_CostCentresGroupIdIsSet;
     utility::string_t m_ParentCostCentreId;

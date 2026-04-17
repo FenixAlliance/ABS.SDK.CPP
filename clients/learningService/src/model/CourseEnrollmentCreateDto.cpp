@@ -33,8 +33,6 @@ CourseEnrollmentCreateDto::CourseEnrollmentCreateDto()
     m_CourseCohortIDIsSet = false;
     m_StudentProfileID = utility::conversions::to_string_t("");
     m_StudentProfileIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_CourseCompletionCertificateID = utility::conversions::to_string_t("");
     m_CourseCompletionCertificateIDIsSet = false;
 }
@@ -72,10 +70,6 @@ web::json::value CourseEnrollmentCreateDto::toJson() const
     if(m_StudentProfileIDIsSet)
     {
         val[utility::conversions::to_string_t(U("studentProfileID"))] = ModelBase::toJson(m_StudentProfileID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_CourseCompletionCertificateIDIsSet)
     {
@@ -139,16 +133,6 @@ bool CourseEnrollmentCreateDto::fromJson(const web::json::value& val)
             setStudentProfileID(refVal_setStudentProfileID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("courseCompletionCertificateID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("courseCompletionCertificateID")));
@@ -188,10 +172,6 @@ void CourseEnrollmentCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     if(m_StudentProfileIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("studentProfileID")), m_StudentProfileID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_CourseCompletionCertificateIDIsSet)
     {
@@ -237,12 +217,6 @@ bool CourseEnrollmentCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::string_t refVal_setStudentProfileID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("studentProfileID"))), refVal_setStudentProfileID );
         setStudentProfileID(refVal_setStudentProfileID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("courseCompletionCertificateID"))))
     {
@@ -352,26 +326,6 @@ bool CourseEnrollmentCreateDto::studentProfileIDIsSet() const
 void CourseEnrollmentCreateDto::unsetStudentProfileID()
 {
     m_StudentProfileIDIsSet = false;
-}
-utility::string_t CourseEnrollmentCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void CourseEnrollmentCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool CourseEnrollmentCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void CourseEnrollmentCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t CourseEnrollmentCreateDto::getCourseCompletionCertificateID() const
 {

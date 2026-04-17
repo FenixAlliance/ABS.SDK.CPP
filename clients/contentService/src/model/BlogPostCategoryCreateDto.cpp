@@ -53,10 +53,6 @@ BlogPostCategoryCreateDto::BlogPostCategoryCreateDto()
     m_ImageIsSet = false;
     m_WebPortalID = utility::conversions::to_string_t("");
     m_WebPortalIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 BlogPostCategoryCreateDto::~BlogPostCategoryCreateDto()
@@ -132,14 +128,6 @@ web::json::value BlogPostCategoryCreateDto::toJson() const
     if(m_WebPortalIDIsSet)
     {
         val[utility::conversions::to_string_t(U("webPortalID"))] = ModelBase::toJson(m_WebPortalID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
 
     return val;
@@ -299,26 +287,6 @@ bool BlogPostCategoryCreateDto::fromJson(const web::json::value& val)
             setWebPortalID(refVal_setWebPortalID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     return ok;
 }
 
@@ -388,14 +356,6 @@ void BlogPostCategoryCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     if(m_WebPortalIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webPortalID")), m_WebPortalID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
 }
 
@@ -497,18 +457,6 @@ bool BlogPostCategoryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::string_t refVal_setWebPortalID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("webPortalID"))), refVal_setWebPortalID );
         setWebPortalID(refVal_setWebPortalID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     return ok;
 }
@@ -812,46 +760,6 @@ bool BlogPostCategoryCreateDto::webPortalIDIsSet() const
 void BlogPostCategoryCreateDto::unsetWebPortalID()
 {
     m_WebPortalIDIsSet = false;
-}
-utility::string_t BlogPostCategoryCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void BlogPostCategoryCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool BlogPostCategoryCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void BlogPostCategoryCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t BlogPostCategoryCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void BlogPostCategoryCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool BlogPostCategoryCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void BlogPostCategoryCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

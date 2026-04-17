@@ -31,10 +31,6 @@ FiscalResponsibilityRecordCreateDto::FiscalResponsibilityRecordCreateDto()
     m_FiscalResponsibilityIdIsSet = false;
     m_BillingProfileId = utility::conversions::to_string_t("");
     m_BillingProfileIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 FiscalResponsibilityRecordCreateDto::~FiscalResponsibilityRecordCreateDto()
@@ -66,14 +62,6 @@ web::json::value FiscalResponsibilityRecordCreateDto::toJson() const
     if(m_BillingProfileIdIsSet)
     {
         val[utility::conversions::to_string_t(U("billingProfileId"))] = ModelBase::toJson(m_BillingProfileId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -123,26 +111,6 @@ bool FiscalResponsibilityRecordCreateDto::fromJson(const web::json::value& val)
             setBillingProfileId(refVal_setBillingProfileId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -168,14 +136,6 @@ void FiscalResponsibilityRecordCreateDto::toMultipart(std::shared_ptr<MultipartF
     if(m_BillingProfileIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("billingProfileId")), m_BillingProfileId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -211,18 +171,6 @@ bool FiscalResponsibilityRecordCreateDto::fromMultiPart(std::shared_ptr<Multipar
         utility::string_t refVal_setBillingProfileId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("billingProfileId"))), refVal_setBillingProfileId );
         setBillingProfileId(refVal_setBillingProfileId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -306,46 +254,6 @@ bool FiscalResponsibilityRecordCreateDto::billingProfileIdIsSet() const
 void FiscalResponsibilityRecordCreateDto::unsetBillingProfileId()
 {
     m_BillingProfileIdIsSet = false;
-}
-utility::string_t FiscalResponsibilityRecordCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void FiscalResponsibilityRecordCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool FiscalResponsibilityRecordCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void FiscalResponsibilityRecordCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t FiscalResponsibilityRecordCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void FiscalResponsibilityRecordCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool FiscalResponsibilityRecordCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void FiscalResponsibilityRecordCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

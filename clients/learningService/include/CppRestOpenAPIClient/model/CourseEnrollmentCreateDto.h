@@ -103,15 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCourseCompletionCertificateID() const;
     bool courseCompletionCertificateIDIsSet() const;
     void unsetCourseCompletionCertificateID();
@@ -130,8 +121,6 @@ protected:
     bool m_CourseCohortIDIsSet;
     utility::string_t m_StudentProfileID;
     bool m_StudentProfileIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_CourseCompletionCertificateID;
     bool m_CourseCompletionCertificateIDIsSet;
 };

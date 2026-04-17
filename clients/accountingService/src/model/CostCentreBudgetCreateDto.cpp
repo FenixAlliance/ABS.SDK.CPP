@@ -29,8 +29,6 @@ CostCentreBudgetCreateDto::CostCentreBudgetCreateDto()
     m_TimestampIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_FiscalYearId = utility::conversions::to_string_t("");
     m_FiscalYearIdIsSet = false;
     m_CostCentreId = utility::conversions::to_string_t("");
@@ -62,10 +60,6 @@ web::json::value CostCentreBudgetCreateDto::toJson() const
     if(m_NameIsSet)
     {
         val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_FiscalYearIdIsSet)
     {
@@ -113,16 +107,6 @@ bool CostCentreBudgetCreateDto::fromJson(const web::json::value& val)
             setName(refVal_setName);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("fiscalYearId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("fiscalYearId")));
@@ -165,10 +149,6 @@ void CostCentreBudgetCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_FiscalYearIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalYearId")), m_FiscalYearId));
@@ -205,12 +185,6 @@ bool CostCentreBudgetCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
         setName(refVal_setName);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("fiscalYearId"))))
     {
@@ -286,26 +260,6 @@ bool CostCentreBudgetCreateDto::nameIsSet() const
 void CostCentreBudgetCreateDto::unsetName()
 {
     m_NameIsSet = false;
-}
-utility::string_t CostCentreBudgetCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void CostCentreBudgetCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool CostCentreBudgetCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void CostCentreBudgetCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t CostCentreBudgetCreateDto::getFiscalYearId() const
 {

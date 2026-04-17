@@ -23,6 +23,10 @@ namespace model {
 
 SocialGroupCreateDto::SocialGroupCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
     m_Title = utility::conversions::to_string_t("");
@@ -47,6 +51,14 @@ web::json::value SocialGroupCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_NameIsSet)
     {
         val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
@@ -71,6 +83,26 @@ bool SocialGroupCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("name"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("name")));
@@ -121,6 +153,14 @@ void SocialGroupCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
+    }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
@@ -148,6 +188,18 @@ bool SocialGroupCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
     {
         utility::string_t refVal_setName;
@@ -175,6 +227,46 @@ bool SocialGroupCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     return ok;
 }
 
+utility::string_t SocialGroupCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void SocialGroupCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool SocialGroupCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void SocialGroupCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime SocialGroupCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void SocialGroupCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool SocialGroupCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void SocialGroupCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 utility::string_t SocialGroupCreateDto::getName() const
 {
     return m_Name;

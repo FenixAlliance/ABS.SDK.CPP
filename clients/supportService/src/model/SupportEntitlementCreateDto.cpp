@@ -105,18 +105,12 @@ SupportEntitlementCreateDto::SupportEntitlementCreateDto()
     m_Data9IsSet = false;
     m_Data9Label = utility::conversions::to_string_t("");
     m_Data9LabelIsSet = false;
-    m_AccountHolderID = utility::conversions::to_string_t("");
-    m_AccountHolderIDIsSet = false;
     m_IndividualID = utility::conversions::to_string_t("");
     m_IndividualIDIsSet = false;
     m_OrganizationID = utility::conversions::to_string_t("");
     m_OrganizationIDIsSet = false;
     m_ReceiverBusinessID = utility::conversions::to_string_t("");
     m_ReceiverBusinessIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_PaymentTokenID = utility::conversions::to_string_t("");
     m_PaymentTokenIDIsSet = false;
     m_WalletAccountID = utility::conversions::to_string_t("");
@@ -303,10 +297,6 @@ web::json::value SupportEntitlementCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("data9Label"))] = ModelBase::toJson(m_Data9Label);
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("accountHolderID"))] = ModelBase::toJson(m_AccountHolderID);
-    }
     if(m_IndividualIDIsSet)
     {
         val[utility::conversions::to_string_t(U("individualID"))] = ModelBase::toJson(m_IndividualID);
@@ -318,14 +308,6 @@ web::json::value SupportEntitlementCreateDto::toJson() const
     if(m_ReceiverBusinessIDIsSet)
     {
         val[utility::conversions::to_string_t(U("receiverBusinessID"))] = ModelBase::toJson(m_ReceiverBusinessID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_PaymentTokenIDIsSet)
     {
@@ -757,16 +739,6 @@ bool SupportEntitlementCreateDto::fromJson(const web::json::value& val)
             setData9Label(refVal_setData9Label);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountHolderID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAccountHolderID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountHolderID);
-            setAccountHolderID(refVal_setAccountHolderID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("individualID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("individualID")));
@@ -795,26 +767,6 @@ bool SupportEntitlementCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setReceiverBusinessID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setReceiverBusinessID);
             setReceiverBusinessID(refVal_setReceiverBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("paymentTokenID"))))
@@ -1021,10 +973,6 @@ void SupportEntitlementCreateDto::toMultipart(std::shared_ptr<MultipartFormData>
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("data9Label")), m_Data9Label));
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountHolderID")), m_AccountHolderID));
-    }
     if(m_IndividualIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("individualID")), m_IndividualID));
@@ -1036,14 +984,6 @@ void SupportEntitlementCreateDto::toMultipart(std::shared_ptr<MultipartFormData>
     if(m_ReceiverBusinessIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receiverBusinessID")), m_ReceiverBusinessID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_PaymentTokenIDIsSet)
     {
@@ -1314,12 +1254,6 @@ bool SupportEntitlementCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data9Label"))), refVal_setData9Label );
         setData9Label(refVal_setData9Label);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        utility::string_t refVal_setAccountHolderID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountHolderID"))), refVal_setAccountHolderID );
-        setAccountHolderID(refVal_setAccountHolderID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("individualID"))))
     {
         utility::string_t refVal_setIndividualID;
@@ -1337,18 +1271,6 @@ bool SupportEntitlementCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         utility::string_t refVal_setReceiverBusinessID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receiverBusinessID"))), refVal_setReceiverBusinessID );
         setReceiverBusinessID(refVal_setReceiverBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("paymentTokenID"))))
     {
@@ -2191,26 +2113,6 @@ void SupportEntitlementCreateDto::unsetData9Label()
 {
     m_Data9LabelIsSet = false;
 }
-utility::string_t SupportEntitlementCreateDto::getAccountHolderID() const
-{
-    return m_AccountHolderID;
-}
-
-void SupportEntitlementCreateDto::setAccountHolderID(const utility::string_t& value)
-{
-    m_AccountHolderID = value;
-    m_AccountHolderIDIsSet = true;
-}
-
-bool SupportEntitlementCreateDto::accountHolderIDIsSet() const
-{
-    return m_AccountHolderIDIsSet;
-}
-
-void SupportEntitlementCreateDto::unsetAccountHolderID()
-{
-    m_AccountHolderIDIsSet = false;
-}
 utility::string_t SupportEntitlementCreateDto::getIndividualID() const
 {
     return m_IndividualID;
@@ -2270,46 +2172,6 @@ bool SupportEntitlementCreateDto::receiverBusinessIDIsSet() const
 void SupportEntitlementCreateDto::unsetReceiverBusinessID()
 {
     m_ReceiverBusinessIDIsSet = false;
-}
-utility::string_t SupportEntitlementCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void SupportEntitlementCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool SupportEntitlementCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void SupportEntitlementCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t SupportEntitlementCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void SupportEntitlementCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool SupportEntitlementCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void SupportEntitlementCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t SupportEntitlementCreateDto::getPaymentTokenID() const
 {

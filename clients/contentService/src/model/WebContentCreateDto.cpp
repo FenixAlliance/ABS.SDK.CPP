@@ -27,10 +27,6 @@ WebContentCreateDto::WebContentCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Code = utility::conversions::to_string_t("");
@@ -68,14 +64,6 @@ web::json::value WebContentCreateDto::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_TitleIsSet)
     {
@@ -131,26 +119,6 @@ bool WebContentCreateDto::fromJson(const web::json::value& val)
             utility::datetime refVal_setTimestamp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
             setTimestamp(refVal_setTimestamp);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("title"))))
@@ -241,14 +209,6 @@ void WebContentCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_TitleIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
@@ -299,18 +259,6 @@ bool WebContentCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
     {
@@ -396,46 +344,6 @@ bool WebContentCreateDto::timestampIsSet() const
 void WebContentCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
-}
-utility::string_t WebContentCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void WebContentCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool WebContentCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void WebContentCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t WebContentCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void WebContentCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool WebContentCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void WebContentCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t WebContentCreateDto::getTitle() const
 {

@@ -121,15 +121,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getBusinessPortalApplicationID() const;
     bool businessPortalApplicationIDIsSet() const;
     void unsetBusinessPortalApplicationID();
@@ -152,8 +143,6 @@ protected:
     bool m_WebsiteThemeIDIsSet;
     utility::string_t m_BusinessDomainID;
     bool m_BusinessDomainIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_BusinessPortalApplicationID;
     bool m_BusinessPortalApplicationIDIsSet;
 };

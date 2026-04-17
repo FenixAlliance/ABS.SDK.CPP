@@ -130,29 +130,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCurrencyId() const;
     bool currencyIdIsSet() const;
     void unsetCurrencyId();
 
     void setCurrencyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -262,12 +244,8 @@ protected:
     bool m_PathIsSet;
     utility::string_t m_Prefix;
     bool m_PrefixIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_AccountTypeId;
     bool m_AccountTypeIdIsSet;
     utility::string_t m_ParentAccountId;

@@ -726,7 +726,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> GrantsApi::getGrantsCountAsync(utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> GrantsApi::updateGrantAsync(utility::string_t tenantId, utility::string_t grantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<GrantUpdateDto>> grantUpdateDto) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> GrantsApi::updateGrantAsync(utility::string_t tenantId, utility::string_t grantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<Object>> body) const
 {
 
 
@@ -792,8 +792,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> GrantsApi::updateGrantAsync(utility::
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (grantUpdateDto)
-            localVarJson = ModelBase::toJson(*grantUpdateDto);
+        localVarJson = ModelBase::toJson(body.get());
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -802,11 +801,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> GrantsApi::updateGrantAsync(utility::
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(grantUpdateDto && (*grantUpdateDto).get())
-        {
-            (*grantUpdateDto)->toMultipart(localVarMultipart, utility::conversions::to_string_t("grantUpdateDto"));
-        }
+        localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("body"), body.get()));
         
 
         localVarHttpBody = localVarMultipart;

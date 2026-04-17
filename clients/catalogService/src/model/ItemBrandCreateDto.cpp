@@ -39,8 +39,6 @@ ItemBrandCreateDto::ItemBrandCreateDto()
     m_FeaturedIsSet = false;
     m_Trending = false;
     m_TrendingIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
 }
 
 ItemBrandCreateDto::~ItemBrandCreateDto()
@@ -88,10 +86,6 @@ web::json::value ItemBrandCreateDto::toJson() const
     if(m_TrendingIsSet)
     {
         val[utility::conversions::to_string_t(U("trending"))] = ModelBase::toJson(m_Trending);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
 
     return val;
@@ -181,16 +175,6 @@ bool ItemBrandCreateDto::fromJson(const web::json::value& val)
             setTrending(refVal_setTrending);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     return ok;
 }
 
@@ -232,10 +216,6 @@ void ItemBrandCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_TrendingIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("trending")), m_Trending));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
 }
 
@@ -295,12 +275,6 @@ bool ItemBrandCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         bool refVal_setTrending;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("trending"))), refVal_setTrending );
         setTrending(refVal_setTrending);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     return ok;
 }
@@ -464,26 +438,6 @@ bool ItemBrandCreateDto::trendingIsSet() const
 void ItemBrandCreateDto::unsetTrending()
 {
     m_TrendingIsSet = false;
-}
-utility::string_t ItemBrandCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemBrandCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemBrandCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemBrandCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 }
 }

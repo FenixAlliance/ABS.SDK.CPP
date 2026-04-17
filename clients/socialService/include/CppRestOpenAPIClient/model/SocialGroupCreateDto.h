@@ -58,6 +58,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getId() const;
+    bool idIsSet() const;
+    void unsetId();
+
+    void setId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -93,6 +111,10 @@ public:
 
 
 protected:
+    utility::string_t m_Id;
+    bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
     utility::string_t m_Title;

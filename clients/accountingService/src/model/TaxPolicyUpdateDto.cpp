@@ -65,10 +65,6 @@ TaxPolicyUpdateDto::TaxPolicyUpdateDto()
     m_CustomCityIsSet = false;
     m_CityId = utility::conversions::to_string_t("");
     m_CityIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_Zero = false;
     m_ZeroIsSet = false;
     m_Reduced = false;
@@ -176,14 +172,6 @@ web::json::value TaxPolicyUpdateDto::toJson() const
     if(m_CityIdIsSet)
     {
         val[utility::conversions::to_string_t(U("cityId"))] = ModelBase::toJson(m_CityId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_ZeroIsSet)
     {
@@ -419,26 +407,6 @@ bool TaxPolicyUpdateDto::fromJson(const web::json::value& val)
             setCityId(refVal_setCityId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("zero"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("zero")));
@@ -572,14 +540,6 @@ void TaxPolicyUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_CityIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("cityId")), m_CityId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_ZeroIsSet)
     {
@@ -733,18 +693,6 @@ bool TaxPolicyUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         utility::string_t refVal_setCityId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("cityId"))), refVal_setCityId );
         setCityId(refVal_setCityId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("zero"))))
     {
@@ -1192,46 +1140,6 @@ bool TaxPolicyUpdateDto::cityIdIsSet() const
 void TaxPolicyUpdateDto::unsetCityId()
 {
     m_CityIdIsSet = false;
-}
-utility::string_t TaxPolicyUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void TaxPolicyUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool TaxPolicyUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void TaxPolicyUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
-utility::string_t TaxPolicyUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void TaxPolicyUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool TaxPolicyUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void TaxPolicyUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 bool TaxPolicyUpdateDto::isZero() const
 {

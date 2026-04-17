@@ -100,6 +100,15 @@ public:
 
     void setStartDate(const utility::datetime& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getFiscalAuthorityId() const;
+    bool fiscalAuthorityIdIsSet() const;
+    void unsetFiscalAuthorityId();
+
+    void setFiscalAuthorityId(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Name;
@@ -112,6 +121,8 @@ protected:
     bool m_EndDateIsSet;
     utility::datetime m_StartDate;
     bool m_StartDateIsSet;
+    utility::string_t m_FiscalAuthorityId;
+    bool m_FiscalAuthorityIdIsSet;
 };
 
 

@@ -31,8 +31,6 @@ ItemTagCreateDto::ItemTagCreateDto()
     m_TitleIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
 }
 
 ItemTagCreateDto::~ItemTagCreateDto()
@@ -64,10 +62,6 @@ web::json::value ItemTagCreateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
 
     return val;
@@ -117,16 +111,6 @@ bool ItemTagCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     return ok;
 }
 
@@ -152,10 +136,6 @@ void ItemTagCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
 }
 
@@ -191,12 +171,6 @@ bool ItemTagCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     return ok;
 }
@@ -280,26 +254,6 @@ bool ItemTagCreateDto::descriptionIsSet() const
 void ItemTagCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t ItemTagCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemTagCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemTagCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemTagCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 }
 }

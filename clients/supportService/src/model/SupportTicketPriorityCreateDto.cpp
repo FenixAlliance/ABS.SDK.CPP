@@ -23,12 +23,14 @@ namespace model {
 
 SupportTicketPriorityCreateDto::SupportTicketPriorityCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_SupportEntitlementID = utility::conversions::to_string_t("");
     m_SupportEntitlementIDIsSet = false;
 }
@@ -47,6 +49,14 @@ web::json::value SupportTicketPriorityCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_TitleIsSet)
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
@@ -54,10 +64,6 @@ web::json::value SupportTicketPriorityCreateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
     if(m_SupportEntitlementIDIsSet)
     {
@@ -71,6 +77,26 @@ bool SupportTicketPriorityCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("title"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("title")));
@@ -89,16 +115,6 @@ bool SupportTicketPriorityCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setDescription;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
             setDescription(refVal_setDescription);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("supportEntitlementID"))))
@@ -121,6 +137,14 @@ void SupportTicketPriorityCreateDto::toMultipart(std::shared_ptr<MultipartFormDa
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
+    }
     if(m_TitleIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
@@ -128,10 +152,6 @@ void SupportTicketPriorityCreateDto::toMultipart(std::shared_ptr<MultipartFormDa
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
     if(m_SupportEntitlementIDIsSet)
     {
@@ -148,6 +168,18 @@ bool SupportTicketPriorityCreateDto::fromMultiPart(std::shared_ptr<MultipartForm
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
     {
         utility::string_t refVal_setTitle;
@@ -160,12 +192,6 @@ bool SupportTicketPriorityCreateDto::fromMultiPart(std::shared_ptr<MultipartForm
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("supportEntitlementID"))))
     {
         utility::string_t refVal_setSupportEntitlementID;
@@ -175,6 +201,46 @@ bool SupportTicketPriorityCreateDto::fromMultiPart(std::shared_ptr<MultipartForm
     return ok;
 }
 
+utility::string_t SupportTicketPriorityCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void SupportTicketPriorityCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool SupportTicketPriorityCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void SupportTicketPriorityCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime SupportTicketPriorityCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void SupportTicketPriorityCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool SupportTicketPriorityCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void SupportTicketPriorityCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 utility::string_t SupportTicketPriorityCreateDto::getTitle() const
 {
     return m_Title;
@@ -214,26 +280,6 @@ bool SupportTicketPriorityCreateDto::descriptionIsSet() const
 void SupportTicketPriorityCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t SupportTicketPriorityCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void SupportTicketPriorityCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool SupportTicketPriorityCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void SupportTicketPriorityCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 utility::string_t SupportTicketPriorityCreateDto::getSupportEntitlementID() const
 {

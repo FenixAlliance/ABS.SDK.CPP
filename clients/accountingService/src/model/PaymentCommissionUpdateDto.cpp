@@ -35,10 +35,6 @@ PaymentCommissionUpdateDto::PaymentCommissionUpdateDto()
     m_AddedAmountIsSet = false;
     m_TaxComission = 0.0;
     m_TaxComissionIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_SalaryId = utility::conversions::to_string_t("");
     m_SalaryIdIsSet = false;
     m_EmisorWalletAccountId = utility::conversions::to_string_t("");
@@ -90,14 +86,6 @@ web::json::value PaymentCommissionUpdateDto::toJson() const
     if(m_TaxComissionIsSet)
     {
         val[utility::conversions::to_string_t(U("taxComission"))] = ModelBase::toJson(m_TaxComission);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_SalaryIdIsSet)
     {
@@ -189,26 +177,6 @@ bool PaymentCommissionUpdateDto::fromJson(const web::json::value& val)
             double refVal_setTaxComission;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTaxComission);
             setTaxComission(refVal_setTaxComission);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("salaryId"))))
@@ -305,14 +273,6 @@ void PaymentCommissionUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taxComission")), m_TaxComission));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_SalaryIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("salaryId")), m_SalaryId));
@@ -383,18 +343,6 @@ bool PaymentCommissionUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData
         double refVal_setTaxComission;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taxComission"))), refVal_setTaxComission );
         setTaxComission(refVal_setTaxComission);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("salaryId"))))
     {
@@ -554,46 +502,6 @@ bool PaymentCommissionUpdateDto::taxComissionIsSet() const
 void PaymentCommissionUpdateDto::unsetTaxComission()
 {
     m_TaxComissionIsSet = false;
-}
-utility::string_t PaymentCommissionUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void PaymentCommissionUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool PaymentCommissionUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void PaymentCommissionUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t PaymentCommissionUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void PaymentCommissionUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool PaymentCommissionUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void PaymentCommissionUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t PaymentCommissionUpdateDto::getSalaryId() const
 {

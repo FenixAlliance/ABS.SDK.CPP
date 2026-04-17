@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/WebPageTagCreateDto.h"
 #include "CppRestOpenAPIClient/model/WebPageTagDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageTagDtoListEnvelope.h"
@@ -49,6 +50,20 @@ public:
 
     virtual ~WebPageTagsApi();
 
+    /// <summary>
+    /// Count web page tags
+    /// </summary>
+    /// <remarks>
+    /// Counts all web page tags for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> countWebPageTagsAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
     /// <summary>
     /// Create a web page tag
     /// </summary>

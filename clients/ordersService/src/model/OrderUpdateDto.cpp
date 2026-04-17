@@ -23,8 +23,6 @@ namespace model {
 
 OrderUpdateDto::OrderUpdateDto()
 {
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_FirstName = utility::conversions::to_string_t("");
     m_FirstNameIsSet = false;
     m_LastName = utility::conversions::to_string_t("");
@@ -111,8 +109,6 @@ OrderUpdateDto::OrderUpdateDto()
     m_ForexRateIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_IndividualId = utility::conversions::to_string_t("");
     m_IndividualIdIsSet = false;
     m_OrganizationId = utility::conversions::to_string_t("");
@@ -155,10 +151,6 @@ web::json::value OrderUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_FirstNameIsSet)
     {
         val[utility::conversions::to_string_t(U("firstName"))] = ModelBase::toJson(m_FirstName);
@@ -331,10 +323,6 @@ web::json::value OrderUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
     }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
     if(m_IndividualIdIsSet)
     {
         val[utility::conversions::to_string_t(U("individualId"))] = ModelBase::toJson(m_IndividualId);
@@ -395,16 +383,6 @@ bool OrderUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("firstName"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("firstName")));
@@ -835,16 +813,6 @@ bool OrderUpdateDto::fromJson(const web::json::value& val)
             setCurrencyId(refVal_setCurrencyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("individualId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("individualId")));
@@ -984,10 +952,6 @@ void OrderUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(U(".")))
     {
         namePrefix += utility::conversions::to_string_t(U("."));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_FirstNameIsSet)
     {
@@ -1161,10 +1125,6 @@ void OrderUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
     }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_IndividualIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("individualId")), m_IndividualId));
@@ -1228,12 +1188,6 @@ bool OrderUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("firstName"))))
     {
         utility::string_t refVal_setFirstName;
@@ -1492,12 +1446,6 @@ bool OrderUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("currencyId"))), refVal_setCurrencyId );
         setCurrencyId(refVal_setCurrencyId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("individualId"))))
     {
         utility::string_t refVal_setIndividualId;
@@ -1579,26 +1527,6 @@ bool OrderUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     return ok;
 }
 
-utility::string_t OrderUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void OrderUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool OrderUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void OrderUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t OrderUpdateDto::getFirstName() const
 {
     return m_FirstName;
@@ -2458,26 +2386,6 @@ bool OrderUpdateDto::currencyIdIsSet() const
 void OrderUpdateDto::unsetCurrencyId()
 {
     m_CurrencyIdIsSet = false;
-}
-utility::string_t OrderUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void OrderUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool OrderUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void OrderUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t OrderUpdateDto::getIndividualId() const
 {

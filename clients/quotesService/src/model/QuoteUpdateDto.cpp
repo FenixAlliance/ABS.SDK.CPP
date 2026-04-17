@@ -29,14 +29,10 @@ QuoteUpdateDto::QuoteUpdateDto()
     m_TitleIsSet = false;
     m_UserId = utility::conversions::to_string_t("");
     m_UserIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_PriceListId = utility::conversions::to_string_t("");
     m_PriceListIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_IndividualId = utility::conversions::to_string_t("");
     m_IndividualIdIsSet = false;
     m_PaymentTermId = utility::conversions::to_string_t("");
@@ -183,10 +179,6 @@ web::json::value QuoteUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("userId"))] = ModelBase::toJson(m_UserId);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_PriceListIdIsSet)
     {
         val[utility::conversions::to_string_t(U("priceListId"))] = ModelBase::toJson(m_PriceListId);
@@ -194,10 +186,6 @@ web::json::value QuoteUpdateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_IndividualIdIsSet)
     {
@@ -473,16 +461,6 @@ bool QuoteUpdateDto::fromJson(const web::json::value& val)
             setUserId(refVal_setUserId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("priceListId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("priceListId")));
@@ -501,16 +479,6 @@ bool QuoteUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setDescription;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
             setDescription(refVal_setDescription);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("individualId"))))
@@ -1125,10 +1093,6 @@ void QuoteUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("userId")), m_UserId));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_PriceListIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("priceListId")), m_PriceListId));
@@ -1136,10 +1100,6 @@ void QuoteUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_IndividualIdIsSet)
     {
@@ -1406,12 +1366,6 @@ bool QuoteUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("userId"))), refVal_setUserId );
         setUserId(refVal_setUserId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("priceListId"))))
     {
         utility::string_t refVal_setPriceListId;
@@ -1423,12 +1377,6 @@ bool QuoteUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("individualId"))))
     {
@@ -1847,26 +1795,6 @@ void QuoteUpdateDto::unsetUserId()
 {
     m_UserIdIsSet = false;
 }
-utility::string_t QuoteUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void QuoteUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool QuoteUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void QuoteUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t QuoteUpdateDto::getPriceListId() const
 {
     return m_PriceListId;
@@ -1906,26 +1834,6 @@ bool QuoteUpdateDto::descriptionIsSet() const
 void QuoteUpdateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
-}
-utility::string_t QuoteUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void QuoteUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool QuoteUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void QuoteUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t QuoteUpdateDto::getIndividualId() const
 {

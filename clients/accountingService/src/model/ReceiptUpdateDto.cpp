@@ -25,8 +25,6 @@ ReceiptUpdateDto::ReceiptUpdateDto()
 {
     m_PaymentId = utility::conversions::to_string_t("");
     m_PaymentIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_ForexRate = 0.0;
     m_ForexRateIsSet = false;
     m_TotalAmount = 0.0;
@@ -37,12 +35,8 @@ ReceiptUpdateDto::ReceiptUpdateDto()
     m_ClosedIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
-    m_AccountHolderId = utility::conversions::to_string_t("");
-    m_AccountHolderIdIsSet = false;
     m_ContactId = utility::conversions::to_string_t("");
     m_ContactIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_OrderId = utility::conversions::to_string_t("");
     m_OrderIdIsSet = false;
     m_InvoiceId = utility::conversions::to_string_t("");
@@ -67,10 +61,6 @@ web::json::value ReceiptUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("paymentId"))] = ModelBase::toJson(m_PaymentId);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_ForexRateIsSet)
     {
         val[utility::conversions::to_string_t(U("forexRate"))] = ModelBase::toJson(m_ForexRate);
@@ -91,17 +81,9 @@ web::json::value ReceiptUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
     }
-    if(m_AccountHolderIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("accountHolderId"))] = ModelBase::toJson(m_AccountHolderId);
-    }
     if(m_ContactIdIsSet)
     {
         val[utility::conversions::to_string_t(U("contactId"))] = ModelBase::toJson(m_ContactId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_OrderIdIsSet)
     {
@@ -127,16 +109,6 @@ bool ReceiptUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setPaymentId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPaymentId);
             setPaymentId(refVal_setPaymentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("forexRate"))))
@@ -189,16 +161,6 @@ bool ReceiptUpdateDto::fromJson(const web::json::value& val)
             setCurrencyId(refVal_setCurrencyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("accountHolderId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountHolderId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAccountHolderId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountHolderId);
-            setAccountHolderId(refVal_setAccountHolderId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("contactId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contactId")));
@@ -207,16 +169,6 @@ bool ReceiptUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setContactId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContactId);
             setContactId(refVal_setContactId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("orderId"))))
@@ -253,10 +205,6 @@ void ReceiptUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("paymentId")), m_PaymentId));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_ForexRateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("forexRate")), m_ForexRate));
@@ -277,17 +225,9 @@ void ReceiptUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
     }
-    if(m_AccountHolderIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountHolderId")), m_AccountHolderId));
-    }
     if(m_ContactIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactId")), m_ContactId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_OrderIdIsSet)
     {
@@ -313,12 +253,6 @@ bool ReceiptUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setPaymentId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("paymentId"))), refVal_setPaymentId );
         setPaymentId(refVal_setPaymentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("forexRate"))))
     {
@@ -350,23 +284,11 @@ bool ReceiptUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("currencyId"))), refVal_setCurrencyId );
         setCurrencyId(refVal_setCurrencyId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountHolderId"))))
-    {
-        utility::string_t refVal_setAccountHolderId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountHolderId"))), refVal_setAccountHolderId );
-        setAccountHolderId(refVal_setAccountHolderId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("contactId"))))
     {
         utility::string_t refVal_setContactId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactId"))), refVal_setContactId );
         setContactId(refVal_setContactId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("orderId"))))
     {
@@ -402,26 +324,6 @@ bool ReceiptUpdateDto::paymentIdIsSet() const
 void ReceiptUpdateDto::unsetPaymentId()
 {
     m_PaymentIdIsSet = false;
-}
-utility::string_t ReceiptUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void ReceiptUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool ReceiptUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void ReceiptUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 double ReceiptUpdateDto::getForexRate() const
 {
@@ -523,26 +425,6 @@ void ReceiptUpdateDto::unsetCurrencyId()
 {
     m_CurrencyIdIsSet = false;
 }
-utility::string_t ReceiptUpdateDto::getAccountHolderId() const
-{
-    return m_AccountHolderId;
-}
-
-void ReceiptUpdateDto::setAccountHolderId(const utility::string_t& value)
-{
-    m_AccountHolderId = value;
-    m_AccountHolderIdIsSet = true;
-}
-
-bool ReceiptUpdateDto::accountHolderIdIsSet() const
-{
-    return m_AccountHolderIdIsSet;
-}
-
-void ReceiptUpdateDto::unsetAccountHolderId()
-{
-    m_AccountHolderIdIsSet = false;
-}
 utility::string_t ReceiptUpdateDto::getContactId() const
 {
     return m_ContactId;
@@ -562,26 +444,6 @@ bool ReceiptUpdateDto::contactIdIsSet() const
 void ReceiptUpdateDto::unsetContactId()
 {
     m_ContactIdIsSet = false;
-}
-utility::string_t ReceiptUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void ReceiptUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool ReceiptUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void ReceiptUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t ReceiptUpdateDto::getOrderId() const
 {

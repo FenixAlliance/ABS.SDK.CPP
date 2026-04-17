@@ -29,6 +29,7 @@
 #include "CppRestOpenAPIClient/model/BlogPostTagUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -49,6 +50,20 @@ public:
 
     virtual ~BlogPostTagsApi();
 
+    /// <summary>
+    /// Count blog post tags
+    /// </summary>
+    /// <remarks>
+    /// Counts all blog post tags for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> countBlogPostTagsAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
     /// <summary>
     /// Create a blog post tag
     /// </summary>

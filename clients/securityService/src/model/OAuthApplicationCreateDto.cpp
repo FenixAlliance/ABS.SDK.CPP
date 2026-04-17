@@ -23,6 +23,10 @@ namespace model {
 
 OAuthApplicationCreateDto::OAuthApplicationCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_DisplayName = utility::conversions::to_string_t("");
     m_DisplayNameIsSet = false;
     m_ClientId = utility::conversions::to_string_t("");
@@ -41,10 +45,6 @@ OAuthApplicationCreateDto::OAuthApplicationCreateDto()
     m_PostLogoutRedirectUrisIsSet = false;
     m_Logo = utility::conversions::to_string_t("");
     m_LogoIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 OAuthApplicationCreateDto::~OAuthApplicationCreateDto()
@@ -61,6 +61,14 @@ web::json::value OAuthApplicationCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_DisplayNameIsSet)
     {
         val[utility::conversions::to_string_t(U("displayName"))] = ModelBase::toJson(m_DisplayName);
@@ -97,14 +105,6 @@ web::json::value OAuthApplicationCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("logo"))] = ModelBase::toJson(m_Logo);
     }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
-    }
 
     return val;
 }
@@ -113,6 +113,26 @@ bool OAuthApplicationCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("displayName"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("displayName")));
@@ -203,26 +223,6 @@ bool OAuthApplicationCreateDto::fromJson(const web::json::value& val)
             setLogo(refVal_setLogo);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     return ok;
 }
 
@@ -232,6 +232,14 @@ void OAuthApplicationCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(U(".")))
     {
         namePrefix += utility::conversions::to_string_t(U("."));
+    }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
     if(m_DisplayNameIsSet)
     {
@@ -269,14 +277,6 @@ void OAuthApplicationCreateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logo")), m_Logo));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
-    }
 }
 
 bool OAuthApplicationCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -288,6 +288,18 @@ bool OAuthApplicationCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("displayName"))))
     {
         utility::string_t refVal_setDisplayName;
@@ -342,21 +354,49 @@ bool OAuthApplicationCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("logo"))), refVal_setLogo );
         setLogo(refVal_setLogo);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-    }
     return ok;
 }
 
+utility::string_t OAuthApplicationCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void OAuthApplicationCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool OAuthApplicationCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void OAuthApplicationCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime OAuthApplicationCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void OAuthApplicationCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool OAuthApplicationCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void OAuthApplicationCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 utility::string_t OAuthApplicationCreateDto::getDisplayName() const
 {
     return m_DisplayName;
@@ -536,46 +576,6 @@ bool OAuthApplicationCreateDto::logoIsSet() const
 void OAuthApplicationCreateDto::unsetLogo()
 {
     m_LogoIsSet = false;
-}
-utility::string_t OAuthApplicationCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void OAuthApplicationCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool OAuthApplicationCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void OAuthApplicationCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t OAuthApplicationCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void OAuthApplicationCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool OAuthApplicationCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void OAuthApplicationCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

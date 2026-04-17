@@ -37,10 +37,6 @@ DiscountCreateDto::DiscountCreateDto()
     m_PercentIsSet = false;
     m_Value = 0.0;
     m_ValueIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_DiscountListId = utility::conversions::to_string_t("");
     m_DiscountListIdIsSet = false;
 }
@@ -86,14 +82,6 @@ web::json::value DiscountCreateDto::toJson() const
     if(m_ValueIsSet)
     {
         val[utility::conversions::to_string_t(U("value"))] = ModelBase::toJson(m_Value);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_DiscountListIdIsSet)
     {
@@ -177,26 +165,6 @@ bool DiscountCreateDto::fromJson(const web::json::value& val)
             setValue(refVal_setValue);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("discountListId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("discountListId")));
@@ -244,14 +212,6 @@ void DiscountCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_ValueIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("value")), m_Value));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_DiscountListIdIsSet)
     {
@@ -309,18 +269,6 @@ bool DiscountCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         double refVal_setValue;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("value"))), refVal_setValue );
         setValue(refVal_setValue);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("discountListId"))))
     {
@@ -470,46 +418,6 @@ bool DiscountCreateDto::valueIsSet() const
 void DiscountCreateDto::unsetValue()
 {
     m_ValueIsSet = false;
-}
-utility::string_t DiscountCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void DiscountCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool DiscountCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void DiscountCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t DiscountCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void DiscountCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool DiscountCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void DiscountCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t DiscountCreateDto::getDiscountListId() const
 {

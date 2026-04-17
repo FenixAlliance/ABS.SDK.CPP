@@ -73,23 +73,12 @@ public:
 
     void setParentBusinessIndustryID(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
     utility::string_t m_ParentBusinessIndustryID;
     bool m_ParentBusinessIndustryIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
 };
 
 

@@ -85,38 +85,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getAccountHolderID() const;
-    bool accountHolderIDIsSet() const;
-    void unsetAccountHolderID();
-
-    void setAccountHolderID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getContactID() const;
     bool contactIDIsSet() const;
     void unsetContactID();
 
     void setContactID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -153,14 +126,8 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_AccountHolderID;
-    bool m_AccountHolderIDIsSet;
     utility::string_t m_ContactID;
     bool m_ContactIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_SupportTicketTypeID;
     bool m_SupportTicketTypeIDIsSet;
     utility::string_t m_SupportEntitlementID;

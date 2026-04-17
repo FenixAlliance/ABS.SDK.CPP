@@ -85,15 +85,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getTenantEnrollmentId() const;
     bool tenantEnrollmentIdIsSet() const;
     void unsetTenantEnrollmentId();
@@ -108,8 +99,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::string_t m_ParentBusinessProcessId;
     bool m_ParentBusinessProcessIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_TenantEnrollmentId;
     bool m_TenantEnrollmentIdIsSet;
 };

@@ -27,10 +27,6 @@ CourseCompletionCertificateUpdateDto::CourseCompletionCertificateUpdateDto()
     m_StudentProfileIDIsSet = false;
     m_CourseEnrollmentID = utility::conversions::to_string_t("");
     m_CourseEnrollmentIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_CourseCompletionCertificateTemplateID = utility::conversions::to_string_t("");
     m_CourseCompletionCertificateTemplateIDIsSet = false;
     m_CourseID = utility::conversions::to_string_t("");
@@ -58,14 +54,6 @@ web::json::value CourseCompletionCertificateUpdateDto::toJson() const
     if(m_CourseEnrollmentIDIsSet)
     {
         val[utility::conversions::to_string_t(U("courseEnrollmentID"))] = ModelBase::toJson(m_CourseEnrollmentID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_CourseCompletionCertificateTemplateIDIsSet)
     {
@@ -101,26 +89,6 @@ bool CourseCompletionCertificateUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setCourseEnrollmentID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCourseEnrollmentID);
             setCourseEnrollmentID(refVal_setCourseEnrollmentID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("courseCompletionCertificateTemplateID"))))
@@ -161,14 +129,6 @@ void CourseCompletionCertificateUpdateDto::toMultipart(std::shared_ptr<Multipart
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("courseEnrollmentID")), m_CourseEnrollmentID));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
-    }
     if(m_CourseCompletionCertificateTemplateIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("courseCompletionCertificateTemplateID")), m_CourseCompletionCertificateTemplateID));
@@ -199,18 +159,6 @@ bool CourseCompletionCertificateUpdateDto::fromMultiPart(std::shared_ptr<Multipa
         utility::string_t refVal_setCourseEnrollmentID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("courseEnrollmentID"))), refVal_setCourseEnrollmentID );
         setCourseEnrollmentID(refVal_setCourseEnrollmentID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("courseCompletionCertificateTemplateID"))))
     {
@@ -266,46 +214,6 @@ bool CourseCompletionCertificateUpdateDto::courseEnrollmentIDIsSet() const
 void CourseCompletionCertificateUpdateDto::unsetCourseEnrollmentID()
 {
     m_CourseEnrollmentIDIsSet = false;
-}
-utility::string_t CourseCompletionCertificateUpdateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void CourseCompletionCertificateUpdateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool CourseCompletionCertificateUpdateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void CourseCompletionCertificateUpdateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t CourseCompletionCertificateUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void CourseCompletionCertificateUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool CourseCompletionCertificateUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void CourseCompletionCertificateUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t CourseCompletionCertificateUpdateDto::getCourseCompletionCertificateTemplateID() const
 {

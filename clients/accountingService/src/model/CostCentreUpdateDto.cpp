@@ -31,8 +31,6 @@ CostCentreUpdateDto::CostCentreUpdateDto()
     m_DescriptionIsSet = false;
     m_CostCentreType = utility::conversions::to_string_t("");
     m_CostCentreTypeIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_CostCentresGroupId = utility::conversions::to_string_t("");
     m_CostCentresGroupIdIsSet = false;
     m_ParentCostCentreId = utility::conversions::to_string_t("");
@@ -68,10 +66,6 @@ web::json::value CostCentreUpdateDto::toJson() const
     if(m_CostCentreTypeIsSet)
     {
         val[utility::conversions::to_string_t(U("costCentreType"))] = ModelBase::toJson(m_CostCentreType);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_CostCentresGroupIdIsSet)
     {
@@ -129,16 +123,6 @@ bool CostCentreUpdateDto::fromJson(const web::json::value& val)
             setCostCentreType(refVal_setCostCentreType);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("costCentresGroupId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("costCentresGroupId")));
@@ -185,10 +169,6 @@ void CostCentreUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("costCentreType")), m_CostCentreType));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_CostCentresGroupIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("costCentresGroupId")), m_CostCentresGroupId));
@@ -231,12 +211,6 @@ bool CostCentreUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_setCostCentreType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("costCentreType"))), refVal_setCostCentreType );
         setCostCentreType(refVal_setCostCentreType);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("costCentresGroupId"))))
     {
@@ -332,26 +306,6 @@ bool CostCentreUpdateDto::costCentreTypeIsSet() const
 void CostCentreUpdateDto::unsetCostCentreType()
 {
     m_CostCentreTypeIsSet = false;
-}
-utility::string_t CostCentreUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void CostCentreUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool CostCentreUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void CostCentreUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t CostCentreUpdateDto::getCostCentresGroupId() const
 {

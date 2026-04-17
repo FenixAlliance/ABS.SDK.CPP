@@ -35,8 +35,6 @@ CourseNewsCreateDto::CourseNewsCreateDto()
     m_ContentIsSet = false;
     m_CourseID = utility::conversions::to_string_t("");
     m_CourseIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
 }
 
 CourseNewsCreateDto::~CourseNewsCreateDto()
@@ -76,10 +74,6 @@ web::json::value CourseNewsCreateDto::toJson() const
     if(m_CourseIDIsSet)
     {
         val[utility::conversions::to_string_t(U("courseID"))] = ModelBase::toJson(m_CourseID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
 
     return val;
@@ -149,16 +143,6 @@ bool CourseNewsCreateDto::fromJson(const web::json::value& val)
             setCourseID(refVal_setCourseID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     return ok;
 }
 
@@ -192,10 +176,6 @@ void CourseNewsCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_CourseIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("courseID")), m_CourseID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
 }
 
@@ -243,12 +223,6 @@ bool CourseNewsCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_setCourseID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("courseID"))), refVal_setCourseID );
         setCourseID(refVal_setCourseID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     return ok;
 }
@@ -372,26 +346,6 @@ bool CourseNewsCreateDto::courseIDIsSet() const
 void CourseNewsCreateDto::unsetCourseID()
 {
     m_CourseIDIsSet = false;
-}
-utility::string_t CourseNewsCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void CourseNewsCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool CourseNewsCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void CourseNewsCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 }
 }

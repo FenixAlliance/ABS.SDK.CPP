@@ -184,15 +184,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getLongitude() const;
     bool longitudeIsSet() const;
     void unsetLongitude();
@@ -301,8 +292,6 @@ protected:
     bool m_PostalCodeIsSet;
     utility::string_t m_CountryId;
     bool m_CountryIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     double m_Longitude;
     bool m_LongitudeIsSet;
     double m_Latitude;

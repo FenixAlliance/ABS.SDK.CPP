@@ -35,8 +35,6 @@ CourseCategoryCreateDto::CourseCategoryCreateDto()
     m_ImageURLIsSet = false;
     m_IsFeatured = false;
     m_IsFeaturedIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
 }
 
 CourseCategoryCreateDto::~CourseCategoryCreateDto()
@@ -76,10 +74,6 @@ web::json::value CourseCategoryCreateDto::toJson() const
     if(m_IsFeaturedIsSet)
     {
         val[utility::conversions::to_string_t(U("isFeatured"))] = ModelBase::toJson(m_IsFeatured);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
 
     return val;
@@ -149,16 +143,6 @@ bool CourseCategoryCreateDto::fromJson(const web::json::value& val)
             setIsFeatured(refVal_setIsFeatured);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     return ok;
 }
 
@@ -192,10 +176,6 @@ void CourseCategoryCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     if(m_IsFeaturedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isFeatured")), m_IsFeatured));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
 }
 
@@ -243,12 +223,6 @@ bool CourseCategoryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         bool refVal_setIsFeatured;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isFeatured"))), refVal_setIsFeatured );
         setIsFeatured(refVal_setIsFeatured);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     return ok;
 }
@@ -372,26 +346,6 @@ bool CourseCategoryCreateDto::isFeaturedIsSet() const
 void CourseCategoryCreateDto::unsetIsFeatured()
 {
     m_IsFeaturedIsSet = false;
-}
-utility::string_t CourseCategoryCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void CourseCategoryCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool CourseCategoryCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void CourseCategoryCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 }
 }

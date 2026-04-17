@@ -23,18 +23,18 @@ namespace model {
 
 SocialMediaPostCreateDto::SocialMediaPostCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Content = utility::conversions::to_string_t("");
     m_ContentIsSet = false;
     m_FeaturedImageUrl = utility::conversions::to_string_t("");
     m_FeaturedImageUrlIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_SocialPostBucketId = utility::conversions::to_string_t("");
     m_SocialPostBucketIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 SocialMediaPostCreateDto::~SocialMediaPostCreateDto()
@@ -51,6 +51,14 @@ web::json::value SocialMediaPostCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_TitleIsSet)
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
@@ -63,17 +71,9 @@ web::json::value SocialMediaPostCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("featuredImageUrl"))] = ModelBase::toJson(m_FeaturedImageUrl);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_SocialPostBucketIdIsSet)
     {
         val[utility::conversions::to_string_t(U("socialPostBucketId"))] = ModelBase::toJson(m_SocialPostBucketId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -83,6 +83,26 @@ bool SocialMediaPostCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("title"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("title")));
@@ -113,16 +133,6 @@ bool SocialMediaPostCreateDto::fromJson(const web::json::value& val)
             setFeaturedImageUrl(refVal_setFeaturedImageUrl);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("socialPostBucketId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialPostBucketId")));
@@ -131,16 +141,6 @@ bool SocialMediaPostCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setSocialPostBucketId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSocialPostBucketId);
             setSocialPostBucketId(refVal_setSocialPostBucketId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     return ok;
@@ -152,6 +152,14 @@ void SocialMediaPostCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mu
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(U(".")))
     {
         namePrefix += utility::conversions::to_string_t(U("."));
+    }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
     if(m_TitleIsSet)
     {
@@ -165,17 +173,9 @@ void SocialMediaPostCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mu
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("featuredImageUrl")), m_FeaturedImageUrl));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_SocialPostBucketIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialPostBucketId")), m_SocialPostBucketId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -188,6 +188,18 @@ bool SocialMediaPostCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> 
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
     {
         utility::string_t refVal_setTitle;
@@ -206,27 +218,55 @@ bool SocialMediaPostCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> 
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("featuredImageUrl"))), refVal_setFeaturedImageUrl );
         setFeaturedImageUrl(refVal_setFeaturedImageUrl);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("socialPostBucketId"))))
     {
         utility::string_t refVal_setSocialPostBucketId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialPostBucketId"))), refVal_setSocialPostBucketId );
         setSocialPostBucketId(refVal_setSocialPostBucketId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     return ok;
 }
 
+utility::string_t SocialMediaPostCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void SocialMediaPostCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool SocialMediaPostCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void SocialMediaPostCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime SocialMediaPostCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void SocialMediaPostCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool SocialMediaPostCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void SocialMediaPostCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 utility::string_t SocialMediaPostCreateDto::getTitle() const
 {
     return m_Title;
@@ -287,26 +327,6 @@ void SocialMediaPostCreateDto::unsetFeaturedImageUrl()
 {
     m_FeaturedImageUrlIsSet = false;
 }
-utility::string_t SocialMediaPostCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void SocialMediaPostCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool SocialMediaPostCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void SocialMediaPostCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t SocialMediaPostCreateDto::getSocialPostBucketId() const
 {
     return m_SocialPostBucketId;
@@ -326,26 +346,6 @@ bool SocialMediaPostCreateDto::socialPostBucketIdIsSet() const
 void SocialMediaPostCreateDto::unsetSocialPostBucketId()
 {
     m_SocialPostBucketIdIsSet = false;
-}
-utility::string_t SocialMediaPostCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void SocialMediaPostCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool SocialMediaPostCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void SocialMediaPostCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

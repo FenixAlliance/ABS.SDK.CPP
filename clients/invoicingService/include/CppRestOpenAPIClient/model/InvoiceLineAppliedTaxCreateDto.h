@@ -76,15 +76,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getInvoiceId() const;
     bool invoiceIdIsSet() const;
     void unsetInvoiceId();
@@ -100,29 +91,16 @@ public:
 
     void setTaxPolicyId(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_InvoiceId;
     bool m_InvoiceIdIsSet;
     utility::string_t m_TaxPolicyId;
     bool m_TaxPolicyIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
 };
 
 

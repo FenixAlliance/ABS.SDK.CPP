@@ -29,14 +29,8 @@ SupportTicketCreateDto::SupportTicketCreateDto()
     m_TimestampIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_AccountHolderID = utility::conversions::to_string_t("");
-    m_AccountHolderIDIsSet = false;
     m_ContactID = utility::conversions::to_string_t("");
     m_ContactIDIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_SupportTicketTypeID = utility::conversions::to_string_t("");
     m_SupportTicketTypeIDIsSet = false;
     m_SupportEntitlementID = utility::conversions::to_string_t("");
@@ -71,21 +65,9 @@ web::json::value SupportTicketCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("accountHolderID"))] = ModelBase::toJson(m_AccountHolderID);
-    }
     if(m_ContactIDIsSet)
     {
         val[utility::conversions::to_string_t(U("contactID"))] = ModelBase::toJson(m_ContactID);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_SupportTicketTypeIDIsSet)
     {
@@ -137,16 +119,6 @@ bool SupportTicketCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountHolderID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAccountHolderID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountHolderID);
-            setAccountHolderID(refVal_setAccountHolderID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("contactID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contactID")));
@@ -155,26 +127,6 @@ bool SupportTicketCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setContactID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContactID);
             setContactID(refVal_setContactID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("supportTicketTypeID"))))
@@ -229,21 +181,9 @@ void SupportTicketCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountHolderID")), m_AccountHolderID));
-    }
     if(m_ContactIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactID")), m_ContactID));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_SupportTicketTypeIDIsSet)
     {
@@ -286,29 +226,11 @@ bool SupportTicketCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        utility::string_t refVal_setAccountHolderID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountHolderID"))), refVal_setAccountHolderID );
-        setAccountHolderID(refVal_setAccountHolderID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("contactID"))))
     {
         utility::string_t refVal_setContactID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactID"))), refVal_setContactID );
         setContactID(refVal_setContactID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("supportTicketTypeID"))))
     {
@@ -391,26 +313,6 @@ void SupportTicketCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::string_t SupportTicketCreateDto::getAccountHolderID() const
-{
-    return m_AccountHolderID;
-}
-
-void SupportTicketCreateDto::setAccountHolderID(const utility::string_t& value)
-{
-    m_AccountHolderID = value;
-    m_AccountHolderIDIsSet = true;
-}
-
-bool SupportTicketCreateDto::accountHolderIDIsSet() const
-{
-    return m_AccountHolderIDIsSet;
-}
-
-void SupportTicketCreateDto::unsetAccountHolderID()
-{
-    m_AccountHolderIDIsSet = false;
-}
 utility::string_t SupportTicketCreateDto::getContactID() const
 {
     return m_ContactID;
@@ -430,46 +332,6 @@ bool SupportTicketCreateDto::contactIDIsSet() const
 void SupportTicketCreateDto::unsetContactID()
 {
     m_ContactIDIsSet = false;
-}
-utility::string_t SupportTicketCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void SupportTicketCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool SupportTicketCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void SupportTicketCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t SupportTicketCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void SupportTicketCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool SupportTicketCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void SupportTicketCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t SupportTicketCreateDto::getSupportTicketTypeID() const
 {

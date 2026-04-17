@@ -85,29 +85,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getSocialPostBucketId() const;
     bool socialPostBucketIdIsSet() const;
     void unsetSocialPostBucketId();
 
     void setSocialPostBucketId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
 
 protected:
@@ -117,12 +99,8 @@ protected:
     bool m_ContentIsSet;
     utility::string_t m_FeaturedImageUrl;
     bool m_FeaturedImageUrlIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_SocialPostBucketId;
     bool m_SocialPostBucketIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
 };
 
 

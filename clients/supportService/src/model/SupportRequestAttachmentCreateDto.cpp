@@ -47,10 +47,6 @@ SupportRequestAttachmentCreateDto::SupportRequestAttachmentCreateDto()
     m_ParentFileUploadIdIsSet = false;
     m_FilePath = utility::conversions::to_string_t("");
     m_FilePathIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_Metadata = utility::conversions::to_string_t("");
     m_MetadataIsSet = false;
     m_SupportRequestID = utility::conversions::to_string_t("");
@@ -118,14 +114,6 @@ web::json::value SupportRequestAttachmentCreateDto::toJson() const
     if(m_FilePathIsSet)
     {
         val[utility::conversions::to_string_t(U("filePath"))] = ModelBase::toJson(m_FilePath);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_MetadataIsSet)
     {
@@ -263,26 +251,6 @@ bool SupportRequestAttachmentCreateDto::fromJson(const web::json::value& val)
             setFilePath(refVal_setFilePath);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("metadata"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("metadata")));
@@ -360,14 +328,6 @@ void SupportRequestAttachmentCreateDto::toMultipart(std::shared_ptr<MultipartFor
     if(m_FilePathIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("filePath")), m_FilePath));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_MetadataIsSet)
     {
@@ -459,18 +419,6 @@ bool SupportRequestAttachmentCreateDto::fromMultiPart(std::shared_ptr<MultipartF
         utility::string_t refVal_setFilePath;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("filePath"))), refVal_setFilePath );
         setFilePath(refVal_setFilePath);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("metadata"))))
     {
@@ -726,46 +674,6 @@ bool SupportRequestAttachmentCreateDto::filePathIsSet() const
 void SupportRequestAttachmentCreateDto::unsetFilePath()
 {
     m_FilePathIsSet = false;
-}
-utility::string_t SupportRequestAttachmentCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void SupportRequestAttachmentCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool SupportRequestAttachmentCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void SupportRequestAttachmentCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t SupportRequestAttachmentCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void SupportRequestAttachmentCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool SupportRequestAttachmentCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void SupportRequestAttachmentCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t SupportRequestAttachmentCreateDto::getMetadata() const
 {

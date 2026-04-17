@@ -23,6 +23,10 @@ namespace model {
 
 AssetTransferCreateDto::AssetTransferCreateDto()
 {
+    m_Id = utility::conversions::to_string_t("");
+    m_IdIsSet = false;
+    m_Timestamp = utility::datetime();
+    m_TimestampIsSet = false;
     m_AssetId = utility::conversions::to_string_t("");
     m_AssetIdIsSet = false;
     m_IsRootTransfer = false;
@@ -63,6 +67,14 @@ web::json::value AssetTransferCreateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_IdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_TimestampIsSet)
+    {
+        val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
     if(m_AssetIdIsSet)
     {
         val[utility::conversions::to_string_t(U("assetId"))] = ModelBase::toJson(m_AssetId);
@@ -119,6 +131,26 @@ bool AssetTransferCreateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("id"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("id")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setId);
+            setId(refVal_setId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("timestamp")));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_setTimestamp;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
+            setTimestamp(refVal_setTimestamp);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("assetId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("assetId")));
@@ -249,6 +281,14 @@ void AssetTransferCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_IdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
+    }
+    if(m_TimestampIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
+    }
     if(m_AssetIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("assetId")), m_AssetId));
@@ -308,6 +348,18 @@ bool AssetTransferCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("id"))))
+    {
+        utility::string_t refVal_setId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
+        setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("timestamp"))))
+    {
+        utility::datetime refVal_setTimestamp;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
+        setTimestamp(refVal_setTimestamp);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("assetId"))))
     {
         utility::string_t refVal_setAssetId;
@@ -383,6 +435,46 @@ bool AssetTransferCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     return ok;
 }
 
+utility::string_t AssetTransferCreateDto::getId() const
+{
+    return m_Id;
+}
+
+void AssetTransferCreateDto::setId(const utility::string_t& value)
+{
+    m_Id = value;
+    m_IdIsSet = true;
+}
+
+bool AssetTransferCreateDto::idIsSet() const
+{
+    return m_IdIsSet;
+}
+
+void AssetTransferCreateDto::unsetId()
+{
+    m_IdIsSet = false;
+}
+utility::datetime AssetTransferCreateDto::getTimestamp() const
+{
+    return m_Timestamp;
+}
+
+void AssetTransferCreateDto::setTimestamp(const utility::datetime& value)
+{
+    m_Timestamp = value;
+    m_TimestampIsSet = true;
+}
+
+bool AssetTransferCreateDto::timestampIsSet() const
+{
+    return m_TimestampIsSet;
+}
+
+void AssetTransferCreateDto::unsetTimestamp()
+{
+    m_TimestampIsSet = false;
+}
 utility::string_t AssetTransferCreateDto::getAssetId() const
 {
     return m_AssetId;

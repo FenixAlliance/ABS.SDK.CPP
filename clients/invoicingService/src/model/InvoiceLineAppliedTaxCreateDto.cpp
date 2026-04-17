@@ -27,14 +27,10 @@ InvoiceLineAppliedTaxCreateDto::InvoiceLineAppliedTaxCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_InvoiceId = utility::conversions::to_string_t("");
     m_InvoiceIdIsSet = false;
     m_TaxPolicyId = utility::conversions::to_string_t("");
     m_TaxPolicyIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 InvoiceLineAppliedTaxCreateDto::~InvoiceLineAppliedTaxCreateDto()
@@ -59,10 +55,6 @@ web::json::value InvoiceLineAppliedTaxCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_InvoiceIdIsSet)
     {
         val[utility::conversions::to_string_t(U("invoiceId"))] = ModelBase::toJson(m_InvoiceId);
@@ -70,10 +62,6 @@ web::json::value InvoiceLineAppliedTaxCreateDto::toJson() const
     if(m_TaxPolicyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("taxPolicyId"))] = ModelBase::toJson(m_TaxPolicyId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -103,16 +91,6 @@ bool InvoiceLineAppliedTaxCreateDto::fromJson(const web::json::value& val)
             setTimestamp(refVal_setTimestamp);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("invoiceId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("invoiceId")));
@@ -133,16 +111,6 @@ bool InvoiceLineAppliedTaxCreateDto::fromJson(const web::json::value& val)
             setTaxPolicyId(refVal_setTaxPolicyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -161,10 +129,6 @@ void InvoiceLineAppliedTaxCreateDto::toMultipart(std::shared_ptr<MultipartFormDa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_InvoiceIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("invoiceId")), m_InvoiceId));
@@ -172,10 +136,6 @@ void InvoiceLineAppliedTaxCreateDto::toMultipart(std::shared_ptr<MultipartFormDa
     if(m_TaxPolicyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taxPolicyId")), m_TaxPolicyId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -200,12 +160,6 @@ bool InvoiceLineAppliedTaxCreateDto::fromMultiPart(std::shared_ptr<MultipartForm
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("invoiceId"))))
     {
         utility::string_t refVal_setInvoiceId;
@@ -217,12 +171,6 @@ bool InvoiceLineAppliedTaxCreateDto::fromMultiPart(std::shared_ptr<MultipartForm
         utility::string_t refVal_setTaxPolicyId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taxPolicyId"))), refVal_setTaxPolicyId );
         setTaxPolicyId(refVal_setTaxPolicyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -267,26 +215,6 @@ void InvoiceLineAppliedTaxCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
 }
-utility::string_t InvoiceLineAppliedTaxCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void InvoiceLineAppliedTaxCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool InvoiceLineAppliedTaxCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void InvoiceLineAppliedTaxCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t InvoiceLineAppliedTaxCreateDto::getInvoiceId() const
 {
     return m_InvoiceId;
@@ -326,26 +254,6 @@ bool InvoiceLineAppliedTaxCreateDto::taxPolicyIdIsSet() const
 void InvoiceLineAppliedTaxCreateDto::unsetTaxPolicyId()
 {
     m_TaxPolicyIdIsSet = false;
-}
-utility::string_t InvoiceLineAppliedTaxCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void InvoiceLineAppliedTaxCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool InvoiceLineAppliedTaxCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void InvoiceLineAppliedTaxCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

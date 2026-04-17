@@ -82,24 +82,6 @@ public:
 
     void setAccountId(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
@@ -108,10 +90,6 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_AccountId;
     bool m_AccountIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
 };
 
 

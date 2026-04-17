@@ -76,24 +76,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessId() const;
-    bool businessIdIsSet() const;
-    void unsetBusinessId();
-
-    void setBusinessId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordId() const;
-    bool businessProfileRecordIdIsSet() const;
-    void unsetBusinessProfileRecordId();
-
-    void setBusinessProfileRecordId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
@@ -115,10 +97,6 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    utility::string_t m_BusinessId;
-    bool m_BusinessIdIsSet;
-    utility::string_t m_BusinessProfileRecordId;
-    bool m_BusinessProfileRecordIdIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
     utility::string_t m_Description;

@@ -29,10 +29,6 @@ EmailGroupUpdateDto::EmailGroupUpdateDto()
     m_DescriptionIsSet = false;
     m_Enabled = false;
     m_EnabledIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 EmailGroupUpdateDto::~EmailGroupUpdateDto()
@@ -60,14 +56,6 @@ web::json::value EmailGroupUpdateDto::toJson() const
     if(m_EnabledIsSet)
     {
         val[utility::conversions::to_string_t(U("enabled"))] = ModelBase::toJson(m_Enabled);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -107,26 +95,6 @@ bool EmailGroupUpdateDto::fromJson(const web::json::value& val)
             setEnabled(refVal_setEnabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -148,14 +116,6 @@ void EmailGroupUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_EnabledIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enabled")), m_Enabled));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -185,18 +145,6 @@ bool EmailGroupUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         bool refVal_setEnabled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enabled"))), refVal_setEnabled );
         setEnabled(refVal_setEnabled);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -260,46 +208,6 @@ bool EmailGroupUpdateDto::enabledIsSet() const
 void EmailGroupUpdateDto::unsetEnabled()
 {
     m_EnabledIsSet = false;
-}
-utility::string_t EmailGroupUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void EmailGroupUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool EmailGroupUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void EmailGroupUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t EmailGroupUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void EmailGroupUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool EmailGroupUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void EmailGroupUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

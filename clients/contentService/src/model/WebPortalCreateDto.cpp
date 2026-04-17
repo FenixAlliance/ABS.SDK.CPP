@@ -35,16 +35,12 @@ WebPortalCreateDto::WebPortalCreateDto()
     m_DomainIsSet = false;
     m_Disabled = false;
     m_DisabledIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_WebsiteThemeID = utility::conversions::to_string_t("");
     m_WebsiteThemeIDIsSet = false;
     m_BusinessDomainID = utility::conversions::to_string_t("");
     m_BusinessDomainIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_BusinessPortalApplicationID = utility::conversions::to_string_t("");
     m_BusinessPortalApplicationIDIsSet = false;
 }
@@ -87,10 +83,6 @@ web::json::value WebPortalCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("disabled"))] = ModelBase::toJson(m_Disabled);
     }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
@@ -102,10 +94,6 @@ web::json::value WebPortalCreateDto::toJson() const
     if(m_BusinessDomainIDIsSet)
     {
         val[utility::conversions::to_string_t(U("businessDomainID"))] = ModelBase::toJson(m_BusinessDomainID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_BusinessPortalApplicationIDIsSet)
     {
@@ -179,16 +167,6 @@ bool WebPortalCreateDto::fromJson(const web::json::value& val)
             setDisabled(refVal_setDisabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
@@ -217,16 +195,6 @@ bool WebPortalCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setBusinessDomainID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessDomainID);
             setBusinessDomainID(refVal_setBusinessDomainID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("businessPortalApplicationID"))))
@@ -273,10 +241,6 @@ void WebPortalCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("disabled")), m_Disabled));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
@@ -288,10 +252,6 @@ void WebPortalCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_BusinessDomainIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessDomainID")), m_BusinessDomainID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_BusinessPortalApplicationIDIsSet)
     {
@@ -344,12 +304,6 @@ bool WebPortalCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("disabled"))), refVal_setDisabled );
         setDisabled(refVal_setDisabled);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
         utility::string_t refVal_setDescription;
@@ -367,12 +321,6 @@ bool WebPortalCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         utility::string_t refVal_setBusinessDomainID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessDomainID"))), refVal_setBusinessDomainID );
         setBusinessDomainID(refVal_setBusinessDomainID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("businessPortalApplicationID"))))
     {
@@ -503,26 +451,6 @@ void WebPortalCreateDto::unsetDisabled()
 {
     m_DisabledIsSet = false;
 }
-utility::string_t WebPortalCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void WebPortalCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool WebPortalCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void WebPortalCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
 utility::string_t WebPortalCreateDto::getDescription() const
 {
     return m_Description;
@@ -582,26 +510,6 @@ bool WebPortalCreateDto::businessDomainIDIsSet() const
 void WebPortalCreateDto::unsetBusinessDomainID()
 {
     m_BusinessDomainIDIsSet = false;
-}
-utility::string_t WebPortalCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void WebPortalCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool WebPortalCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void WebPortalCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t WebPortalCreateDto::getBusinessPortalApplicationID() const
 {

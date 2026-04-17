@@ -29,8 +29,6 @@ SecurityPermissionCreateDto::SecurityPermissionCreateDto()
     m_TimestampIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
 }
@@ -60,10 +58,6 @@ web::json::value SecurityPermissionCreateDto::toJson() const
     if(m_NameIsSet)
     {
         val[utility::conversions::to_string_t(U("name"))] = ModelBase::toJson(m_Name);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_DescriptionIsSet)
     {
@@ -107,16 +101,6 @@ bool SecurityPermissionCreateDto::fromJson(const web::json::value& val)
             setName(refVal_setName);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
@@ -148,10 +132,6 @@ void SecurityPermissionCreateDto::toMultipart(std::shared_ptr<MultipartFormData>
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_DescriptionIsSet)
     {
@@ -185,12 +165,6 @@ bool SecurityPermissionCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("name"))), refVal_setName );
         setName(refVal_setName);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
@@ -260,26 +234,6 @@ bool SecurityPermissionCreateDto::nameIsSet() const
 void SecurityPermissionCreateDto::unsetName()
 {
     m_NameIsSet = false;
-}
-utility::string_t SecurityPermissionCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void SecurityPermissionCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool SecurityPermissionCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void SecurityPermissionCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t SecurityPermissionCreateDto::getDescription() const
 {

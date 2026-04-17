@@ -85,15 +85,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getDealUnitFlowId() const;
     bool dealUnitFlowIdIsSet() const;
     void unsetDealUnitFlowId();
@@ -117,8 +108,6 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_DealUnitFlowId;
     bool m_DealUnitFlowIdIsSet;
     utility::string_t m_ParentBusinessProcessStageId;

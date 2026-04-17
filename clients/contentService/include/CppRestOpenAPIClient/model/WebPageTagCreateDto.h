@@ -181,15 +181,6 @@ public:
 
     void setWebPortalID(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
@@ -220,8 +211,6 @@ protected:
     bool m_ImageIsSet;
     utility::string_t m_WebPortalID;
     bool m_WebPortalIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
 };
 
 

@@ -41,12 +41,8 @@ BankGuaranteeUpdateDto::BankGuaranteeUpdateDto()
     m_EndDateIsSet = false;
     m_ValidityInDays = 0;
     m_ValidityInDaysIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_BankGuaranteeType = utility::conversions::to_string_t("");
     m_BankGuaranteeTypeIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_ContactId = utility::conversions::to_string_t("");
     m_ContactIdIsSet = false;
     m_ProjectId = utility::conversions::to_string_t("");
@@ -111,17 +107,9 @@ web::json::value BankGuaranteeUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("validityInDays"))] = ModelBase::toJson(m_ValidityInDays);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_BankGuaranteeTypeIsSet)
     {
         val[utility::conversions::to_string_t(U("bankGuaranteeType"))] = ModelBase::toJson(m_BankGuaranteeType);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_ContactIdIsSet)
     {
@@ -245,16 +233,6 @@ bool BankGuaranteeUpdateDto::fromJson(const web::json::value& val)
             setValidityInDays(refVal_setValidityInDays);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("bankGuaranteeType"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bankGuaranteeType")));
@@ -263,16 +241,6 @@ bool BankGuaranteeUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setBankGuaranteeType;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBankGuaranteeType);
             setBankGuaranteeType(refVal_setBankGuaranteeType);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("contactId"))))
@@ -381,17 +349,9 @@ void BankGuaranteeUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("validityInDays")), m_ValidityInDays));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_BankGuaranteeTypeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bankGuaranteeType")), m_BankGuaranteeType));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_ContactIdIsSet)
     {
@@ -482,23 +442,11 @@ bool BankGuaranteeUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("validityInDays"))), refVal_setValidityInDays );
         setValidityInDays(refVal_setValidityInDays);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("bankGuaranteeType"))))
     {
         utility::string_t refVal_setBankGuaranteeType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bankGuaranteeType"))), refVal_setBankGuaranteeType );
         setBankGuaranteeType(refVal_setBankGuaranteeType);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("contactId"))))
     {
@@ -719,26 +667,6 @@ void BankGuaranteeUpdateDto::unsetValidityInDays()
 {
     m_ValidityInDaysIsSet = false;
 }
-utility::string_t BankGuaranteeUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void BankGuaranteeUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool BankGuaranteeUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void BankGuaranteeUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t BankGuaranteeUpdateDto::getBankGuaranteeType() const
 {
     return m_BankGuaranteeType;
@@ -758,26 +686,6 @@ bool BankGuaranteeUpdateDto::bankGuaranteeTypeIsSet() const
 void BankGuaranteeUpdateDto::unsetBankGuaranteeType()
 {
     m_BankGuaranteeTypeIsSet = false;
-}
-utility::string_t BankGuaranteeUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void BankGuaranteeUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool BankGuaranteeUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void BankGuaranteeUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t BankGuaranteeUpdateDto::getContactId() const
 {

@@ -92,15 +92,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getPriceListId() const;
     bool priceListIdIsSet() const;
     void unsetPriceListId();
@@ -115,15 +106,6 @@ public:
     void unsetDescription();
 
     void setDescription(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -727,14 +709,10 @@ protected:
     bool m_TitleIsSet;
     utility::string_t m_UserId;
     bool m_UserIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_PriceListId;
     bool m_PriceListIdIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_IndividualId;
     bool m_IndividualIdIsSet;
     utility::string_t m_PaymentTermId;

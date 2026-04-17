@@ -35,10 +35,6 @@ DealUnitLineUpdateDto::DealUnitLineUpdateDto()
     m_ItemPrimaryImageUrlIsSet = false;
     m_ShippingPolicyId = utility::conversions::to_string_t("");
     m_ShippingPolicyIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
@@ -209,8 +205,6 @@ DealUnitLineUpdateDto::DealUnitLineUpdateDto()
     m_LocationIdIsSet = false;
     m_QuoteItemRecordId = utility::conversions::to_string_t("");
     m_QuoteItemRecordIdIsSet = false;
-    m_BusinessProfileRecordId = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIdIsSet = false;
     m_ParentBillingItemRecordId = utility::conversions::to_string_t("");
     m_ParentBillingItemRecordIdIsSet = false;
 }
@@ -252,14 +246,6 @@ web::json::value DealUnitLineUpdateDto::toJson() const
     if(m_ShippingPolicyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("shippingPolicyId"))] = ModelBase::toJson(m_ShippingPolicyId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_CurrencyIdIsSet)
     {
@@ -601,10 +587,6 @@ web::json::value DealUnitLineUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("quoteItemRecordId"))] = ModelBase::toJson(m_QuoteItemRecordId);
     }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordId"))] = ModelBase::toJson(m_BusinessProfileRecordId);
-    }
     if(m_ParentBillingItemRecordIdIsSet)
     {
         val[utility::conversions::to_string_t(U("parentBillingItemRecordId"))] = ModelBase::toJson(m_ParentBillingItemRecordId);
@@ -675,26 +657,6 @@ bool DealUnitLineUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setShippingPolicyId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setShippingPolicyId);
             setShippingPolicyId(refVal_setShippingPolicyId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
@@ -1547,16 +1509,6 @@ bool DealUnitLineUpdateDto::fromJson(const web::json::value& val)
             setQuoteItemRecordId(refVal_setQuoteItemRecordId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordId);
-            setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("parentBillingItemRecordId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentBillingItemRecordId")));
@@ -1600,14 +1552,6 @@ void DealUnitLineUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_ShippingPolicyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shippingPolicyId")), m_ShippingPolicyId));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_CurrencyIdIsSet)
     {
@@ -1949,10 +1893,6 @@ void DealUnitLineUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("quoteItemRecordId")), m_QuoteItemRecordId));
     }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordId")), m_BusinessProfileRecordId));
-    }
     if(m_ParentBillingItemRecordIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentBillingItemRecordId")), m_ParentBillingItemRecordId));
@@ -2003,18 +1943,6 @@ bool DealUnitLineUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setShippingPolicyId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("shippingPolicyId"))), refVal_setShippingPolicyId );
         setShippingPolicyId(refVal_setShippingPolicyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
     {
@@ -2526,12 +2454,6 @@ bool DealUnitLineUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("quoteItemRecordId"))), refVal_setQuoteItemRecordId );
         setQuoteItemRecordId(refVal_setQuoteItemRecordId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordId"))), refVal_setBusinessProfileRecordId );
-        setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parentBillingItemRecordId"))))
     {
         utility::string_t refVal_setParentBillingItemRecordId;
@@ -2660,46 +2582,6 @@ bool DealUnitLineUpdateDto::shippingPolicyIdIsSet() const
 void DealUnitLineUpdateDto::unsetShippingPolicyId()
 {
     m_ShippingPolicyIdIsSet = false;
-}
-utility::string_t DealUnitLineUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void DealUnitLineUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool DealUnitLineUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void DealUnitLineUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t DealUnitLineUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void DealUnitLineUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool DealUnitLineUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void DealUnitLineUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t DealUnitLineUpdateDto::getCurrencyId() const
 {
@@ -4400,26 +4282,6 @@ bool DealUnitLineUpdateDto::quoteItemRecordIdIsSet() const
 void DealUnitLineUpdateDto::unsetQuoteItemRecordId()
 {
     m_QuoteItemRecordIdIsSet = false;
-}
-utility::string_t DealUnitLineUpdateDto::getBusinessProfileRecordId() const
-{
-    return m_BusinessProfileRecordId;
-}
-
-void DealUnitLineUpdateDto::setBusinessProfileRecordId(const utility::string_t& value)
-{
-    m_BusinessProfileRecordId = value;
-    m_BusinessProfileRecordIdIsSet = true;
-}
-
-bool DealUnitLineUpdateDto::businessProfileRecordIdIsSet() const
-{
-    return m_BusinessProfileRecordIdIsSet;
-}
-
-void DealUnitLineUpdateDto::unsetBusinessProfileRecordId()
-{
-    m_BusinessProfileRecordIdIsSet = false;
 }
 utility::string_t DealUnitLineUpdateDto::getParentBillingItemRecordId() const
 {

@@ -37,8 +37,6 @@ ItemTypeCreateDto::ItemTypeCreateDto()
     m_ImageURLIsSet = false;
     m_GoogleCategoryTaxonomy = utility::conversions::to_string_t("");
     m_GoogleCategoryTaxonomyIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_ItemCategoryID = utility::conversions::to_string_t("");
     m_ItemCategoryIDIsSet = false;
     m_ItemGoogleCategoryID = utility::conversions::to_string_t("");
@@ -86,10 +84,6 @@ web::json::value ItemTypeCreateDto::toJson() const
     if(m_GoogleCategoryTaxonomyIsSet)
     {
         val[utility::conversions::to_string_t(U("googleCategoryTaxonomy"))] = ModelBase::toJson(m_GoogleCategoryTaxonomy);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
     }
     if(m_ItemCategoryIDIsSet)
     {
@@ -177,16 +171,6 @@ bool ItemTypeCreateDto::fromJson(const web::json::value& val)
             setGoogleCategoryTaxonomy(refVal_setGoogleCategoryTaxonomy);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("itemCategoryID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("itemCategoryID")));
@@ -244,10 +228,6 @@ void ItemTypeCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_GoogleCategoryTaxonomyIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("googleCategoryTaxonomy")), m_GoogleCategoryTaxonomy));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
     }
     if(m_ItemCategoryIDIsSet)
     {
@@ -309,12 +289,6 @@ bool ItemTypeCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setGoogleCategoryTaxonomy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("googleCategoryTaxonomy"))), refVal_setGoogleCategoryTaxonomy );
         setGoogleCategoryTaxonomy(refVal_setGoogleCategoryTaxonomy);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("itemCategoryID"))))
     {
@@ -470,26 +444,6 @@ bool ItemTypeCreateDto::googleCategoryTaxonomyIsSet() const
 void ItemTypeCreateDto::unsetGoogleCategoryTaxonomy()
 {
     m_GoogleCategoryTaxonomyIsSet = false;
-}
-utility::string_t ItemTypeCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemTypeCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemTypeCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemTypeCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
 }
 utility::string_t ItemTypeCreateDto::getItemCategoryID() const
 {

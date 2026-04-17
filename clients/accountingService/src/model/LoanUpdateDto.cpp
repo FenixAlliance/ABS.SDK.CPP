@@ -37,8 +37,6 @@ LoanUpdateDto::LoanUpdateDto()
     m_LoanTypeIdIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
 }
 
 LoanUpdateDto::~LoanUpdateDto()
@@ -82,10 +80,6 @@ web::json::value LoanUpdateDto::toJson() const
     if(m_CurrencyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -165,16 +159,6 @@ bool LoanUpdateDto::fromJson(const web::json::value& val)
             setCurrencyId(refVal_setCurrencyId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     return ok;
 }
 
@@ -212,10 +196,6 @@ void LoanUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     if(m_CurrencyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -269,12 +249,6 @@ bool LoanUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         utility::string_t refVal_setCurrencyId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("currencyId"))), refVal_setCurrencyId );
         setCurrencyId(refVal_setCurrencyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -418,26 +392,6 @@ bool LoanUpdateDto::currencyIdIsSet() const
 void LoanUpdateDto::unsetCurrencyId()
 {
     m_CurrencyIdIsSet = false;
-}
-utility::string_t LoanUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void LoanUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool LoanUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void LoanUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 }
 }

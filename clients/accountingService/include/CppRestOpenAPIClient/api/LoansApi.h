@@ -29,11 +29,11 @@
 #include "CppRestOpenAPIClient/model/LoanApplicationCreateDto.h"
 #include "CppRestOpenAPIClient/model/LoanApplicationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanApplicationDtoIReadOnlyListEnvelope.h"
-#include "CppRestOpenAPIClient/model/LoanApplicationUpdateDto.h"
 #include "CppRestOpenAPIClient/model/LoanCreateDto.h"
 #include "CppRestOpenAPIClient/model/LoanDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanUpdateDto.h"
+#include "CppRestOpenAPIClient/Object.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -214,13 +214,13 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="applicationId"></param>
-    /// <param name="loanApplicationUpdateDto"></param>
+    /// <param name="body"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> updateLoanApplicationAsync(
         utility::string_t tenantId,
         utility::string_t applicationId,
-        std::shared_ptr<LoanApplicationUpdateDto> loanApplicationUpdateDto,
+        std::shared_ptr<Object> body,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

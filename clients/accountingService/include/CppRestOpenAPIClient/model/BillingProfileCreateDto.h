@@ -85,15 +85,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getTaxId() const;
     bool taxIdIsSet() const;
     void unsetTaxId();
@@ -270,8 +261,6 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_ContactId;
     bool m_ContactIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_TaxId;
     bool m_TaxIdIsSet;
     utility::string_t m_Phone;

@@ -23,10 +23,6 @@ namespace model {
 
 BudgetAccountEntryUpdateDto::BudgetAccountEntryUpdateDto()
 {
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_Amount = 0.0;
@@ -61,14 +57,6 @@ web::json::value BudgetAccountEntryUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
@@ -113,26 +101,6 @@ bool BudgetAccountEntryUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
@@ -233,14 +201,6 @@ void BudgetAccountEntryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData>
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
@@ -288,18 +248,6 @@ bool BudgetAccountEntryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
         utility::string_t refVal_setDescription;
@@ -357,46 +305,6 @@ bool BudgetAccountEntryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
     return ok;
 }
 
-utility::string_t BudgetAccountEntryUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void BudgetAccountEntryUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool BudgetAccountEntryUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void BudgetAccountEntryUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t BudgetAccountEntryUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void BudgetAccountEntryUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool BudgetAccountEntryUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void BudgetAccountEntryUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
 utility::string_t BudgetAccountEntryUpdateDto::getDescription() const
 {
     return m_Description;

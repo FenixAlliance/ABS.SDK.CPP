@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 CMakeLists.txt
 Config.cmake.in
 README.md
@@ -184,7 +183,6 @@ include/CppRestOpenAPIClient/model/GrantCreateDto.h
 include/CppRestOpenAPIClient/model/GrantDto.h
 include/CppRestOpenAPIClient/model/GrantDtoEnvelope.h
 include/CppRestOpenAPIClient/model/GrantDtoIReadOnlyListEnvelope.h
-include/CppRestOpenAPIClient/model/GrantUpdateDto.h
 include/CppRestOpenAPIClient/model/HttpValidationProblemDetails.h
 include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
@@ -225,7 +223,6 @@ include/CppRestOpenAPIClient/model/LoanApplicationCreateDto.h
 include/CppRestOpenAPIClient/model/LoanApplicationDto.h
 include/CppRestOpenAPIClient/model/LoanApplicationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/LoanApplicationDtoIReadOnlyListEnvelope.h
-include/CppRestOpenAPIClient/model/LoanApplicationUpdateDto.h
 include/CppRestOpenAPIClient/model/LoanCreateDto.h
 include/CppRestOpenAPIClient/model/LoanDto.h
 include/CppRestOpenAPIClient/model/LoanDtoEnvelope.h
@@ -470,7 +467,6 @@ src/model/GrantCreateDto.cpp
 src/model/GrantDto.cpp
 src/model/GrantDtoEnvelope.cpp
 src/model/GrantDtoIReadOnlyListEnvelope.cpp
-src/model/GrantUpdateDto.cpp
 src/model/HttpValidationProblemDetails.cpp
 src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
@@ -511,7 +507,6 @@ src/model/LoanApplicationCreateDto.cpp
 src/model/LoanApplicationDto.cpp
 src/model/LoanApplicationDtoEnvelope.cpp
 src/model/LoanApplicationDtoIReadOnlyListEnvelope.cpp
-src/model/LoanApplicationUpdateDto.cpp
 src/model/LoanCreateDto.cpp
 src/model/LoanDto.cpp
 src/model/LoanDtoEnvelope.cpp

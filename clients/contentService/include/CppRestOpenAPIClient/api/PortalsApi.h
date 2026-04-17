@@ -25,11 +25,13 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/PortalOptionsEnvelope.h"
 #include "CppRestOpenAPIClient/model/PortalSettingsEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalCreateDto.h"
 #include "CppRestOpenAPIClient/model/WebPortalDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/WebPortalDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalUpdateDto.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -52,6 +54,20 @@ public:
 
     virtual ~PortalsApi();
 
+    /// <summary>
+    /// Count portals
+    /// </summary>
+    /// <remarks>
+    /// Counts all portals for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> countPortalsAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
     /// <summary>
     /// Create a new web portal
     /// </summary>
@@ -105,6 +121,20 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<PortalOptionsEnvelope>> getCurrentWebPortalOptionsAsync(
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get portals
+    /// </summary>
+    /// <remarks>
+    /// Retrieves all portals for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<WebPortalDtoListEnvelope>> getPortalsAsync(
+        utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

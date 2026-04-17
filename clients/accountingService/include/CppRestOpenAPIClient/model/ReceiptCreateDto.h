@@ -58,20 +58,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getId() const;
+    bool idIsSet() const;
+    void unsetId();
+
+    void setId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
 
     void setTitle(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getUserId() const;
-    bool userIdIsSet() const;
-    void unsetUserId();
-
-    void setUserId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -220,33 +229,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBillingLocationId() const;
-    bool billingLocationIdIsSet() const;
-    void unsetBillingLocationId();
-
-    void setBillingLocationId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getShippingLocationId() const;
-    bool shippingLocationIdIsSet() const;
-    void unsetShippingLocationId();
-
-    void setShippingLocationId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getShippingMethodId() const;
-    bool shippingMethodIdIsSet() const;
-    void unsetShippingMethodId();
-
-    void setShippingMethodId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCurrencyId() const;
     bool currencyIdIsSet() const;
     void unsetCurrencyId();
@@ -328,24 +310,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTotalShippingTax() const;
-    bool totalShippingTaxIsSet() const;
-    void unsetTotalShippingTax();
-
-    void setTotalShippingTax(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTotalShippingTaxCurrencyId() const;
-    bool totalShippingTaxCurrencyIdIsSet() const;
-    void unsetTotalShippingTaxCurrencyId();
-
-    void setTotalShippingTaxCurrencyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getTotalShippingCost() const;
     bool totalShippingCostIsSet() const;
     void unsetTotalShippingCost();
@@ -364,38 +328,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTotalGlobalDiscounts() const;
-    bool totalGlobalDiscountsIsSet() const;
-    void unsetTotalGlobalDiscounts();
+    double getTotalShippingTax() const;
+    bool totalShippingTaxIsSet() const;
+    void unsetTotalShippingTax();
 
-    void setTotalGlobalDiscounts(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTotalGlobalDiscountsCurrencyId() const;
-    bool totalGlobalDiscountsCurrencyIdIsSet() const;
-    void unsetTotalGlobalDiscountsCurrencyId();
-
-    void setTotalGlobalDiscountsCurrencyId(const utility::string_t& value);
+    void setTotalShippingTax(double value);
 
     /// <summary>
     /// 
     /// </summary>
-    double getTotalGlobalSurcharges() const;
-    bool totalGlobalSurchargesIsSet() const;
-    void unsetTotalGlobalSurcharges();
+    utility::string_t getTotalShippingTaxCurrencyId() const;
+    bool totalShippingTaxCurrencyIdIsSet() const;
+    void unsetTotalShippingTaxCurrencyId();
 
-    void setTotalGlobalSurcharges(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTotalGlobalSurchargesCurrencyId() const;
-    bool totalGlobalSurchargesCurrencyIdIsSet() const;
-    void unsetTotalGlobalSurchargesCurrencyId();
-
-    void setTotalGlobalSurchargesCurrencyId(const utility::string_t& value);
+    void setTotalShippingTaxCurrencyId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -454,6 +400,42 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    double getTotalGlobalSurcharges() const;
+    bool totalGlobalSurchargesIsSet() const;
+    void unsetTotalGlobalSurcharges();
+
+    void setTotalGlobalSurcharges(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTotalGlobalSurchargesCurrencyId() const;
+    bool totalGlobalSurchargesCurrencyIdIsSet() const;
+    void unsetTotalGlobalSurchargesCurrencyId();
+
+    void setTotalGlobalSurchargesCurrencyId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getTotalGlobalDiscounts() const;
+    bool totalGlobalDiscountsIsSet() const;
+    void unsetTotalGlobalDiscounts();
+
+    void setTotalGlobalDiscounts(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTotalGlobalDiscountsCurrencyId() const;
+    bool totalGlobalDiscountsCurrencyIdIsSet() const;
+    void unsetTotalGlobalDiscountsCurrencyId();
+
+    void setTotalGlobalDiscountsCurrencyId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     double getTotal() const;
     bool totalIsSet() const;
     void unsetTotal();
@@ -499,15 +481,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getForexRate() const;
     bool forexRateIsSet() const;
     void unsetForexRate();
@@ -544,29 +517,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getAccountHolderId() const;
-    bool accountHolderIdIsSet() const;
-    void unsetAccountHolderId();
-
-    void setAccountHolderId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getContactId() const;
     bool contactIdIsSet() const;
     void unsetContactId();
 
     void setContactId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -597,10 +552,12 @@ public:
 
 
 protected:
+    utility::string_t m_Id;
+    bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    utility::string_t m_UserId;
-    bool m_UserIdIsSet;
     utility::string_t m_PriceListId;
     bool m_PriceListIdIsSet;
     utility::string_t m_Description;
@@ -633,12 +590,6 @@ protected:
     bool m_StateIdIsSet;
     utility::string_t m_CityId;
     bool m_CityIdIsSet;
-    utility::string_t m_BillingLocationId;
-    bool m_BillingLocationIdIsSet;
-    utility::string_t m_ShippingLocationId;
-    bool m_ShippingLocationIdIsSet;
-    utility::string_t m_ShippingMethodId;
-    bool m_ShippingMethodIdIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     double m_TotalDetail;
@@ -657,22 +608,14 @@ protected:
     bool m_TotalSurchargesIsSet;
     utility::string_t m_TotalSurchargesCurrencyId;
     bool m_TotalSurchargesCurrencyIdIsSet;
-    double m_TotalShippingTax;
-    bool m_TotalShippingTaxIsSet;
-    utility::string_t m_TotalShippingTaxCurrencyId;
-    bool m_TotalShippingTaxCurrencyIdIsSet;
     double m_TotalShippingCost;
     bool m_TotalShippingCostIsSet;
     utility::string_t m_TotalShippingCostCurrencyId;
     bool m_TotalShippingCostCurrencyIdIsSet;
-    double m_TotalGlobalDiscounts;
-    bool m_TotalGlobalDiscountsIsSet;
-    utility::string_t m_TotalGlobalDiscountsCurrencyId;
-    bool m_TotalGlobalDiscountsCurrencyIdIsSet;
-    double m_TotalGlobalSurcharges;
-    bool m_TotalGlobalSurchargesIsSet;
-    utility::string_t m_TotalGlobalSurchargesCurrencyId;
-    bool m_TotalGlobalSurchargesCurrencyIdIsSet;
+    double m_TotalShippingTax;
+    bool m_TotalShippingTaxIsSet;
+    utility::string_t m_TotalShippingTaxCurrencyId;
+    bool m_TotalShippingTaxCurrencyIdIsSet;
     double m_TotalWithheldTax;
     bool m_TotalWithheldTaxIsSet;
     utility::string_t m_TotalWithheldTaxCurrencyId;
@@ -685,6 +628,14 @@ protected:
     bool m_TotalTaxesIsSet;
     utility::string_t m_TotalTaxesCurrencyId;
     bool m_TotalTaxesCurrencyIdIsSet;
+    double m_TotalGlobalSurcharges;
+    bool m_TotalGlobalSurchargesIsSet;
+    utility::string_t m_TotalGlobalSurchargesCurrencyId;
+    bool m_TotalGlobalSurchargesCurrencyIdIsSet;
+    double m_TotalGlobalDiscounts;
+    bool m_TotalGlobalDiscountsIsSet;
+    utility::string_t m_TotalGlobalDiscountsCurrencyId;
+    bool m_TotalGlobalDiscountsCurrencyIdIsSet;
     double m_Total;
     bool m_TotalIsSet;
     utility::string_t m_TotalCurrencyId;
@@ -695,8 +646,6 @@ protected:
     bool m_TaxCalculationMethodIsSet;
     utility::string_t m_PaymentId;
     bool m_PaymentIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     double m_ForexRate;
     bool m_ForexRateIsSet;
     double m_TotalAmount;
@@ -705,12 +654,8 @@ protected:
     bool m_TotalAmountInUSDIsSet;
     bool m_Closed;
     bool m_ClosedIsSet;
-    utility::string_t m_AccountHolderId;
-    bool m_AccountHolderIdIsSet;
     utility::string_t m_ContactId;
     bool m_ContactIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_ReceiptType;
     bool m_ReceiptTypeIsSet;
     utility::string_t m_OrderId;

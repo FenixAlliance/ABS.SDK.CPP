@@ -31,16 +31,12 @@ ItemPriceCreateDto::ItemPriceCreateDto()
     m_ItemIdIsSet = false;
     m_UnitId = utility::conversions::to_string_t("");
     m_UnitIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
     m_PriceListId = utility::conversions::to_string_t("");
     m_PriceListIdIsSet = false;
     m_UnitGroupId = utility::conversions::to_string_t("");
     m_UnitGroupIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_DiscountListId = utility::conversions::to_string_t("");
     m_DiscountListIdIsSet = false;
     m_RoundingPolicyId = utility::conversions::to_string_t("");
@@ -81,10 +77,6 @@ web::json::value ItemPriceCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("unitId"))] = ModelBase::toJson(m_UnitId);
     }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
     if(m_CurrencyIdIsSet)
     {
         val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
@@ -96,10 +88,6 @@ web::json::value ItemPriceCreateDto::toJson() const
     if(m_UnitGroupIdIsSet)
     {
         val[utility::conversions::to_string_t(U("unitGroupId"))] = ModelBase::toJson(m_UnitGroupId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
     if(m_DiscountListIdIsSet)
     {
@@ -165,16 +153,6 @@ bool ItemPriceCreateDto::fromJson(const web::json::value& val)
             setUnitId(refVal_setUnitId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("currencyId")));
@@ -203,16 +181,6 @@ bool ItemPriceCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setUnitGroupId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUnitGroupId);
             setUnitGroupId(refVal_setUnitGroupId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("discountListId"))))
@@ -281,10 +249,6 @@ void ItemPriceCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("unitId")), m_UnitId));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_CurrencyIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
@@ -296,10 +260,6 @@ void ItemPriceCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_UnitGroupIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("unitGroupId")), m_UnitGroupId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
     if(m_DiscountListIdIsSet)
     {
@@ -352,12 +312,6 @@ bool ItemPriceCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unitId"))), refVal_setUnitId );
         setUnitId(refVal_setUnitId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
     {
         utility::string_t refVal_setCurrencyId;
@@ -375,12 +329,6 @@ bool ItemPriceCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         utility::string_t refVal_setUnitGroupId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unitGroupId"))), refVal_setUnitGroupId );
         setUnitGroupId(refVal_setUnitGroupId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("discountListId"))))
     {
@@ -489,26 +437,6 @@ void ItemPriceCreateDto::unsetUnitId()
 {
     m_UnitIdIsSet = false;
 }
-utility::string_t ItemPriceCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void ItemPriceCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool ItemPriceCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void ItemPriceCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
 utility::string_t ItemPriceCreateDto::getCurrencyId() const
 {
     return m_CurrencyId;
@@ -568,26 +496,6 @@ bool ItemPriceCreateDto::unitGroupIdIsSet() const
 void ItemPriceCreateDto::unsetUnitGroupId()
 {
     m_UnitGroupIdIsSet = false;
-}
-utility::string_t ItemPriceCreateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void ItemPriceCreateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool ItemPriceCreateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void ItemPriceCreateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
 }
 utility::string_t ItemPriceCreateDto::getDiscountListId() const
 {

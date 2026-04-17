@@ -112,15 +112,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getItemID() const;
     bool itemIDIsSet() const;
     void unsetItemID();
@@ -141,8 +132,6 @@ protected:
     bool m_QuestionIsSet;
     utility::string_t m_SocialProfileID;
     bool m_SocialProfileIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::string_t m_ItemID;
     bool m_ItemIDIsSet;
 };

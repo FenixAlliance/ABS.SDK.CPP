@@ -27,10 +27,6 @@ ItemImageCreateDto::ItemImageCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_ItemID = utility::conversions::to_string_t("");
     m_ItemIDIsSet = false;
     m_IsItemMozaicBG = false;
@@ -63,8 +59,6 @@ ItemImageCreateDto::ItemImageCreateDto()
     m_SocialProfileIDIsSet = false;
     m_ParentFileUploadID = utility::conversions::to_string_t("");
     m_ParentFileUploadIDIsSet = false;
-    m_AccountHolderID = utility::conversions::to_string_t("");
-    m_AccountHolderIDIsSet = false;
 }
 
 ItemImageCreateDto::~ItemImageCreateDto()
@@ -88,14 +82,6 @@ web::json::value ItemImageCreateDto::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
-    }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
     if(m_ItemIDIsSet)
     {
@@ -161,10 +147,6 @@ web::json::value ItemImageCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("parentFileUploadID"))] = ModelBase::toJson(m_ParentFileUploadID);
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("accountHolderID"))] = ModelBase::toJson(m_AccountHolderID);
-    }
 
     return val;
 }
@@ -191,26 +173,6 @@ bool ItemImageCreateDto::fromJson(const web::json::value& val)
             utility::datetime refVal_setTimestamp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
             setTimestamp(refVal_setTimestamp);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("itemID"))))
@@ -373,16 +335,6 @@ bool ItemImageCreateDto::fromJson(const web::json::value& val)
             setParentFileUploadID(refVal_setParentFileUploadID);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountHolderID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAccountHolderID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountHolderID);
-            setAccountHolderID(refVal_setAccountHolderID);
-        }
-    }
     return ok;
 }
 
@@ -400,14 +352,6 @@ void ItemImageCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if(m_TimestampIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
-    }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
     if(m_ItemIDIsSet)
     {
@@ -473,10 +417,6 @@ void ItemImageCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentFileUploadID")), m_ParentFileUploadID));
     }
-    if(m_AccountHolderIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountHolderID")), m_AccountHolderID));
-    }
 }
 
 bool ItemImageCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -499,18 +439,6 @@ bool ItemImageCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("itemID"))))
     {
@@ -608,12 +536,6 @@ bool ItemImageCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentFileUploadID"))), refVal_setParentFileUploadID );
         setParentFileUploadID(refVal_setParentFileUploadID);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountHolderID"))))
-    {
-        utility::string_t refVal_setAccountHolderID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountHolderID"))), refVal_setAccountHolderID );
-        setAccountHolderID(refVal_setAccountHolderID);
-    }
     return ok;
 }
 
@@ -656,46 +578,6 @@ bool ItemImageCreateDto::timestampIsSet() const
 void ItemImageCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
-}
-utility::string_t ItemImageCreateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void ItemImageCreateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool ItemImageCreateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void ItemImageCreateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t ItemImageCreateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void ItemImageCreateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool ItemImageCreateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void ItemImageCreateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 utility::string_t ItemImageCreateDto::getItemID() const
 {
@@ -1016,26 +898,6 @@ bool ItemImageCreateDto::parentFileUploadIDIsSet() const
 void ItemImageCreateDto::unsetParentFileUploadID()
 {
     m_ParentFileUploadIDIsSet = false;
-}
-utility::string_t ItemImageCreateDto::getAccountHolderID() const
-{
-    return m_AccountHolderID;
-}
-
-void ItemImageCreateDto::setAccountHolderID(const utility::string_t& value)
-{
-    m_AccountHolderID = value;
-    m_AccountHolderIDIsSet = true;
-}
-
-bool ItemImageCreateDto::accountHolderIDIsSet() const
-{
-    return m_AccountHolderIDIsSet;
-}
-
-void ItemImageCreateDto::unsetAccountHolderID()
-{
-    m_AccountHolderIDIsSet = false;
 }
 }
 }

@@ -427,15 +427,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getAccountHolderID() const;
-    bool accountHolderIDIsSet() const;
-    void unsetAccountHolderID();
-
-    void setAccountHolderID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getIndividualID() const;
     bool individualIDIsSet() const;
     void unsetIndividualID();
@@ -459,24 +450,6 @@ public:
     void unsetReceiverBusinessID();
 
     void setReceiverBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -589,18 +562,12 @@ protected:
     bool m_Data9IsSet;
     utility::string_t m_Data9Label;
     bool m_Data9LabelIsSet;
-    utility::string_t m_AccountHolderID;
-    bool m_AccountHolderIDIsSet;
     utility::string_t m_IndividualID;
     bool m_IndividualIDIsSet;
     utility::string_t m_OrganizationID;
     bool m_OrganizationIDIsSet;
     utility::string_t m_ReceiverBusinessID;
     bool m_ReceiverBusinessIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
     utility::string_t m_PaymentTokenID;
     bool m_PaymentTokenIDIsSet;
     utility::string_t m_WalletAccountID;

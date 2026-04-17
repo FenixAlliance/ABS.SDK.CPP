@@ -23,10 +23,6 @@ namespace model {
 
 ShareIssuanceUpdateDto::ShareIssuanceUpdateDto()
 {
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
-    m_EnrollmentId = utility::conversions::to_string_t("");
-    m_EnrollmentIdIsSet = false;
     m_UnitPrice = 0;
     m_UnitPriceIsSet = false;
     m_Quantity = 0;
@@ -49,14 +45,6 @@ web::json::value ShareIssuanceUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
-    }
     if(m_UnitPriceIsSet)
     {
         val[utility::conversions::to_string_t(U("unitPrice"))] = ModelBase::toJson(m_UnitPrice);
@@ -77,26 +65,6 @@ bool ShareIssuanceUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setEnrollmentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
-            setEnrollmentId(refVal_setEnrollmentId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("unitPrice"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("unitPrice")));
@@ -137,14 +105,6 @@ void ShareIssuanceUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
-    if(m_EnrollmentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
-    }
     if(m_UnitPriceIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("unitPrice")), m_UnitPrice));
@@ -168,18 +128,6 @@ bool ShareIssuanceUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
-    {
-        utility::string_t refVal_setEnrollmentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
-        setEnrollmentId(refVal_setEnrollmentId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("unitPrice"))))
     {
         int32_t refVal_setUnitPrice;
@@ -201,46 +149,6 @@ bool ShareIssuanceUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
     return ok;
 }
 
-utility::string_t ShareIssuanceUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void ShareIssuanceUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool ShareIssuanceUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void ShareIssuanceUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
-}
-utility::string_t ShareIssuanceUpdateDto::getEnrollmentId() const
-{
-    return m_EnrollmentId;
-}
-
-void ShareIssuanceUpdateDto::setEnrollmentId(const utility::string_t& value)
-{
-    m_EnrollmentId = value;
-    m_EnrollmentIdIsSet = true;
-}
-
-bool ShareIssuanceUpdateDto::enrollmentIdIsSet() const
-{
-    return m_EnrollmentIdIsSet;
-}
-
-void ShareIssuanceUpdateDto::unsetEnrollmentId()
-{
-    m_EnrollmentIdIsSet = false;
-}
 int32_t ShareIssuanceUpdateDto::getUnitPrice() const
 {
     return m_UnitPrice;

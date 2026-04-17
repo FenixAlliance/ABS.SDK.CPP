@@ -127,15 +127,6 @@ public:
 
     void setCourseID(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
@@ -154,8 +145,6 @@ protected:
     bool m_FileLengthIsSet;
     utility::string_t m_CourseID;
     bool m_CourseIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
 };
 
 

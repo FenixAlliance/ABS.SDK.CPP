@@ -82,15 +82,6 @@ public:
 
     void setType(const utility::string_t& value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
-
-    void setBusinessProfileRecordID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Title;
@@ -99,8 +90,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::string_t m_Type;
     bool m_TypeIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
 };
 
 

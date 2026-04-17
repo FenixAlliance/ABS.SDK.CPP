@@ -23,10 +23,6 @@ namespace model {
 
 TenantTeamRecordUpdateDto::TenantTeamRecordUpdateDto()
 {
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
     m_BusinessTeamID = utility::conversions::to_string_t("");
     m_BusinessTeamIDIsSet = false;
 }
@@ -45,14 +41,6 @@ web::json::value TenantTeamRecordUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
-    }
     if(m_BusinessTeamIDIsSet)
     {
         val[utility::conversions::to_string_t(U("businessTeamID"))] = ModelBase::toJson(m_BusinessTeamID);
@@ -65,26 +53,6 @@ bool TenantTeamRecordUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("businessTeamID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessTeamID")));
@@ -105,14 +73,6 @@ void TenantTeamRecordUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> m
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
-    }
     if(m_BusinessTeamIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessTeamID")), m_BusinessTeamID));
@@ -128,18 +88,6 @@ bool TenantTeamRecordUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("businessTeamID"))))
     {
         utility::string_t refVal_setBusinessTeamID;
@@ -149,46 +97,6 @@ bool TenantTeamRecordUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData>
     return ok;
 }
 
-utility::string_t TenantTeamRecordUpdateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void TenantTeamRecordUpdateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool TenantTeamRecordUpdateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void TenantTeamRecordUpdateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
-utility::string_t TenantTeamRecordUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void TenantTeamRecordUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool TenantTeamRecordUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void TenantTeamRecordUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
-}
 utility::string_t TenantTeamRecordUpdateDto::getBusinessTeamID() const
 {
     return m_BusinessTeamID;

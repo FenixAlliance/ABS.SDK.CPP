@@ -33,6 +33,8 @@ FiscalYearUpdateDto::FiscalYearUpdateDto()
     m_EndDateIsSet = false;
     m_StartDate = utility::datetime();
     m_StartDateIsSet = false;
+    m_FiscalAuthorityId = utility::conversions::to_string_t("");
+    m_FiscalAuthorityIdIsSet = false;
 }
 
 FiscalYearUpdateDto::~FiscalYearUpdateDto()
@@ -68,6 +70,10 @@ web::json::value FiscalYearUpdateDto::toJson() const
     if(m_StartDateIsSet)
     {
         val[utility::conversions::to_string_t(U("startDate"))] = ModelBase::toJson(m_StartDate);
+    }
+    if(m_FiscalAuthorityIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("fiscalAuthorityId"))] = ModelBase::toJson(m_FiscalAuthorityId);
     }
 
     return val;
@@ -127,6 +133,16 @@ bool FiscalYearUpdateDto::fromJson(const web::json::value& val)
             setStartDate(refVal_setStartDate);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("fiscalAuthorityId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("fiscalAuthorityId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFiscalAuthorityId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFiscalAuthorityId);
+            setFiscalAuthorityId(refVal_setFiscalAuthorityId);
+        }
+    }
     return ok;
 }
 
@@ -156,6 +172,10 @@ void FiscalYearUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_StartDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("startDate")), m_StartDate));
+    }
+    if(m_FiscalAuthorityIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalAuthorityId")), m_FiscalAuthorityId));
     }
 }
 
@@ -197,6 +217,12 @@ bool FiscalYearUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::datetime refVal_setStartDate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("startDate"))), refVal_setStartDate );
         setStartDate(refVal_setStartDate);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("fiscalAuthorityId"))))
+    {
+        utility::string_t refVal_setFiscalAuthorityId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fiscalAuthorityId"))), refVal_setFiscalAuthorityId );
+        setFiscalAuthorityId(refVal_setFiscalAuthorityId);
     }
     return ok;
 }
@@ -300,6 +326,26 @@ bool FiscalYearUpdateDto::startDateIsSet() const
 void FiscalYearUpdateDto::unsetStartDate()
 {
     m_StartDateIsSet = false;
+}
+utility::string_t FiscalYearUpdateDto::getFiscalAuthorityId() const
+{
+    return m_FiscalAuthorityId;
+}
+
+void FiscalYearUpdateDto::setFiscalAuthorityId(const utility::string_t& value)
+{
+    m_FiscalAuthorityId = value;
+    m_FiscalAuthorityIdIsSet = true;
+}
+
+bool FiscalYearUpdateDto::fiscalAuthorityIdIsSet() const
+{
+    return m_FiscalAuthorityIdIsSet;
+}
+
+void FiscalYearUpdateDto::unsetFiscalAuthorityId()
+{
+    m_FiscalAuthorityIdIsSet = false;
 }
 }
 }

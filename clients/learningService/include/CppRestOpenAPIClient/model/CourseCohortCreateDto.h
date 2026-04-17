@@ -94,15 +94,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::datetime getStartDateTime() const;
     bool startDateTimeIsSet() const;
     void unsetStartDateTime();
@@ -146,8 +137,6 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_CourseID;
     bool m_CourseIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::datetime m_StartDateTime;
     bool m_StartDateTimeIsSet;
     utility::datetime m_EndDateTime;

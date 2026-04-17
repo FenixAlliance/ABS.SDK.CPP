@@ -1428,14 +1428,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::updateLoanApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, std::shared_ptr<LoanApplicationUpdateDto> loanApplicationUpdateDto, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::updateLoanApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, std::shared_ptr<Object> body, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
-
-    // verify the required parameter 'loanApplicationUpdateDto' is set
-    if (loanApplicationUpdateDto == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'loanApplicationUpdateDto' when calling LoansApi->updateLoanApplicationAsync"));
-    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -1500,8 +1494,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::updateLoanApplicationAsync(
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(loanApplicationUpdateDto);
-        
+        localVarJson = ModelBase::toJson(body);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -1510,11 +1503,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::updateLoanApplicationAsync(
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(loanApplicationUpdateDto.get())
-        {
-            loanApplicationUpdateDto->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanApplicationUpdateDto"));
-        }
+        localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("body"), body));
         
 
         localVarHttpBody = localVarMultipart;

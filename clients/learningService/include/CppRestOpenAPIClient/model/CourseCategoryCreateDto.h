@@ -109,15 +109,6 @@ public:
 
     void setIsFeatured(bool value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
 
 protected:
     utility::string_t m_Id;
@@ -132,8 +123,6 @@ protected:
     bool m_ImageURLIsSet;
     bool m_IsFeatured;
     bool m_IsFeaturedIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
 };
 
 

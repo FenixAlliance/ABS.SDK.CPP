@@ -347,15 +347,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getPermalink() const;
     bool permalinkIsSet() const;
     void unsetPermalink();
@@ -1607,8 +1598,6 @@ protected:
     bool m_FeaturesIsSet;
     utility::string_t m_Material;
     bool m_MaterialIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_Permalink;
     bool m_PermalinkIsSet;
     utility::string_t m_BrandName;

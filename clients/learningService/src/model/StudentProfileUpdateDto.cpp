@@ -79,12 +79,8 @@ StudentProfileUpdateDto::StudentProfileUpdateDto()
     m_Data9IsSet = false;
     m_Data9Label = utility::conversions::to_string_t("");
     m_Data9LabelIsSet = false;
-    m_BusinessID = utility::conversions::to_string_t("");
-    m_BusinessIDIsSet = false;
     m_ContactID = utility::conversions::to_string_t("");
     m_ContactIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
 }
 
 StudentProfileUpdateDto::~StudentProfileUpdateDto()
@@ -213,17 +209,9 @@ web::json::value StudentProfileUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("data9Label"))] = ModelBase::toJson(m_Data9Label);
     }
-    if(m_BusinessIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessID"))] = ModelBase::toJson(m_BusinessID);
-    }
     if(m_ContactIDIsSet)
     {
         val[utility::conversions::to_string_t(U("contactID"))] = ModelBase::toJson(m_ContactID);
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
     }
 
     return val;
@@ -513,16 +501,6 @@ bool StudentProfileUpdateDto::fromJson(const web::json::value& val)
             setData9Label(refVal_setData9Label);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessID);
-            setBusinessID(refVal_setBusinessID);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("contactID"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contactID")));
@@ -531,16 +509,6 @@ bool StudentProfileUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setContactID;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContactID);
             setContactID(refVal_setContactID);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
         }
     }
     return ok;
@@ -665,17 +633,9 @@ void StudentProfileUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("data9Label")), m_Data9Label));
     }
-    if(m_BusinessIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessID")), m_BusinessID));
-    }
     if(m_ContactIDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactID")), m_ContactID));
-    }
-    if(m_BusinessProfileRecordIDIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
     }
 }
 
@@ -856,23 +816,11 @@ bool StudentProfileUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("data9Label"))), refVal_setData9Label );
         setData9Label(refVal_setData9Label);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessID"))))
-    {
-        utility::string_t refVal_setBusinessID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessID"))), refVal_setBusinessID );
-        setBusinessID(refVal_setBusinessID);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("contactID"))))
     {
         utility::string_t refVal_setContactID;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactID"))), refVal_setContactID );
         setContactID(refVal_setContactID);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
     }
     return ok;
 }
@@ -1437,26 +1385,6 @@ void StudentProfileUpdateDto::unsetData9Label()
 {
     m_Data9LabelIsSet = false;
 }
-utility::string_t StudentProfileUpdateDto::getBusinessID() const
-{
-    return m_BusinessID;
-}
-
-void StudentProfileUpdateDto::setBusinessID(const utility::string_t& value)
-{
-    m_BusinessID = value;
-    m_BusinessIDIsSet = true;
-}
-
-bool StudentProfileUpdateDto::businessIDIsSet() const
-{
-    return m_BusinessIDIsSet;
-}
-
-void StudentProfileUpdateDto::unsetBusinessID()
-{
-    m_BusinessIDIsSet = false;
-}
 utility::string_t StudentProfileUpdateDto::getContactID() const
 {
     return m_ContactID;
@@ -1476,26 +1404,6 @@ bool StudentProfileUpdateDto::contactIDIsSet() const
 void StudentProfileUpdateDto::unsetContactID()
 {
     m_ContactIDIsSet = false;
-}
-utility::string_t StudentProfileUpdateDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
-}
-
-void StudentProfileUpdateDto::setBusinessProfileRecordID(const utility::string_t& value)
-{
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
-}
-
-bool StudentProfileUpdateDto::businessProfileRecordIDIsSet() const
-{
-    return m_BusinessProfileRecordIDIsSet;
-}
-
-void StudentProfileUpdateDto::unsetBusinessProfileRecordID()
-{
-    m_BusinessProfileRecordIDIsSet = false;
 }
 }
 }

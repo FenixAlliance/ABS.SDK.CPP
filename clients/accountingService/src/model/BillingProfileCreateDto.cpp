@@ -29,8 +29,6 @@ BillingProfileCreateDto::BillingProfileCreateDto()
     m_TimestampIsSet = false;
     m_ContactId = utility::conversions::to_string_t("");
     m_ContactIdIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_TaxId = utility::conversions::to_string_t("");
     m_TaxIdIsSet = false;
     m_Phone = utility::conversions::to_string_t("");
@@ -96,10 +94,6 @@ web::json::value BillingProfileCreateDto::toJson() const
     if(m_ContactIdIsSet)
     {
         val[utility::conversions::to_string_t(U("contactId"))] = ModelBase::toJson(m_ContactId);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_TaxIdIsSet)
     {
@@ -213,16 +207,6 @@ bool BillingProfileCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setContactId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setContactId);
             setContactId(refVal_setContactId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("taxId"))))
@@ -437,10 +421,6 @@ void BillingProfileCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactId")), m_ContactId));
     }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
-    }
     if(m_TaxIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taxId")), m_TaxId));
@@ -545,12 +525,6 @@ bool BillingProfileCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         utility::string_t refVal_setContactId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactId"))), refVal_setContactId );
         setContactId(refVal_setContactId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("taxId"))))
     {
@@ -728,26 +702,6 @@ bool BillingProfileCreateDto::contactIdIsSet() const
 void BillingProfileCreateDto::unsetContactId()
 {
     m_ContactIdIsSet = false;
-}
-utility::string_t BillingProfileCreateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void BillingProfileCreateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool BillingProfileCreateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void BillingProfileCreateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t BillingProfileCreateDto::getTaxId() const
 {

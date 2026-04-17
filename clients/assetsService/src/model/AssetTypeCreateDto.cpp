@@ -27,10 +27,6 @@ AssetTypeCreateDto::AssetTypeCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_BusinessId = utility::conversions::to_string_t("");
-    m_BusinessIdIsSet = false;
-    m_BusinessProfileRecordId = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
@@ -58,14 +54,6 @@ web::json::value AssetTypeCreateDto::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
-    }
-    if(m_BusinessIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessId"))] = ModelBase::toJson(m_BusinessId);
-    }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("businessProfileRecordId"))] = ModelBase::toJson(m_BusinessProfileRecordId);
     }
     if(m_NameIsSet)
     {
@@ -101,26 +89,6 @@ bool AssetTypeCreateDto::fromJson(const web::json::value& val)
             utility::datetime refVal_setTimestamp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
             setTimestamp(refVal_setTimestamp);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessId);
-            setBusinessId(refVal_setBusinessId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setBusinessProfileRecordId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordId);
-            setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("name"))))
@@ -161,14 +129,6 @@ void AssetTypeCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
-    if(m_BusinessIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessId")), m_BusinessId));
-    }
-    if(m_BusinessProfileRecordIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordId")), m_BusinessProfileRecordId));
-    }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
@@ -199,18 +159,6 @@ bool AssetTypeCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessId"))))
-    {
-        utility::string_t refVal_setBusinessId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessId"))), refVal_setBusinessId );
-        setBusinessId(refVal_setBusinessId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordId"))))
-    {
-        utility::string_t refVal_setBusinessProfileRecordId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordId"))), refVal_setBusinessProfileRecordId );
-        setBusinessProfileRecordId(refVal_setBusinessProfileRecordId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
     {
@@ -266,46 +214,6 @@ bool AssetTypeCreateDto::timestampIsSet() const
 void AssetTypeCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
-}
-utility::string_t AssetTypeCreateDto::getBusinessId() const
-{
-    return m_BusinessId;
-}
-
-void AssetTypeCreateDto::setBusinessId(const utility::string_t& value)
-{
-    m_BusinessId = value;
-    m_BusinessIdIsSet = true;
-}
-
-bool AssetTypeCreateDto::businessIdIsSet() const
-{
-    return m_BusinessIdIsSet;
-}
-
-void AssetTypeCreateDto::unsetBusinessId()
-{
-    m_BusinessIdIsSet = false;
-}
-utility::string_t AssetTypeCreateDto::getBusinessProfileRecordId() const
-{
-    return m_BusinessProfileRecordId;
-}
-
-void AssetTypeCreateDto::setBusinessProfileRecordId(const utility::string_t& value)
-{
-    m_BusinessProfileRecordId = value;
-    m_BusinessProfileRecordIdIsSet = true;
-}
-
-bool AssetTypeCreateDto::businessProfileRecordIdIsSet() const
-{
-    return m_BusinessProfileRecordIdIsSet;
-}
-
-void AssetTypeCreateDto::unsetBusinessProfileRecordId()
-{
-    m_BusinessProfileRecordIdIsSet = false;
 }
 utility::string_t AssetTypeCreateDto::getName() const
 {

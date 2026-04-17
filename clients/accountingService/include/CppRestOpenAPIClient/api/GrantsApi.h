@@ -27,8 +27,8 @@
 #include "CppRestOpenAPIClient/model/GrantCreateDto.h"
 #include "CppRestOpenAPIClient/model/GrantDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/GrantDtoIReadOnlyListEnvelope.h"
-#include "CppRestOpenAPIClient/model/GrantUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/Object.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -135,13 +135,13 @@ public:
     /// <param name="grantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="grantUpdateDto"> (optional)</param>
+    /// <param name="body"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> updateGrantAsync(
         utility::string_t tenantId,
         utility::string_t grantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::shared_ptr<GrantUpdateDto>> grantUpdateDto
+        boost::optional<std::shared_ptr<Object>> body
     ) const;
 
 protected:

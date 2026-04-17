@@ -67,24 +67,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::datetime getDateStart() const;
     bool dateStartIsSet() const;
     void unsetDateStart();
@@ -104,10 +86,6 @@ public:
 protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::datetime m_DateStart;
     bool m_DateStartIsSet;
     utility::datetime m_DateEnd;

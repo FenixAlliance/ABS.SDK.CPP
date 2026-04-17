@@ -29,8 +29,6 @@ CostCentreGroupUpdateDto::CostCentreGroupUpdateDto()
     m_DescriptionIsSet = false;
     m_Disabled = false;
     m_DisabledIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_ParentCostCentresGroupId = utility::conversions::to_string_t("");
     m_ParentCostCentresGroupIdIsSet = false;
 }
@@ -60,10 +58,6 @@ web::json::value CostCentreGroupUpdateDto::toJson() const
     if(m_DisabledIsSet)
     {
         val[utility::conversions::to_string_t(U("disabled"))] = ModelBase::toJson(m_Disabled);
-    }
-    if(m_TenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
     if(m_ParentCostCentresGroupIdIsSet)
     {
@@ -107,16 +101,6 @@ bool CostCentreGroupUpdateDto::fromJson(const web::json::value& val)
             setDisabled(refVal_setDisabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
-            setTenantId(refVal_setTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("parentCostCentresGroupId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentCostCentresGroupId")));
@@ -148,10 +132,6 @@ void CostCentreGroupUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mu
     if(m_DisabledIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("disabled")), m_Disabled));
-    }
-    if(m_TenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
     if(m_ParentCostCentresGroupIdIsSet)
     {
@@ -185,12 +165,6 @@ bool CostCentreGroupUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> 
         bool refVal_setDisabled;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("disabled"))), refVal_setDisabled );
         setDisabled(refVal_setDisabled);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
-    {
-        utility::string_t refVal_setTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
-        setTenantId(refVal_setTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("parentCostCentresGroupId"))))
     {
@@ -260,26 +234,6 @@ bool CostCentreGroupUpdateDto::disabledIsSet() const
 void CostCentreGroupUpdateDto::unsetDisabled()
 {
     m_DisabledIsSet = false;
-}
-utility::string_t CostCentreGroupUpdateDto::getTenantId() const
-{
-    return m_TenantId;
-}
-
-void CostCentreGroupUpdateDto::setTenantId(const utility::string_t& value)
-{
-    m_TenantId = value;
-    m_TenantIdIsSet = true;
-}
-
-bool CostCentreGroupUpdateDto::tenantIdIsSet() const
-{
-    return m_TenantIdIsSet;
-}
-
-void CostCentreGroupUpdateDto::unsetTenantId()
-{
-    m_TenantIdIsSet = false;
 }
 utility::string_t CostCentreGroupUpdateDto::getParentCostCentresGroupId() const
 {

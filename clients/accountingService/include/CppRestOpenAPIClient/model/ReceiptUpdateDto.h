@@ -67,15 +67,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getForexRate() const;
     bool forexRateIsSet() const;
     void unsetForexRate();
@@ -121,29 +112,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getAccountHolderId() const;
-    bool accountHolderIdIsSet() const;
-    void unsetAccountHolderId();
-
-    void setAccountHolderId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getContactId() const;
     bool contactIdIsSet() const;
     void unsetContactId();
 
     void setContactId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -167,8 +140,6 @@ public:
 protected:
     utility::string_t m_PaymentId;
     bool m_PaymentIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     double m_ForexRate;
     bool m_ForexRateIsSet;
     double m_TotalAmount;
@@ -179,12 +150,8 @@ protected:
     bool m_ClosedIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
-    utility::string_t m_AccountHolderId;
-    bool m_AccountHolderIdIsSet;
     utility::string_t m_ContactId;
     bool m_ContactIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_OrderId;
     bool m_OrderIdIsSet;
     utility::string_t m_InvoiceId;

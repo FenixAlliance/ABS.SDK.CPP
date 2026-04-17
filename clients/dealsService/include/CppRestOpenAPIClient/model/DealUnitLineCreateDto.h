@@ -58,6 +58,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getId() const;
+    bool idIsSet() const;
+    void unsetId();
+
+    void setId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     bool isClosed() const;
     bool closedIsSet() const;
     void unsetClosed();
@@ -108,24 +126,6 @@ public:
     void unsetShippingPolicyId();
 
     void setShippingPolicyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -634,24 +634,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTotalProfit() const;
-    bool totalProfitIsSet() const;
-    void unsetTotalProfit();
-
-    void setTotalProfit(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTotalProfitCurrencyId() const;
-    bool totalProfitCurrencyIdIsSet() const;
-    void unsetTotalProfitCurrencyId();
-
-    void setTotalProfitCurrencyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getTotalDiscounts() const;
     bool totalDiscountsIsSet() const;
     void unsetTotalDiscounts();
@@ -666,6 +648,24 @@ public:
     void unsetTotalDiscountsCurrencyId();
 
     void setTotalDiscountsCurrencyId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getTotalTaxBase() const;
+    bool totalTaxBaseIsSet() const;
+    void unsetTotalTaxBase();
+
+    void setTotalTaxBase(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTotalTaxBaseCurrencyId() const;
+    bool totalTaxBaseCurrencyIdIsSet() const;
+    void unsetTotalTaxBaseCurrencyId();
+
+    void setTotalTaxBaseCurrencyId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -688,20 +688,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTotalTaxBase() const;
-    bool totalTaxBaseIsSet() const;
-    void unsetTotalTaxBase();
+    double getTotalProfit() const;
+    bool totalProfitIsSet() const;
+    void unsetTotalProfit();
 
-    void setTotalTaxBase(double value);
+    void setTotalProfit(double value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTotalTaxBaseCurrencyId() const;
-    bool totalTaxBaseCurrencyIdIsSet() const;
-    void unsetTotalTaxBaseCurrencyId();
+    utility::string_t getTotalProfitCurrencyId() const;
+    bool totalProfitCurrencyIdIsSet() const;
+    void unsetTotalProfitCurrencyId();
 
-    void setTotalTaxBaseCurrencyId(const utility::string_t& value);
+    void setTotalProfitCurrencyId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -895,15 +895,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordId() const;
-    bool businessProfileRecordIdIsSet() const;
-    void unsetBusinessProfileRecordId();
-
-    void setBusinessProfileRecordId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getParentBillingItemRecordId() const;
     bool parentBillingItemRecordIdIsSet() const;
     void unsetParentBillingItemRecordId();
@@ -921,6 +912,10 @@ public:
 
 
 protected:
+    utility::string_t m_Id;
+    bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     bool m_Closed;
     bool m_ClosedIsSet;
     utility::string_t m_ItemId;
@@ -933,10 +928,6 @@ protected:
     bool m_ItemPrimaryImageUrlIsSet;
     utility::string_t m_ShippingPolicyId;
     bool m_ShippingPolicyIdIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
-    utility::string_t m_EnrollmentId;
-    bool m_EnrollmentIdIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     utility::string_t m_Description;
@@ -1049,22 +1040,22 @@ protected:
     bool m_TotalDetailIsSet;
     utility::string_t m_TotalDetailCurrencyId;
     bool m_TotalDetailCurrencyIdIsSet;
-    double m_TotalProfit;
-    bool m_TotalProfitIsSet;
-    utility::string_t m_TotalProfitCurrencyId;
-    bool m_TotalProfitCurrencyIdIsSet;
     double m_TotalDiscounts;
     bool m_TotalDiscountsIsSet;
     utility::string_t m_TotalDiscountsCurrencyId;
     bool m_TotalDiscountsCurrencyIdIsSet;
-    double m_TotalSurcharges;
-    bool m_TotalSurchargesIsSet;
-    utility::string_t m_TotalSurchargesCurrencyId;
-    bool m_TotalSurchargesCurrencyIdIsSet;
     double m_TotalTaxBase;
     bool m_TotalTaxBaseIsSet;
     utility::string_t m_TotalTaxBaseCurrencyId;
     bool m_TotalTaxBaseCurrencyIdIsSet;
+    double m_TotalSurcharges;
+    bool m_TotalSurchargesIsSet;
+    utility::string_t m_TotalSurchargesCurrencyId;
+    bool m_TotalSurchargesCurrencyIdIsSet;
+    double m_TotalProfit;
+    bool m_TotalProfitIsSet;
+    utility::string_t m_TotalProfitCurrencyId;
+    bool m_TotalProfitCurrencyIdIsSet;
     double m_TotalShippingCost;
     bool m_TotalShippingCostIsSet;
     utility::string_t m_TotalShippingCostCurrencyId;
@@ -1107,8 +1098,6 @@ protected:
     bool m_LocationIdIsSet;
     utility::string_t m_QuoteItemRecordId;
     bool m_QuoteItemRecordIdIsSet;
-    utility::string_t m_BusinessProfileRecordId;
-    bool m_BusinessProfileRecordIdIsSet;
     utility::string_t m_ParentBillingItemRecordId;
     bool m_ParentBillingItemRecordIdIsSet;
     utility::string_t m_DealUnitId;

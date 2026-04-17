@@ -103,15 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessID() const;
-    bool businessIDIsSet() const;
-    void unsetBusinessID();
-
-    void setBusinessID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getCourseUnitID() const;
     bool courseUnitIDIsSet() const;
     void unsetCourseUnitID();
@@ -139,8 +130,6 @@ protected:
     bool m_DescriptionIsSet;
     utility::string_t m_CourseID;
     bool m_CourseIDIsSet;
-    utility::string_t m_BusinessID;
-    bool m_BusinessIDIsSet;
     utility::string_t m_CourseUnitID;
     bool m_CourseUnitIDIsSet;
     utility::datetime m_ReleaseDateTime;
