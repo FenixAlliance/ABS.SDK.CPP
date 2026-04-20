@@ -131,6 +131,10 @@ BlogPostUpdateDto::BlogPostUpdateDto()
     m_IsEssentialContentIsSet = false;
     m_AllowSearchEngineIndexing = false;
     m_AllowSearchEngineIndexingIsSet = false;
+    m_BlogPostCategoryId = utility::conversions::to_string_t("");
+    m_BlogPostCategoryIdIsSet = false;
+    m_WebTemplateId = utility::conversions::to_string_t("");
+    m_WebTemplateIdIsSet = false;
 }
 
 BlogPostUpdateDto::~BlogPostUpdateDto()
@@ -362,6 +366,14 @@ web::json::value BlogPostUpdateDto::toJson() const
     if(m_AllowSearchEngineIndexingIsSet)
     {
         val[utility::conversions::to_string_t(U("allowSearchEngineIndexing"))] = ModelBase::toJson(m_AllowSearchEngineIndexing);
+    }
+    if(m_BlogPostCategoryIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("blogPostCategoryId"))] = ModelBase::toJson(m_BlogPostCategoryId);
+    }
+    if(m_WebTemplateIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("webTemplateId"))] = ModelBase::toJson(m_WebTemplateId);
     }
 
     return val;
@@ -911,6 +923,26 @@ bool BlogPostUpdateDto::fromJson(const web::json::value& val)
             setAllowSearchEngineIndexing(refVal_setAllowSearchEngineIndexing);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("blogPostCategoryId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("blogPostCategoryId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBlogPostCategoryId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBlogPostCategoryId);
+            setBlogPostCategoryId(refVal_setBlogPostCategoryId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("webTemplateId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("webTemplateId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setWebTemplateId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWebTemplateId);
+            setWebTemplateId(refVal_setWebTemplateId);
+        }
+    }
     return ok;
 }
 
@@ -1136,6 +1168,14 @@ void BlogPostUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_AllowSearchEngineIndexingIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("allowSearchEngineIndexing")), m_AllowSearchEngineIndexing));
+    }
+    if(m_BlogPostCategoryIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("blogPostCategoryId")), m_BlogPostCategoryId));
+    }
+    if(m_WebTemplateIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webTemplateId")), m_WebTemplateId));
     }
 }
 
@@ -1471,6 +1511,18 @@ bool BlogPostUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         bool refVal_setAllowSearchEngineIndexing;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("allowSearchEngineIndexing"))), refVal_setAllowSearchEngineIndexing );
         setAllowSearchEngineIndexing(refVal_setAllowSearchEngineIndexing);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("blogPostCategoryId"))))
+    {
+        utility::string_t refVal_setBlogPostCategoryId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("blogPostCategoryId"))), refVal_setBlogPostCategoryId );
+        setBlogPostCategoryId(refVal_setBlogPostCategoryId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("webTemplateId"))))
+    {
+        utility::string_t refVal_setWebTemplateId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("webTemplateId"))), refVal_setWebTemplateId );
+        setWebTemplateId(refVal_setWebTemplateId);
     }
     return ok;
 }
@@ -2554,6 +2606,46 @@ bool BlogPostUpdateDto::allowSearchEngineIndexingIsSet() const
 void BlogPostUpdateDto::unsetAllowSearchEngineIndexing()
 {
     m_AllowSearchEngineIndexingIsSet = false;
+}
+utility::string_t BlogPostUpdateDto::getBlogPostCategoryId() const
+{
+    return m_BlogPostCategoryId;
+}
+
+void BlogPostUpdateDto::setBlogPostCategoryId(const utility::string_t& value)
+{
+    m_BlogPostCategoryId = value;
+    m_BlogPostCategoryIdIsSet = true;
+}
+
+bool BlogPostUpdateDto::blogPostCategoryIdIsSet() const
+{
+    return m_BlogPostCategoryIdIsSet;
+}
+
+void BlogPostUpdateDto::unsetBlogPostCategoryId()
+{
+    m_BlogPostCategoryIdIsSet = false;
+}
+utility::string_t BlogPostUpdateDto::getWebTemplateId() const
+{
+    return m_WebTemplateId;
+}
+
+void BlogPostUpdateDto::setWebTemplateId(const utility::string_t& value)
+{
+    m_WebTemplateId = value;
+    m_WebTemplateIdIsSet = true;
+}
+
+bool BlogPostUpdateDto::webTemplateIdIsSet() const
+{
+    return m_WebTemplateIdIsSet;
+}
+
+void BlogPostUpdateDto::unsetWebTemplateId()
+{
+    m_WebTemplateIdIsSet = false;
 }
 }
 }

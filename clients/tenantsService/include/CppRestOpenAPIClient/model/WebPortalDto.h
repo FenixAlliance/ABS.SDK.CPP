@@ -130,38 +130,38 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getWebsiteThemeID() const;
-    bool websiteThemeIDIsSet() const;
-    void unsetWebsiteThemeID();
+    utility::string_t getEnrollmentId() const;
+    bool enrollmentIdIsSet() const;
+    void unsetEnrollmentId();
 
-    void setWebsiteThemeID(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getBusinessDomainID() const;
-    bool businessDomainIDIsSet() const;
-    void unsetBusinessDomainID();
-
-    void setBusinessDomainID(const utility::string_t& value);
+    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessProfileRecordID() const;
-    bool businessProfileRecordIDIsSet() const;
-    void unsetBusinessProfileRecordID();
+    utility::string_t getWebsiteThemeId() const;
+    bool websiteThemeIdIsSet() const;
+    void unsetWebsiteThemeId();
 
-    void setBusinessProfileRecordID(const utility::string_t& value);
+    void setWebsiteThemeId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBusinessPortalApplicationID() const;
-    bool businessPortalApplicationIDIsSet() const;
-    void unsetBusinessPortalApplicationID();
+    utility::string_t getBusinessDomainId() const;
+    bool businessDomainIdIsSet() const;
+    void unsetBusinessDomainId();
 
-    void setBusinessPortalApplicationID(const utility::string_t& value);
+    void setBusinessDomainId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getBusinessPortalApplicationId() const;
+    bool businessPortalApplicationIdIsSet() const;
+    void unsetBusinessPortalApplicationId();
+
+    void setBusinessPortalApplicationId(const utility::string_t& value);
 
 
 protected:
@@ -181,14 +181,14 @@ protected:
     bool m_TenantIdIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_WebsiteThemeID;
-    bool m_WebsiteThemeIDIsSet;
-    utility::string_t m_BusinessDomainID;
-    bool m_BusinessDomainIDIsSet;
-    utility::string_t m_BusinessProfileRecordID;
-    bool m_BusinessProfileRecordIDIsSet;
-    utility::string_t m_BusinessPortalApplicationID;
-    bool m_BusinessPortalApplicationIDIsSet;
+    utility::string_t m_EnrollmentId;
+    bool m_EnrollmentIdIsSet;
+    utility::string_t m_WebsiteThemeId;
+    bool m_WebsiteThemeIdIsSet;
+    utility::string_t m_BusinessDomainId;
+    bool m_BusinessDomainIdIsSet;
+    utility::string_t m_BusinessPortalApplicationId;
+    bool m_BusinessPortalApplicationIdIsSet;
 };
 
 

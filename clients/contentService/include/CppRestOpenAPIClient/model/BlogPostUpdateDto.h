@@ -541,6 +541,24 @@ public:
 
     void setAllowSearchEngineIndexing(bool value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getBlogPostCategoryId() const;
+    bool blogPostCategoryIdIsSet() const;
+    void unsetBlogPostCategoryId();
+
+    void setBlogPostCategoryId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getWebTemplateId() const;
+    bool webTemplateIdIsSet() const;
+    void unsetWebTemplateId();
+
+    void setWebTemplateId(const utility::string_t& value);
+
 
 protected:
     int32_t m_Order;
@@ -651,6 +669,10 @@ protected:
     bool m_IsEssentialContentIsSet;
     bool m_AllowSearchEngineIndexing;
     bool m_AllowSearchEngineIndexingIsSet;
+    utility::string_t m_BlogPostCategoryId;
+    bool m_BlogPostCategoryIdIsSet;
+    utility::string_t m_WebTemplateId;
+    bool m_WebTemplateIdIsSet;
 };
 
 

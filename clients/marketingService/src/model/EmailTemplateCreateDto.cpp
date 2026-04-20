@@ -29,14 +29,14 @@ EmailTemplateCreateDto::EmailTemplateCreateDto()
     m_TimestampIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_Code = utility::conversions::to_string_t("");
-    m_CodeIsSet = false;
     m_Published = false;
     m_PublishedIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_HtmlContent = utility::conversions::to_string_t("");
-    m_HtmlContentIsSet = false;
+    m_Code = utility::conversions::to_string_t("");
+    m_CodeIsSet = false;
+    m_Markup = utility::conversions::to_string_t("");
+    m_MarkupIsSet = false;
     m_FeaturedImageUrl = utility::conversions::to_string_t("");
     m_FeaturedImageUrlIsSet = false;
     m_CodeType = utility::conversions::to_string_t("");
@@ -71,10 +71,6 @@ web::json::value EmailTemplateCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
     }
-    if(m_CodeIsSet)
-    {
-        val[utility::conversions::to_string_t(U("code"))] = ModelBase::toJson(m_Code);
-    }
     if(m_PublishedIsSet)
     {
         val[utility::conversions::to_string_t(U("published"))] = ModelBase::toJson(m_Published);
@@ -83,9 +79,13 @@ web::json::value EmailTemplateCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
-    if(m_HtmlContentIsSet)
+    if(m_CodeIsSet)
     {
-        val[utility::conversions::to_string_t(U("htmlContent"))] = ModelBase::toJson(m_HtmlContent);
+        val[utility::conversions::to_string_t(U("code"))] = ModelBase::toJson(m_Code);
+    }
+    if(m_MarkupIsSet)
+    {
+        val[utility::conversions::to_string_t(U("markup"))] = ModelBase::toJson(m_Markup);
     }
     if(m_FeaturedImageUrlIsSet)
     {
@@ -137,16 +137,6 @@ bool EmailTemplateCreateDto::fromJson(const web::json::value& val)
             setTitle(refVal_setTitle);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("code"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("code")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCode;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
-            setCode(refVal_setCode);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("published"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("published")));
@@ -167,14 +157,24 @@ bool EmailTemplateCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("htmlContent"))))
+    if(val.has_field(utility::conversions::to_string_t(U("code"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("htmlContent")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("code")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setHtmlContent;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setHtmlContent);
-            setHtmlContent(refVal_setHtmlContent);
+            utility::string_t refVal_setCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
+            setCode(refVal_setCode);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("markup"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("markup")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setMarkup;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMarkup);
+            setMarkup(refVal_setMarkup);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("featuredImageUrl"))))
@@ -229,10 +229,6 @@ void EmailTemplateCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
     }
-    if(m_CodeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("code")), m_Code));
-    }
     if(m_PublishedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("published")), m_Published));
@@ -241,9 +237,13 @@ void EmailTemplateCreateDto::toMultipart(std::shared_ptr<MultipartFormData> mult
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_HtmlContentIsSet)
+    if(m_CodeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("htmlContent")), m_HtmlContent));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("code")), m_Code));
+    }
+    if(m_MarkupIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("markup")), m_Markup));
     }
     if(m_FeaturedImageUrlIsSet)
     {
@@ -286,12 +286,6 @@ bool EmailTemplateCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("code"))))
-    {
-        utility::string_t refVal_setCode;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("code"))), refVal_setCode );
-        setCode(refVal_setCode);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("published"))))
     {
         bool refVal_setPublished;
@@ -304,11 +298,17 @@ bool EmailTemplateCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mu
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("htmlContent"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("code"))))
     {
-        utility::string_t refVal_setHtmlContent;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("htmlContent"))), refVal_setHtmlContent );
-        setHtmlContent(refVal_setHtmlContent);
+        utility::string_t refVal_setCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("code"))), refVal_setCode );
+        setCode(refVal_setCode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("markup"))))
+    {
+        utility::string_t refVal_setMarkup;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("markup"))), refVal_setMarkup );
+        setMarkup(refVal_setMarkup);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("featuredImageUrl"))))
     {
@@ -391,26 +391,6 @@ void EmailTemplateCreateDto::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-utility::string_t EmailTemplateCreateDto::getCode() const
-{
-    return m_Code;
-}
-
-void EmailTemplateCreateDto::setCode(const utility::string_t& value)
-{
-    m_Code = value;
-    m_CodeIsSet = true;
-}
-
-bool EmailTemplateCreateDto::codeIsSet() const
-{
-    return m_CodeIsSet;
-}
-
-void EmailTemplateCreateDto::unsetCode()
-{
-    m_CodeIsSet = false;
-}
 bool EmailTemplateCreateDto::isPublished() const
 {
     return m_Published;
@@ -451,25 +431,45 @@ void EmailTemplateCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::string_t EmailTemplateCreateDto::getHtmlContent() const
+utility::string_t EmailTemplateCreateDto::getCode() const
 {
-    return m_HtmlContent;
+    return m_Code;
 }
 
-void EmailTemplateCreateDto::setHtmlContent(const utility::string_t& value)
+void EmailTemplateCreateDto::setCode(const utility::string_t& value)
 {
-    m_HtmlContent = value;
-    m_HtmlContentIsSet = true;
+    m_Code = value;
+    m_CodeIsSet = true;
 }
 
-bool EmailTemplateCreateDto::htmlContentIsSet() const
+bool EmailTemplateCreateDto::codeIsSet() const
 {
-    return m_HtmlContentIsSet;
+    return m_CodeIsSet;
 }
 
-void EmailTemplateCreateDto::unsetHtmlContent()
+void EmailTemplateCreateDto::unsetCode()
 {
-    m_HtmlContentIsSet = false;
+    m_CodeIsSet = false;
+}
+utility::string_t EmailTemplateCreateDto::getMarkup() const
+{
+    return m_Markup;
+}
+
+void EmailTemplateCreateDto::setMarkup(const utility::string_t& value)
+{
+    m_Markup = value;
+    m_MarkupIsSet = true;
+}
+
+bool EmailTemplateCreateDto::markupIsSet() const
+{
+    return m_MarkupIsSet;
+}
+
+void EmailTemplateCreateDto::unsetMarkup()
+{
+    m_MarkupIsSet = false;
 }
 utility::string_t EmailTemplateCreateDto::getFeaturedImageUrl() const
 {

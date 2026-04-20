@@ -85,15 +85,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCode() const;
-    bool codeIsSet() const;
-    void unsetCode();
-
-    void setCode(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     bool isPublished() const;
     bool publishedIsSet() const;
     void unsetPublished();
@@ -112,11 +103,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getHtmlContent() const;
-    bool htmlContentIsSet() const;
-    void unsetHtmlContent();
+    utility::string_t getCode() const;
+    bool codeIsSet() const;
+    void unsetCode();
 
-    void setHtmlContent(const utility::string_t& value);
+    void setCode(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getMarkup() const;
+    bool markupIsSet() const;
+    void unsetMarkup();
+
+    void setMarkup(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -153,14 +153,14 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    utility::string_t m_Code;
-    bool m_CodeIsSet;
     bool m_Published;
     bool m_PublishedIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    utility::string_t m_HtmlContent;
-    bool m_HtmlContentIsSet;
+    utility::string_t m_Code;
+    bool m_CodeIsSet;
+    utility::string_t m_Markup;
+    bool m_MarkupIsSet;
     utility::string_t m_FeaturedImageUrl;
     bool m_FeaturedImageUrlIsSet;
     utility::string_t m_CodeType;

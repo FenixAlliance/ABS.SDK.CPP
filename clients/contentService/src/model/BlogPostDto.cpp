@@ -140,10 +140,10 @@ BlogPostDto::BlogPostDto()
     m_ParentWebContentIdIsSet = false;
     m_ParentWebContentVersionId = utility::conversions::to_string_t("");
     m_ParentWebContentVersionIdIsSet = false;
-    m_BlogPostCategoryID = utility::conversions::to_string_t("");
-    m_BlogPostCategoryIDIsSet = false;
-    m_WebTemplateID = utility::conversions::to_string_t("");
-    m_WebTemplateIDIsSet = false;
+    m_BlogPostCategoryId = utility::conversions::to_string_t("");
+    m_BlogPostCategoryIdIsSet = false;
+    m_WebTemplateId = utility::conversions::to_string_t("");
+    m_WebTemplateIdIsSet = false;
 }
 
 BlogPostDto::~BlogPostDto()
@@ -396,13 +396,13 @@ web::json::value BlogPostDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("parentWebContentVersionId"))] = ModelBase::toJson(m_ParentWebContentVersionId);
     }
-    if(m_BlogPostCategoryIDIsSet)
+    if(m_BlogPostCategoryIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("blogPostCategoryID"))] = ModelBase::toJson(m_BlogPostCategoryID);
+        val[utility::conversions::to_string_t(U("blogPostCategoryId"))] = ModelBase::toJson(m_BlogPostCategoryId);
     }
-    if(m_WebTemplateIDIsSet)
+    if(m_WebTemplateIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("webTemplateID"))] = ModelBase::toJson(m_WebTemplateID);
+        val[utility::conversions::to_string_t(U("webTemplateId"))] = ModelBase::toJson(m_WebTemplateId);
     }
 
     return val;
@@ -1002,24 +1002,24 @@ bool BlogPostDto::fromJson(const web::json::value& val)
             setParentWebContentVersionId(refVal_setParentWebContentVersionId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("blogPostCategoryID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("blogPostCategoryId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("blogPostCategoryID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("blogPostCategoryId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setBlogPostCategoryID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBlogPostCategoryID);
-            setBlogPostCategoryID(refVal_setBlogPostCategoryID);
+            utility::string_t refVal_setBlogPostCategoryId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBlogPostCategoryId);
+            setBlogPostCategoryId(refVal_setBlogPostCategoryId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("webTemplateID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("webTemplateId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("webTemplateID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("webTemplateId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setWebTemplateID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setWebTemplateID);
-            setWebTemplateID(refVal_setWebTemplateID);
+            utility::string_t refVal_setWebTemplateId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWebTemplateId);
+            setWebTemplateId(refVal_setWebTemplateId);
         }
     }
     return ok;
@@ -1268,13 +1268,13 @@ void BlogPostDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentWebContentVersionId")), m_ParentWebContentVersionId));
     }
-    if(m_BlogPostCategoryIDIsSet)
+    if(m_BlogPostCategoryIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("blogPostCategoryID")), m_BlogPostCategoryID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("blogPostCategoryId")), m_BlogPostCategoryId));
     }
-    if(m_WebTemplateIDIsSet)
+    if(m_WebTemplateIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webTemplateID")), m_WebTemplateID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("webTemplateId")), m_WebTemplateId));
     }
 }
 
@@ -1641,17 +1641,17 @@ bool BlogPostDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentWebContentVersionId"))), refVal_setParentWebContentVersionId );
         setParentWebContentVersionId(refVal_setParentWebContentVersionId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("blogPostCategoryID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("blogPostCategoryId"))))
     {
-        utility::string_t refVal_setBlogPostCategoryID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("blogPostCategoryID"))), refVal_setBlogPostCategoryID );
-        setBlogPostCategoryID(refVal_setBlogPostCategoryID);
+        utility::string_t refVal_setBlogPostCategoryId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("blogPostCategoryId"))), refVal_setBlogPostCategoryId );
+        setBlogPostCategoryId(refVal_setBlogPostCategoryId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("webTemplateID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("webTemplateId"))))
     {
-        utility::string_t refVal_setWebTemplateID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("webTemplateID"))), refVal_setWebTemplateID );
-        setWebTemplateID(refVal_setWebTemplateID);
+        utility::string_t refVal_setWebTemplateId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("webTemplateId"))), refVal_setWebTemplateId );
+        setWebTemplateId(refVal_setWebTemplateId);
     }
     return ok;
 }
@@ -2836,45 +2836,45 @@ void BlogPostDto::unsetParentWebContentVersionId()
 {
     m_ParentWebContentVersionIdIsSet = false;
 }
-utility::string_t BlogPostDto::getBlogPostCategoryID() const
+utility::string_t BlogPostDto::getBlogPostCategoryId() const
 {
-    return m_BlogPostCategoryID;
+    return m_BlogPostCategoryId;
 }
 
-void BlogPostDto::setBlogPostCategoryID(const utility::string_t& value)
+void BlogPostDto::setBlogPostCategoryId(const utility::string_t& value)
 {
-    m_BlogPostCategoryID = value;
-    m_BlogPostCategoryIDIsSet = true;
+    m_BlogPostCategoryId = value;
+    m_BlogPostCategoryIdIsSet = true;
 }
 
-bool BlogPostDto::blogPostCategoryIDIsSet() const
+bool BlogPostDto::blogPostCategoryIdIsSet() const
 {
-    return m_BlogPostCategoryIDIsSet;
+    return m_BlogPostCategoryIdIsSet;
 }
 
-void BlogPostDto::unsetBlogPostCategoryID()
+void BlogPostDto::unsetBlogPostCategoryId()
 {
-    m_BlogPostCategoryIDIsSet = false;
+    m_BlogPostCategoryIdIsSet = false;
 }
-utility::string_t BlogPostDto::getWebTemplateID() const
+utility::string_t BlogPostDto::getWebTemplateId() const
 {
-    return m_WebTemplateID;
-}
-
-void BlogPostDto::setWebTemplateID(const utility::string_t& value)
-{
-    m_WebTemplateID = value;
-    m_WebTemplateIDIsSet = true;
+    return m_WebTemplateId;
 }
 
-bool BlogPostDto::webTemplateIDIsSet() const
+void BlogPostDto::setWebTemplateId(const utility::string_t& value)
 {
-    return m_WebTemplateIDIsSet;
+    m_WebTemplateId = value;
+    m_WebTemplateIdIsSet = true;
 }
 
-void BlogPostDto::unsetWebTemplateID()
+bool BlogPostDto::webTemplateIdIsSet() const
 {
-    m_WebTemplateIDIsSet = false;
+    return m_WebTemplateIdIsSet;
+}
+
+void BlogPostDto::unsetWebTemplateId()
+{
+    m_WebTemplateIdIsSet = false;
 }
 }
 }

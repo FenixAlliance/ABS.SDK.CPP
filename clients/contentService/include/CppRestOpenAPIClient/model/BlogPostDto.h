@@ -590,20 +590,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getBlogPostCategoryID() const;
-    bool blogPostCategoryIDIsSet() const;
-    void unsetBlogPostCategoryID();
+    utility::string_t getBlogPostCategoryId() const;
+    bool blogPostCategoryIdIsSet() const;
+    void unsetBlogPostCategoryId();
 
-    void setBlogPostCategoryID(const utility::string_t& value);
+    void setBlogPostCategoryId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getWebTemplateID() const;
-    bool webTemplateIDIsSet() const;
-    void unsetWebTemplateID();
+    utility::string_t getWebTemplateId() const;
+    bool webTemplateIdIsSet() const;
+    void unsetWebTemplateId();
 
-    void setWebTemplateID(const utility::string_t& value);
+    void setWebTemplateId(const utility::string_t& value);
 
 
 protected:
@@ -725,10 +725,10 @@ protected:
     bool m_ParentWebContentIdIsSet;
     utility::string_t m_ParentWebContentVersionId;
     bool m_ParentWebContentVersionIdIsSet;
-    utility::string_t m_BlogPostCategoryID;
-    bool m_BlogPostCategoryIDIsSet;
-    utility::string_t m_WebTemplateID;
-    bool m_WebTemplateIDIsSet;
+    utility::string_t m_BlogPostCategoryId;
+    bool m_BlogPostCategoryIdIsSet;
+    utility::string_t m_WebTemplateId;
+    bool m_WebTemplateIdIsSet;
 };
 
 

@@ -39,14 +39,14 @@ WebPortalDto::WebPortalDto()
     m_TenantIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_WebsiteThemeID = utility::conversions::to_string_t("");
-    m_WebsiteThemeIDIsSet = false;
-    m_BusinessDomainID = utility::conversions::to_string_t("");
-    m_BusinessDomainIDIsSet = false;
-    m_BusinessProfileRecordID = utility::conversions::to_string_t("");
-    m_BusinessProfileRecordIDIsSet = false;
-    m_BusinessPortalApplicationID = utility::conversions::to_string_t("");
-    m_BusinessPortalApplicationIDIsSet = false;
+    m_EnrollmentId = utility::conversions::to_string_t("");
+    m_EnrollmentIdIsSet = false;
+    m_WebsiteThemeId = utility::conversions::to_string_t("");
+    m_WebsiteThemeIdIsSet = false;
+    m_BusinessDomainId = utility::conversions::to_string_t("");
+    m_BusinessDomainIdIsSet = false;
+    m_BusinessPortalApplicationId = utility::conversions::to_string_t("");
+    m_BusinessPortalApplicationIdIsSet = false;
 }
 
 WebPortalDto::~WebPortalDto()
@@ -95,21 +95,21 @@ web::json::value WebPortalDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
-    if(m_WebsiteThemeIDIsSet)
+    if(m_EnrollmentIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("websiteThemeID"))] = ModelBase::toJson(m_WebsiteThemeID);
+        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
-    if(m_BusinessDomainIDIsSet)
+    if(m_WebsiteThemeIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("businessDomainID"))] = ModelBase::toJson(m_BusinessDomainID);
+        val[utility::conversions::to_string_t(U("websiteThemeId"))] = ModelBase::toJson(m_WebsiteThemeId);
     }
-    if(m_BusinessProfileRecordIDIsSet)
+    if(m_BusinessDomainIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("businessProfileRecordID"))] = ModelBase::toJson(m_BusinessProfileRecordID);
+        val[utility::conversions::to_string_t(U("businessDomainId"))] = ModelBase::toJson(m_BusinessDomainId);
     }
-    if(m_BusinessPortalApplicationIDIsSet)
+    if(m_BusinessPortalApplicationIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("businessPortalApplicationID"))] = ModelBase::toJson(m_BusinessPortalApplicationID);
+        val[utility::conversions::to_string_t(U("businessPortalApplicationId"))] = ModelBase::toJson(m_BusinessPortalApplicationId);
     }
 
     return val;
@@ -199,44 +199,44 @@ bool WebPortalDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("websiteThemeID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("websiteThemeID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setWebsiteThemeID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setWebsiteThemeID);
-            setWebsiteThemeID(refVal_setWebsiteThemeID);
+            utility::string_t refVal_setEnrollmentId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
+            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessDomainID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("websiteThemeId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessDomainID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("websiteThemeId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setBusinessDomainID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessDomainID);
-            setBusinessDomainID(refVal_setBusinessDomainID);
+            utility::string_t refVal_setWebsiteThemeId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setWebsiteThemeId);
+            setWebsiteThemeId(refVal_setWebsiteThemeId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessProfileRecordID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("businessDomainId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessProfileRecordID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessDomainId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setBusinessProfileRecordID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessProfileRecordID);
-            setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
+            utility::string_t refVal_setBusinessDomainId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessDomainId);
+            setBusinessDomainId(refVal_setBusinessDomainId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("businessPortalApplicationID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("businessPortalApplicationId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessPortalApplicationID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("businessPortalApplicationId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setBusinessPortalApplicationID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessPortalApplicationID);
-            setBusinessPortalApplicationID(refVal_setBusinessPortalApplicationID);
+            utility::string_t refVal_setBusinessPortalApplicationId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBusinessPortalApplicationId);
+            setBusinessPortalApplicationId(refVal_setBusinessPortalApplicationId);
         }
     }
     return ok;
@@ -281,21 +281,21 @@ void WebPortalDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_WebsiteThemeIDIsSet)
+    if(m_EnrollmentIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("websiteThemeID")), m_WebsiteThemeID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
-    if(m_BusinessDomainIDIsSet)
+    if(m_WebsiteThemeIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessDomainID")), m_BusinessDomainID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("websiteThemeId")), m_WebsiteThemeId));
     }
-    if(m_BusinessProfileRecordIDIsSet)
+    if(m_BusinessDomainIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessProfileRecordID")), m_BusinessProfileRecordID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessDomainId")), m_BusinessDomainId));
     }
-    if(m_BusinessPortalApplicationIDIsSet)
+    if(m_BusinessPortalApplicationIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessPortalApplicationID")), m_BusinessPortalApplicationID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("businessPortalApplicationId")), m_BusinessPortalApplicationId));
     }
 }
 
@@ -356,29 +356,29 @@ bool WebPortalDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("websiteThemeID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
     {
-        utility::string_t refVal_setWebsiteThemeID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("websiteThemeID"))), refVal_setWebsiteThemeID );
-        setWebsiteThemeID(refVal_setWebsiteThemeID);
+        utility::string_t refVal_setEnrollmentId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
+        setEnrollmentId(refVal_setEnrollmentId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessDomainID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("websiteThemeId"))))
     {
-        utility::string_t refVal_setBusinessDomainID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessDomainID"))), refVal_setBusinessDomainID );
-        setBusinessDomainID(refVal_setBusinessDomainID);
+        utility::string_t refVal_setWebsiteThemeId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("websiteThemeId"))), refVal_setWebsiteThemeId );
+        setWebsiteThemeId(refVal_setWebsiteThemeId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessProfileRecordID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("businessDomainId"))))
     {
-        utility::string_t refVal_setBusinessProfileRecordID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessProfileRecordID"))), refVal_setBusinessProfileRecordID );
-        setBusinessProfileRecordID(refVal_setBusinessProfileRecordID);
+        utility::string_t refVal_setBusinessDomainId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessDomainId"))), refVal_setBusinessDomainId );
+        setBusinessDomainId(refVal_setBusinessDomainId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("businessPortalApplicationID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("businessPortalApplicationId"))))
     {
-        utility::string_t refVal_setBusinessPortalApplicationID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessPortalApplicationID"))), refVal_setBusinessPortalApplicationID );
-        setBusinessPortalApplicationID(refVal_setBusinessPortalApplicationID);
+        utility::string_t refVal_setBusinessPortalApplicationId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("businessPortalApplicationId"))), refVal_setBusinessPortalApplicationId );
+        setBusinessPortalApplicationId(refVal_setBusinessPortalApplicationId);
     }
     return ok;
 }
@@ -543,85 +543,85 @@ void WebPortalDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::string_t WebPortalDto::getWebsiteThemeID() const
+utility::string_t WebPortalDto::getEnrollmentId() const
 {
-    return m_WebsiteThemeID;
+    return m_EnrollmentId;
 }
 
-void WebPortalDto::setWebsiteThemeID(const utility::string_t& value)
+void WebPortalDto::setEnrollmentId(const utility::string_t& value)
 {
-    m_WebsiteThemeID = value;
-    m_WebsiteThemeIDIsSet = true;
+    m_EnrollmentId = value;
+    m_EnrollmentIdIsSet = true;
 }
 
-bool WebPortalDto::websiteThemeIDIsSet() const
+bool WebPortalDto::enrollmentIdIsSet() const
 {
-    return m_WebsiteThemeIDIsSet;
+    return m_EnrollmentIdIsSet;
 }
 
-void WebPortalDto::unsetWebsiteThemeID()
+void WebPortalDto::unsetEnrollmentId()
 {
-    m_WebsiteThemeIDIsSet = false;
+    m_EnrollmentIdIsSet = false;
 }
-utility::string_t WebPortalDto::getBusinessDomainID() const
+utility::string_t WebPortalDto::getWebsiteThemeId() const
 {
-    return m_BusinessDomainID;
-}
-
-void WebPortalDto::setBusinessDomainID(const utility::string_t& value)
-{
-    m_BusinessDomainID = value;
-    m_BusinessDomainIDIsSet = true;
+    return m_WebsiteThemeId;
 }
 
-bool WebPortalDto::businessDomainIDIsSet() const
+void WebPortalDto::setWebsiteThemeId(const utility::string_t& value)
 {
-    return m_BusinessDomainIDIsSet;
+    m_WebsiteThemeId = value;
+    m_WebsiteThemeIdIsSet = true;
 }
 
-void WebPortalDto::unsetBusinessDomainID()
+bool WebPortalDto::websiteThemeIdIsSet() const
 {
-    m_BusinessDomainIDIsSet = false;
-}
-utility::string_t WebPortalDto::getBusinessProfileRecordID() const
-{
-    return m_BusinessProfileRecordID;
+    return m_WebsiteThemeIdIsSet;
 }
 
-void WebPortalDto::setBusinessProfileRecordID(const utility::string_t& value)
+void WebPortalDto::unsetWebsiteThemeId()
 {
-    m_BusinessProfileRecordID = value;
-    m_BusinessProfileRecordIDIsSet = true;
+    m_WebsiteThemeIdIsSet = false;
+}
+utility::string_t WebPortalDto::getBusinessDomainId() const
+{
+    return m_BusinessDomainId;
 }
 
-bool WebPortalDto::businessProfileRecordIDIsSet() const
+void WebPortalDto::setBusinessDomainId(const utility::string_t& value)
 {
-    return m_BusinessProfileRecordIDIsSet;
+    m_BusinessDomainId = value;
+    m_BusinessDomainIdIsSet = true;
 }
 
-void WebPortalDto::unsetBusinessProfileRecordID()
+bool WebPortalDto::businessDomainIdIsSet() const
 {
-    m_BusinessProfileRecordIDIsSet = false;
-}
-utility::string_t WebPortalDto::getBusinessPortalApplicationID() const
-{
-    return m_BusinessPortalApplicationID;
+    return m_BusinessDomainIdIsSet;
 }
 
-void WebPortalDto::setBusinessPortalApplicationID(const utility::string_t& value)
+void WebPortalDto::unsetBusinessDomainId()
 {
-    m_BusinessPortalApplicationID = value;
-    m_BusinessPortalApplicationIDIsSet = true;
+    m_BusinessDomainIdIsSet = false;
+}
+utility::string_t WebPortalDto::getBusinessPortalApplicationId() const
+{
+    return m_BusinessPortalApplicationId;
 }
 
-bool WebPortalDto::businessPortalApplicationIDIsSet() const
+void WebPortalDto::setBusinessPortalApplicationId(const utility::string_t& value)
 {
-    return m_BusinessPortalApplicationIDIsSet;
+    m_BusinessPortalApplicationId = value;
+    m_BusinessPortalApplicationIdIsSet = true;
 }
 
-void WebPortalDto::unsetBusinessPortalApplicationID()
+bool WebPortalDto::businessPortalApplicationIdIsSet() const
 {
-    m_BusinessPortalApplicationIDIsSet = false;
+    return m_BusinessPortalApplicationIdIsSet;
+}
+
+void WebPortalDto::unsetBusinessPortalApplicationId()
+{
+    m_BusinessPortalApplicationIdIsSet = false;
 }
 }
 }
