@@ -13,7 +13,7 @@ include/CppRestOpenAPIClient/JsonBody.h
 include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/PaymentMethodsApi.h
 include/CppRestOpenAPIClient/api/PaymentModesApi.h
 include/CppRestOpenAPIClient/api/PaymentTermsApi.h
@@ -61,7 +61,7 @@ src/JsonBody.cpp
 src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/PaymentMethodsApi.cpp
 src/api/PaymentModesApi.cpp
 src/api/PaymentTermsApi.cpp

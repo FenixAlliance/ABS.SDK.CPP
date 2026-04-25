@@ -17,7 +17,7 @@ include/CppRestOpenAPIClient/api/AssetCategoriesApi.h
 include/CppRestOpenAPIClient/api/AssetTransfersApi.h
 include/CppRestOpenAPIClient/api/AssetTypesApi.h
 include/CppRestOpenAPIClient/api/AssetsApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/AssetCategoryCreateDto.h
 include/CppRestOpenAPIClient/model/AssetCategoryDto.h
@@ -81,7 +81,7 @@ src/api/AssetCategoriesApi.cpp
 src/api/AssetTransfersApi.cpp
 src/api/AssetTypesApi.cpp
 src/api/AssetsApi.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/AssetCategoryCreateDto.cpp
 src/model/AssetCategoryDto.cpp

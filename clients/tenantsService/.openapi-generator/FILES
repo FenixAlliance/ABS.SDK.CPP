@@ -16,7 +16,7 @@ include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/DepartmentsApi.h
 include/CppRestOpenAPIClient/api/EmployeeEnrollmentsApi.h
 include/CppRestOpenAPIClient/api/EnrollmentsApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/IndustriesApi.h
 include/CppRestOpenAPIClient/api/InvitationsApi.h
 include/CppRestOpenAPIClient/api/OptionsApi.h
@@ -178,7 +178,7 @@ src/Object.cpp
 src/api/DepartmentsApi.cpp
 src/api/EmployeeEnrollmentsApi.cpp
 src/api/EnrollmentsApi.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/IndustriesApi.cpp
 src/api/InvitationsApi.cpp
 src/api/OptionsApi.cpp

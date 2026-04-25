@@ -13,7 +13,7 @@ include/CppRestOpenAPIClient/JsonBody.h
 include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/SupportEntitlementsApi.h
 include/CppRestOpenAPIClient/api/SupportRequestAttachmentsApi.h
 include/CppRestOpenAPIClient/api/SupportRequestsApi.h
@@ -80,7 +80,7 @@ src/JsonBody.cpp
 src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/SupportEntitlementsApi.cpp
 src/api/SupportRequestAttachmentsApi.cpp
 src/api/SupportRequestsApi.cpp

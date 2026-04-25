@@ -15,7 +15,7 @@ include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AvatarsApi.h
 include/CppRestOpenAPIClient/api/BlobsApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/FilesApi.h
 include/CppRestOpenAPIClient/api/RadzenEditorApi.h
 include/CppRestOpenAPIClient/api/UploadsApi.h
@@ -48,7 +48,7 @@ src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AvatarsApi.cpp
 src/api/BlobsApi.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/FilesApi.cpp
 src/api/RadzenEditorApi.cpp
 src/api/UploadsApi.cpp
