@@ -31,7 +31,7 @@ include/CppRestOpenAPIClient/api/CourseUnitsApi.h
 include/CppRestOpenAPIClient/api/CourseUpdatesApi.h
 include/CppRestOpenAPIClient/api/CourseWikisApi.h
 include/CppRestOpenAPIClient/api/CoursesApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/InstructorProfilesApi.h
 include/CppRestOpenAPIClient/api/StudentProfilesApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
@@ -138,7 +138,7 @@ src/api/CourseUnitsApi.cpp
 src/api/CourseUpdatesApi.cpp
 src/api/CourseWikisApi.cpp
 src/api/CoursesApi.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/InstructorProfilesApi.cpp
 src/api/StudentProfilesApi.cpp
 src/model/AccessTokenResponse.cpp

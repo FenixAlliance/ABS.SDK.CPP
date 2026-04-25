@@ -18,7 +18,7 @@ include/CppRestOpenAPIClient/api/BlogPostCategoriesApi.h
 include/CppRestOpenAPIClient/api/BlogPostTagsApi.h
 include/CppRestOpenAPIClient/api/BlogPostsApi.h
 include/CppRestOpenAPIClient/api/BusinessDomainsApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABPWebApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/PortalsApi.h
 include/CppRestOpenAPIClient/api/ThemesApi.h
 include/CppRestOpenAPIClient/api/WebContentsApi.h
@@ -188,7 +188,7 @@ src/api/BlogPostCategoriesApi.cpp
 src/api/BlogPostTagsApi.cpp
 src/api/BlogPostsApi.cpp
 src/api/BusinessDomainsApi.cpp
-src/api/FenixAllianceABPWebApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/PortalsApi.cpp
 src/api/ThemesApi.cpp
 src/api/WebContentsApi.cpp
