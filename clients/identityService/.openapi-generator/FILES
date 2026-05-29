@@ -20,7 +20,7 @@ include/CppRestOpenAPIClient/api/OAuthApi.h
 include/CppRestOpenAPIClient/api/ResourceApi.h
 include/CppRestOpenAPIClient/api/UserInfoApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
-include/CppRestOpenAPIClient/model/AuthorizationResult.h
+include/CppRestOpenAPIClient/model/AuthResult.h
 include/CppRestOpenAPIClient/model/AuthorizationResultEnvelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
@@ -64,7 +64,7 @@ src/api/OAuthApi.cpp
 src/api/ResourceApi.cpp
 src/api/UserInfoApi.cpp
 src/model/AccessTokenResponse.cpp
-src/model/AuthorizationResult.cpp
+src/model/AuthResult.cpp
 src/model/AuthorizationResultEnvelope.cpp
 src/model/ErrorEnvelope.cpp
 src/model/ForgotPasswordRequest.cpp

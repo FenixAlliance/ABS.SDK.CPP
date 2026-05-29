@@ -23,14 +23,14 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "CppRestOpenAPIClient/model/AuthorizationResult.h"
+#include "CppRestOpenAPIClient/model/AuthResult.h"
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
-class AuthorizationResult;
+class AuthResult;
 
 
 /// <summary>
@@ -105,11 +105,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<AuthorizationResult> getResult() const;
+    std::shared_ptr<AuthResult> getResult() const;
     bool resultIsSet() const;
     void unsetResult();
 
-    void setResult(const std::shared_ptr<AuthorizationResult>& value);
+    void setResult(const std::shared_ptr<AuthResult>& value);
 
 
 protected:
@@ -123,7 +123,7 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_ActivityId;
     bool m_ActivityIdIsSet;
-    std::shared_ptr<AuthorizationResult> m_Result;
+    std::shared_ptr<AuthResult> m_Result;
     bool m_ResultIsSet;
 };
 

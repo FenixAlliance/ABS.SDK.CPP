@@ -12,7 +12,7 @@
 
 
 
-#include "CppRestOpenAPIClient/model/AuthorizationResult.h"
+#include "CppRestOpenAPIClient/model/AuthResult.h"
 
 namespace org {
 namespace openapitools {
@@ -21,7 +21,7 @@ namespace model {
 
 
 
-AuthorizationResult::AuthorizationResult()
+AuthResult::AuthResult()
 {
     m_UserIdIsSet = false;
     m_TenantIdIsSet = false;
@@ -35,16 +35,16 @@ AuthorizationResult::AuthorizationResult()
     m_ErrorIsSet = false;
 }
 
-AuthorizationResult::~AuthorizationResult()
+AuthResult::~AuthResult()
 {
 }
 
-void AuthorizationResult::validate()
+void AuthResult::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value AuthorizationResult::toJson() const
+web::json::value AuthResult::toJson() const
 {
 
     web::json::value val = web::json::value::object();
@@ -85,7 +85,7 @@ web::json::value AuthorizationResult::toJson() const
     return val;
 }
 
-bool AuthorizationResult::fromJson(const web::json::value& val)
+bool AuthResult::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
@@ -172,7 +172,7 @@ bool AuthorizationResult::fromJson(const web::json::value& val)
     return ok;
 }
 
-void AuthorizationResult::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void AuthResult::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(U(".")))
@@ -213,7 +213,7 @@ void AuthorizationResult::toMultipart(std::shared_ptr<MultipartFormData> multipa
     }
 }
 
-bool AuthorizationResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool AuthResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -273,163 +273,163 @@ bool AuthorizationResult::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     return ok;
 }
 
-std::shared_ptr<Object> AuthorizationResult::getUserId() const
+std::shared_ptr<Object> AuthResult::getUserId() const
 {
     return m_UserId;
 }
 
-void AuthorizationResult::setUserId(const std::shared_ptr<Object>& value)
+void AuthResult::setUserId(const std::shared_ptr<Object>& value)
 {
     m_UserId = value;
     m_UserIdIsSet = true;
 }
 
-bool AuthorizationResult::userIdIsSet() const
+bool AuthResult::userIdIsSet() const
 {
     return m_UserIdIsSet;
 }
 
-void AuthorizationResult::unsetUserId()
+void AuthResult::unsetUserId()
 {
     m_UserIdIsSet = false;
 }
-std::shared_ptr<Object> AuthorizationResult::getTenantId() const
+std::shared_ptr<Object> AuthResult::getTenantId() const
 {
     return m_TenantId;
 }
 
-void AuthorizationResult::setTenantId(const std::shared_ptr<Object>& value)
+void AuthResult::setTenantId(const std::shared_ptr<Object>& value)
 {
     m_TenantId = value;
     m_TenantIdIsSet = true;
 }
 
-bool AuthorizationResult::tenantIdIsSet() const
+bool AuthResult::tenantIdIsSet() const
 {
     return m_TenantIdIsSet;
 }
 
-void AuthorizationResult::unsetTenantId()
+void AuthResult::unsetTenantId()
 {
     m_TenantIdIsSet = false;
 }
-std::shared_ptr<Object> AuthorizationResult::getPortalId() const
+std::shared_ptr<Object> AuthResult::getPortalId() const
 {
     return m_PortalId;
 }
 
-void AuthorizationResult::setPortalId(const std::shared_ptr<Object>& value)
+void AuthResult::setPortalId(const std::shared_ptr<Object>& value)
 {
     m_PortalId = value;
     m_PortalIdIsSet = true;
 }
 
-bool AuthorizationResult::portalIdIsSet() const
+bool AuthResult::portalIdIsSet() const
 {
     return m_PortalIdIsSet;
 }
 
-void AuthorizationResult::unsetPortalId()
+void AuthResult::unsetPortalId()
 {
     m_PortalIdIsSet = false;
 }
-std::shared_ptr<Object> AuthorizationResult::getApplicationId() const
+std::shared_ptr<Object> AuthResult::getApplicationId() const
 {
     return m_ApplicationId;
 }
 
-void AuthorizationResult::setApplicationId(const std::shared_ptr<Object>& value)
+void AuthResult::setApplicationId(const std::shared_ptr<Object>& value)
 {
     m_ApplicationId = value;
     m_ApplicationIdIsSet = true;
 }
 
-bool AuthorizationResult::applicationIdIsSet() const
+bool AuthResult::applicationIdIsSet() const
 {
     return m_ApplicationIdIsSet;
 }
 
-void AuthorizationResult::unsetApplicationId()
+void AuthResult::unsetApplicationId()
 {
     m_ApplicationIdIsSet = false;
 }
-std::shared_ptr<Object> AuthorizationResult::getEnrollmentId() const
+std::shared_ptr<Object> AuthResult::getEnrollmentId() const
 {
     return m_EnrollmentId;
 }
 
-void AuthorizationResult::setEnrollmentId(const std::shared_ptr<Object>& value)
+void AuthResult::setEnrollmentId(const std::shared_ptr<Object>& value)
 {
     m_EnrollmentId = value;
     m_EnrollmentIdIsSet = true;
 }
 
-bool AuthorizationResult::enrollmentIdIsSet() const
+bool AuthResult::enrollmentIdIsSet() const
 {
     return m_EnrollmentIdIsSet;
 }
 
-void AuthorizationResult::unsetEnrollmentId()
+void AuthResult::unsetEnrollmentId()
 {
     m_EnrollmentIdIsSet = false;
 }
-utility::string_t AuthorizationResult::getCorrelationId() const
+utility::string_t AuthResult::getCorrelationId() const
 {
     return m_CorrelationId;
 }
 
-void AuthorizationResult::setCorrelationId(const utility::string_t& value)
+void AuthResult::setCorrelationId(const utility::string_t& value)
 {
     m_CorrelationId = value;
     m_CorrelationIdIsSet = true;
 }
 
-bool AuthorizationResult::correlationIdIsSet() const
+bool AuthResult::correlationIdIsSet() const
 {
     return m_CorrelationIdIsSet;
 }
 
-void AuthorizationResult::unsetCorrelationId()
+void AuthResult::unsetCorrelationId()
 {
     m_CorrelationIdIsSet = false;
 }
-std::vector<utility::string_t>& AuthorizationResult::getScopes()
+std::vector<utility::string_t>& AuthResult::getScopes()
 {
     return m_Scopes;
 }
 
-void AuthorizationResult::setScopes(const std::vector<utility::string_t>& value)
+void AuthResult::setScopes(const std::vector<utility::string_t>& value)
 {
     m_Scopes = value;
     m_ScopesIsSet = true;
 }
 
-bool AuthorizationResult::scopesIsSet() const
+bool AuthResult::scopesIsSet() const
 {
     return m_ScopesIsSet;
 }
 
-void AuthorizationResult::unsetScopes()
+void AuthResult::unsetScopes()
 {
     m_ScopesIsSet = false;
 }
-utility::string_t AuthorizationResult::getError() const
+utility::string_t AuthResult::getError() const
 {
     return m_Error;
 }
 
-void AuthorizationResult::setError(const utility::string_t& value)
+void AuthResult::setError(const utility::string_t& value)
 {
     m_Error = value;
     m_ErrorIsSet = true;
 }
 
-bool AuthorizationResult::errorIsSet() const
+bool AuthResult::errorIsSet() const
 {
     return m_ErrorIsSet;
 }
 
-void AuthorizationResult::unsetError()
+void AuthResult::unsetError()
 {
     m_ErrorIsSet = false;
 }

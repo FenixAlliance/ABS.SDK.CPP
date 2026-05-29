@@ -137,7 +137,7 @@ bool AuthorizationResultEnvelope::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("result")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<AuthorizationResult> refVal_setResult;
+            std::shared_ptr<AuthResult> refVal_setResult;
             ok &= ModelBase::fromJson(fieldValue, refVal_setResult);
             setResult(refVal_setResult);
         }
@@ -219,7 +219,7 @@ bool AuthorizationResultEnvelope::fromMultiPart(std::shared_ptr<MultipartFormDat
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("result"))))
     {
-        std::shared_ptr<AuthorizationResult> refVal_setResult;
+        std::shared_ptr<AuthResult> refVal_setResult;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("result"))), refVal_setResult );
         setResult(refVal_setResult);
     }
@@ -326,12 +326,12 @@ void AuthorizationResultEnvelope::unsetActivityId()
 {
     m_ActivityIdIsSet = false;
 }
-std::shared_ptr<AuthorizationResult> AuthorizationResultEnvelope::getResult() const
+std::shared_ptr<AuthResult> AuthorizationResultEnvelope::getResult() const
 {
     return m_Result;
 }
 
-void AuthorizationResultEnvelope::setResult(const std::shared_ptr<AuthorizationResult>& value)
+void AuthorizationResultEnvelope::setResult(const std::shared_ptr<AuthResult>& value)
 {
     m_Result = value;
     m_ResultIsSet = true;

@@ -11,7 +11,7 @@
  */
 
 /*
- * AuthorizationResult.h
+ * AuthResult.h
  *
  * 
  */
@@ -36,12 +36,12 @@ namespace model {
 /// <summary>
 /// 
 /// </summary>
-class  AuthorizationResult
+class  AuthResult
     : public ModelBase
 {
 public:
-    AuthorizationResult();
-    virtual ~AuthorizationResult();
+    AuthResult();
+    virtual ~AuthResult();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -55,7 +55,7 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// AuthorizationResult members
+    /// AuthResult members
 
     /// <summary>
     /// 
