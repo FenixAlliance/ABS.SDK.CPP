@@ -13,7 +13,8 @@ include/CppRestOpenAPIClient/JsonBody.h
 include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
-include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
+include/CppRestOpenAPIClient/api/CompletionsApi.h
+include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
 include/CppRestOpenAPIClient/api/SocialFeedsApi.h
 include/CppRestOpenAPIClient/api/SocialGroupsApi.h
 include/CppRestOpenAPIClient/api/SocialPostsApi.h
@@ -34,6 +35,7 @@ include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/NotificationDto.h
+include/CppRestOpenAPIClient/model/NotificationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/PrivateMessageCreateDto.h
 include/CppRestOpenAPIClient/model/PrivateMessageDto.h
@@ -90,7 +92,8 @@ src/JsonBody.cpp
 src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
-src/api/FenixAllianceABSWebApi.cpp
+src/api/CompletionsApi.cpp
+src/api/FenixAlliancePortalsWebsiteApi.cpp
 src/api/SocialFeedsApi.cpp
 src/api/SocialGroupsApi.cpp
 src/api/SocialPostsApi.cpp
@@ -111,6 +114,7 @@ src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
 src/model/NotificationDto.cpp
+src/model/NotificationDtoEnvelope.cpp
 src/model/NotificationDtoListEnvelope.cpp
 src/model/PrivateMessageCreateDto.cpp
 src/model/PrivateMessageDto.cpp

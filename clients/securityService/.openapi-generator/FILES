@@ -14,7 +14,8 @@ include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/ApplicationsApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
+include/CppRestOpenAPIClient/api/CompletionsApi.h
+include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
 include/CppRestOpenAPIClient/api/LogsApi.h
 include/CppRestOpenAPIClient/api/OAuthApplicationsApi.h
 include/CppRestOpenAPIClient/api/PermissionsApi.h
@@ -82,7 +83,8 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/ApplicationsApi.cpp
-src/api/FenixAllianceABSWebApi.cpp
+src/api/CompletionsApi.cpp
+src/api/FenixAlliancePortalsWebsiteApi.cpp
 src/api/LogsApi.cpp
 src/api/OAuthApplicationsApi.cpp
 src/api/PermissionsApi.cpp

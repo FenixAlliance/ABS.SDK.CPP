@@ -15,7 +15,8 @@ include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/CartsApi.h
 include/CppRestOpenAPIClient/api/CompareApi.h
-include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
+include/CppRestOpenAPIClient/api/CompletionsApi.h
+include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
 include/CppRestOpenAPIClient/api/RecordsApi.h
 include/CppRestOpenAPIClient/api/WishListsApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
@@ -29,11 +30,9 @@ include/CppRestOpenAPIClient/model/CountryDtoEnvelope.h
 include/CppRestOpenAPIClient/model/CountrySwitchRequest.h
 include/CppRestOpenAPIClient/model/CurrencyDto.h
 include/CppRestOpenAPIClient/model/CurrencyDtoEnvelope.h
-include/CppRestOpenAPIClient/model/CurrencyId.h
 include/CppRestOpenAPIClient/model/CurrencySwitchRequest.h
 include/CppRestOpenAPIClient/model/EmptyEnvelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
-include/CppRestOpenAPIClient/model/ForexRates.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
 include/CppRestOpenAPIClient/model/HttpValidationProblemDetails.h
 include/CppRestOpenAPIClient/model/InfoRequest.h
@@ -47,7 +46,6 @@ include/CppRestOpenAPIClient/model/ItemToCompareCartRecordDto.h
 include/CppRestOpenAPIClient/model/ItemToCompareCartRecordDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ItemToCompareCartRecordDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
-include/CppRestOpenAPIClient/model/Money.h
 include/CppRestOpenAPIClient/model/NewWishListRequest.h
 include/CppRestOpenAPIClient/model/ProductToWishListRequest.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
@@ -71,7 +69,8 @@ src/MultipartFormData.cpp
 src/Object.cpp
 src/api/CartsApi.cpp
 src/api/CompareApi.cpp
-src/api/FenixAllianceABSWebApi.cpp
+src/api/CompletionsApi.cpp
+src/api/FenixAlliancePortalsWebsiteApi.cpp
 src/api/RecordsApi.cpp
 src/api/WishListsApi.cpp
 src/model/AccessTokenResponse.cpp
@@ -85,11 +84,9 @@ src/model/CountryDtoEnvelope.cpp
 src/model/CountrySwitchRequest.cpp
 src/model/CurrencyDto.cpp
 src/model/CurrencyDtoEnvelope.cpp
-src/model/CurrencyId.cpp
 src/model/CurrencySwitchRequest.cpp
 src/model/EmptyEnvelope.cpp
 src/model/ErrorEnvelope.cpp
-src/model/ForexRates.cpp
 src/model/ForgotPasswordRequest.cpp
 src/model/HttpValidationProblemDetails.cpp
 src/model/InfoRequest.cpp
@@ -103,7 +100,6 @@ src/model/ItemToCompareCartRecordDto.cpp
 src/model/ItemToCompareCartRecordDtoEnvelope.cpp
 src/model/ItemToCompareCartRecordDtoListEnvelope.cpp
 src/model/LoginRequest.cpp
-src/model/Money.cpp
 src/model/NewWishListRequest.cpp
 src/model/ProductToWishListRequest.cpp
 src/model/RefreshRequest.cpp
