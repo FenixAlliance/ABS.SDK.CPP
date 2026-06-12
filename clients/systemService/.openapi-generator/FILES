@@ -14,6 +14,7 @@ include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AntiforgeryApi.h
+include/CppRestOpenAPIClient/api/BusinessDomainsApi.h
 include/CppRestOpenAPIClient/api/CartsApi.h
 include/CppRestOpenAPIClient/api/CompletionsApi.h
 include/CppRestOpenAPIClient/api/ContactOptionsApi.h
@@ -34,6 +35,9 @@ include/CppRestOpenAPIClient/api/UsersApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/AdditionalAttribute.h
 include/CppRestOpenAPIClient/model/BooleanEnvelope.h
+include/CppRestOpenAPIClient/model/BusinessDomainDto.h
+include/CppRestOpenAPIClient/model/BusinessDomainDtoEnvelope.h
+include/CppRestOpenAPIClient/model/BusinessDomainDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/CartDto.h
 include/CppRestOpenAPIClient/model/CartDtoEnvelope.h
 include/CppRestOpenAPIClient/model/CartDtoListEnvelope.h
@@ -71,6 +75,7 @@ include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/Module.h
 include/CppRestOpenAPIClient/model/ModuleListEnvelope.h
 include/CppRestOpenAPIClient/model/ObjectEmailDispatchRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/OptionCreateDto.h
 include/CppRestOpenAPIClient/model/OptionDto.h
 include/CppRestOpenAPIClient/model/OptionDtoEnvelope.h
@@ -121,6 +126,7 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AntiforgeryApi.cpp
+src/api/BusinessDomainsApi.cpp
 src/api/CartsApi.cpp
 src/api/CompletionsApi.cpp
 src/api/ContactOptionsApi.cpp
@@ -141,6 +147,9 @@ src/api/UsersApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/AdditionalAttribute.cpp
 src/model/BooleanEnvelope.cpp
+src/model/BusinessDomainDto.cpp
+src/model/BusinessDomainDtoEnvelope.cpp
+src/model/BusinessDomainDtoListEnvelope.cpp
 src/model/CartDto.cpp
 src/model/CartDtoEnvelope.cpp
 src/model/CartDtoListEnvelope.cpp
@@ -178,6 +187,7 @@ src/model/LoginRequest.cpp
 src/model/Module.cpp
 src/model/ModuleListEnvelope.cpp
 src/model/ObjectEmailDispatchRequest.cpp
+src/model/Operation.cpp
 src/model/OptionCreateDto.cpp
 src/model/OptionDto.cpp
 src/model/OptionDtoEnvelope.cpp

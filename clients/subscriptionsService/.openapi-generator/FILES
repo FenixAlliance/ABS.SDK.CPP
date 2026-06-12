@@ -18,6 +18,7 @@ include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
 include/CppRestOpenAPIClient/api/SubscriptionPlansApi.h
 include/CppRestOpenAPIClient/api/SubscriptionsApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
+include/CppRestOpenAPIClient/model/EmptyEnvelope.h
 include/CppRestOpenAPIClient/model/Envelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
@@ -26,6 +27,7 @@ include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -56,6 +58,7 @@ src/api/FenixAlliancePortalsWebsiteApi.cpp
 src/api/SubscriptionPlansApi.cpp
 src/api/SubscriptionsApi.cpp
 src/model/AccessTokenResponse.cpp
+src/model/EmptyEnvelope.cpp
 src/model/Envelope.cpp
 src/model/ErrorEnvelope.cpp
 src/model/ForgotPasswordRequest.cpp
@@ -64,6 +67,7 @@ src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

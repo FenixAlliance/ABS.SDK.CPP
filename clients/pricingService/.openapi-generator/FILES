@@ -49,6 +49,7 @@ include/CppRestOpenAPIClient/model/ItemPriceUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/Money.h
 include/CppRestOpenAPIClient/model/MoneyEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PriceListCreateDto.h
 include/CppRestOpenAPIClient/model/PriceListDto.h
 include/CppRestOpenAPIClient/model/PriceListDtoEnvelope.h
@@ -115,6 +116,7 @@ src/model/ItemPriceUpdateDto.cpp
 src/model/LoginRequest.cpp
 src/model/Money.cpp
 src/model/MoneyEnvelope.cpp
+src/model/Operation.cpp
 src/model/PriceListCreateDto.cpp
 src/model/PriceListDto.cpp
 src/model/PriceListDtoEnvelope.cpp

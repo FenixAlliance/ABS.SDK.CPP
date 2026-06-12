@@ -30,6 +30,7 @@ include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/QuoteCreateDto.h
 include/CppRestOpenAPIClient/model/QuoteDto.h
 include/CppRestOpenAPIClient/model/QuoteDtoEnvelope.h
@@ -76,6 +77,7 @@ src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/QuoteCreateDto.cpp
 src/model/QuoteDto.cpp
 src/model/QuoteDtoEnvelope.cpp

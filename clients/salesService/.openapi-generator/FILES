@@ -36,6 +36,7 @@ include/CppRestOpenAPIClient/model/LoyaltyProgramDto.h
 include/CppRestOpenAPIClient/model/LoyaltyProgramDtoEnvelope.h
 include/CppRestOpenAPIClient/model/LoyaltyProgramDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/LoyaltyProgramUpdateDto.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PointOfSaleCreateDto.h
 include/CppRestOpenAPIClient/model/PointOfSaleDto.h
 include/CppRestOpenAPIClient/model/PointOfSaleDtoEnvelope.h
@@ -91,6 +92,7 @@ src/model/LoyaltyProgramDto.cpp
 src/model/LoyaltyProgramDtoEnvelope.cpp
 src/model/LoyaltyProgramDtoListEnvelope.cpp
 src/model/LoyaltyProgramUpdateDto.cpp
+src/model/Operation.cpp
 src/model/PointOfSaleCreateDto.cpp
 src/model/PointOfSaleDto.cpp
 src/model/PointOfSaleDtoEnvelope.cpp

@@ -51,6 +51,7 @@ include/CppRestOpenAPIClient/model/OAuthApplicationUpdateDto.h
 include/CppRestOpenAPIClient/model/OAuthAuthorizationDto.h
 include/CppRestOpenAPIClient/model/OAuthAuthorizationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/OAuthAuthorizationDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -120,6 +121,7 @@ src/model/OAuthApplicationUpdateDto.cpp
 src/model/OAuthAuthorizationDto.cpp
 src/model/OAuthAuthorizationDtoEnvelope.cpp
 src/model/OAuthAuthorizationDtoListEnvelope.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

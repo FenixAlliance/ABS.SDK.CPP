@@ -37,6 +37,7 @@ include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/NotificationDto.h
 include/CppRestOpenAPIClient/model/NotificationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PrivateMessageCreateDto.h
 include/CppRestOpenAPIClient/model/PrivateMessageDto.h
 include/CppRestOpenAPIClient/model/PrivateMessageDtoListEnvelope.h
@@ -116,6 +117,7 @@ src/model/LoginRequest.cpp
 src/model/NotificationDto.cpp
 src/model/NotificationDtoEnvelope.cpp
 src/model/NotificationDtoListEnvelope.cpp
+src/model/Operation.cpp
 src/model/PrivateMessageCreateDto.cpp
 src/model/PrivateMessageDto.cpp
 src/model/PrivateMessageDtoListEnvelope.cpp

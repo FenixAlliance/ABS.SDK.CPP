@@ -48,6 +48,7 @@ include/CppRestOpenAPIClient/model/ItemShippingPolicyDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ItemShippingPolicyDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ItemShippingPolicyUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -133,6 +134,7 @@ src/model/ItemShippingPolicyDtoEnvelope.cpp
 src/model/ItemShippingPolicyDtoListEnvelope.cpp
 src/model/ItemShippingPolicyUpdateDto.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

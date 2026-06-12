@@ -68,6 +68,7 @@ include/CppRestOpenAPIClient/model/MaintenanceVisitCreateDto.h
 include/CppRestOpenAPIClient/model/MaintenanceVisitDto.h
 include/CppRestOpenAPIClient/model/MaintenanceVisitDtoEnvelope.h
 include/CppRestOpenAPIClient/model/MaintenanceVisitDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PrivateMessageDto.h
 include/CppRestOpenAPIClient/model/PrivateMessageDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
@@ -189,6 +190,7 @@ src/model/MaintenanceVisitCreateDto.cpp
 src/model/MaintenanceVisitDto.cpp
 src/model/MaintenanceVisitDtoEnvelope.cpp
 src/model/MaintenanceVisitDtoListEnvelope.cpp
+src/model/Operation.cpp
 src/model/PrivateMessageDto.cpp
 src/model/PrivateMessageDtoListEnvelope.cpp
 src/model/RefreshRequest.cpp
