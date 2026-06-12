@@ -47,6 +47,7 @@ include/CppRestOpenAPIClient/model/ItemToCompareCartRecordDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ItemToCompareCartRecordDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/NewWishListRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/ProductToWishListRequest.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
@@ -101,6 +102,7 @@ src/model/ItemToCompareCartRecordDtoEnvelope.cpp
 src/model/ItemToCompareCartRecordDtoListEnvelope.cpp
 src/model/LoginRequest.cpp
 src/model/NewWishListRequest.cpp
+src/model/Operation.cpp
 src/model/ProductToWishListRequest.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
