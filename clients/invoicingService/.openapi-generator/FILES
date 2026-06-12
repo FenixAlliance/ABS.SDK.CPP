@@ -57,6 +57,7 @@ include/CppRestOpenAPIClient/model/InvoiceUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/Money.h
 include/CppRestOpenAPIClient/model/MoneyEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PaymentDto.h
 include/CppRestOpenAPIClient/model/PaymentDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
@@ -122,6 +123,7 @@ src/model/InvoiceUpdateDto.cpp
 src/model/LoginRequest.cpp
 src/model/Money.cpp
 src/model/MoneyEnvelope.cpp
+src/model/Operation.cpp
 src/model/PaymentDto.cpp
 src/model/PaymentDtoIReadOnlyListEnvelope.cpp
 src/model/RefreshRequest.cpp

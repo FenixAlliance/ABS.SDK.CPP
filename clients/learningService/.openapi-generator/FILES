@@ -122,6 +122,7 @@ include/CppRestOpenAPIClient/model/CourseUpdateDto.h
 include/CppRestOpenAPIClient/model/CourseWikiCreateDto.h
 include/CppRestOpenAPIClient/model/CourseWikiDto.h
 include/CppRestOpenAPIClient/model/CourseWikiUpdateDto.h
+include/CppRestOpenAPIClient/model/EmptyEnvelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
 include/CppRestOpenAPIClient/model/HttpValidationProblemDetails.h
@@ -132,6 +133,7 @@ include/CppRestOpenAPIClient/model/InstructorProfileDto.h
 include/CppRestOpenAPIClient/model/InstructorProfileDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/InstructorProfileUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -260,6 +262,7 @@ src/model/CourseUpdateDto.cpp
 src/model/CourseWikiCreateDto.cpp
 src/model/CourseWikiDto.cpp
 src/model/CourseWikiUpdateDto.cpp
+src/model/EmptyEnvelope.cpp
 src/model/ErrorEnvelope.cpp
 src/model/ForgotPasswordRequest.cpp
 src/model/HttpValidationProblemDetails.cpp
@@ -270,6 +273,7 @@ src/model/InstructorProfileDto.cpp
 src/model/InstructorProfileDtoIReadOnlyListEnvelope.cpp
 src/model/InstructorProfileUpdateDto.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

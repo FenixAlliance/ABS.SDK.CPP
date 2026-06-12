@@ -83,6 +83,7 @@ include/CppRestOpenAPIClient/model/JobOfferCreateDto.h
 include/CppRestOpenAPIClient/model/JobOfferDto.h
 include/CppRestOpenAPIClient/model/JobOfferDtoEnvelope.h
 include/CppRestOpenAPIClient/model/JobOfferDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/JobOfferUpdateDto.h
 include/CppRestOpenAPIClient/model/JobTitleCreateDto.h
 include/CppRestOpenAPIClient/model/JobTitleDto.h
 include/CppRestOpenAPIClient/model/JobTitleDtoEnvelope.h
@@ -99,6 +100,7 @@ include/CppRestOpenAPIClient/model/LeaveTypeDtoEnvelope.h
 include/CppRestOpenAPIClient/model/LeaveTypeDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/LeaveTypeUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PayrollCreateDto.h
 include/CppRestOpenAPIClient/model/PayrollDto.h
 include/CppRestOpenAPIClient/model/PayrollDtoEnvelope.h
@@ -229,6 +231,7 @@ src/model/JobOfferCreateDto.cpp
 src/model/JobOfferDto.cpp
 src/model/JobOfferDtoEnvelope.cpp
 src/model/JobOfferDtoListEnvelope.cpp
+src/model/JobOfferUpdateDto.cpp
 src/model/JobTitleCreateDto.cpp
 src/model/JobTitleDto.cpp
 src/model/JobTitleDtoEnvelope.cpp
@@ -245,6 +248,7 @@ src/model/LeaveTypeDtoEnvelope.cpp
 src/model/LeaveTypeDtoListEnvelope.cpp
 src/model/LeaveTypeUpdateDto.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/PayrollCreateDto.cpp
 src/model/PayrollDto.cpp
 src/model/PayrollDtoEnvelope.cpp

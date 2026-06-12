@@ -36,6 +36,8 @@ include/CppRestOpenAPIClient/api/ItemWarrantyPoliciesApi.h
 include/CppRestOpenAPIClient/api/ItemsApi.h
 include/CppRestOpenAPIClient/api/MerchantsApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
+include/CppRestOpenAPIClient/model/BatchStockItemUpdateRequest.h
+include/CppRestOpenAPIClient/model/BulkProduct.h
 include/CppRestOpenAPIClient/model/CatalogItemCreateDto.h
 include/CppRestOpenAPIClient/model/CatalogItemDto.h
 include/CppRestOpenAPIClient/model/CatalogItemDtoEnvelope.h
@@ -135,6 +137,7 @@ include/CppRestOpenAPIClient/model/MerchantDtoEnvelope.h
 include/CppRestOpenAPIClient/model/MerchantDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/Money.h
 include/CppRestOpenAPIClient/model/MoneyEnvelope.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PricingRuleDto.h
 include/CppRestOpenAPIClient/model/PricingRuleDtoEnvelope.h
 include/CppRestOpenAPIClient/model/PricingRuleDtoListEnvelope.h
@@ -177,6 +180,8 @@ src/api/ItemWarrantyPoliciesApi.cpp
 src/api/ItemsApi.cpp
 src/api/MerchantsApi.cpp
 src/model/AccessTokenResponse.cpp
+src/model/BatchStockItemUpdateRequest.cpp
+src/model/BulkProduct.cpp
 src/model/CatalogItemCreateDto.cpp
 src/model/CatalogItemDto.cpp
 src/model/CatalogItemDtoEnvelope.cpp
@@ -276,6 +281,7 @@ src/model/MerchantDtoEnvelope.cpp
 src/model/MerchantDtoListEnvelope.cpp
 src/model/Money.cpp
 src/model/MoneyEnvelope.cpp
+src/model/Operation.cpp
 src/model/PricingRuleDto.cpp
 src/model/PricingRuleDtoEnvelope.cpp
 src/model/PricingRuleDtoListEnvelope.cpp

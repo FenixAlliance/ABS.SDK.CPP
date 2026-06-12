@@ -50,6 +50,7 @@ include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -105,6 +106,7 @@ src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

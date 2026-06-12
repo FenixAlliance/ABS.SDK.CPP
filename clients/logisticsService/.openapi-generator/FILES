@@ -88,6 +88,7 @@ include/CppRestOpenAPIClient/model/ItemRetainSampleDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ItemRetainSampleDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ItemRetainSampleUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/PortCreateDto.h
 include/CppRestOpenAPIClient/model/PortDto.h
 include/CppRestOpenAPIClient/model/PortDtoEnvelope.h
@@ -251,6 +252,7 @@ src/model/ItemRetainSampleDtoEnvelope.cpp
 src/model/ItemRetainSampleDtoListEnvelope.cpp
 src/model/ItemRetainSampleUpdateDto.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/PortCreateDto.cpp
 src/model/PortDto.cpp
 src/model/PortDtoEnvelope.cpp

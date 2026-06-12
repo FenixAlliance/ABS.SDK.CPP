@@ -29,6 +29,7 @@ include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/OrderCreateDto.h
 include/CppRestOpenAPIClient/model/OrderDto.h
 include/CppRestOpenAPIClient/model/OrderDtoEnvelope.h
@@ -73,6 +74,7 @@ src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/OrderCreateDto.cpp
 src/model/OrderDto.cpp
 src/model/OrderDtoEnvelope.cpp

@@ -30,6 +30,7 @@ include/CppRestOpenAPIClient/model/LocationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/LocationDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/LocationUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
+include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -62,6 +63,7 @@ src/model/LocationDtoEnvelope.cpp
 src/model/LocationDtoIReadOnlyListEnvelope.cpp
 src/model/LocationUpdateDto.cpp
 src/model/LoginRequest.cpp
+src/model/Operation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp
