@@ -14,9 +14,8 @@ include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AirwayBillsApi.h
-include/CppRestOpenAPIClient/api/CompletionsApi.h
 include/CppRestOpenAPIClient/api/DeliveryNotesApi.h
-include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/ItemPackingSlipsApi.h
 include/CppRestOpenAPIClient/api/ItemPickListsApi.h
 include/CppRestOpenAPIClient/api/ItemRestocksApi.h
@@ -38,6 +37,7 @@ include/CppRestOpenAPIClient/model/AirwayBillDto.h
 include/CppRestOpenAPIClient/model/AirwayBillDtoEnvelope.h
 include/CppRestOpenAPIClient/model/AirwayBillDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/AirwayBillUpdateDto.h
+include/CppRestOpenAPIClient/model/ContactCreateDto.h
 include/CppRestOpenAPIClient/model/ContactDto.h
 include/CppRestOpenAPIClient/model/DeliveryNoteCreateDto.h
 include/CppRestOpenAPIClient/model/DeliveryNoteDto.h
@@ -178,9 +178,8 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AirwayBillsApi.cpp
-src/api/CompletionsApi.cpp
 src/api/DeliveryNotesApi.cpp
-src/api/FenixAlliancePortalsWebsiteApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/ItemPackingSlipsApi.cpp
 src/api/ItemPickListsApi.cpp
 src/api/ItemRestocksApi.cpp
@@ -202,6 +201,7 @@ src/model/AirwayBillDto.cpp
 src/model/AirwayBillDtoEnvelope.cpp
 src/model/AirwayBillDtoListEnvelope.cpp
 src/model/AirwayBillUpdateDto.cpp
+src/model/ContactCreateDto.cpp
 src/model/ContactDto.cpp
 src/model/DeliveryNoteCreateDto.cpp
 src/model/DeliveryNoteDto.cpp

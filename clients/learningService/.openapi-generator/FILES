@@ -13,7 +13,6 @@ include/CppRestOpenAPIClient/JsonBody.h
 include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
-include/CppRestOpenAPIClient/api/CompletionsApi.h
 include/CppRestOpenAPIClient/api/CourseArticlesApi.h
 include/CppRestOpenAPIClient/api/CourseAssignmentComponentsApi.h
 include/CppRestOpenAPIClient/api/CourseAssignmentTypesApi.h
@@ -37,13 +36,14 @@ include/CppRestOpenAPIClient/api/CourseUnitsApi.h
 include/CppRestOpenAPIClient/api/CourseUpdatesApi.h
 include/CppRestOpenAPIClient/api/CourseWikisApi.h
 include/CppRestOpenAPIClient/api/CoursesApi.h
-include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/InstructorProfilesApi.h
 include/CppRestOpenAPIClient/api/MeApi.h
 include/CppRestOpenAPIClient/api/StudentProfilesApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/AverageDto.h
 include/CppRestOpenAPIClient/model/AverageDtoEnvelope.h
+include/CppRestOpenAPIClient/model/ContactCreateDto.h
 include/CppRestOpenAPIClient/model/ContactDto.h
 include/CppRestOpenAPIClient/model/CountDto.h
 include/CppRestOpenAPIClient/model/CountDtoEnvelope.h
@@ -153,7 +153,6 @@ src/JsonBody.cpp
 src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
-src/api/CompletionsApi.cpp
 src/api/CourseArticlesApi.cpp
 src/api/CourseAssignmentComponentsApi.cpp
 src/api/CourseAssignmentTypesApi.cpp
@@ -177,13 +176,14 @@ src/api/CourseUnitsApi.cpp
 src/api/CourseUpdatesApi.cpp
 src/api/CourseWikisApi.cpp
 src/api/CoursesApi.cpp
-src/api/FenixAlliancePortalsWebsiteApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/InstructorProfilesApi.cpp
 src/api/MeApi.cpp
 src/api/StudentProfilesApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/AverageDto.cpp
 src/model/AverageDtoEnvelope.cpp
+src/model/ContactCreateDto.cpp
 src/model/ContactDto.cpp
 src/model/CountDto.cpp
 src/model/CountDtoEnvelope.cpp

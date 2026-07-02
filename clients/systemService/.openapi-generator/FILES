@@ -16,12 +16,10 @@ include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AntiforgeryApi.h
 include/CppRestOpenAPIClient/api/BusinessDomainsApi.h
 include/CppRestOpenAPIClient/api/CartsApi.h
-include/CppRestOpenAPIClient/api/CompletionsApi.h
 include/CppRestOpenAPIClient/api/ContactOptionsApi.h
 include/CppRestOpenAPIClient/api/EmailsApi.h
-include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/IPLookupsApi.h
-include/CppRestOpenAPIClient/api/LicensesApi.h
 include/CppRestOpenAPIClient/api/LicensingApi.h
 include/CppRestOpenAPIClient/api/MigrationsApi.h
 include/CppRestOpenAPIClient/api/ModulesApi.h
@@ -33,7 +31,6 @@ include/CppRestOpenAPIClient/api/TenantsApi.h
 include/CppRestOpenAPIClient/api/UserOptionsApi.h
 include/CppRestOpenAPIClient/api/UsersApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
-include/CppRestOpenAPIClient/model/AdditionalAttribute.h
 include/CppRestOpenAPIClient/model/BooleanEnvelope.h
 include/CppRestOpenAPIClient/model/BusinessDomainDto.h
 include/CppRestOpenAPIClient/model/BusinessDomainDtoEnvelope.h
@@ -64,12 +61,6 @@ include/CppRestOpenAPIClient/model/IValidationFailureListEnvelope.h
 include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
-include/CppRestOpenAPIClient/model/LicenseAttributesListEnvelope.h
-include/CppRestOpenAPIClient/model/LicenseFeature.h
-include/CppRestOpenAPIClient/model/LicenseKey.h
-include/CppRestOpenAPIClient/model/LicenseKeyRequest.h
-include/CppRestOpenAPIClient/model/LicenseValidationError.h
-include/CppRestOpenAPIClient/model/LicenseValidationErrorListEnvelope.h
 include/CppRestOpenAPIClient/model/LicenseValidationRequest.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/Module.h
@@ -86,7 +77,6 @@ include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
 include/CppRestOpenAPIClient/model/ResetPasswordRequest.h
 include/CppRestOpenAPIClient/model/SocialProfileDto.h
-include/CppRestOpenAPIClient/model/StringEnvelope.h
 include/CppRestOpenAPIClient/model/StringListEnvelope.h
 include/CppRestOpenAPIClient/model/StudioModule.h
 include/CppRestOpenAPIClient/model/StudioModuleListEnvelope.h
@@ -128,12 +118,10 @@ src/Object.cpp
 src/api/AntiforgeryApi.cpp
 src/api/BusinessDomainsApi.cpp
 src/api/CartsApi.cpp
-src/api/CompletionsApi.cpp
 src/api/ContactOptionsApi.cpp
 src/api/EmailsApi.cpp
-src/api/FenixAlliancePortalsWebsiteApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/IPLookupsApi.cpp
-src/api/LicensesApi.cpp
 src/api/LicensingApi.cpp
 src/api/MigrationsApi.cpp
 src/api/ModulesApi.cpp
@@ -145,7 +133,6 @@ src/api/TenantsApi.cpp
 src/api/UserOptionsApi.cpp
 src/api/UsersApi.cpp
 src/model/AccessTokenResponse.cpp
-src/model/AdditionalAttribute.cpp
 src/model/BooleanEnvelope.cpp
 src/model/BusinessDomainDto.cpp
 src/model/BusinessDomainDtoEnvelope.cpp
@@ -176,12 +163,6 @@ src/model/IValidationFailureListEnvelope.cpp
 src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
-src/model/LicenseAttributesListEnvelope.cpp
-src/model/LicenseFeature.cpp
-src/model/LicenseKey.cpp
-src/model/LicenseKeyRequest.cpp
-src/model/LicenseValidationError.cpp
-src/model/LicenseValidationErrorListEnvelope.cpp
 src/model/LicenseValidationRequest.cpp
 src/model/LoginRequest.cpp
 src/model/Module.cpp
@@ -198,7 +179,6 @@ src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp
 src/model/ResetPasswordRequest.cpp
 src/model/SocialProfileDto.cpp
-src/model/StringEnvelope.cpp
 src/model/StringListEnvelope.cpp
 src/model/StudioModule.cpp
 src/model/StudioModuleListEnvelope.cpp

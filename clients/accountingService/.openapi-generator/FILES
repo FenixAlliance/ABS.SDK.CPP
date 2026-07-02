@@ -14,6 +14,7 @@ include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AccountGroupsApi.h
+include/CppRestOpenAPIClient/api/AccountingEntriesApi.h
 include/CppRestOpenAPIClient/api/AccountingPeriodsApi.h
 include/CppRestOpenAPIClient/api/AccountsApi.h
 include/CppRestOpenAPIClient/api/BankProfilesApi.h
@@ -22,11 +23,10 @@ include/CppRestOpenAPIClient/api/BillableLineTaxesApi.h
 include/CppRestOpenAPIClient/api/BillingProfilesApi.h
 include/CppRestOpenAPIClient/api/BudgetsApi.h
 include/CppRestOpenAPIClient/api/CommissionsApi.h
-include/CppRestOpenAPIClient/api/CompletionsApi.h
 include/CppRestOpenAPIClient/api/CostCentresApi.h
 include/CppRestOpenAPIClient/api/ExpenseClaimsApi.h
 include/CppRestOpenAPIClient/api/ExpenseTypesApi.h
-include/CppRestOpenAPIClient/api/FenixAlliancePortalsWebsiteApi.h
+include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/FinancialBooksApi.h
 include/CppRestOpenAPIClient/api/FiscalAuthoritiesApi.h
 include/CppRestOpenAPIClient/api/FiscalAuthorityYearsApi.h
@@ -39,6 +39,7 @@ include/CppRestOpenAPIClient/api/FiscalResponsibilityRecordsApi.h
 include/CppRestOpenAPIClient/api/FiscalYearsApi.h
 include/CppRestOpenAPIClient/api/GrantsApi.h
 include/CppRestOpenAPIClient/api/InvoiceEnumerationRangesApi.h
+include/CppRestOpenAPIClient/api/JournalEntriesApi.h
 include/CppRestOpenAPIClient/api/JournalTypesApi.h
 include/CppRestOpenAPIClient/api/JournalsApi.h
 include/CppRestOpenAPIClient/api/LedgerTypesApi.h
@@ -152,6 +153,7 @@ include/CppRestOpenAPIClient/model/CostCentreGroupUpdateDto.h
 include/CppRestOpenAPIClient/model/CostCentreUpdateDto.h
 include/CppRestOpenAPIClient/model/CreateLedgerDto.h
 include/CppRestOpenAPIClient/model/CurrencyId.h
+include/CppRestOpenAPIClient/model/DecimalEnvelope.h
 include/CppRestOpenAPIClient/model/EmptyEnvelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
 include/CppRestOpenAPIClient/model/ExpenseClaimCreateDto.h
@@ -337,6 +339,7 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AccountGroupsApi.cpp
+src/api/AccountingEntriesApi.cpp
 src/api/AccountingPeriodsApi.cpp
 src/api/AccountsApi.cpp
 src/api/BankProfilesApi.cpp
@@ -345,11 +348,10 @@ src/api/BillableLineTaxesApi.cpp
 src/api/BillingProfilesApi.cpp
 src/api/BudgetsApi.cpp
 src/api/CommissionsApi.cpp
-src/api/CompletionsApi.cpp
 src/api/CostCentresApi.cpp
 src/api/ExpenseClaimsApi.cpp
 src/api/ExpenseTypesApi.cpp
-src/api/FenixAlliancePortalsWebsiteApi.cpp
+src/api/FenixAllianceABSWebApi.cpp
 src/api/FinancialBooksApi.cpp
 src/api/FiscalAuthoritiesApi.cpp
 src/api/FiscalAuthorityYearsApi.cpp
@@ -362,6 +364,7 @@ src/api/FiscalResponsibilityRecordsApi.cpp
 src/api/FiscalYearsApi.cpp
 src/api/GrantsApi.cpp
 src/api/InvoiceEnumerationRangesApi.cpp
+src/api/JournalEntriesApi.cpp
 src/api/JournalTypesApi.cpp
 src/api/JournalsApi.cpp
 src/api/LedgerTypesApi.cpp
@@ -475,6 +478,7 @@ src/model/CostCentreGroupUpdateDto.cpp
 src/model/CostCentreUpdateDto.cpp
 src/model/CreateLedgerDto.cpp
 src/model/CurrencyId.cpp
+src/model/DecimalEnvelope.cpp
 src/model/EmptyEnvelope.cpp
 src/model/ErrorEnvelope.cpp
 src/model/ExpenseClaimCreateDto.cpp
