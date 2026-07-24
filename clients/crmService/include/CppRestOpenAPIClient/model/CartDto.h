@@ -67,6 +67,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getIp() const;
     bool ipIsSet() const;
     void unsetIp();
@@ -158,6 +167,8 @@ public:
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_Ip;
     bool m_IpIsSet;
     utility::string_t m_Type;

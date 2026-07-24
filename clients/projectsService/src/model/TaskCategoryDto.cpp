@@ -29,6 +29,12 @@ TaskCategoryDto::TaskCategoryDto()
     m_TimestampIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
+    m_TenantId = utility::conversions::to_string_t("");
+    m_TenantIdIsSet = false;
+    m_EnrollmentId = utility::conversions::to_string_t("");
+    m_EnrollmentIdIsSet = false;
 }
 
 TaskCategoryDto::~TaskCategoryDto()
@@ -56,6 +62,18 @@ web::json::value TaskCategoryDto::toJson() const
     if(m_TitleIsSet)
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
+    }
+    if(m_ProjectIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
+    }
+    if(m_TenantIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -95,6 +113,36 @@ bool TaskCategoryDto::fromJson(const web::json::value& val)
             setTitle(refVal_setTitle);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTenantId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
+            setTenantId(refVal_setTenantId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setEnrollmentId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
+            setEnrollmentId(refVal_setEnrollmentId);
+        }
+    }
     return ok;
 }
 
@@ -116,6 +164,18 @@ void TaskCategoryDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if(m_TitleIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
+    }
+    if(m_ProjectIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
+    }
+    if(m_TenantIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -145,6 +205,24 @@ bool TaskCategoryDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         utility::string_t refVal_setTitle;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
+    {
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        utility::string_t refVal_setTenantId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
+        setTenantId(refVal_setTenantId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        utility::string_t refVal_setEnrollmentId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
+        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -208,6 +286,66 @@ bool TaskCategoryDto::titleIsSet() const
 void TaskCategoryDto::unsetTitle()
 {
     m_TitleIsSet = false;
+}
+utility::string_t TaskCategoryDto::getProjectId() const
+{
+    return m_ProjectId;
+}
+
+void TaskCategoryDto::setProjectId(const utility::string_t& value)
+{
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
+}
+
+bool TaskCategoryDto::projectIdIsSet() const
+{
+    return m_ProjectIdIsSet;
+}
+
+void TaskCategoryDto::unsetProjectId()
+{
+    m_ProjectIdIsSet = false;
+}
+utility::string_t TaskCategoryDto::getTenantId() const
+{
+    return m_TenantId;
+}
+
+void TaskCategoryDto::setTenantId(const utility::string_t& value)
+{
+    m_TenantId = value;
+    m_TenantIdIsSet = true;
+}
+
+bool TaskCategoryDto::tenantIdIsSet() const
+{
+    return m_TenantIdIsSet;
+}
+
+void TaskCategoryDto::unsetTenantId()
+{
+    m_TenantIdIsSet = false;
+}
+utility::string_t TaskCategoryDto::getEnrollmentId() const
+{
+    return m_EnrollmentId;
+}
+
+void TaskCategoryDto::setEnrollmentId(const utility::string_t& value)
+{
+    m_EnrollmentId = value;
+    m_EnrollmentIdIsSet = true;
+}
+
+bool TaskCategoryDto::enrollmentIdIsSet() const
+{
+    return m_EnrollmentIdIsSet;
+}
+
+void TaskCategoryDto::unsetEnrollmentId()
+{
+    m_EnrollmentIdIsSet = false;
 }
 }
 }

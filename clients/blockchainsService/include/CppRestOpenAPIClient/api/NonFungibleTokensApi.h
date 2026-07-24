@@ -29,7 +29,6 @@
 #include "CppRestOpenAPIClient/model/NonFungibleTokenCreateDto.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenDto.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/NonFungibleTokenDtoODataQueryOptions.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Operation.h"
 #include <vector>
@@ -108,12 +107,10 @@ public:
     /// Retrieves all NFTs for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> getNonFungibleTokensAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<NonFungibleTokenDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -124,12 +121,10 @@ public:
     /// Returns the count of NFTs for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getNonFungibleTokensCountAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<NonFungibleTokenDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

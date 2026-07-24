@@ -26,10 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/OptionCreateDto.h"
 #include "CppRestOpenAPIClient/model/OptionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/OptionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/OptionUpdateDto.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -163,6 +165,46 @@ public:
         boost::optional<utility::string_t> portalId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Patch a contact option
+    /// </summary>
+    /// <remarks>
+    /// Patch a contact option
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="optionId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchContactOptionAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t optionId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+    ) const;
+    /// <summary>
+    /// Patch a contact option by key
+    /// </summary>
+    /// <remarks>
+    /// Patch a contact option by key
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="key"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchContactOptionByKeyAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t key,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
     ) const;
     /// <summary>
     /// Update a contact option

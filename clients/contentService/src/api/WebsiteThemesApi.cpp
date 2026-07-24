@@ -422,7 +422,7 @@ pplx::task<std::shared_ptr<WebsiteThemeDto>> WebsiteThemesApi::getWebsiteThemeBy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> WebsiteThemesApi::getWebsiteThemesAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<WebsiteThemeDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> WebsiteThemesApi::getWebsiteThemesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -466,10 +466,6 @@ pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> WebsiteThemesApi::getWe
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {
@@ -560,7 +556,7 @@ pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> WebsiteThemesApi::getWe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WebsiteThemesApi::getWebsiteThemesCountAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<WebsiteThemeDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WebsiteThemesApi::getWebsiteThemesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -604,10 +600,6 @@ pplx::task<std::shared_ptr<Int32Envelope>> WebsiteThemesApi::getWebsiteThemesCou
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {

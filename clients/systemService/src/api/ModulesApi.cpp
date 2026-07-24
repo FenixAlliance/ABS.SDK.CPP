@@ -170,7 +170,7 @@ pplx::task<std::shared_ptr<StudioModuleListEnvelope>> ModulesApi::getAllModules(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ModuleListEnvelope>> ModulesApi::getAvailableModules(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SuiteModuleListEnvelope>> ModulesApi::getAvailableModules(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -284,7 +284,7 @@ pplx::task<std::shared_ptr<ModuleListEnvelope>> ModulesApi::getAvailableModules(
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<ModuleListEnvelope> localVarResult(new ModuleListEnvelope());
+        std::shared_ptr<SuiteModuleListEnvelope> localVarResult(new SuiteModuleListEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

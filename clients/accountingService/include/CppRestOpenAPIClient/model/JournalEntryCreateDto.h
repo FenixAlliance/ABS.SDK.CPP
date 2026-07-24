@@ -22,13 +22,16 @@
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
+#include "CppRestOpenAPIClient/model/AccountingEntryCreateDto.h"
 #include <cpprest/details/basic_types.h>
+#include <vector>
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
+class AccountingEntryCreateDto;
 
 
 /// <summary>
@@ -76,20 +79,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    bool isGroup() const;
-    bool groupIsSet() const;
-    void unsetGroup();
+    utility::string_t getJournalId() const;
+    bool journalIdIsSet() const;
+    void unsetJournalId();
 
-    void setGroup(bool value);
+    void setJournalId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    bool isOpening() const;
-    bool openingIsSet() const;
-    void unsetOpening();
+    utility::string_t getFiscalPeriodId() const;
+    bool fiscalPeriodIdIsSet() const;
+    void unsetFiscalPeriodId();
 
-    void setOpening(bool value);
+    void setFiscalPeriodId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTransactionCurrencyId() const;
+    bool transactionCurrencyIdIsSet() const;
+    void unsetTransactionCurrencyId();
+
+    void setTransactionCurrencyId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -103,83 +115,47 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::datetime getDate() const;
-    bool dateIsSet() const;
-    void unsetdate();
+    utility::string_t getSourceDocumentType() const;
+    bool sourceDocumentTypeIsSet() const;
+    void unsetSourceDocumentType();
 
-    void setDate(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getDebit() const;
-    bool debitIsSet() const;
-    void unsetDebit();
-
-    void setDebit(double value);
+    void setSourceDocumentType(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    double getCredit() const;
-    bool creditIsSet() const;
-    void unsetCredit();
+    utility::string_t getSourceDocumentId() const;
+    bool sourceDocumentIdIsSet() const;
+    void unsetSourceDocumentId();
 
-    void setCredit(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getJournalId() const;
-    bool journalIdIsSet() const;
-    void unsetJournalId();
-
-    void setJournalId(const utility::string_t& value);
+    void setSourceDocumentId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCurrencyId() const;
-    bool currencyIdIsSet() const;
-    void unsetCurrencyId();
+    utility::string_t getIdempotencyKey() const;
+    bool idempotencyKeyIsSet() const;
+    void unsetIdempotencyKey();
 
-    void setCurrencyId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getDebitAccountId() const;
-    bool debitAccountIdIsSet() const;
-    void unsetDebitAccountId();
-
-    void setDebitAccountId(const utility::string_t& value);
+    void setIdempotencyKey(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCreditAccountId() const;
-    bool creditAccountIdIsSet() const;
-    void unsetCreditAccountId();
+    bool isIsOpeningBalance() const;
+    bool isOpeningBalanceIsSet() const;
+    void unsetIsOpeningBalance();
 
-    void setCreditAccountId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getParentJournalEntryId() const;
-    bool parentJournalEntryIdIsSet() const;
-    void unsetParentJournalEntryId();
-
-    void setParentJournalEntryId(const utility::string_t& value);
+    void setIsOpeningBalance(bool value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getInvoiceCode() const;
-    bool invoiceCodeIsSet() const;
-    void unsetInvoiceCode();
+    std::vector<std::shared_ptr<AccountingEntryCreateDto>>& getAccountingEntries();
+    bool accountingEntriesIsSet() const;
+    void unsetAccountingEntries();
 
-    void setInvoiceCode(const utility::string_t& value);
+    void setAccountingEntries(const std::vector<std::shared_ptr<AccountingEntryCreateDto>>& value);
 
 
 protected:
@@ -187,30 +163,24 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    bool m_Group;
-    bool m_GroupIsSet;
-    bool m_Opening;
-    bool m_OpeningIsSet;
-    utility::string_t m_Description;
-    bool m_DescriptionIsSet;
-    utility::datetime m_date;
-    bool m_dateIsSet;
-    double m_Debit;
-    bool m_DebitIsSet;
-    double m_Credit;
-    bool m_CreditIsSet;
     utility::string_t m_JournalId;
     bool m_JournalIdIsSet;
-    utility::string_t m_CurrencyId;
-    bool m_CurrencyIdIsSet;
-    utility::string_t m_DebitAccountId;
-    bool m_DebitAccountIdIsSet;
-    utility::string_t m_CreditAccountId;
-    bool m_CreditAccountIdIsSet;
-    utility::string_t m_ParentJournalEntryId;
-    bool m_ParentJournalEntryIdIsSet;
-    utility::string_t m_InvoiceCode;
-    bool m_InvoiceCodeIsSet;
+    utility::string_t m_FiscalPeriodId;
+    bool m_FiscalPeriodIdIsSet;
+    utility::string_t m_TransactionCurrencyId;
+    bool m_TransactionCurrencyIdIsSet;
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
+    utility::string_t m_SourceDocumentType;
+    bool m_SourceDocumentTypeIsSet;
+    utility::string_t m_SourceDocumentId;
+    bool m_SourceDocumentIdIsSet;
+    utility::string_t m_IdempotencyKey;
+    bool m_IdempotencyKeyIsSet;
+    bool m_IsOpeningBalance;
+    bool m_IsOpeningBalanceIsSet;
+    std::vector<std::shared_ptr<AccountingEntryCreateDto>> m_AccountingEntries;
+    bool m_AccountingEntriesIsSet;
 };
 
 

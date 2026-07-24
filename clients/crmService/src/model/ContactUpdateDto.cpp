@@ -53,10 +53,6 @@ ContactUpdateDto::ContactUpdateDto()
     m_CountryIdIsSet = false;
     m_ParentContactId = utility::conversions::to_string_t("");
     m_ParentContactIdIsSet = false;
-    m_AddressLine1 = utility::conversions::to_string_t("");
-    m_AddressLine1IsSet = false;
-    m_AddressLine2 = utility::conversions::to_string_t("");
-    m_AddressLine2IsSet = false;
     m_PostalCode = utility::conversions::to_string_t("");
     m_PostalCodeIsSet = false;
     m_StateId = utility::conversions::to_string_t("");
@@ -182,14 +178,6 @@ web::json::value ContactUpdateDto::toJson() const
     if(m_ParentContactIdIsSet)
     {
         val[utility::conversions::to_string_t(U("parentContactId"))] = ModelBase::toJson(m_ParentContactId);
-    }
-    if(m_AddressLine1IsSet)
-    {
-        val[utility::conversions::to_string_t(U("addressLine1"))] = ModelBase::toJson(m_AddressLine1);
-    }
-    if(m_AddressLine2IsSet)
-    {
-        val[utility::conversions::to_string_t(U("addressLine2"))] = ModelBase::toJson(m_AddressLine2);
     }
     if(m_PostalCodeIsSet)
     {
@@ -447,26 +435,6 @@ bool ContactUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setParentContactId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setParentContactId);
             setParentContactId(refVal_setParentContactId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("addressLine1"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("addressLine1")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAddressLine1;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAddressLine1);
-            setAddressLine1(refVal_setAddressLine1);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("addressLine2"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("addressLine2")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAddressLine2;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAddressLine2);
-            setAddressLine2(refVal_setAddressLine2);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("postalCode"))))
@@ -789,14 +757,6 @@ void ContactUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentContactId")), m_ParentContactId));
     }
-    if(m_AddressLine1IsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("addressLine1")), m_AddressLine1));
-    }
-    if(m_AddressLine2IsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("addressLine2")), m_AddressLine2));
-    }
     if(m_PostalCodeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("postalCode")), m_PostalCode));
@@ -997,18 +957,6 @@ bool ContactUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setParentContactId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentContactId"))), refVal_setParentContactId );
         setParentContactId(refVal_setParentContactId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("addressLine1"))))
-    {
-        utility::string_t refVal_setAddressLine1;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("addressLine1"))), refVal_setAddressLine1 );
-        setAddressLine1(refVal_setAddressLine1);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("addressLine2"))))
-    {
-        utility::string_t refVal_setAddressLine2;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("addressLine2"))), refVal_setAddressLine2 );
-        setAddressLine2(refVal_setAddressLine2);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("postalCode"))))
     {
@@ -1462,46 +1410,6 @@ bool ContactUpdateDto::parentContactIdIsSet() const
 void ContactUpdateDto::unsetParentContactId()
 {
     m_ParentContactIdIsSet = false;
-}
-utility::string_t ContactUpdateDto::getAddressLine1() const
-{
-    return m_AddressLine1;
-}
-
-void ContactUpdateDto::setAddressLine1(const utility::string_t& value)
-{
-    m_AddressLine1 = value;
-    m_AddressLine1IsSet = true;
-}
-
-bool ContactUpdateDto::addressLine1IsSet() const
-{
-    return m_AddressLine1IsSet;
-}
-
-void ContactUpdateDto::unsetAddressLine1()
-{
-    m_AddressLine1IsSet = false;
-}
-utility::string_t ContactUpdateDto::getAddressLine2() const
-{
-    return m_AddressLine2;
-}
-
-void ContactUpdateDto::setAddressLine2(const utility::string_t& value)
-{
-    m_AddressLine2 = value;
-    m_AddressLine2IsSet = true;
-}
-
-bool ContactUpdateDto::addressLine2IsSet() const
-{
-    return m_AddressLine2IsSet;
-}
-
-void ContactUpdateDto::unsetAddressLine2()
-{
-    m_AddressLine2IsSet = false;
 }
 utility::string_t ContactUpdateDto::getPostalCode() const
 {

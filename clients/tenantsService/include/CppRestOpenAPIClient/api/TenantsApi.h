@@ -143,6 +143,20 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Get a tenant&#39;s default cart
+    /// </summary>
+    /// <remarks>
+    /// Get a tenant&#39;s default cart
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<CartDtoEnvelope>> getCartForTenantAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get the user&#39;s current default tenant
     /// </summary>
     /// <remarks>
@@ -272,20 +286,6 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> getTenantAvatarAsync(
-        utility::string_t tenantId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Get a tenant&#39;s default cart
-    /// </summary>
-    /// <remarks>
-    /// Get a tenant&#39;s default cart
-    /// </remarks>
-    /// <param name="tenantId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<CartDtoEnvelope>> getTenantCartAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
@@ -523,22 +523,6 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
-    /// Update a tenant&#39;s avatar
-    /// </summary>
-    /// <remarks>
-    /// Update a tenant&#39;s avatar
-    /// </remarks>
-    /// <param name="tenantId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="avatar"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> updateAvatarAsync(
-        utility::string_t tenantId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::shared_ptr<HttpContent>> avatar
-    ) const;
-    /// <summary>
     /// Update a tenant&#39;s profile
     /// </summary>
     /// <remarks>
@@ -553,6 +537,22 @@ public:
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::shared_ptr<TenantUpdateDto>> tenantUpdateDto
+    ) const;
+    /// <summary>
+    /// Update a tenant&#39;s avatar
+    /// </summary>
+    /// <remarks>
+    /// Update a tenant&#39;s avatar
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="avatar"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateTenantAvatarAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<HttpContent>> avatar
     ) const;
     /// <summary>
     /// Validate the access to a specific feature for a specific enrollment

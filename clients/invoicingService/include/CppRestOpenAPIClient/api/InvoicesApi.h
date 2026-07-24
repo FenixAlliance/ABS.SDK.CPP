@@ -23,7 +23,6 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
-#include "CppRestOpenAPIClient/model/DecimalEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/Envelope.h"
@@ -549,7 +548,7 @@ public:
     /// Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType &#x3D;&#x3D; PurchaseInvoice, filtered by the supplied OData date range.
     /// </remarks>
     /// <param name="tenantId"></param>
-    pplx::task<std::shared_ptr<DecimalEnvelope>> getPurchaseInvoicesSum(
+    pplx::task<std::shared_ptr<MoneyEnvelope>> getPurchaseInvoicesSum(
         utility::string_t tenantId
     ) const;
     /// <summary>
@@ -559,7 +558,7 @@ public:
     /// Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType &#x3D;&#x3D; SalesInvoice, filtered by the supplied OData date range.
     /// </remarks>
     /// <param name="tenantId"></param>
-    pplx::task<std::shared_ptr<DecimalEnvelope>> getSalesInvoicesSum(
+    pplx::task<std::shared_ptr<MoneyEnvelope>> getSalesInvoicesSum(
         utility::string_t tenantId
     ) const;
     /// <summary>

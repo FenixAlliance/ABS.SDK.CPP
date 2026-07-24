@@ -36,6 +36,354 @@ LicensingApi::~LicensingApi()
 {
 }
 
+pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi::getAttributesForLicenseAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("licenseId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(licenseId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("LicensingApi->getAttributesForLicenseAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("LicensingApi->getAttributesForLicenseAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getAttributesForLicenseAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getAttributesForLicenseAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope> localVarResult(new SuiteLicenseAssignmentDtoListEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getAttributesForLicenseAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi::getFeaturesForLicenseAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("licenseId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(licenseId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=false") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=true") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("LicensingApi->getFeaturesForLicenseAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("LicensingApi->getFeaturesForLicenseAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getFeaturesForLicenseAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getFeaturesForLicenseAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope> localVarResult(new SuiteLicenseAssignmentDtoListEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getFeaturesForLicenseAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi::getLicenseAssignmentsAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
@@ -210,180 +558,6 @@ pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi::getLicenseAttributesAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("licenseId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(licenseId)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/xml") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("LicensingApi->getLicenseAttributesAsync does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-    {
-        localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (apiVersion)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
-    }
-    if (xApiVersion)
-    {
-        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
-    }
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("LicensingApi->getLicenseAttributesAsync does not consume any supported media type"));
-    }
-
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getLicenseAttributesAsync: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getLicenseAttributesAsync: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope> localVarResult(new SuiteLicenseAssignmentDtoListEnvelope());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getLicenseAttributesAsync: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
 pplx::task<std::shared_ptr<SuiteLicenseDtoEnvelope>> LicensingApi::getLicenseByIdAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
@@ -553,180 +727,6 @@ pplx::task<std::shared_ptr<SuiteLicenseDtoEnvelope>> LicensingApi::getLicenseByI
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling getLicenseByIdAsync: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> LicensingApi::getLicenseFeaturesAsync(utility::string_t tenantId, utility::string_t licenseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("licenseId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(licenseId)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=minimal;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=full;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.metadata=none;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=true;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;odata.streaming=false;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=false") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json;IEEE754Compatible=true") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/xml") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("LicensingApi->getLicenseFeaturesAsync does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-    {
-        localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (apiVersion)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
-    }
-    if (xApiVersion)
-    {
-        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
-    }
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("LicensingApi->getLicenseFeaturesAsync does not consume any supported media type"));
-    }
-
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=, this](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getLicenseFeaturesAsync: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getLicenseFeaturesAsync: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=, this](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope> localVarResult(new SuiteLicenseAssignmentDtoListEnvelope());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getLicenseFeaturesAsync: unsupported response type"));
         }
 
         return localVarResult;

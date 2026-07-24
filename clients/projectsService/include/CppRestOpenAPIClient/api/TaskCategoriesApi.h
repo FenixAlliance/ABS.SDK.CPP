@@ -23,12 +23,15 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryCreateDto.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDto.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryUpdateDto.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -116,6 +119,20 @@ public:
     /// <param name="tenantId"></param>
     pplx::task<std::shared_ptr<TaskCategoryDtoListEnvelope>> getTenantTaskCategoriesAsync(
         utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Patches a task category
+    /// </summary>
+    /// <remarks>
+    /// Partially updates the specified task category.
+    /// </remarks>
+    /// <param name="taskCategoryId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaskCategoryAsync(
+        utility::string_t taskCategoryId,
+        utility::string_t tenantId,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
     ) const;
     /// <summary>
     /// Updates a task category

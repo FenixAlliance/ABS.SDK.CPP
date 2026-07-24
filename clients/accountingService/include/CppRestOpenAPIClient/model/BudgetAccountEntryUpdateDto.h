@@ -67,20 +67,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAmount() const;
-    bool amountIsSet() const;
-    void unsetAmount();
+    double getPlannedAmount() const;
+    bool plannedAmountIsSet() const;
+    void unsetPlannedAmount();
 
-    void setAmount(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::datetime getDate() const;
-    bool dateIsSet() const;
-    void unsetdate();
-
-    void setDate(const utility::datetime& value);
+    void setPlannedAmount(double value);
 
     /// <summary>
     /// 
@@ -112,24 +103,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getJournalEntryId() const;
-    bool journalEntryIdIsSet() const;
-    void unsetJournalEntryId();
-
-    void setJournalEntryId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getAccountingEntryType() const;
-    bool accountingEntryTypeIsSet() const;
-    void unsetAccountingEntryType();
-
-    void setAccountingEntryType(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getBudgetId() const;
     bool budgetIdIsSet() const;
     void unsetBudgetId();
@@ -140,20 +113,14 @@ public:
 protected:
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
-    double m_Amount;
-    bool m_AmountIsSet;
-    utility::datetime m_date;
-    bool m_dateIsSet;
+    double m_PlannedAmount;
+    bool m_PlannedAmountIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     utility::string_t m_DebitAccountId;
     bool m_DebitAccountIdIsSet;
     utility::string_t m_CreditAccountId;
     bool m_CreditAccountIdIsSet;
-    utility::string_t m_JournalEntryId;
-    bool m_JournalEntryIdIsSet;
-    utility::string_t m_AccountingEntryType;
-    bool m_AccountingEntryTypeIsSet;
     utility::string_t m_BudgetId;
     bool m_BudgetIdIsSet;
 };

@@ -236,6 +236,20 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Count activity records
+    /// </summary>
+    /// <remarks>
+    /// Returns the tenant-wide count of activity records across all feeds owned by the tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getActivityRecordsCountAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get Activity Type
     /// </summary>
     /// <remarks>

@@ -94,11 +94,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getProjectID() const;
-    bool projectIDIsSet() const;
-    void unsetProjectID();
+    utility::string_t getProjectId() const;
+    bool projectIdIsSet() const;
+    void unsetProjectId();
 
-    void setProjectID(const utility::string_t& value);
+    void setProjectId(const utility::string_t& value);
 
 
 protected:
@@ -110,8 +110,8 @@ protected:
     bool m_PeriodStartDateIsSet;
     utility::datetime m_PeriodEndDate;
     bool m_PeriodEndDateIsSet;
-    utility::string_t m_ProjectID;
-    bool m_ProjectIDIsSet;
+    utility::string_t m_ProjectId;
+    bool m_ProjectIdIsSet;
 };
 
 

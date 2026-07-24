@@ -23,6 +23,11 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/BusinessRelationshipCreateDto.h"
+#include "CppRestOpenAPIClient/model/BusinessRelationshipDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/BusinessRelationshipDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/BusinessRelationshipUpdateDto.h"
+#include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include <cpprest/details/basic_types.h>
@@ -46,6 +51,68 @@ public:
     virtual ~BusinessRelationshipsApi();
 
     /// <summary>
+    /// Create a business relationship
+    /// </summary>
+    /// <remarks>
+    /// Creates a new business relationship owned by the specified parent tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="businessRelationshipCreateDto"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> createBusinessRelationshipAsync(
+        utility::string_t tenantId,
+        std::shared_ptr<BusinessRelationshipCreateDto> businessRelationshipCreateDto,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Delete a business relationship
+    /// </summary>
+    /// <remarks>
+    /// Deletes a business relationship by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="businessRelationshipId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteBusinessRelationshipAsync(
+        utility::string_t tenantId,
+        utility::string_t businessRelationshipId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get business relationship by ID
+    /// </summary>
+    /// <remarks>
+    /// Retrieves the details of a specific business relationship by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="businessRelationshipId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<BusinessRelationshipDtoEnvelope>> getBusinessRelationshipByIdAsync(
+        utility::string_t tenantId,
+        utility::string_t businessRelationshipId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get business relationships
+    /// </summary>
+    /// <remarks>
+    /// Retrieves the child business relationships owned by the specified parent tenant using OData query options.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<BusinessRelationshipDtoListEnvelope>> getBusinessRelationshipsAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get business relationships count
     /// </summary>
     /// <remarks>
@@ -56,6 +123,24 @@ public:
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBusinessRelationshipsCountAsync(
         utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Update a business relationship
+    /// </summary>
+    /// <remarks>
+    /// Updates an existing business relationship by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="businessRelationshipId"></param>
+    /// <param name="businessRelationshipUpdateDto"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateBusinessRelationshipAsync(
+        utility::string_t tenantId,
+        utility::string_t businessRelationshipId,
+        std::shared_ptr<BusinessRelationshipUpdateDto> businessRelationshipUpdateDto,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

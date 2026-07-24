@@ -36,7 +36,7 @@ ThemesApi::~ThemesApi()
 {
 }
 
-pplx::task<void> ThemesApi::getLatestCurrencyRatesModelAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<void> ThemesApi::updateThemesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -71,7 +71,7 @@ pplx::task<void> ThemesApi::getLatestCurrencyRatesModelAsync(boost::optional<uti
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ThemesApi->getLatestCurrencyRatesModelAsync does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ThemesApi->updateThemesAsync does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -106,7 +106,7 @@ pplx::task<void> ThemesApi::getLatestCurrencyRatesModelAsync(boost::optional<uti
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ThemesApi->getLatestCurrencyRatesModelAsync does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ThemesApi->updateThemesAsync does not consume any supported media type"));
     }
 
 
@@ -126,7 +126,7 @@ pplx::task<void> ThemesApi::getLatestCurrencyRatesModelAsync(boost::optional<uti
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getLatestCurrencyRatesModelAsync: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling updateThemesAsync: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -137,7 +137,7 @@ pplx::task<void> ThemesApi::getLatestCurrencyRatesModelAsync(boost::optional<uti
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getLatestCurrencyRatesModelAsync: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling updateThemesAsync: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }

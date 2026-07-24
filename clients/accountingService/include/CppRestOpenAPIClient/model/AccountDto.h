@@ -294,6 +294,42 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isIsContra() const;
+    bool isContraIsSet() const;
+    void unsetIsContra();
+
+    void setIsContra(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isIsMonetary() const;
+    bool isMonetaryIsSet() const;
+    void unsetIsMonetary();
+
+    void setIsMonetary(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getIncomeStatementSubType() const;
+    bool incomeStatementSubTypeIsSet() const;
+    void unsetIncomeStatementSubType();
+
+    void setIncomeStatementSubType(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getNormalBalance() const;
+    bool normalBalanceIsSet() const;
+    void unsetNormalBalance();
+
+    void setNormalBalance(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::shared_ptr<Money> getBalanceAmount() const;
     bool balanceAmountIsSet() const;
     void unsetBalanceAmount();
@@ -399,6 +435,14 @@ protected:
     bool m_ChildrenAccountsCountIsSet;
     utility::string_t m_AccountCategory;
     bool m_AccountCategoryIsSet;
+    bool m_IsContra;
+    bool m_IsContraIsSet;
+    bool m_IsMonetary;
+    bool m_IsMonetaryIsSet;
+    utility::string_t m_IncomeStatementSubType;
+    bool m_IncomeStatementSubTypeIsSet;
+    utility::string_t m_NormalBalance;
+    bool m_NormalBalanceIsSet;
     std::shared_ptr<Money> m_BalanceAmount;
     bool m_BalanceAmountIsSet;
     std::shared_ptr<Money> m_CreditsBalanceAmount;

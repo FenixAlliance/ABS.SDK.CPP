@@ -85,11 +85,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTaskCategoryID() const;
-    bool taskCategoryIDIsSet() const;
-    void unsetTaskCategoryID();
+    utility::string_t getTaskCategoryId() const;
+    bool taskCategoryIdIsSet() const;
+    void unsetTaskCategoryId();
 
-    void setTaskCategoryID(const utility::string_t& value);
+    void setTaskCategoryId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -109,6 +109,24 @@ public:
 
     void setRequiresDescription(bool value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTenantId() const;
+    bool tenantIdIsSet() const;
+    void unsetTenantId();
+
+    void setTenantId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getEnrollmentId() const;
+    bool enrollmentIdIsSet() const;
+    void unsetEnrollmentId();
+
+    void setEnrollmentId(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -117,12 +135,16 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    utility::string_t m_TaskCategoryID;
-    bool m_TaskCategoryIDIsSet;
+    utility::string_t m_TaskCategoryId;
+    bool m_TaskCategoryIdIsSet;
     bool m_DisplayInTimeTracker;
     bool m_DisplayInTimeTrackerIsSet;
     bool m_RequiresDescription;
     bool m_RequiresDescriptionIsSet;
+    utility::string_t m_TenantId;
+    bool m_TenantIdIsSet;
+    utility::string_t m_EnrollmentId;
+    bool m_EnrollmentIdIsSet;
 };
 
 

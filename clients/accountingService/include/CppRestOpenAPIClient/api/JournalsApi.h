@@ -30,11 +30,13 @@
 #include "CppRestOpenAPIClient/model/JournalDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/JournalEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/JournalUpdateDto.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
 #include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/ReverseJournalEntryRequest.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -223,6 +225,24 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Get journal entry by ID
+    /// </summary>
+    /// <remarks>
+    /// Retrieves a single journal entry WITH its hydrated posting lines — each line&#39;s account, direction, description and currency facets (transaction / functional / account / USD).
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="journalId"></param>
+    /// <param name="entryId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<JournalEntryDtoEnvelope>> getJournalEntryDetailsAsync(
+        utility::string_t tenantId,
+        utility::string_t journalId,
+        utility::string_t entryId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get all journals
     /// </summary>
     /// <remarks>
@@ -273,6 +293,44 @@ public:
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+    ) const;
+    /// <summary>
+    /// Post a draft journal entry
+    /// </summary>
+    /// <remarks>
+    /// Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="journalId"></param>
+    /// <param name="entryId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> postJournalEntryAsync(
+        utility::string_t tenantId,
+        utility::string_t journalId,
+        utility::string_t entryId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Reverse a posted journal entry
+    /// </summary>
+    /// <remarks>
+    /// Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="journalId"></param>
+    /// <param name="entryId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="reverseJournalEntryRequest"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> reverseJournalEntryAsync(
+        utility::string_t tenantId,
+        utility::string_t journalId,
+        utility::string_t entryId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ReverseJournalEntryRequest>> reverseJournalEntryRequest
     ) const;
     /// <summary>
     /// Update journal

@@ -23,30 +23,18 @@ namespace model {
 
 JournalEntryUpdateDto::JournalEntryUpdateDto()
 {
-    m_Group = false;
-    m_GroupIsSet = false;
-    m_Opening = false;
-    m_OpeningIsSet = false;
+    m_FiscalPeriodId = utility::conversions::to_string_t("");
+    m_FiscalPeriodIdIsSet = false;
+    m_TransactionCurrencyId = utility::conversions::to_string_t("");
+    m_TransactionCurrencyIdIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_date = utility::datetime();
-    m_dateIsSet = false;
-    m_Debit = 0.0;
-    m_DebitIsSet = false;
-    m_Credit = 0.0;
-    m_CreditIsSet = false;
-    m_JournalId = utility::conversions::to_string_t("");
-    m_JournalIdIsSet = false;
-    m_CurrencyId = utility::conversions::to_string_t("");
-    m_CurrencyIdIsSet = false;
-    m_InvoiceCode = utility::conversions::to_string_t("");
-    m_InvoiceCodeIsSet = false;
-    m_DebitAccountId = utility::conversions::to_string_t("");
-    m_DebitAccountIdIsSet = false;
-    m_CreditAccountId = utility::conversions::to_string_t("");
-    m_CreditAccountIdIsSet = false;
-    m_ParentJournalEntryId = utility::conversions::to_string_t("");
-    m_ParentJournalEntryIdIsSet = false;
+    m_SourceDocumentType = utility::conversions::to_string_t("");
+    m_SourceDocumentTypeIsSet = false;
+    m_SourceDocumentId = utility::conversions::to_string_t("");
+    m_SourceDocumentIdIsSet = false;
+    m_IsOpeningBalance = false;
+    m_IsOpeningBalanceIsSet = false;
 }
 
 JournalEntryUpdateDto::~JournalEntryUpdateDto()
@@ -63,53 +51,29 @@ web::json::value JournalEntryUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_GroupIsSet)
+    if(m_FiscalPeriodIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("group"))] = ModelBase::toJson(m_Group);
+        val[utility::conversions::to_string_t(U("fiscalPeriodId"))] = ModelBase::toJson(m_FiscalPeriodId);
     }
-    if(m_OpeningIsSet)
+    if(m_TransactionCurrencyIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("opening"))] = ModelBase::toJson(m_Opening);
+        val[utility::conversions::to_string_t(U("transactionCurrencyId"))] = ModelBase::toJson(m_TransactionCurrencyId);
     }
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
-    if(m_dateIsSet)
+    if(m_SourceDocumentTypeIsSet)
     {
-        val[utility::conversions::to_string_t(U("date"))] = ModelBase::toJson(m_date);
+        val[utility::conversions::to_string_t(U("sourceDocumentType"))] = ModelBase::toJson(m_SourceDocumentType);
     }
-    if(m_DebitIsSet)
+    if(m_SourceDocumentIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("debit"))] = ModelBase::toJson(m_Debit);
+        val[utility::conversions::to_string_t(U("sourceDocumentId"))] = ModelBase::toJson(m_SourceDocumentId);
     }
-    if(m_CreditIsSet)
+    if(m_IsOpeningBalanceIsSet)
     {
-        val[utility::conversions::to_string_t(U("credit"))] = ModelBase::toJson(m_Credit);
-    }
-    if(m_JournalIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("journalId"))] = ModelBase::toJson(m_JournalId);
-    }
-    if(m_CurrencyIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
-    }
-    if(m_InvoiceCodeIsSet)
-    {
-        val[utility::conversions::to_string_t(U("invoiceCode"))] = ModelBase::toJson(m_InvoiceCode);
-    }
-    if(m_DebitAccountIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("debitAccountId"))] = ModelBase::toJson(m_DebitAccountId);
-    }
-    if(m_CreditAccountIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("creditAccountId"))] = ModelBase::toJson(m_CreditAccountId);
-    }
-    if(m_ParentJournalEntryIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("parentJournalEntryId"))] = ModelBase::toJson(m_ParentJournalEntryId);
+        val[utility::conversions::to_string_t(U("isOpeningBalance"))] = ModelBase::toJson(m_IsOpeningBalance);
     }
 
     return val;
@@ -119,24 +83,24 @@ bool JournalEntryUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("group"))))
+    if(val.has_field(utility::conversions::to_string_t(U("fiscalPeriodId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("group")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("fiscalPeriodId")));
         if(!fieldValue.is_null())
         {
-            bool refVal_setGroup;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGroup);
-            setGroup(refVal_setGroup);
+            utility::string_t refVal_setFiscalPeriodId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFiscalPeriodId);
+            setFiscalPeriodId(refVal_setFiscalPeriodId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("opening"))))
+    if(val.has_field(utility::conversions::to_string_t(U("transactionCurrencyId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("opening")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("transactionCurrencyId")));
         if(!fieldValue.is_null())
         {
-            bool refVal_setOpening;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setOpening);
-            setOpening(refVal_setOpening);
+            utility::string_t refVal_setTransactionCurrencyId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTransactionCurrencyId);
+            setTransactionCurrencyId(refVal_setTransactionCurrencyId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
@@ -149,94 +113,34 @@ bool JournalEntryUpdateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("date"))))
+    if(val.has_field(utility::conversions::to_string_t(U("sourceDocumentType"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("date")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("sourceDocumentType")));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_setDate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDate);
-            setDate(refVal_setDate);
+            utility::string_t refVal_setSourceDocumentType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSourceDocumentType);
+            setSourceDocumentType(refVal_setSourceDocumentType);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("debit"))))
+    if(val.has_field(utility::conversions::to_string_t(U("sourceDocumentId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("debit")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("sourceDocumentId")));
         if(!fieldValue.is_null())
         {
-            double refVal_setDebit;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDebit);
-            setDebit(refVal_setDebit);
+            utility::string_t refVal_setSourceDocumentId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSourceDocumentId);
+            setSourceDocumentId(refVal_setSourceDocumentId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("credit"))))
+    if(val.has_field(utility::conversions::to_string_t(U("isOpeningBalance"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("credit")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("isOpeningBalance")));
         if(!fieldValue.is_null())
         {
-            double refVal_setCredit;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCredit);
-            setCredit(refVal_setCredit);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("journalId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("journalId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setJournalId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setJournalId);
-            setJournalId(refVal_setJournalId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("currencyId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCurrencyId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCurrencyId);
-            setCurrencyId(refVal_setCurrencyId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("invoiceCode"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("invoiceCode")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setInvoiceCode;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setInvoiceCode);
-            setInvoiceCode(refVal_setInvoiceCode);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("debitAccountId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("debitAccountId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDebitAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDebitAccountId);
-            setDebitAccountId(refVal_setDebitAccountId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("creditAccountId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("creditAccountId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCreditAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCreditAccountId);
-            setCreditAccountId(refVal_setCreditAccountId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("parentJournalEntryId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("parentJournalEntryId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setParentJournalEntryId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setParentJournalEntryId);
-            setParentJournalEntryId(refVal_setParentJournalEntryId);
+            bool refVal_setIsOpeningBalance;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsOpeningBalance);
+            setIsOpeningBalance(refVal_setIsOpeningBalance);
         }
     }
     return ok;
@@ -249,53 +153,29 @@ void JournalEntryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_GroupIsSet)
+    if(m_FiscalPeriodIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("group")), m_Group));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalPeriodId")), m_FiscalPeriodId));
     }
-    if(m_OpeningIsSet)
+    if(m_TransactionCurrencyIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("opening")), m_Opening));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("transactionCurrencyId")), m_TransactionCurrencyId));
     }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_dateIsSet)
+    if(m_SourceDocumentTypeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("date")), m_date));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("sourceDocumentType")), m_SourceDocumentType));
     }
-    if(m_DebitIsSet)
+    if(m_SourceDocumentIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("debit")), m_Debit));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("sourceDocumentId")), m_SourceDocumentId));
     }
-    if(m_CreditIsSet)
+    if(m_IsOpeningBalanceIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("credit")), m_Credit));
-    }
-    if(m_JournalIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("journalId")), m_JournalId));
-    }
-    if(m_CurrencyIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
-    }
-    if(m_InvoiceCodeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("invoiceCode")), m_InvoiceCode));
-    }
-    if(m_DebitAccountIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("debitAccountId")), m_DebitAccountId));
-    }
-    if(m_CreditAccountIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("creditAccountId")), m_CreditAccountId));
-    }
-    if(m_ParentJournalEntryIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("parentJournalEntryId")), m_ParentJournalEntryId));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isOpeningBalance")), m_IsOpeningBalance));
     }
 }
 
@@ -308,17 +188,17 @@ bool JournalEntryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("group"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("fiscalPeriodId"))))
     {
-        bool refVal_setGroup;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("group"))), refVal_setGroup );
-        setGroup(refVal_setGroup);
+        utility::string_t refVal_setFiscalPeriodId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fiscalPeriodId"))), refVal_setFiscalPeriodId );
+        setFiscalPeriodId(refVal_setFiscalPeriodId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("opening"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("transactionCurrencyId"))))
     {
-        bool refVal_setOpening;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("opening"))), refVal_setOpening );
-        setOpening(refVal_setOpening);
+        utility::string_t refVal_setTransactionCurrencyId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("transactionCurrencyId"))), refVal_setTransactionCurrencyId );
+        setTransactionCurrencyId(refVal_setTransactionCurrencyId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
@@ -326,102 +206,66 @@ bool JournalEntryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("date"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("sourceDocumentType"))))
     {
-        utility::datetime refVal_setDate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("date"))), refVal_setDate );
-        setDate(refVal_setDate);
+        utility::string_t refVal_setSourceDocumentType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("sourceDocumentType"))), refVal_setSourceDocumentType );
+        setSourceDocumentType(refVal_setSourceDocumentType);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("debit"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("sourceDocumentId"))))
     {
-        double refVal_setDebit;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("debit"))), refVal_setDebit );
-        setDebit(refVal_setDebit);
+        utility::string_t refVal_setSourceDocumentId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("sourceDocumentId"))), refVal_setSourceDocumentId );
+        setSourceDocumentId(refVal_setSourceDocumentId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("credit"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("isOpeningBalance"))))
     {
-        double refVal_setCredit;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("credit"))), refVal_setCredit );
-        setCredit(refVal_setCredit);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("journalId"))))
-    {
-        utility::string_t refVal_setJournalId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("journalId"))), refVal_setJournalId );
-        setJournalId(refVal_setJournalId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
-    {
-        utility::string_t refVal_setCurrencyId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("currencyId"))), refVal_setCurrencyId );
-        setCurrencyId(refVal_setCurrencyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("invoiceCode"))))
-    {
-        utility::string_t refVal_setInvoiceCode;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("invoiceCode"))), refVal_setInvoiceCode );
-        setInvoiceCode(refVal_setInvoiceCode);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("debitAccountId"))))
-    {
-        utility::string_t refVal_setDebitAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("debitAccountId"))), refVal_setDebitAccountId );
-        setDebitAccountId(refVal_setDebitAccountId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("creditAccountId"))))
-    {
-        utility::string_t refVal_setCreditAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("creditAccountId"))), refVal_setCreditAccountId );
-        setCreditAccountId(refVal_setCreditAccountId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("parentJournalEntryId"))))
-    {
-        utility::string_t refVal_setParentJournalEntryId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("parentJournalEntryId"))), refVal_setParentJournalEntryId );
-        setParentJournalEntryId(refVal_setParentJournalEntryId);
+        bool refVal_setIsOpeningBalance;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isOpeningBalance"))), refVal_setIsOpeningBalance );
+        setIsOpeningBalance(refVal_setIsOpeningBalance);
     }
     return ok;
 }
 
-bool JournalEntryUpdateDto::isGroup() const
+utility::string_t JournalEntryUpdateDto::getFiscalPeriodId() const
 {
-    return m_Group;
+    return m_FiscalPeriodId;
 }
 
-void JournalEntryUpdateDto::setGroup(bool value)
+void JournalEntryUpdateDto::setFiscalPeriodId(const utility::string_t& value)
 {
-    m_Group = value;
-    m_GroupIsSet = true;
+    m_FiscalPeriodId = value;
+    m_FiscalPeriodIdIsSet = true;
 }
 
-bool JournalEntryUpdateDto::groupIsSet() const
+bool JournalEntryUpdateDto::fiscalPeriodIdIsSet() const
 {
-    return m_GroupIsSet;
+    return m_FiscalPeriodIdIsSet;
 }
 
-void JournalEntryUpdateDto::unsetGroup()
+void JournalEntryUpdateDto::unsetFiscalPeriodId()
 {
-    m_GroupIsSet = false;
+    m_FiscalPeriodIdIsSet = false;
 }
-bool JournalEntryUpdateDto::isOpening() const
+utility::string_t JournalEntryUpdateDto::getTransactionCurrencyId() const
 {
-    return m_Opening;
-}
-
-void JournalEntryUpdateDto::setOpening(bool value)
-{
-    m_Opening = value;
-    m_OpeningIsSet = true;
+    return m_TransactionCurrencyId;
 }
 
-bool JournalEntryUpdateDto::openingIsSet() const
+void JournalEntryUpdateDto::setTransactionCurrencyId(const utility::string_t& value)
 {
-    return m_OpeningIsSet;
+    m_TransactionCurrencyId = value;
+    m_TransactionCurrencyIdIsSet = true;
 }
 
-void JournalEntryUpdateDto::unsetOpening()
+bool JournalEntryUpdateDto::transactionCurrencyIdIsSet() const
 {
-    m_OpeningIsSet = false;
+    return m_TransactionCurrencyIdIsSet;
+}
+
+void JournalEntryUpdateDto::unsetTransactionCurrencyId()
+{
+    m_TransactionCurrencyIdIsSet = false;
 }
 utility::string_t JournalEntryUpdateDto::getDescription() const
 {
@@ -443,185 +287,65 @@ void JournalEntryUpdateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::datetime JournalEntryUpdateDto::getDate() const
+utility::string_t JournalEntryUpdateDto::getSourceDocumentType() const
 {
-    return m_date;
+    return m_SourceDocumentType;
 }
 
-void JournalEntryUpdateDto::setDate(const utility::datetime& value)
+void JournalEntryUpdateDto::setSourceDocumentType(const utility::string_t& value)
 {
-    m_date = value;
-    m_dateIsSet = true;
+    m_SourceDocumentType = value;
+    m_SourceDocumentTypeIsSet = true;
 }
 
-bool JournalEntryUpdateDto::dateIsSet() const
+bool JournalEntryUpdateDto::sourceDocumentTypeIsSet() const
 {
-    return m_dateIsSet;
+    return m_SourceDocumentTypeIsSet;
 }
 
-void JournalEntryUpdateDto::unsetdate()
+void JournalEntryUpdateDto::unsetSourceDocumentType()
 {
-    m_dateIsSet = false;
+    m_SourceDocumentTypeIsSet = false;
 }
-double JournalEntryUpdateDto::getDebit() const
+utility::string_t JournalEntryUpdateDto::getSourceDocumentId() const
 {
-    return m_Debit;
-}
-
-void JournalEntryUpdateDto::setDebit(double value)
-{
-    m_Debit = value;
-    m_DebitIsSet = true;
+    return m_SourceDocumentId;
 }
 
-bool JournalEntryUpdateDto::debitIsSet() const
+void JournalEntryUpdateDto::setSourceDocumentId(const utility::string_t& value)
 {
-    return m_DebitIsSet;
+    m_SourceDocumentId = value;
+    m_SourceDocumentIdIsSet = true;
 }
 
-void JournalEntryUpdateDto::unsetDebit()
+bool JournalEntryUpdateDto::sourceDocumentIdIsSet() const
 {
-    m_DebitIsSet = false;
-}
-double JournalEntryUpdateDto::getCredit() const
-{
-    return m_Credit;
+    return m_SourceDocumentIdIsSet;
 }
 
-void JournalEntryUpdateDto::setCredit(double value)
+void JournalEntryUpdateDto::unsetSourceDocumentId()
 {
-    m_Credit = value;
-    m_CreditIsSet = true;
+    m_SourceDocumentIdIsSet = false;
+}
+bool JournalEntryUpdateDto::isIsOpeningBalance() const
+{
+    return m_IsOpeningBalance;
 }
 
-bool JournalEntryUpdateDto::creditIsSet() const
+void JournalEntryUpdateDto::setIsOpeningBalance(bool value)
 {
-    return m_CreditIsSet;
+    m_IsOpeningBalance = value;
+    m_IsOpeningBalanceIsSet = true;
 }
 
-void JournalEntryUpdateDto::unsetCredit()
+bool JournalEntryUpdateDto::isOpeningBalanceIsSet() const
 {
-    m_CreditIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getJournalId() const
-{
-    return m_JournalId;
+    return m_IsOpeningBalanceIsSet;
 }
 
-void JournalEntryUpdateDto::setJournalId(const utility::string_t& value)
+void JournalEntryUpdateDto::unsetIsOpeningBalance()
 {
-    m_JournalId = value;
-    m_JournalIdIsSet = true;
-}
-
-bool JournalEntryUpdateDto::journalIdIsSet() const
-{
-    return m_JournalIdIsSet;
-}
-
-void JournalEntryUpdateDto::unsetJournalId()
-{
-    m_JournalIdIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getCurrencyId() const
-{
-    return m_CurrencyId;
-}
-
-void JournalEntryUpdateDto::setCurrencyId(const utility::string_t& value)
-{
-    m_CurrencyId = value;
-    m_CurrencyIdIsSet = true;
-}
-
-bool JournalEntryUpdateDto::currencyIdIsSet() const
-{
-    return m_CurrencyIdIsSet;
-}
-
-void JournalEntryUpdateDto::unsetCurrencyId()
-{
-    m_CurrencyIdIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getInvoiceCode() const
-{
-    return m_InvoiceCode;
-}
-
-void JournalEntryUpdateDto::setInvoiceCode(const utility::string_t& value)
-{
-    m_InvoiceCode = value;
-    m_InvoiceCodeIsSet = true;
-}
-
-bool JournalEntryUpdateDto::invoiceCodeIsSet() const
-{
-    return m_InvoiceCodeIsSet;
-}
-
-void JournalEntryUpdateDto::unsetInvoiceCode()
-{
-    m_InvoiceCodeIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getDebitAccountId() const
-{
-    return m_DebitAccountId;
-}
-
-void JournalEntryUpdateDto::setDebitAccountId(const utility::string_t& value)
-{
-    m_DebitAccountId = value;
-    m_DebitAccountIdIsSet = true;
-}
-
-bool JournalEntryUpdateDto::debitAccountIdIsSet() const
-{
-    return m_DebitAccountIdIsSet;
-}
-
-void JournalEntryUpdateDto::unsetDebitAccountId()
-{
-    m_DebitAccountIdIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getCreditAccountId() const
-{
-    return m_CreditAccountId;
-}
-
-void JournalEntryUpdateDto::setCreditAccountId(const utility::string_t& value)
-{
-    m_CreditAccountId = value;
-    m_CreditAccountIdIsSet = true;
-}
-
-bool JournalEntryUpdateDto::creditAccountIdIsSet() const
-{
-    return m_CreditAccountIdIsSet;
-}
-
-void JournalEntryUpdateDto::unsetCreditAccountId()
-{
-    m_CreditAccountIdIsSet = false;
-}
-utility::string_t JournalEntryUpdateDto::getParentJournalEntryId() const
-{
-    return m_ParentJournalEntryId;
-}
-
-void JournalEntryUpdateDto::setParentJournalEntryId(const utility::string_t& value)
-{
-    m_ParentJournalEntryId = value;
-    m_ParentJournalEntryIdIsSet = true;
-}
-
-bool JournalEntryUpdateDto::parentJournalEntryIdIsSet() const
-{
-    return m_ParentJournalEntryIdIsSet;
-}
-
-void JournalEntryUpdateDto::unsetParentJournalEntryId()
-{
-    m_ParentJournalEntryIdIsSet = false;
+    m_IsOpeningBalanceIsSet = false;
 }
 }
 }

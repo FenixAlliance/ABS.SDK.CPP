@@ -31,8 +31,12 @@ ProjectPeriodDto::ProjectPeriodDto()
     m_PeriodStartDateIsSet = false;
     m_PeriodEndDate = utility::datetime();
     m_PeriodEndDateIsSet = false;
-    m_ProjectID = utility::conversions::to_string_t("");
-    m_ProjectIDIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
+    m_TenantId = utility::conversions::to_string_t("");
+    m_TenantIdIsSet = false;
+    m_EnrollmentId = utility::conversions::to_string_t("");
+    m_EnrollmentIdIsSet = false;
 }
 
 ProjectPeriodDto::~ProjectPeriodDto()
@@ -65,9 +69,17 @@ web::json::value ProjectPeriodDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("periodEndDate"))] = ModelBase::toJson(m_PeriodEndDate);
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("projectID"))] = ModelBase::toJson(m_ProjectID);
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
+    }
+    if(m_TenantIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -117,14 +129,34 @@ bool ProjectPeriodDto::fromJson(const web::json::value& val)
             setPeriodEndDate(refVal_setPeriodEndDate);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("projectID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectID);
-            setProjectID(refVal_setProjectID);
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTenantId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
+            setTenantId(refVal_setTenantId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setEnrollmentId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
+            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     return ok;
@@ -153,9 +185,17 @@ void ProjectPeriodDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("periodEndDate")), m_PeriodEndDate));
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectID")), m_ProjectID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
+    }
+    if(m_TenantIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -192,11 +232,23 @@ bool ProjectPeriodDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("periodEndDate"))), refVal_setPeriodEndDate );
         setPeriodEndDate(refVal_setPeriodEndDate);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("projectID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
     {
-        utility::string_t refVal_setProjectID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectID"))), refVal_setProjectID );
-        setProjectID(refVal_setProjectID);
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        utility::string_t refVal_setTenantId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
+        setTenantId(refVal_setTenantId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        utility::string_t refVal_setEnrollmentId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
+        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -281,25 +333,65 @@ void ProjectPeriodDto::unsetPeriodEndDate()
 {
     m_PeriodEndDateIsSet = false;
 }
-utility::string_t ProjectPeriodDto::getProjectID() const
+utility::string_t ProjectPeriodDto::getProjectId() const
 {
-    return m_ProjectID;
+    return m_ProjectId;
 }
 
-void ProjectPeriodDto::setProjectID(const utility::string_t& value)
+void ProjectPeriodDto::setProjectId(const utility::string_t& value)
 {
-    m_ProjectID = value;
-    m_ProjectIDIsSet = true;
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
 }
 
-bool ProjectPeriodDto::projectIDIsSet() const
+bool ProjectPeriodDto::projectIdIsSet() const
 {
-    return m_ProjectIDIsSet;
+    return m_ProjectIdIsSet;
 }
 
-void ProjectPeriodDto::unsetProjectID()
+void ProjectPeriodDto::unsetProjectId()
 {
-    m_ProjectIDIsSet = false;
+    m_ProjectIdIsSet = false;
+}
+utility::string_t ProjectPeriodDto::getTenantId() const
+{
+    return m_TenantId;
+}
+
+void ProjectPeriodDto::setTenantId(const utility::string_t& value)
+{
+    m_TenantId = value;
+    m_TenantIdIsSet = true;
+}
+
+bool ProjectPeriodDto::tenantIdIsSet() const
+{
+    return m_TenantIdIsSet;
+}
+
+void ProjectPeriodDto::unsetTenantId()
+{
+    m_TenantIdIsSet = false;
+}
+utility::string_t ProjectPeriodDto::getEnrollmentId() const
+{
+    return m_EnrollmentId;
+}
+
+void ProjectPeriodDto::setEnrollmentId(const utility::string_t& value)
+{
+    m_EnrollmentId = value;
+    m_EnrollmentIdIsSet = true;
+}
+
+bool ProjectPeriodDto::enrollmentIdIsSet() const
+{
+    return m_EnrollmentIdIsSet;
+}
+
+void ProjectPeriodDto::unsetEnrollmentId()
+{
+    m_EnrollmentIdIsSet = false;
 }
 }
 }

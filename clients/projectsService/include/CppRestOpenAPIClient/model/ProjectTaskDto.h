@@ -76,6 +76,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getTitle() const;
+    bool titleIsSet() const;
+    void unsetTitle();
+
+    void setTitle(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getDescription() const;
+    bool descriptionIsSet() const;
+    void unsetDescription();
+
+    void setDescription(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::datetime getStartDate() const;
     bool startDateIsSet() const;
     void unsetStartDate();
@@ -94,20 +112,38 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getProjectID() const;
-    bool projectIDIsSet() const;
-    void unsetProjectID();
+    utility::string_t getProjectId() const;
+    bool projectIdIsSet() const;
+    void unsetProjectId();
 
-    void setProjectID(const utility::string_t& value);
+    void setProjectId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getProjectTaskBucketID() const;
-    bool projectTaskBucketIDIsSet() const;
-    void unsetProjectTaskBucketID();
+    utility::string_t getProjectTaskBucketId() const;
+    bool projectTaskBucketIdIsSet() const;
+    void unsetProjectTaskBucketId();
 
-    void setProjectTaskBucketID(const utility::string_t& value);
+    void setProjectTaskBucketId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTenantId() const;
+    bool tenantIdIsSet() const;
+    void unsetTenantId();
+
+    void setTenantId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getEnrollmentId() const;
+    bool enrollmentIdIsSet() const;
+    void unsetEnrollmentId();
+
+    void setEnrollmentId(const utility::string_t& value);
 
 
 protected:
@@ -115,14 +151,22 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
+    utility::string_t m_Title;
+    bool m_TitleIsSet;
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
     utility::datetime m_StartDate;
     bool m_StartDateIsSet;
     utility::datetime m_DueLine;
     bool m_DueLineIsSet;
-    utility::string_t m_ProjectID;
-    bool m_ProjectIDIsSet;
-    utility::string_t m_ProjectTaskBucketID;
-    bool m_ProjectTaskBucketIDIsSet;
+    utility::string_t m_ProjectId;
+    bool m_ProjectIdIsSet;
+    utility::string_t m_ProjectTaskBucketId;
+    bool m_ProjectTaskBucketIdIsSet;
+    utility::string_t m_TenantId;
+    bool m_TenantIdIsSet;
+    utility::string_t m_EnrollmentId;
+    bool m_EnrollmentIdIsSet;
 };
 
 

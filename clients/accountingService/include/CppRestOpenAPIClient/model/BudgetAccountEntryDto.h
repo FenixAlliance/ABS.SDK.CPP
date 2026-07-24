@@ -78,20 +78,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getDebit() const;
-    bool debitIsSet() const;
-    void unsetDebit();
+    utility::string_t getTenantId() const;
+    bool tenantIdIsSet() const;
+    void unsetTenantId();
 
-    void setDebit(double value);
+    void setTenantId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    double getCredit() const;
-    bool creditIsSet() const;
-    void unsetCredit();
+    utility::string_t getEnrollmentId() const;
+    bool enrollmentIdIsSet() const;
+    void unsetEnrollmentId();
 
-    void setCredit(double value);
+    void setEnrollmentId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -105,47 +105,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getForexRate() const;
-    bool forexRateIsSet() const;
-    void unsetForexRate();
+    double getPlannedAmount() const;
+    bool plannedAmountIsSet() const;
+    void unsetPlannedAmount();
 
-    void setForexRate(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getAccountId() const;
-    bool accountIdIsSet() const;
-    void unsetAccountId();
-
-    void setAccountId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getTenantId() const;
-    bool tenantIdIsSet() const;
-    void unsetTenantId();
-
-    void setTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::datetime getDate() const;
-    bool dateIsSet() const;
-    void unsetdate();
-
-    void setDate(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getEnrollmentId() const;
-    bool enrollmentIdIsSet() const;
-    void unsetEnrollmentId();
-
-    void setEnrollmentId(const utility::string_t& value);
+    void setPlannedAmount(double value);
 
     /// <summary>
     /// 
@@ -177,65 +141,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getJournalEntryId() const;
-    bool journalEntryIdIsSet() const;
-    void unsetJournalEntryId();
-
-    void setJournalEntryId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getDebitAccountName() const;
-    bool debitAccountNameIsSet() const;
-    void unsetDebitAccountName();
-
-    void setDebitAccountName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getCreditAccountName() const;
-    bool creditAccountNameIsSet() const;
-    void unsetCreditAccountName();
-
-    void setCreditAccountName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getAccountingEntryType() const;
-    bool accountingEntryTypeIsSet() const;
-    void unsetAccountingEntryType();
-
-    void setAccountingEntryType(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<Money> getDebitAmount() const;
-    bool debitAmountIsSet() const;
-    void unsetDebitAmount();
-
-    void setDebitAmount(const std::shared_ptr<Money>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<Money> getCreditAmount() const;
-    bool creditAmountIsSet() const;
-    void unsetCreditAmount();
-
-    void setCreditAmount(const std::shared_ptr<Money>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getBudgetId() const;
     bool budgetIdIsSet() const;
     void unsetBudgetId();
 
     void setBudgetId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getDate() const;
+    bool dateIsSet() const;
+    void unsetdate();
+
+    void setDate(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Money> getPlannedAmountMoney() const;
+    bool plannedAmountMoneyIsSet() const;
+    void unsetPlannedAmountMoney();
+
+    void setPlannedAmountMoney(const std::shared_ptr<Money>& value);
 
 
 protected:
@@ -243,42 +171,26 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    double m_Debit;
-    bool m_DebitIsSet;
-    double m_Credit;
-    bool m_CreditIsSet;
-    utility::string_t m_Description;
-    bool m_DescriptionIsSet;
-    double m_ForexRate;
-    bool m_ForexRateIsSet;
-    utility::string_t m_AccountId;
-    bool m_AccountIdIsSet;
     utility::string_t m_TenantId;
     bool m_TenantIdIsSet;
-    utility::datetime m_date;
-    bool m_dateIsSet;
     utility::string_t m_EnrollmentId;
     bool m_EnrollmentIdIsSet;
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
+    double m_PlannedAmount;
+    bool m_PlannedAmountIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     utility::string_t m_DebitAccountId;
     bool m_DebitAccountIdIsSet;
     utility::string_t m_CreditAccountId;
     bool m_CreditAccountIdIsSet;
-    utility::string_t m_JournalEntryId;
-    bool m_JournalEntryIdIsSet;
-    utility::string_t m_DebitAccountName;
-    bool m_DebitAccountNameIsSet;
-    utility::string_t m_CreditAccountName;
-    bool m_CreditAccountNameIsSet;
-    utility::string_t m_AccountingEntryType;
-    bool m_AccountingEntryTypeIsSet;
-    std::shared_ptr<Money> m_DebitAmount;
-    bool m_DebitAmountIsSet;
-    std::shared_ptr<Money> m_CreditAmount;
-    bool m_CreditAmountIsSet;
     utility::string_t m_BudgetId;
     bool m_BudgetIdIsSet;
+    utility::datetime m_date;
+    bool m_dateIsSet;
+    std::shared_ptr<Money> m_PlannedAmountMoney;
+    bool m_PlannedAmountMoneyIsSet;
 };
 
 

@@ -14,8 +14,8 @@ include/CppRestOpenAPIClient/ModelBase.h
 include/CppRestOpenAPIClient/MultipartFormData.h
 include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AccountGroupsApi.h
-include/CppRestOpenAPIClient/api/AccountingEntriesApi.h
 include/CppRestOpenAPIClient/api/AccountingPeriodsApi.h
+include/CppRestOpenAPIClient/api/AccountingSummaryApi.h
 include/CppRestOpenAPIClient/api/AccountsApi.h
 include/CppRestOpenAPIClient/api/BankProfilesApi.h
 include/CppRestOpenAPIClient/api/BankingApi.h
@@ -39,13 +39,13 @@ include/CppRestOpenAPIClient/api/FiscalResponsibilityRecordsApi.h
 include/CppRestOpenAPIClient/api/FiscalYearsApi.h
 include/CppRestOpenAPIClient/api/GrantsApi.h
 include/CppRestOpenAPIClient/api/InvoiceEnumerationRangesApi.h
-include/CppRestOpenAPIClient/api/JournalEntriesApi.h
 include/CppRestOpenAPIClient/api/JournalTypesApi.h
 include/CppRestOpenAPIClient/api/JournalsApi.h
 include/CppRestOpenAPIClient/api/LedgerTypesApi.h
 include/CppRestOpenAPIClient/api/LedgersApi.h
 include/CppRestOpenAPIClient/api/LoansApi.h
 include/CppRestOpenAPIClient/api/ReceiptsApi.h
+include/CppRestOpenAPIClient/api/ReportsApi.h
 include/CppRestOpenAPIClient/api/SharesApi.h
 include/CppRestOpenAPIClient/api/TaxClassesApi.h
 include/CppRestOpenAPIClient/api/TaxPoliciesApi.h
@@ -232,6 +232,7 @@ include/CppRestOpenAPIClient/model/JournalDtoEnvelope.h
 include/CppRestOpenAPIClient/model/JournalDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/JournalEntryCreateDto.h
 include/CppRestOpenAPIClient/model/JournalEntryDto.h
+include/CppRestOpenAPIClient/model/JournalEntryDtoEnvelope.h
 include/CppRestOpenAPIClient/model/JournalEntryDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/JournalEntryUpdateDto.h
 include/CppRestOpenAPIClient/model/JournalTypeCreateDto.h
@@ -280,6 +281,7 @@ include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
 include/CppRestOpenAPIClient/model/ResetPasswordRequest.h
+include/CppRestOpenAPIClient/model/ReverseJournalEntryRequest.h
 include/CppRestOpenAPIClient/model/SeedChartOfAccountsRequest.h
 include/CppRestOpenAPIClient/model/ShareClassCreateDto.h
 include/CppRestOpenAPIClient/model/ShareClassDto.h
@@ -326,6 +328,9 @@ include/CppRestOpenAPIClient/model/TransactionDto.h
 include/CppRestOpenAPIClient/model/TransactionDtoEnvelope.h
 include/CppRestOpenAPIClient/model/TransactionDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/TransactionUpdateDto.h
+include/CppRestOpenAPIClient/model/TrialBalanceDto.h
+include/CppRestOpenAPIClient/model/TrialBalanceDtoEnvelope.h
+include/CppRestOpenAPIClient/model/TrialBalanceRowDto.h
 include/CppRestOpenAPIClient/model/TwoFactorRequest.h
 include/CppRestOpenAPIClient/model/TwoFactorResponse.h
 include/CppRestOpenAPIClient/model/UpdateLedgerDto.h
@@ -339,8 +344,8 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AccountGroupsApi.cpp
-src/api/AccountingEntriesApi.cpp
 src/api/AccountingPeriodsApi.cpp
+src/api/AccountingSummaryApi.cpp
 src/api/AccountsApi.cpp
 src/api/BankProfilesApi.cpp
 src/api/BankingApi.cpp
@@ -364,13 +369,13 @@ src/api/FiscalResponsibilityRecordsApi.cpp
 src/api/FiscalYearsApi.cpp
 src/api/GrantsApi.cpp
 src/api/InvoiceEnumerationRangesApi.cpp
-src/api/JournalEntriesApi.cpp
 src/api/JournalTypesApi.cpp
 src/api/JournalsApi.cpp
 src/api/LedgerTypesApi.cpp
 src/api/LedgersApi.cpp
 src/api/LoansApi.cpp
 src/api/ReceiptsApi.cpp
+src/api/ReportsApi.cpp
 src/api/SharesApi.cpp
 src/api/TaxClassesApi.cpp
 src/api/TaxPoliciesApi.cpp
@@ -557,6 +562,7 @@ src/model/JournalDtoEnvelope.cpp
 src/model/JournalDtoIReadOnlyListEnvelope.cpp
 src/model/JournalEntryCreateDto.cpp
 src/model/JournalEntryDto.cpp
+src/model/JournalEntryDtoEnvelope.cpp
 src/model/JournalEntryDtoIReadOnlyListEnvelope.cpp
 src/model/JournalEntryUpdateDto.cpp
 src/model/JournalTypeCreateDto.cpp
@@ -605,6 +611,7 @@ src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp
 src/model/ResetPasswordRequest.cpp
+src/model/ReverseJournalEntryRequest.cpp
 src/model/SeedChartOfAccountsRequest.cpp
 src/model/ShareClassCreateDto.cpp
 src/model/ShareClassDto.cpp
@@ -651,6 +658,9 @@ src/model/TransactionDto.cpp
 src/model/TransactionDtoEnvelope.cpp
 src/model/TransactionDtoListEnvelope.cpp
 src/model/TransactionUpdateDto.cpp
+src/model/TrialBalanceDto.cpp
+src/model/TrialBalanceDtoEnvelope.cpp
+src/model/TrialBalanceRowDto.cpp
 src/model/TwoFactorRequest.cpp
 src/model/TwoFactorResponse.cpp
 src/model/UpdateLedgerDto.cpp

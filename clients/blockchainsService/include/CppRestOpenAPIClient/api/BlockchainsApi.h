@@ -26,12 +26,10 @@
 #include "CppRestOpenAPIClient/model/BlockchainBlockCreateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/BlockchainBlockDtoODataQueryOptions.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockUpdateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainCreateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/BlockchainDtoODataQueryOptions.h"
 #include "CppRestOpenAPIClient/model/BlockchainUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
@@ -152,13 +150,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="blockchainId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> getBlockchainBlocksAsync(
         utility::string_t tenantId,
         utility::string_t blockchainId,
-        boost::optional<std::shared_ptr<BlockchainBlockDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -170,13 +166,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="blockchainId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBlockchainBlocksCountAsync(
         utility::string_t tenantId,
         utility::string_t blockchainId,
-        boost::optional<std::shared_ptr<BlockchainBlockDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -203,12 +197,10 @@ public:
     /// Retrieves all blockchains for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> getBlockchainsAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<BlockchainDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -219,12 +211,10 @@ public:
     /// Returns the count of blockchains for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBlockchainsCountAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<BlockchainDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

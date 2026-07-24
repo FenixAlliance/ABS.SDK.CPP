@@ -26,6 +26,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/ProjectCreateDto.h"
 #include "CppRestOpenAPIClient/model/ProjectDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectDtoListEnvelope.h"
@@ -38,6 +39,7 @@
 #include "CppRestOpenAPIClient/model/ProjectTimeLogDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectUpdateDto.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDtoListEnvelope.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -93,7 +95,7 @@ public:
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
     /// <param name="projectTaskCreateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> createProjectTaskAsync(
+    pplx::task<std::shared_ptr<EmptyEnvelope>> createTaskForProjectAsync(
         utility::string_t projectId,
         utility::string_t tenantId,
         boost::optional<std::shared_ptr<ProjectTaskCreateDto>> projectTaskCreateDto
@@ -133,7 +135,7 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="projectId"></param>
     /// <param name="projectTaskId"></param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteProjectTaskAsync(
+    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteTaskForProjectAsync(
         utility::string_t tenantId,
         utility::string_t projectId,
         utility::string_t projectTaskId
@@ -187,42 +189,6 @@ public:
         utility::string_t tenantId
     ) const;
     /// <summary>
-    /// Retrieves project tasks
-    /// </summary>
-    /// <remarks>
-    /// Gets all tasks for a specific project with OData support.
-    /// </remarks>
-    /// <param name="projectId"></param>
-    /// <param name="tenantId"></param>
-    pplx::task<std::shared_ptr<ProjectTaskDtoListEnvelope>> getProjectTasksAsync(
-        utility::string_t projectId,
-        utility::string_t tenantId
-    ) const;
-    /// <summary>
-    /// Counts project tasks
-    /// </summary>
-    /// <remarks>
-    /// Gets the count of tasks for a specific project.
-    /// </remarks>
-    /// <param name="projectId"></param>
-    /// <param name="tenantId"></param>
-    pplx::task<std::shared_ptr<Int32Envelope>> getProjectTasksCountAsync(
-        utility::string_t projectId,
-        utility::string_t tenantId
-    ) const;
-    /// <summary>
-    /// Retrieves project time logs
-    /// </summary>
-    /// <remarks>
-    /// Gets all time log entries for a specific project with OData support.
-    /// </remarks>
-    /// <param name="projectId"></param>
-    /// <param name="tenantId"></param>
-    pplx::task<std::shared_ptr<ProjectTimeLogDtoListEnvelope>> getProjectTimeLogsAsync(
-        utility::string_t projectId,
-        utility::string_t tenantId
-    ) const;
-    /// <summary>
     /// Counts project time logs
     /// </summary>
     /// <remarks>
@@ -253,6 +219,88 @@ public:
     /// <param name="tenantId"></param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProjectsCountByTenantIdAsync(
         utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Retrieves project tasks
+    /// </summary>
+    /// <remarks>
+    /// Gets all tasks for a specific project with OData support.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="tenantId"></param>
+    pplx::task<std::shared_ptr<ProjectTaskDtoListEnvelope>> getTasksForProjectAsync(
+        utility::string_t projectId,
+        utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Counts project tasks
+    /// </summary>
+    /// <remarks>
+    /// Gets the count of tasks for a specific project.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="tenantId"></param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getTasksForProjectCountAsync(
+        utility::string_t projectId,
+        utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Retrieves project time logs
+    /// </summary>
+    /// <remarks>
+    /// Gets all time log entries for a specific project with OData support.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="tenantId"></param>
+    pplx::task<std::shared_ptr<ProjectTimeLogDtoListEnvelope>> getTimeLogsForProjectAsync(
+        utility::string_t projectId,
+        utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Patches a project
+    /// </summary>
+    /// <remarks>
+    /// Partially updates the specified project.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchProjectAsync(
+        utility::string_t projectId,
+        utility::string_t tenantId,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+    ) const;
+    /// <summary>
+    /// Patches a project period
+    /// </summary>
+    /// <remarks>
+    /// Partially updates the specified period for a project.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="projectPeriodId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchProjectPeriodAsync(
+        utility::string_t projectId,
+        utility::string_t projectPeriodId,
+        utility::string_t tenantId,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+    ) const;
+    /// <summary>
+    /// Patches a project task
+    /// </summary>
+    /// <remarks>
+    /// Partially updates the specified task in a project.
+    /// </remarks>
+    /// <param name="projectId"></param>
+    /// <param name="projectTaskId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaskForProjectAsync(
+        utility::string_t projectId,
+        utility::string_t projectTaskId,
+        utility::string_t tenantId,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
     ) const;
     /// <summary>
     /// Updates a project
@@ -294,7 +342,7 @@ public:
     /// <param name="projectTaskId"></param>
     /// <param name="tenantId"></param>
     /// <param name="projectTaskUpdateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> updateProjectTaskAsync(
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateTaskForProjectAsync(
         utility::string_t projectId,
         utility::string_t projectTaskId,
         utility::string_t tenantId,

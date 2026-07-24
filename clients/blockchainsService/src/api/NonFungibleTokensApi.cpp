@@ -422,7 +422,7 @@ pplx::task<std::shared_ptr<NonFungibleTokenDto>> NonFungibleTokensApi::getNonFun
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> NonFungibleTokensApi::getNonFungibleTokensAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<NonFungibleTokenDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> NonFungibleTokensApi::getNonFungibleTokensAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -466,10 +466,6 @@ pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> NonFungibleTokensAp
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {
@@ -560,7 +556,7 @@ pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> NonFungibleTokensAp
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> NonFungibleTokensApi::getNonFungibleTokensCountAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<NonFungibleTokenDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> NonFungibleTokensApi::getNonFungibleTokensCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -604,10 +600,6 @@ pplx::task<std::shared_ptr<Int32Envelope>> NonFungibleTokensApi::getNonFungibleT
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {

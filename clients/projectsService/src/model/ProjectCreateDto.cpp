@@ -31,6 +31,10 @@ ProjectCreateDto::ProjectCreateDto()
     m_TitleIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
+    m_IndividualId = utility::conversions::to_string_t("");
+    m_IndividualIdIsSet = false;
+    m_OrganizationId = utility::conversions::to_string_t("");
+    m_OrganizationIdIsSet = false;
     m_ProjectStartDate = utility::datetime();
     m_ProjectStartDateIsSet = false;
     m_ProjectEndDate = utility::datetime();
@@ -66,6 +70,14 @@ web::json::value ProjectCreateDto::toJson() const
     if(m_DescriptionIsSet)
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
+    }
+    if(m_IndividualIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("individualId"))] = ModelBase::toJson(m_IndividualId);
+    }
+    if(m_OrganizationIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("organizationId"))] = ModelBase::toJson(m_OrganizationId);
     }
     if(m_ProjectStartDateIsSet)
     {
@@ -123,6 +135,26 @@ bool ProjectCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("individualId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("individualId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setIndividualId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIndividualId);
+            setIndividualId(refVal_setIndividualId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("organizationId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("organizationId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setOrganizationId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setOrganizationId);
+            setOrganizationId(refVal_setOrganizationId);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("projectStartDate"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectStartDate")));
@@ -169,6 +201,14 @@ void ProjectCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
+    if(m_IndividualIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("individualId")), m_IndividualId));
+    }
+    if(m_OrganizationIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("organizationId")), m_OrganizationId));
+    }
     if(m_ProjectStartDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectStartDate")), m_ProjectStartDate));
@@ -211,6 +251,18 @@ bool ProjectCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setDescription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("individualId"))))
+    {
+        utility::string_t refVal_setIndividualId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("individualId"))), refVal_setIndividualId );
+        setIndividualId(refVal_setIndividualId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("organizationId"))))
+    {
+        utility::string_t refVal_setOrganizationId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("organizationId"))), refVal_setOrganizationId );
+        setOrganizationId(refVal_setOrganizationId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("projectStartDate"))))
     {
@@ -306,6 +358,46 @@ bool ProjectCreateDto::descriptionIsSet() const
 void ProjectCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
+}
+utility::string_t ProjectCreateDto::getIndividualId() const
+{
+    return m_IndividualId;
+}
+
+void ProjectCreateDto::setIndividualId(const utility::string_t& value)
+{
+    m_IndividualId = value;
+    m_IndividualIdIsSet = true;
+}
+
+bool ProjectCreateDto::individualIdIsSet() const
+{
+    return m_IndividualIdIsSet;
+}
+
+void ProjectCreateDto::unsetIndividualId()
+{
+    m_IndividualIdIsSet = false;
+}
+utility::string_t ProjectCreateDto::getOrganizationId() const
+{
+    return m_OrganizationId;
+}
+
+void ProjectCreateDto::setOrganizationId(const utility::string_t& value)
+{
+    m_OrganizationId = value;
+    m_OrganizationIdIsSet = true;
+}
+
+bool ProjectCreateDto::organizationIdIsSet() const
+{
+    return m_OrganizationIdIsSet;
+}
+
+void ProjectCreateDto::unsetOrganizationId()
+{
+    m_OrganizationIdIsSet = false;
 }
 utility::datetime ProjectCreateDto::getProjectStartDate() const
 {

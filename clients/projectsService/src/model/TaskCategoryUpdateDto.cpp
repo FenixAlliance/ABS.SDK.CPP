@@ -25,6 +25,8 @@ TaskCategoryUpdateDto::TaskCategoryUpdateDto()
 {
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
 }
 
 TaskCategoryUpdateDto::~TaskCategoryUpdateDto()
@@ -45,6 +47,10 @@ web::json::value TaskCategoryUpdateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
     }
+    if(m_ProjectIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
+    }
 
     return val;
 }
@@ -63,6 +69,16 @@ bool TaskCategoryUpdateDto::fromJson(const web::json::value& val)
             setTitle(refVal_setTitle);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
+        }
+    }
     return ok;
 }
 
@@ -76,6 +92,10 @@ void TaskCategoryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_TitleIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
+    }
+    if(m_ProjectIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
     }
 }
 
@@ -93,6 +113,12 @@ bool TaskCategoryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setTitle;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
+    {
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
     }
     return ok;
 }
@@ -116,6 +142,26 @@ bool TaskCategoryUpdateDto::titleIsSet() const
 void TaskCategoryUpdateDto::unsetTitle()
 {
     m_TitleIsSet = false;
+}
+utility::string_t TaskCategoryUpdateDto::getProjectId() const
+{
+    return m_ProjectId;
+}
+
+void TaskCategoryUpdateDto::setProjectId(const utility::string_t& value)
+{
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
+}
+
+bool TaskCategoryUpdateDto::projectIdIsSet() const
+{
+    return m_ProjectIdIsSet;
+}
+
+void TaskCategoryUpdateDto::unsetProjectId()
+{
+    m_ProjectIdIsSet = false;
 }
 }
 }

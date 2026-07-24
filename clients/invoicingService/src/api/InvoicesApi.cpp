@@ -4869,7 +4869,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> InvoicesApi::getInvoicesCount(utility
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DecimalEnvelope>> InvoicesApi::getPurchaseInvoicesSum(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> InvoicesApi::getPurchaseInvoicesSum(utility::string_t tenantId) const
 {
 
 
@@ -4974,7 +4974,7 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> InvoicesApi::getPurchaseInvoicesSum
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<DecimalEnvelope> localVarResult(new DecimalEnvelope());
+        std::shared_ptr<MoneyEnvelope> localVarResult(new MoneyEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -4995,7 +4995,7 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> InvoicesApi::getPurchaseInvoicesSum
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DecimalEnvelope>> InvoicesApi::getSalesInvoicesSum(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> InvoicesApi::getSalesInvoicesSum(utility::string_t tenantId) const
 {
 
 
@@ -5100,7 +5100,7 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> InvoicesApi::getSalesInvoicesSum(ut
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<DecimalEnvelope> localVarResult(new DecimalEnvelope());
+        std::shared_ptr<MoneyEnvelope> localVarResult(new MoneyEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

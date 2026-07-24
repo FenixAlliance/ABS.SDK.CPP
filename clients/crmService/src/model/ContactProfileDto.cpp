@@ -27,10 +27,12 @@ ContactProfileDto::ContactProfileDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_TenantId = utility::conversions::to_string_t("");
-    m_TenantIdIsSet = false;
     m_ContactId = utility::conversions::to_string_t("");
     m_ContactIdIsSet = false;
+    m_TenantId = utility::conversions::to_string_t("");
+    m_TenantIdIsSet = false;
+    m_Type = utility::conversions::to_string_t("");
+    m_TypeIsSet = false;
     m_EnrollmentId = utility::conversions::to_string_t("");
     m_EnrollmentIdIsSet = false;
     m_About = utility::conversions::to_string_t("");
@@ -41,6 +43,7 @@ ContactProfileDto::ContactProfileDto()
     m_SubmittedIsSet = false;
     m_AvatarUrl = utility::conversions::to_string_t("");
     m_AvatarUrlIsSet = false;
+    m_ContactIsSet = false;
     m_QualifiedName = utility::conversions::to_string_t("");
     m_QualifiedNameIsSet = false;
     m_VerificationTimestamp = utility::datetime();
@@ -109,13 +112,17 @@ web::json::value ContactProfileDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
     }
+    if(m_ContactIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("contactId"))] = ModelBase::toJson(m_ContactId);
+    }
     if(m_TenantIdIsSet)
     {
         val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
     }
-    if(m_ContactIdIsSet)
+    if(m_TypeIsSet)
     {
-        val[utility::conversions::to_string_t(U("contactId"))] = ModelBase::toJson(m_ContactId);
+        val[utility::conversions::to_string_t(U("type"))] = ModelBase::toJson(m_Type);
     }
     if(m_EnrollmentIdIsSet)
     {
@@ -136,6 +143,10 @@ web::json::value ContactProfileDto::toJson() const
     if(m_AvatarUrlIsSet)
     {
         val[utility::conversions::to_string_t(U("avatarUrl"))] = ModelBase::toJson(m_AvatarUrl);
+    }
+    if(m_ContactIsSet)
+    {
+        val[utility::conversions::to_string_t(U("contact"))] = ModelBase::toJson(m_Contact);
     }
     if(m_QualifiedNameIsSet)
     {
@@ -253,6 +264,16 @@ bool ContactProfileDto::fromJson(const web::json::value& val)
             setTimestamp(refVal_setTimestamp);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("contactId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contactId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setContactId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setContactId);
+            setContactId(refVal_setContactId);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
@@ -263,14 +284,14 @@ bool ContactProfileDto::fromJson(const web::json::value& val)
             setTenantId(refVal_setTenantId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("contactId"))))
+    if(val.has_field(utility::conversions::to_string_t(U("type"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contactId")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("type")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setContactId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setContactId);
-            setContactId(refVal_setContactId);
+            utility::string_t refVal_setType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setType);
+            setType(refVal_setType);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
@@ -321,6 +342,16 @@ bool ContactProfileDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setAvatarUrl;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAvatarUrl);
             setAvatarUrl(refVal_setAvatarUrl);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("contact"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contact")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ContactDto> refVal_setContact;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setContact);
+            setContact(refVal_setContact);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("qualifiedName"))))
@@ -561,13 +592,17 @@ void ContactProfileDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
+    if(m_ContactIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactId")), m_ContactId));
+    }
     if(m_TenantIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
-    if(m_ContactIdIsSet)
+    if(m_TypeIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contactId")), m_ContactId));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("type")), m_Type));
     }
     if(m_EnrollmentIdIsSet)
     {
@@ -588,6 +623,10 @@ void ContactProfileDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_AvatarUrlIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("avatarUrl")), m_AvatarUrl));
+    }
+    if(m_ContactIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contact")), m_Contact));
     }
     if(m_QualifiedNameIsSet)
     {
@@ -700,17 +739,23 @@ bool ContactProfileDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("contactId"))))
+    {
+        utility::string_t refVal_setContactId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactId"))), refVal_setContactId );
+        setContactId(refVal_setContactId);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
     {
         utility::string_t refVal_setTenantId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
         setTenantId(refVal_setTenantId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("contactId"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("type"))))
     {
-        utility::string_t refVal_setContactId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contactId"))), refVal_setContactId );
-        setContactId(refVal_setContactId);
+        utility::string_t refVal_setType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("type"))), refVal_setType );
+        setType(refVal_setType);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
     {
@@ -741,6 +786,12 @@ bool ContactProfileDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setAvatarUrl;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("avatarUrl"))), refVal_setAvatarUrl );
         setAvatarUrl(refVal_setAvatarUrl);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("contact"))))
+    {
+        std::shared_ptr<ContactDto> refVal_setContact;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contact"))), refVal_setContact );
+        setContact(refVal_setContact);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("qualifiedName"))))
     {
@@ -917,6 +968,26 @@ void ContactProfileDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
 }
+utility::string_t ContactProfileDto::getContactId() const
+{
+    return m_ContactId;
+}
+
+void ContactProfileDto::setContactId(const utility::string_t& value)
+{
+    m_ContactId = value;
+    m_ContactIdIsSet = true;
+}
+
+bool ContactProfileDto::contactIdIsSet() const
+{
+    return m_ContactIdIsSet;
+}
+
+void ContactProfileDto::unsetContactId()
+{
+    m_ContactIdIsSet = false;
+}
 utility::string_t ContactProfileDto::getTenantId() const
 {
     return m_TenantId;
@@ -937,25 +1008,25 @@ void ContactProfileDto::unsetTenantId()
 {
     m_TenantIdIsSet = false;
 }
-utility::string_t ContactProfileDto::getContactId() const
+utility::string_t ContactProfileDto::getType() const
 {
-    return m_ContactId;
+    return m_Type;
 }
 
-void ContactProfileDto::setContactId(const utility::string_t& value)
+void ContactProfileDto::setType(const utility::string_t& value)
 {
-    m_ContactId = value;
-    m_ContactIdIsSet = true;
+    m_Type = value;
+    m_TypeIsSet = true;
 }
 
-bool ContactProfileDto::contactIdIsSet() const
+bool ContactProfileDto::typeIsSet() const
 {
-    return m_ContactIdIsSet;
+    return m_TypeIsSet;
 }
 
-void ContactProfileDto::unsetContactId()
+void ContactProfileDto::unsetType()
 {
-    m_ContactIdIsSet = false;
+    m_TypeIsSet = false;
 }
 utility::string_t ContactProfileDto::getEnrollmentId() const
 {
@@ -1056,6 +1127,26 @@ bool ContactProfileDto::avatarUrlIsSet() const
 void ContactProfileDto::unsetAvatarUrl()
 {
     m_AvatarUrlIsSet = false;
+}
+std::shared_ptr<ContactDto> ContactProfileDto::getContact() const
+{
+    return m_Contact;
+}
+
+void ContactProfileDto::setContact(const std::shared_ptr<ContactDto>& value)
+{
+    m_Contact = value;
+    m_ContactIsSet = true;
+}
+
+bool ContactProfileDto::contactIsSet() const
+{
+    return m_ContactIsSet;
+}
+
+void ContactProfileDto::unsetContact()
+{
+    m_ContactIsSet = false;
 }
 utility::string_t ContactProfileDto::getQualifiedName() const
 {

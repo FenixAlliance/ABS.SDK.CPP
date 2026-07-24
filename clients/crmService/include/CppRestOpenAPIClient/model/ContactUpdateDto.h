@@ -193,24 +193,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getAddressLine1() const;
-    bool addressLine1IsSet() const;
-    void unsetAddressLine1();
-
-    void setAddressLine1(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getAddressLine2() const;
-    bool addressLine2IsSet() const;
-    void unsetAddressLine2();
-
-    void setAddressLine2(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getPostalCode() const;
     bool postalCodeIsSet() const;
     void unsetPostalCode();
@@ -465,10 +447,6 @@ protected:
     bool m_CountryIdIsSet;
     utility::string_t m_ParentContactId;
     bool m_ParentContactIdIsSet;
-    utility::string_t m_AddressLine1;
-    bool m_AddressLine1IsSet;
-    utility::string_t m_AddressLine2;
-    bool m_AddressLine2IsSet;
     utility::string_t m_PostalCode;
     bool m_PostalCodeIsSet;
     utility::string_t m_StateId;

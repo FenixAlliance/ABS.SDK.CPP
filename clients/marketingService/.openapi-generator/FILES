@@ -72,6 +72,11 @@ include/CppRestOpenAPIClient/model/MarketingListUpdateDto.h
 include/CppRestOpenAPIClient/model/NewsletterCreateDto.h
 include/CppRestOpenAPIClient/model/NewsletterDto.h
 include/CppRestOpenAPIClient/model/NewsletterDtoEnvelope.h
+include/CppRestOpenAPIClient/model/NewsletterSubscriptionCreateDto.h
+include/CppRestOpenAPIClient/model/NewsletterSubscriptionDto.h
+include/CppRestOpenAPIClient/model/NewsletterSubscriptionDtoEnvelope.h
+include/CppRestOpenAPIClient/model/NewsletterSubscriptionDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/NewsletterSubscriptionUpdateDto.h
 include/CppRestOpenAPIClient/model/NewsletterUpdateDto.h
 include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/OrderDto.h
@@ -160,6 +165,11 @@ src/model/MarketingListUpdateDto.cpp
 src/model/NewsletterCreateDto.cpp
 src/model/NewsletterDto.cpp
 src/model/NewsletterDtoEnvelope.cpp
+src/model/NewsletterSubscriptionCreateDto.cpp
+src/model/NewsletterSubscriptionDto.cpp
+src/model/NewsletterSubscriptionDtoEnvelope.cpp
+src/model/NewsletterSubscriptionDtoListEnvelope.cpp
+src/model/NewsletterSubscriptionUpdateDto.cpp
 src/model/NewsletterUpdateDto.cpp
 src/model/Operation.cpp
 src/model/OrderDto.cpp

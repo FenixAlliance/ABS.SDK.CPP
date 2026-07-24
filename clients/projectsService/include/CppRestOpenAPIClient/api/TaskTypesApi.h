@@ -23,10 +23,13 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/TaskTypeCreateDto.h"
 #include "CppRestOpenAPIClient/model/TaskTypeDto.h"
 #include "CppRestOpenAPIClient/model/TaskTypeUpdateDto.h"
+#include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -82,6 +85,20 @@ public:
     pplx::task<std::shared_ptr<TaskTypeDto>> getTaskTypeByIdAsync(
         utility::string_t taskTypeId,
         utility::string_t tenantId
+    ) const;
+    /// <summary>
+    /// Patches a task type
+    /// </summary>
+    /// <remarks>
+    /// Partially updates the specified task type.
+    /// </remarks>
+    /// <param name="taskTypeId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaskTypeAsync(
+        utility::string_t taskTypeId,
+        utility::string_t tenantId,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
     ) const;
     /// <summary>
     /// Updates a task type

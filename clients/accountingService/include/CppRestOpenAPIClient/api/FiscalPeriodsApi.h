@@ -53,6 +53,22 @@ public:
     virtual ~FiscalPeriodsApi();
 
     /// <summary>
+    /// Close a fiscal period
+    /// </summary>
+    /// <remarks>
+    /// Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="fiscalPeriodId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> closeFiscalPeriod(
+        utility::string_t tenantId,
+        utility::string_t fiscalPeriodId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Create a fiscal period
     /// </summary>
     /// <remarks>
@@ -139,6 +155,22 @@ public:
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         utility::string_t fiscalYearId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Open a fiscal period
+    /// </summary>
+    /// <remarks>
+    /// Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="fiscalPeriodId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> openFiscalPeriod(
+        utility::string_t tenantId,
+        utility::string_t fiscalPeriodId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

@@ -28,7 +28,12 @@
 #include "CppRestOpenAPIClient/model/ContactDto.h"
 #include "CppRestOpenAPIClient/model/ContactDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ContactEmailCreateDto.h"
+#include "CppRestOpenAPIClient/model/ContactEmailDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ContactEmailUpdateDto.h"
+#include "CppRestOpenAPIClient/model/ContactProfileCreateDto.h"
 #include "CppRestOpenAPIClient/model/ContactProfileDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ContactProfileUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ContactUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
@@ -36,6 +41,7 @@
 #include "CppRestOpenAPIClient/model/ExtendedContactDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedContactDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
+#include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WalletDtoEnvelope.h"
@@ -77,6 +83,42 @@ public:
         boost::optional<std::shared_ptr<ContactCreateDto>> contactCreateDto
     ) const;
     /// <summary>
+    /// Add an email address to a contact
+    /// </summary>
+    /// <remarks>
+    /// Creates a new email address for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactEmailCreateDto"> (optional)</param>
+    pplx::task<void> createContactEmailAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactEmailCreateDto>> contactEmailCreateDto
+    ) const;
+    /// <summary>
+    /// Create a contact profile
+    /// </summary>
+    /// <remarks>
+    /// Creates a new profile for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactProfileCreateDto"> (optional)</param>
+    pplx::task<void> createProfileForContactAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactProfileCreateDto>> contactProfileCreateDto
+    ) const;
+    /// <summary>
     /// Delete a contact
     /// </summary>
     /// <remarks>
@@ -89,6 +131,42 @@ public:
     pplx::task<std::shared_ptr<EmptyEnvelope>> deleteContactAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Delete a contact email address
+    /// </summary>
+    /// <remarks>
+    /// Deletes an email address from the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="emailId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<void> deleteContactEmailAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t emailId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Delete a contact profile
+    /// </summary>
+    /// <remarks>
+    /// Deletes a profile for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="profileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<void> deleteProfileForContactAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t profileId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -229,16 +307,32 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
-    /// Get a contact&#39;s social profiles
+    /// Get a contact&#39;s email addresses
     /// </summary>
     /// <remarks>
-    /// Get a contact&#39;s social profiles
+    /// Get all email addresses for the specified contact.
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="contactId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ContactProfileDtoListEnvelope>> getContactProfilesAsync(
+    pplx::task<std::shared_ptr<ContactEmailDtoListEnvelope>> getContactEmailsAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get contact email addresses count
+    /// </summary>
+    /// <remarks>
+    /// Returns the count of email addresses for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getContactEmailsCountAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         boost::optional<utility::string_t> apiVersion,
@@ -427,6 +521,38 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Get a contact&#39;s social profiles
+    /// </summary>
+    /// <remarks>
+    /// Get a contact&#39;s social profiles
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<ContactProfileDtoListEnvelope>> getProfilesForContactAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get contact profiles count
+    /// </summary>
+    /// <remarks>
+    /// Returns the count of profiles for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getProfilesForContactCountAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Patch a contact
     /// </summary>
     /// <remarks>
@@ -440,6 +566,26 @@ public:
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchContactAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+    ) const;
+    /// <summary>
+    /// Patch a contact email address
+    /// </summary>
+    /// <remarks>
+    /// Partially updates an existing email address for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="emailId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="operation"> (optional)</param>
+    pplx::task<void> patchContactEmailAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t emailId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::vector<std::shared_ptr<Operation>>> operation
@@ -513,6 +659,46 @@ public:
         boost::optional<std::shared_ptr<HttpContent>> avatar
     ) const;
     /// <summary>
+    /// Update a contact email address
+    /// </summary>
+    /// <remarks>
+    /// Updates an existing email address for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="emailId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactEmailUpdateDto"> (optional)</param>
+    pplx::task<void> updateContactEmailAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t emailId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactEmailUpdateDto>> contactEmailUpdateDto
+    ) const;
+    /// <summary>
+    /// Update a contact profile
+    /// </summary>
+    /// <remarks>
+    /// Updates an existing profile for the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="profileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactProfileUpdateDto"> (optional)</param>
+    pplx::task<void> updateProfileForContactAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t profileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactProfileUpdateDto>> contactProfileUpdateDto
+    ) const;
+    /// <summary>
     /// Upsert a tenant onto another tenant&#39;s contact list
     /// </summary>
     /// <remarks>
@@ -541,6 +727,24 @@ public:
     pplx::task<std::shared_ptr<ContactDtoEnvelope>> upsertUserOntoAnotherTenantContactListAsync(
         utility::string_t tenantId,
         utility::string_t relatedUserId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Verify a contact email address
+    /// </summary>
+    /// <remarks>
+    /// Marks an email address as verified on the specified contact.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="contactId"></param>
+    /// <param name="emailId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<void> verifyContactEmailAsync(
+        utility::string_t tenantId,
+        utility::string_t contactId,
+        utility::string_t emailId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

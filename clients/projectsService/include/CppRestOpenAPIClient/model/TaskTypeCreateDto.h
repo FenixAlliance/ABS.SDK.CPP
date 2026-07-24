@@ -85,11 +85,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTaskCategoryID() const;
-    bool taskCategoryIDIsSet() const;
-    void unsetTaskCategoryID();
+    utility::string_t getTaskCategoryId() const;
+    bool taskCategoryIdIsSet() const;
+    void unsetTaskCategoryId();
 
-    void setTaskCategoryID(const utility::string_t& value);
+    void setTaskCategoryId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -117,8 +117,8 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    utility::string_t m_TaskCategoryID;
-    bool m_TaskCategoryIDIsSet;
+    utility::string_t m_TaskCategoryId;
+    bool m_TaskCategoryIdIsSet;
     bool m_DisplayInTimeTracker;
     bool m_DisplayInTimeTrackerIsSet;
     bool m_RequiresDescription;

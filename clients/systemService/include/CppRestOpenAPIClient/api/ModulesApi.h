@@ -24,8 +24,8 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/ModuleListEnvelope.h"
 #include "CppRestOpenAPIClient/model/StudioModuleListEnvelope.h"
+#include "CppRestOpenAPIClient/model/SuiteModuleListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -69,7 +69,7 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ModuleListEnvelope>> getAvailableModules(
+    pplx::task<std::shared_ptr<SuiteModuleListEnvelope>> getAvailableModules(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion

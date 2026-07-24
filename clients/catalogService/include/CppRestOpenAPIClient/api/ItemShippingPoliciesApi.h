@@ -73,7 +73,7 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> getItemShippingPoliciesAsync(
+    pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> getCatalogItemShippingPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
@@ -90,7 +90,7 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> getItemShippingPolicyByIdAsync(
+    pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> getCatalogItemShippingPolicyByIdAsync(
         utility::string_t itemShippingPolicyId,
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,

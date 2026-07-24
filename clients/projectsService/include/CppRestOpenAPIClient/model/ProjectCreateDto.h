@@ -94,6 +94,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getIndividualId() const;
+    bool individualIdIsSet() const;
+    void unsetIndividualId();
+
+    void setIndividualId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getOrganizationId() const;
+    bool organizationIdIsSet() const;
+    void unsetOrganizationId();
+
+    void setOrganizationId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::datetime getProjectStartDate() const;
     bool projectStartDateIsSet() const;
     void unsetProjectStartDate();
@@ -119,6 +137,10 @@ protected:
     bool m_TitleIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
+    utility::string_t m_IndividualId;
+    bool m_IndividualIdIsSet;
+    utility::string_t m_OrganizationId;
+    bool m_OrganizationIdIsSet;
     utility::datetime m_ProjectStartDate;
     bool m_ProjectStartDateIsSet;
     utility::datetime m_ProjectEndDate;

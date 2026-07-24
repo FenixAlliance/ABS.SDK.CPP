@@ -35,6 +35,11 @@ include/CppRestOpenAPIClient/api/UnitGroupsApi.h
 include/CppRestOpenAPIClient/api/UnitsApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/BooleanEnvelope.h
+include/CppRestOpenAPIClient/model/BusinessRelationshipCreateDto.h
+include/CppRestOpenAPIClient/model/BusinessRelationshipDto.h
+include/CppRestOpenAPIClient/model/BusinessRelationshipDtoEnvelope.h
+include/CppRestOpenAPIClient/model/BusinessRelationshipDtoListEnvelope.h
+include/CppRestOpenAPIClient/model/BusinessRelationshipUpdateDto.h
 include/CppRestOpenAPIClient/model/CartDto.h
 include/CppRestOpenAPIClient/model/CartDtoEnvelope.h
 include/CppRestOpenAPIClient/model/EmptyEnvelope.h
@@ -160,7 +165,7 @@ include/CppRestOpenAPIClient/model/UnitGroupDtoEnvelope.h
 include/CppRestOpenAPIClient/model/UnitGroupDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/UnitGroupUpdateDto.h
 include/CppRestOpenAPIClient/model/UnitUpdateDto.h
-include/CppRestOpenAPIClient/model/UpdateAvatarAsync_request.h
+include/CppRestOpenAPIClient/model/UpdateTenantAvatarAsync_request.h
 include/CppRestOpenAPIClient/model/UserDto.h
 include/CppRestOpenAPIClient/model/UserDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/WalletDto.h
@@ -198,6 +203,11 @@ src/api/UnitGroupsApi.cpp
 src/api/UnitsApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/BooleanEnvelope.cpp
+src/model/BusinessRelationshipCreateDto.cpp
+src/model/BusinessRelationshipDto.cpp
+src/model/BusinessRelationshipDtoEnvelope.cpp
+src/model/BusinessRelationshipDtoListEnvelope.cpp
+src/model/BusinessRelationshipUpdateDto.cpp
 src/model/CartDto.cpp
 src/model/CartDtoEnvelope.cpp
 src/model/EmptyEnvelope.cpp
@@ -323,7 +333,7 @@ src/model/UnitGroupDtoEnvelope.cpp
 src/model/UnitGroupDtoListEnvelope.cpp
 src/model/UnitGroupUpdateDto.cpp
 src/model/UnitUpdateDto.cpp
-src/model/UpdateAvatarAsync_request.cpp
+src/model/UpdateTenantAvatarAsync_request.cpp
 src/model/UserDto.cpp
 src/model/UserDtoListEnvelope.cpp
 src/model/WalletDto.cpp

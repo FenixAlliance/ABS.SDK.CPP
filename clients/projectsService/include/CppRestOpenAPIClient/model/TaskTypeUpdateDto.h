@@ -67,6 +67,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getTaskCategoryId() const;
+    bool taskCategoryIdIsSet() const;
+    void unsetTaskCategoryId();
+
+    void setTaskCategoryId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     bool isDisplayInTimeTracker() const;
     bool displayInTimeTrackerIsSet() const;
     void unsetDisplayInTimeTracker();
@@ -86,6 +95,8 @@ public:
 protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
+    utility::string_t m_TaskCategoryId;
+    bool m_TaskCategoryIdIsSet;
     bool m_DisplayInTimeTracker;
     bool m_DisplayInTimeTrackerIsSet;
     bool m_RequiresDescription;

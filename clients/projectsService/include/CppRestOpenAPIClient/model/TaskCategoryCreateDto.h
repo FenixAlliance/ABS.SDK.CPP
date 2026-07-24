@@ -82,6 +82,15 @@ public:
 
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getProjectId() const;
+    bool projectIdIsSet() const;
+    void unsetProjectId();
+
+    void setProjectId(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -90,6 +99,8 @@ protected:
     bool m_TimestampIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
+    utility::string_t m_ProjectId;
+    bool m_ProjectIdIsSet;
 };
 
 

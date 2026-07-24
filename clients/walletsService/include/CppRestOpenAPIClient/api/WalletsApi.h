@@ -73,6 +73,22 @@ public:
     virtual ~WalletsApi();
 
     /// <summary>
+    /// Create Wallet Location
+    /// </summary>
+    /// <remarks>
+    /// Create a new location for a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="locationCreateDto"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> createLocationForWalletAsync(
+        utility::string_t walletId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocationCreateDto>> locationCreateDto
+    ) const;
+    /// <summary>
     /// Create Wallet Bank Account
     /// </summary>
     /// <remarks>
@@ -87,22 +103,6 @@ public:
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::shared_ptr<BankAccountCreateDto>> bankAccountCreateDto
-    ) const;
-    /// <summary>
-    /// Create Wallet Location
-    /// </summary>
-    /// <remarks>
-    /// Create a new location for a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="locationCreateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> createWalletLocationAsync(
-        utility::string_t walletId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::shared_ptr<LocationCreateDto>> locationCreateDto
     ) const;
     /// <summary>
     /// Create Wallet Payment
@@ -153,6 +153,22 @@ public:
         boost::optional<std::shared_ptr<WalletWithdrawRequestCreateDto>> walletWithdrawRequestCreateDto
     ) const;
     /// <summary>
+    /// Delete Wallet Location
+    /// </summary>
+    /// <remarks>
+    /// Delete a specific location of a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="locationId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteLocationForWalletAsync(
+        utility::string_t walletId,
+        utility::string_t locationId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Delete Wallet Bank Account
     /// </summary>
     /// <remarks>
@@ -165,22 +181,6 @@ public:
     pplx::task<std::shared_ptr<EmptyEnvelope>> deleteWalletBankAccountAsync(
         utility::string_t walletId,
         utility::string_t bankAccountId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Delete Wallet Location
-    /// </summary>
-    /// <remarks>
-    /// Delete a specific location of a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="locationId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteWalletLocationAsync(
-        utility::string_t walletId,
-        utility::string_t locationId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -252,6 +252,50 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getIncomingWalletInvoicesCountAsync(
+        utility::string_t walletId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get Wallet Location
+    /// </summary>
+    /// <remarks>
+    /// Get a specific location of a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="locationId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<LocationDtoEnvelope>> getLocationForWalletAsync(
+        utility::string_t walletId,
+        utility::string_t locationId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get Wallet Locations
+    /// </summary>
+    /// <remarks>
+    /// Get locations of a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<LocationDtoListEnvelope>> getLocationsForWalletAsync(
+        utility::string_t walletId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get Wallet Locations Count
+    /// </summary>
+    /// <remarks>
+    /// Get locations count of a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getLocationsForWalletCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
@@ -436,50 +480,6 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletInvoicesCountAsync(
-        utility::string_t walletId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Get Wallet Location
-    /// </summary>
-    /// <remarks>
-    /// Get a specific location of a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="locationId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<LocationDtoEnvelope>> getWalletLocationAsync(
-        utility::string_t walletId,
-        utility::string_t locationId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Get Wallet Locations
-    /// </summary>
-    /// <remarks>
-    /// Get locations of a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<LocationDtoListEnvelope>> getWalletLocationsAsync(
-        utility::string_t walletId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Get Wallet Locations Count
-    /// </summary>
-    /// <remarks>
-    /// Get locations count of a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<Int32Envelope>> getWalletLocationsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
@@ -733,6 +733,24 @@ public:
         boost::optional<std::vector<std::shared_ptr<Operation>>> operation
     ) const;
     /// <summary>
+    /// Update Wallet Location
+    /// </summary>
+    /// <remarks>
+    /// Update a specific location of a specific wallet by ID.
+    /// </remarks>
+    /// <param name="walletId"></param>
+    /// <param name="locationId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="locationUpdateDto"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateLocationForWalletAsync(
+        utility::string_t walletId,
+        utility::string_t locationId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocationUpdateDto>> locationUpdateDto
+    ) const;
+    /// <summary>
     /// Update Wallet Bank Account
     /// </summary>
     /// <remarks>
@@ -749,24 +767,6 @@ public:
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::shared_ptr<BankAccountUpdateDto>> bankAccountUpdateDto
-    ) const;
-    /// <summary>
-    /// Update Wallet Location
-    /// </summary>
-    /// <remarks>
-    /// Update a specific location of a specific wallet by ID.
-    /// </remarks>
-    /// <param name="walletId"></param>
-    /// <param name="locationId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="locationUpdateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> updateWalletLocationAsync(
-        utility::string_t walletId,
-        utility::string_t locationId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::shared_ptr<LocationUpdateDto>> locationUpdateDto
     ) const;
     /// <summary>
     /// Update Wallet Token

@@ -29,20 +29,14 @@ BudgetAccountEntryCreateDto::BudgetAccountEntryCreateDto()
     m_TimestampIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
-    m_date = utility::datetime();
-    m_dateIsSet = false;
-    m_Amount = 0.0;
-    m_AmountIsSet = false;
+    m_PlannedAmount = 0.0;
+    m_PlannedAmountIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
     m_DebitAccountId = utility::conversions::to_string_t("");
     m_DebitAccountIdIsSet = false;
     m_CreditAccountId = utility::conversions::to_string_t("");
     m_CreditAccountIdIsSet = false;
-    m_JournalEntryId = utility::conversions::to_string_t("");
-    m_JournalEntryIdIsSet = false;
-    m_AccountingEntryType = utility::conversions::to_string_t("");
-    m_AccountingEntryTypeIsSet = false;
     m_BudgetId = utility::conversions::to_string_t("");
     m_BudgetIdIsSet = false;
 }
@@ -73,13 +67,9 @@ web::json::value BudgetAccountEntryCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
-    if(m_dateIsSet)
+    if(m_PlannedAmountIsSet)
     {
-        val[utility::conversions::to_string_t(U("date"))] = ModelBase::toJson(m_date);
-    }
-    if(m_AmountIsSet)
-    {
-        val[utility::conversions::to_string_t(U("amount"))] = ModelBase::toJson(m_Amount);
+        val[utility::conversions::to_string_t(U("plannedAmount"))] = ModelBase::toJson(m_PlannedAmount);
     }
     if(m_CurrencyIdIsSet)
     {
@@ -92,14 +82,6 @@ web::json::value BudgetAccountEntryCreateDto::toJson() const
     if(m_CreditAccountIdIsSet)
     {
         val[utility::conversions::to_string_t(U("creditAccountId"))] = ModelBase::toJson(m_CreditAccountId);
-    }
-    if(m_JournalEntryIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("journalEntryId"))] = ModelBase::toJson(m_JournalEntryId);
-    }
-    if(m_AccountingEntryTypeIsSet)
-    {
-        val[utility::conversions::to_string_t(U("accountingEntryType"))] = ModelBase::toJson(m_AccountingEntryType);
     }
     if(m_BudgetIdIsSet)
     {
@@ -143,24 +125,14 @@ bool BudgetAccountEntryCreateDto::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("date"))))
+    if(val.has_field(utility::conversions::to_string_t(U("plannedAmount"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("date")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("plannedAmount")));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_setDate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDate);
-            setDate(refVal_setDate);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("amount"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("amount")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setAmount;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
-            setAmount(refVal_setAmount);
+            double refVal_setPlannedAmount;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPlannedAmount);
+            setPlannedAmount(refVal_setPlannedAmount);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
@@ -191,26 +163,6 @@ bool BudgetAccountEntryCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setCreditAccountId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreditAccountId);
             setCreditAccountId(refVal_setCreditAccountId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("journalEntryId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("journalEntryId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setJournalEntryId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setJournalEntryId);
-            setJournalEntryId(refVal_setJournalEntryId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("accountingEntryType"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountingEntryType")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setAccountingEntryType;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountingEntryType);
-            setAccountingEntryType(refVal_setAccountingEntryType);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("budgetId"))))
@@ -245,13 +197,9 @@ void BudgetAccountEntryCreateDto::toMultipart(std::shared_ptr<MultipartFormData>
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
-    if(m_dateIsSet)
+    if(m_PlannedAmountIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("date")), m_date));
-    }
-    if(m_AmountIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("amount")), m_Amount));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("plannedAmount")), m_PlannedAmount));
     }
     if(m_CurrencyIdIsSet)
     {
@@ -264,14 +212,6 @@ void BudgetAccountEntryCreateDto::toMultipart(std::shared_ptr<MultipartFormData>
     if(m_CreditAccountIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("creditAccountId")), m_CreditAccountId));
-    }
-    if(m_JournalEntryIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("journalEntryId")), m_JournalEntryId));
-    }
-    if(m_AccountingEntryTypeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountingEntryType")), m_AccountingEntryType));
     }
     if(m_BudgetIdIsSet)
     {
@@ -306,17 +246,11 @@ bool BudgetAccountEntryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("date"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("plannedAmount"))))
     {
-        utility::datetime refVal_setDate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("date"))), refVal_setDate );
-        setDate(refVal_setDate);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("amount"))))
-    {
-        double refVal_setAmount;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("amount"))), refVal_setAmount );
-        setAmount(refVal_setAmount);
+        double refVal_setPlannedAmount;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("plannedAmount"))), refVal_setPlannedAmount );
+        setPlannedAmount(refVal_setPlannedAmount);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
     {
@@ -335,18 +269,6 @@ bool BudgetAccountEntryCreateDto::fromMultiPart(std::shared_ptr<MultipartFormDat
         utility::string_t refVal_setCreditAccountId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("creditAccountId"))), refVal_setCreditAccountId );
         setCreditAccountId(refVal_setCreditAccountId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("journalEntryId"))))
-    {
-        utility::string_t refVal_setJournalEntryId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("journalEntryId"))), refVal_setJournalEntryId );
-        setJournalEntryId(refVal_setJournalEntryId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountingEntryType"))))
-    {
-        utility::string_t refVal_setAccountingEntryType;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountingEntryType"))), refVal_setAccountingEntryType );
-        setAccountingEntryType(refVal_setAccountingEntryType);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("budgetId"))))
     {
@@ -417,45 +339,25 @@ void BudgetAccountEntryCreateDto::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::datetime BudgetAccountEntryCreateDto::getDate() const
+double BudgetAccountEntryCreateDto::getPlannedAmount() const
 {
-    return m_date;
+    return m_PlannedAmount;
 }
 
-void BudgetAccountEntryCreateDto::setDate(const utility::datetime& value)
+void BudgetAccountEntryCreateDto::setPlannedAmount(double value)
 {
-    m_date = value;
-    m_dateIsSet = true;
+    m_PlannedAmount = value;
+    m_PlannedAmountIsSet = true;
 }
 
-bool BudgetAccountEntryCreateDto::dateIsSet() const
+bool BudgetAccountEntryCreateDto::plannedAmountIsSet() const
 {
-    return m_dateIsSet;
+    return m_PlannedAmountIsSet;
 }
 
-void BudgetAccountEntryCreateDto::unsetdate()
+void BudgetAccountEntryCreateDto::unsetPlannedAmount()
 {
-    m_dateIsSet = false;
-}
-double BudgetAccountEntryCreateDto::getAmount() const
-{
-    return m_Amount;
-}
-
-void BudgetAccountEntryCreateDto::setAmount(double value)
-{
-    m_Amount = value;
-    m_AmountIsSet = true;
-}
-
-bool BudgetAccountEntryCreateDto::amountIsSet() const
-{
-    return m_AmountIsSet;
-}
-
-void BudgetAccountEntryCreateDto::unsetAmount()
-{
-    m_AmountIsSet = false;
+    m_PlannedAmountIsSet = false;
 }
 utility::string_t BudgetAccountEntryCreateDto::getCurrencyId() const
 {
@@ -516,46 +418,6 @@ bool BudgetAccountEntryCreateDto::creditAccountIdIsSet() const
 void BudgetAccountEntryCreateDto::unsetCreditAccountId()
 {
     m_CreditAccountIdIsSet = false;
-}
-utility::string_t BudgetAccountEntryCreateDto::getJournalEntryId() const
-{
-    return m_JournalEntryId;
-}
-
-void BudgetAccountEntryCreateDto::setJournalEntryId(const utility::string_t& value)
-{
-    m_JournalEntryId = value;
-    m_JournalEntryIdIsSet = true;
-}
-
-bool BudgetAccountEntryCreateDto::journalEntryIdIsSet() const
-{
-    return m_JournalEntryIdIsSet;
-}
-
-void BudgetAccountEntryCreateDto::unsetJournalEntryId()
-{
-    m_JournalEntryIdIsSet = false;
-}
-utility::string_t BudgetAccountEntryCreateDto::getAccountingEntryType() const
-{
-    return m_AccountingEntryType;
-}
-
-void BudgetAccountEntryCreateDto::setAccountingEntryType(const utility::string_t& value)
-{
-    m_AccountingEntryType = value;
-    m_AccountingEntryTypeIsSet = true;
-}
-
-bool BudgetAccountEntryCreateDto::accountingEntryTypeIsSet() const
-{
-    return m_AccountingEntryTypeIsSet;
-}
-
-void BudgetAccountEntryCreateDto::unsetAccountingEntryType()
-{
-    m_AccountingEntryTypeIsSet = false;
 }
 utility::string_t BudgetAccountEntryCreateDto::getBudgetId() const
 {

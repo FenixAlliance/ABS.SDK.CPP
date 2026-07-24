@@ -29,7 +29,6 @@
 #include "CppRestOpenAPIClient/model/WebsiteThemeCreateDto.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeDto.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/WebsiteThemeDtoODataQueryOptions.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeUpdateDto.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -107,12 +106,10 @@ public:
     /// Retrieves all website themes for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> getWebsiteThemesAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<WebsiteThemeDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -123,12 +120,10 @@ public:
     /// Returns the count of website themes for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
-    /// <param name="oDataQueryOptions"> (optional, default to nullptr)</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWebsiteThemesCountAsync(
         utility::string_t tenantId,
-        boost::optional<std::shared_ptr<WebsiteThemeDtoODataQueryOptions>> oDataQueryOptions,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

@@ -672,7 +672,7 @@ pplx::task<std::shared_ptr<BlockchainBlockDto>> BlockchainsApi::getBlockchainBlo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> BlockchainsApi::getBlockchainBlocksAsync(utility::string_t tenantId, utility::string_t blockchainId, boost::optional<std::shared_ptr<BlockchainBlockDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> BlockchainsApi::getBlockchainBlocksAsync(utility::string_t tenantId, utility::string_t blockchainId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -717,10 +717,6 @@ pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> BlockchainsApi::getB
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {
@@ -811,7 +807,7 @@ pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> BlockchainsApi::getB
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainBlocksCountAsync(utility::string_t tenantId, utility::string_t blockchainId, boost::optional<std::shared_ptr<BlockchainBlockDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainBlocksCountAsync(utility::string_t tenantId, utility::string_t blockchainId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -856,10 +852,6 @@ pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainBlocksCo
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {
@@ -1085,7 +1077,7 @@ pplx::task<std::shared_ptr<BlockchainDto>> BlockchainsApi::getBlockchainByIdAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> BlockchainsApi::getBlockchainsAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<BlockchainDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> BlockchainsApi::getBlockchainsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -1129,10 +1121,6 @@ pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> BlockchainsApi::getBlockc
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {
@@ -1223,7 +1211,7 @@ pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> BlockchainsApi::getBlockc
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainsCountAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<BlockchainDtoODataQueryOptions>> oDataQueryOptions, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -1267,10 +1255,6 @@ pplx::task<std::shared_ptr<Int32Envelope>> BlockchainsApi::getBlockchainsCountAs
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
-    }
-    if (oDataQueryOptions && *oDataQueryOptions != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("oDataQueryOptions")] = ApiClient::parameterToString(*oDataQueryOptions);
     }
     if (apiVersion)
     {

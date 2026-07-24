@@ -58,6 +58,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getTitle() const;
+    bool titleIsSet() const;
+    void unsetTitle();
+
+    void setTitle(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getDescription() const;
+    bool descriptionIsSet() const;
+    void unsetDescription();
+
+    void setDescription(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::datetime getStartDate() const;
     bool startDateIsSet() const;
     void unsetStartDate();
@@ -75,6 +93,10 @@ public:
 
 
 protected:
+    utility::string_t m_Title;
+    bool m_TitleIsSet;
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
     utility::datetime m_StartDate;
     bool m_StartDateIsSet;
     utility::datetime m_DueLine;

@@ -22,6 +22,7 @@
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
+#include "CppRestOpenAPIClient/model/ContactDto.h"
 #include <cpprest/details/basic_types.h>
 
 namespace org {
@@ -29,6 +30,7 @@ namespace openapitools {
 namespace client {
 namespace model {
 
+class ContactDto;
 
 
 /// <summary>
@@ -76,6 +78,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getContactId() const;
+    bool contactIdIsSet() const;
+    void unsetContactId();
+
+    void setContactId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTenantId() const;
     bool tenantIdIsSet() const;
     void unsetTenantId();
@@ -85,11 +96,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getContactId() const;
-    bool contactIdIsSet() const;
-    void unsetContactId();
+    utility::string_t getType() const;
+    bool typeIsSet() const;
+    void unsetType();
 
-    void setContactId(const utility::string_t& value);
+    void setType(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -135,6 +146,15 @@ public:
     void unsetAvatarUrl();
 
     void setAvatarUrl(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ContactDto> getContact() const;
+    bool contactIsSet() const;
+    void unsetContact();
+
+    void setContact(const std::shared_ptr<ContactDto>& value);
 
     /// <summary>
     /// 
@@ -340,10 +360,12 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    utility::string_t m_TenantId;
-    bool m_TenantIdIsSet;
     utility::string_t m_ContactId;
     bool m_ContactIdIsSet;
+    utility::string_t m_TenantId;
+    bool m_TenantIdIsSet;
+    utility::string_t m_Type;
+    bool m_TypeIsSet;
     utility::string_t m_EnrollmentId;
     bool m_EnrollmentIdIsSet;
     utility::string_t m_About;
@@ -354,6 +376,8 @@ protected:
     bool m_SubmittedIsSet;
     utility::string_t m_AvatarUrl;
     bool m_AvatarUrlIsSet;
+    std::shared_ptr<ContactDto> m_Contact;
+    bool m_ContactIsSet;
     utility::string_t m_QualifiedName;
     bool m_QualifiedNameIsSet;
     utility::datetime m_VerificationTimestamp;

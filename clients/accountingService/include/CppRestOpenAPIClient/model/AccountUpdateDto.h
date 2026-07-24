@@ -154,6 +154,33 @@ public:
 
     void setAccountCategory(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isIsContra() const;
+    bool isContraIsSet() const;
+    void unsetIsContra();
+
+    void setIsContra(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isIsMonetary() const;
+    bool isMonetaryIsSet() const;
+    void unsetIsMonetary();
+
+    void setIsMonetary(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getIncomeStatementSubType() const;
+    bool incomeStatementSubTypeIsSet() const;
+    void unsetIncomeStatementSubType();
+
+    void setIncomeStatementSubType(const utility::string_t& value);
+
 
 protected:
     bool m_Group;
@@ -178,6 +205,12 @@ protected:
     bool m_ParentAccountIdIsSet;
     utility::string_t m_AccountCategory;
     bool m_AccountCategoryIsSet;
+    bool m_IsContra;
+    bool m_IsContraIsSet;
+    bool m_IsMonetary;
+    bool m_IsMonetaryIsSet;
+    utility::string_t m_IncomeStatementSubType;
+    bool m_IncomeStatementSubTypeIsSet;
 };
 
 

@@ -17,7 +17,6 @@ include/CppRestOpenAPIClient/api/FenixAllianceABSWebApi.h
 include/CppRestOpenAPIClient/api/InvoicesApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/CurrencyId.h
-include/CppRestOpenAPIClient/model/DecimalEnvelope.h
 include/CppRestOpenAPIClient/model/EmailDispatchRequest.h
 include/CppRestOpenAPIClient/model/EmptyEnvelope.h
 include/CppRestOpenAPIClient/model/Envelope.h
@@ -83,7 +82,6 @@ src/api/FenixAllianceABSWebApi.cpp
 src/api/InvoicesApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/CurrencyId.cpp
-src/model/DecimalEnvelope.cpp
 src/model/EmailDispatchRequest.cpp
 src/model/EmptyEnvelope.cpp
 src/model/Envelope.cpp

@@ -75,6 +75,14 @@ AccountDto::AccountDto()
     m_ChildrenAccountsCountIsSet = false;
     m_AccountCategory = utility::conversions::to_string_t("");
     m_AccountCategoryIsSet = false;
+    m_IsContra = false;
+    m_IsContraIsSet = false;
+    m_IsMonetary = false;
+    m_IsMonetaryIsSet = false;
+    m_IncomeStatementSubType = utility::conversions::to_string_t("");
+    m_IncomeStatementSubTypeIsSet = false;
+    m_NormalBalance = utility::conversions::to_string_t("");
+    m_NormalBalanceIsSet = false;
     m_BalanceAmountIsSet = false;
     m_CreditsBalanceAmountIsSet = false;
     m_DebitsBalanceAmountIsSet = false;
@@ -200,6 +208,22 @@ web::json::value AccountDto::toJson() const
     if(m_AccountCategoryIsSet)
     {
         val[utility::conversions::to_string_t(U("accountCategory"))] = ModelBase::toJson(m_AccountCategory);
+    }
+    if(m_IsContraIsSet)
+    {
+        val[utility::conversions::to_string_t(U("isContra"))] = ModelBase::toJson(m_IsContra);
+    }
+    if(m_IsMonetaryIsSet)
+    {
+        val[utility::conversions::to_string_t(U("isMonetary"))] = ModelBase::toJson(m_IsMonetary);
+    }
+    if(m_IncomeStatementSubTypeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("incomeStatementSubType"))] = ModelBase::toJson(m_IncomeStatementSubType);
+    }
+    if(m_NormalBalanceIsSet)
+    {
+        val[utility::conversions::to_string_t(U("normalBalance"))] = ModelBase::toJson(m_NormalBalance);
     }
     if(m_BalanceAmountIsSet)
     {
@@ -493,6 +517,46 @@ bool AccountDto::fromJson(const web::json::value& val)
             setAccountCategory(refVal_setAccountCategory);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("isContra"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("isContra")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setIsContra;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsContra);
+            setIsContra(refVal_setIsContra);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("isMonetary"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("isMonetary")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setIsMonetary;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsMonetary);
+            setIsMonetary(refVal_setIsMonetary);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("incomeStatementSubType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("incomeStatementSubType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setIncomeStatementSubType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIncomeStatementSubType);
+            setIncomeStatementSubType(refVal_setIncomeStatementSubType);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("normalBalance"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("normalBalance")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setNormalBalance;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setNormalBalance);
+            setNormalBalance(refVal_setNormalBalance);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("balanceAmount"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("balanceAmount")));
@@ -666,6 +730,22 @@ void AccountDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_AccountCategoryIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountCategory")), m_AccountCategory));
+    }
+    if(m_IsContraIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isContra")), m_IsContra));
+    }
+    if(m_IsMonetaryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isMonetary")), m_IsMonetary));
+    }
+    if(m_IncomeStatementSubTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("incomeStatementSubType")), m_IncomeStatementSubType));
+    }
+    if(m_NormalBalanceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("normalBalance")), m_NormalBalance));
     }
     if(m_BalanceAmountIsSet)
     {
@@ -857,6 +937,30 @@ bool AccountDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         utility::string_t refVal_setAccountCategory;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountCategory"))), refVal_setAccountCategory );
         setAccountCategory(refVal_setAccountCategory);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("isContra"))))
+    {
+        bool refVal_setIsContra;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isContra"))), refVal_setIsContra );
+        setIsContra(refVal_setIsContra);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("isMonetary"))))
+    {
+        bool refVal_setIsMonetary;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isMonetary"))), refVal_setIsMonetary );
+        setIsMonetary(refVal_setIsMonetary);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("incomeStatementSubType"))))
+    {
+        utility::string_t refVal_setIncomeStatementSubType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("incomeStatementSubType"))), refVal_setIncomeStatementSubType );
+        setIncomeStatementSubType(refVal_setIncomeStatementSubType);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("normalBalance"))))
+    {
+        utility::string_t refVal_setNormalBalance;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("normalBalance"))), refVal_setNormalBalance );
+        setNormalBalance(refVal_setNormalBalance);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("balanceAmount"))))
     {
@@ -1416,6 +1520,86 @@ bool AccountDto::accountCategoryIsSet() const
 void AccountDto::unsetAccountCategory()
 {
     m_AccountCategoryIsSet = false;
+}
+bool AccountDto::isIsContra() const
+{
+    return m_IsContra;
+}
+
+void AccountDto::setIsContra(bool value)
+{
+    m_IsContra = value;
+    m_IsContraIsSet = true;
+}
+
+bool AccountDto::isContraIsSet() const
+{
+    return m_IsContraIsSet;
+}
+
+void AccountDto::unsetIsContra()
+{
+    m_IsContraIsSet = false;
+}
+bool AccountDto::isIsMonetary() const
+{
+    return m_IsMonetary;
+}
+
+void AccountDto::setIsMonetary(bool value)
+{
+    m_IsMonetary = value;
+    m_IsMonetaryIsSet = true;
+}
+
+bool AccountDto::isMonetaryIsSet() const
+{
+    return m_IsMonetaryIsSet;
+}
+
+void AccountDto::unsetIsMonetary()
+{
+    m_IsMonetaryIsSet = false;
+}
+utility::string_t AccountDto::getIncomeStatementSubType() const
+{
+    return m_IncomeStatementSubType;
+}
+
+void AccountDto::setIncomeStatementSubType(const utility::string_t& value)
+{
+    m_IncomeStatementSubType = value;
+    m_IncomeStatementSubTypeIsSet = true;
+}
+
+bool AccountDto::incomeStatementSubTypeIsSet() const
+{
+    return m_IncomeStatementSubTypeIsSet;
+}
+
+void AccountDto::unsetIncomeStatementSubType()
+{
+    m_IncomeStatementSubTypeIsSet = false;
+}
+utility::string_t AccountDto::getNormalBalance() const
+{
+    return m_NormalBalance;
+}
+
+void AccountDto::setNormalBalance(const utility::string_t& value)
+{
+    m_NormalBalance = value;
+    m_NormalBalanceIsSet = true;
+}
+
+bool AccountDto::normalBalanceIsSet() const
+{
+    return m_NormalBalanceIsSet;
+}
+
+void AccountDto::unsetNormalBalance()
+{
+    m_NormalBalanceIsSet = false;
 }
 std::shared_ptr<Money> AccountDto::getBalanceAmount() const
 {

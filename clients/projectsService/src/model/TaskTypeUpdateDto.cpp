@@ -25,6 +25,8 @@ TaskTypeUpdateDto::TaskTypeUpdateDto()
 {
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_TaskCategoryId = utility::conversions::to_string_t("");
+    m_TaskCategoryIdIsSet = false;
     m_DisplayInTimeTracker = false;
     m_DisplayInTimeTrackerIsSet = false;
     m_RequiresDescription = false;
@@ -48,6 +50,10 @@ web::json::value TaskTypeUpdateDto::toJson() const
     if(m_TitleIsSet)
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
+    }
+    if(m_TaskCategoryIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("taskCategoryId"))] = ModelBase::toJson(m_TaskCategoryId);
     }
     if(m_DisplayInTimeTrackerIsSet)
     {
@@ -73,6 +79,16 @@ bool TaskTypeUpdateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setTitle;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
             setTitle(refVal_setTitle);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("taskCategoryId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("taskCategoryId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTaskCategoryId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTaskCategoryId);
+            setTaskCategoryId(refVal_setTaskCategoryId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("displayInTimeTracker"))))
@@ -109,6 +125,10 @@ void TaskTypeUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
     }
+    if(m_TaskCategoryIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taskCategoryId")), m_TaskCategoryId));
+    }
     if(m_DisplayInTimeTrackerIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("displayInTimeTracker")), m_DisplayInTimeTracker));
@@ -133,6 +153,12 @@ bool TaskTypeUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setTitle;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("taskCategoryId"))))
+    {
+        utility::string_t refVal_setTaskCategoryId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taskCategoryId"))), refVal_setTaskCategoryId );
+        setTaskCategoryId(refVal_setTaskCategoryId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("displayInTimeTracker"))))
     {
@@ -168,6 +194,26 @@ bool TaskTypeUpdateDto::titleIsSet() const
 void TaskTypeUpdateDto::unsetTitle()
 {
     m_TitleIsSet = false;
+}
+utility::string_t TaskTypeUpdateDto::getTaskCategoryId() const
+{
+    return m_TaskCategoryId;
+}
+
+void TaskTypeUpdateDto::setTaskCategoryId(const utility::string_t& value)
+{
+    m_TaskCategoryId = value;
+    m_TaskCategoryIdIsSet = true;
+}
+
+bool TaskTypeUpdateDto::taskCategoryIdIsSet() const
+{
+    return m_TaskCategoryIdIsSet;
+}
+
+void TaskTypeUpdateDto::unsetTaskCategoryId()
+{
+    m_TaskCategoryIdIsSet = false;
 }
 bool TaskTypeUpdateDto::isDisplayInTimeTracker() const
 {

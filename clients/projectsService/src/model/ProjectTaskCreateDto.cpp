@@ -35,8 +35,8 @@ ProjectTaskCreateDto::ProjectTaskCreateDto()
     m_StartDateIsSet = false;
     m_DueLine = utility::datetime();
     m_DueLineIsSet = false;
-    m_ProjectID = utility::conversions::to_string_t("");
-    m_ProjectIDIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
 }
 
 ProjectTaskCreateDto::~ProjectTaskCreateDto()
@@ -77,9 +77,9 @@ web::json::value ProjectTaskCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("dueLine"))] = ModelBase::toJson(m_DueLine);
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("projectID"))] = ModelBase::toJson(m_ProjectID);
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
     }
 
     return val;
@@ -149,14 +149,14 @@ bool ProjectTaskCreateDto::fromJson(const web::json::value& val)
             setDueLine(refVal_setDueLine);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("projectID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectID);
-            setProjectID(refVal_setProjectID);
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
         }
     }
     return ok;
@@ -193,9 +193,9 @@ void ProjectTaskCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dueLine")), m_DueLine));
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectID")), m_ProjectID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
     }
 }
 
@@ -244,11 +244,11 @@ bool ProjectTaskCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dueLine"))), refVal_setDueLine );
         setDueLine(refVal_setDueLine);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("projectID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
     {
-        utility::string_t refVal_setProjectID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectID"))), refVal_setProjectID );
-        setProjectID(refVal_setProjectID);
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
     }
     return ok;
 }
@@ -373,25 +373,25 @@ void ProjectTaskCreateDto::unsetDueLine()
 {
     m_DueLineIsSet = false;
 }
-utility::string_t ProjectTaskCreateDto::getProjectID() const
+utility::string_t ProjectTaskCreateDto::getProjectId() const
 {
-    return m_ProjectID;
+    return m_ProjectId;
 }
 
-void ProjectTaskCreateDto::setProjectID(const utility::string_t& value)
+void ProjectTaskCreateDto::setProjectId(const utility::string_t& value)
 {
-    m_ProjectID = value;
-    m_ProjectIDIsSet = true;
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
 }
 
-bool ProjectTaskCreateDto::projectIDIsSet() const
+bool ProjectTaskCreateDto::projectIdIsSet() const
 {
-    return m_ProjectIDIsSet;
+    return m_ProjectIdIsSet;
 }
 
-void ProjectTaskCreateDto::unsetProjectID()
+void ProjectTaskCreateDto::unsetProjectId()
 {
-    m_ProjectIDIsSet = false;
+    m_ProjectIdIsSet = false;
 }
 }
 }

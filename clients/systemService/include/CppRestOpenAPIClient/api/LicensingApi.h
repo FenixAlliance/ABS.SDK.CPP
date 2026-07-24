@@ -51,6 +51,38 @@ public:
     virtual ~LicensingApi();
 
     /// <summary>
+    /// Retrieve license attributes
+    /// </summary>
+    /// <remarks>
+    /// Retrieves all additional attributes for a given license.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="licenseId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> getAttributesForLicenseAsync(
+        utility::string_t tenantId,
+        utility::string_t licenseId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Retrieve license features
+    /// </summary>
+    /// <remarks>
+    /// Retrieves all features for a given license.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="licenseId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> getFeaturesForLicenseAsync(
+        utility::string_t tenantId,
+        utility::string_t licenseId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Retrieve license assignments
     /// </summary>
     /// <remarks>
@@ -67,22 +99,6 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
-    /// Retrieve license attributes
-    /// </summary>
-    /// <remarks>
-    /// Retrieves all additional attributes for a given license.
-    /// </remarks>
-    /// <param name="tenantId"></param>
-    /// <param name="licenseId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> getLicenseAttributesAsync(
-        utility::string_t tenantId,
-        utility::string_t licenseId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
     /// Retrieve a license by ID
     /// </summary>
     /// <remarks>
@@ -93,22 +109,6 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<SuiteLicenseDtoEnvelope>> getLicenseByIdAsync(
-        utility::string_t tenantId,
-        utility::string_t licenseId,
-        boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
-    ) const;
-    /// <summary>
-    /// Retrieve license features
-    /// </summary>
-    /// <remarks>
-    /// Retrieves all features for a given license.
-    /// </remarks>
-    /// <param name="tenantId"></param>
-    /// <param name="licenseId"></param>
-    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<SuiteLicenseAssignmentDtoListEnvelope>> getLicenseFeaturesAsync(
         utility::string_t tenantId,
         utility::string_t licenseId,
         boost::optional<utility::string_t> apiVersion,

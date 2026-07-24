@@ -175,7 +175,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemShippingPoliciesApi::countItemShi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPoliciesApi::getItemShippingPoliciesAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPoliciesApi::getCatalogItemShippingPoliciesAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -210,7 +210,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPolic
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ItemShippingPoliciesApi->getItemShippingPoliciesAsync does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ItemShippingPoliciesApi->getCatalogItemShippingPoliciesAsync does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -253,7 +253,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPolic
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ItemShippingPoliciesApi->getItemShippingPoliciesAsync does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ItemShippingPoliciesApi->getCatalogItemShippingPoliciesAsync does not consume any supported media type"));
     }
 
 
@@ -273,7 +273,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPolic
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getItemShippingPoliciesAsync: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getCatalogItemShippingPoliciesAsync: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -284,7 +284,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPolic
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getItemShippingPoliciesAsync: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getCatalogItemShippingPoliciesAsync: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -308,13 +308,13 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemShippingPolic
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getItemShippingPoliciesAsync: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getCatalogItemShippingPoliciesAsync: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesApi::getItemShippingPolicyByIdAsync(utility::string_t itemShippingPolicyId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesApi::getCatalogItemShippingPolicyByIdAsync(utility::string_t itemShippingPolicyId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -350,7 +350,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesA
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ItemShippingPoliciesApi->getItemShippingPolicyByIdAsync does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ItemShippingPoliciesApi->getCatalogItemShippingPolicyByIdAsync does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -393,7 +393,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesA
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ItemShippingPoliciesApi->getItemShippingPolicyByIdAsync does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ItemShippingPoliciesApi->getCatalogItemShippingPolicyByIdAsync does not consume any supported media type"));
     }
 
 
@@ -413,7 +413,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesA
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling getItemShippingPolicyByIdAsync: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getCatalogItemShippingPolicyByIdAsync: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -424,7 +424,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesA
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getItemShippingPolicyByIdAsync: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getCatalogItemShippingPolicyByIdAsync: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -448,7 +448,7 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoEnvelope>> ItemShippingPoliciesA
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getItemShippingPolicyByIdAsync: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getCatalogItemShippingPolicyByIdAsync: unsupported response type"));
         }
 
         return localVarResult;

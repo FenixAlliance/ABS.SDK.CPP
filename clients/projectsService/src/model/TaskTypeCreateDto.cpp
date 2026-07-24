@@ -29,8 +29,8 @@ TaskTypeCreateDto::TaskTypeCreateDto()
     m_TimestampIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
-    m_TaskCategoryID = utility::conversions::to_string_t("");
-    m_TaskCategoryIDIsSet = false;
+    m_TaskCategoryId = utility::conversions::to_string_t("");
+    m_TaskCategoryIdIsSet = false;
     m_DisplayInTimeTracker = false;
     m_DisplayInTimeTrackerIsSet = false;
     m_RequiresDescription = false;
@@ -63,9 +63,9 @@ web::json::value TaskTypeCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
     }
-    if(m_TaskCategoryIDIsSet)
+    if(m_TaskCategoryIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("taskCategoryID"))] = ModelBase::toJson(m_TaskCategoryID);
+        val[utility::conversions::to_string_t(U("taskCategoryId"))] = ModelBase::toJson(m_TaskCategoryId);
     }
     if(m_DisplayInTimeTrackerIsSet)
     {
@@ -113,14 +113,14 @@ bool TaskTypeCreateDto::fromJson(const web::json::value& val)
             setTitle(refVal_setTitle);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("taskCategoryID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("taskCategoryId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("taskCategoryID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("taskCategoryId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setTaskCategoryID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTaskCategoryID);
-            setTaskCategoryID(refVal_setTaskCategoryID);
+            utility::string_t refVal_setTaskCategoryId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTaskCategoryId);
+            setTaskCategoryId(refVal_setTaskCategoryId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("displayInTimeTracker"))))
@@ -165,9 +165,9 @@ void TaskTypeCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
     }
-    if(m_TaskCategoryIDIsSet)
+    if(m_TaskCategoryIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taskCategoryID")), m_TaskCategoryID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taskCategoryId")), m_TaskCategoryId));
     }
     if(m_DisplayInTimeTrackerIsSet)
     {
@@ -206,11 +206,11 @@ bool TaskTypeCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("taskCategoryID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("taskCategoryId"))))
     {
-        utility::string_t refVal_setTaskCategoryID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taskCategoryID"))), refVal_setTaskCategoryID );
-        setTaskCategoryID(refVal_setTaskCategoryID);
+        utility::string_t refVal_setTaskCategoryId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taskCategoryId"))), refVal_setTaskCategoryId );
+        setTaskCategoryId(refVal_setTaskCategoryId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("displayInTimeTracker"))))
     {
@@ -287,25 +287,25 @@ void TaskTypeCreateDto::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-utility::string_t TaskTypeCreateDto::getTaskCategoryID() const
+utility::string_t TaskTypeCreateDto::getTaskCategoryId() const
 {
-    return m_TaskCategoryID;
+    return m_TaskCategoryId;
 }
 
-void TaskTypeCreateDto::setTaskCategoryID(const utility::string_t& value)
+void TaskTypeCreateDto::setTaskCategoryId(const utility::string_t& value)
 {
-    m_TaskCategoryID = value;
-    m_TaskCategoryIDIsSet = true;
+    m_TaskCategoryId = value;
+    m_TaskCategoryIdIsSet = true;
 }
 
-bool TaskTypeCreateDto::taskCategoryIDIsSet() const
+bool TaskTypeCreateDto::taskCategoryIdIsSet() const
 {
-    return m_TaskCategoryIDIsSet;
+    return m_TaskCategoryIdIsSet;
 }
 
-void TaskTypeCreateDto::unsetTaskCategoryID()
+void TaskTypeCreateDto::unsetTaskCategoryId()
 {
-    m_TaskCategoryIDIsSet = false;
+    m_TaskCategoryIdIsSet = false;
 }
 bool TaskTypeCreateDto::isDisplayInTimeTracker() const
 {

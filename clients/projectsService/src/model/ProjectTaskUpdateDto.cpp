@@ -23,6 +23,10 @@ namespace model {
 
 ProjectTaskUpdateDto::ProjectTaskUpdateDto()
 {
+    m_Title = utility::conversions::to_string_t("");
+    m_TitleIsSet = false;
+    m_Description = utility::conversions::to_string_t("");
+    m_DescriptionIsSet = false;
     m_StartDate = utility::datetime();
     m_StartDateIsSet = false;
     m_DueLine = utility::datetime();
@@ -43,6 +47,14 @@ web::json::value ProjectTaskUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
+    if(m_TitleIsSet)
+    {
+        val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
+    }
+    if(m_DescriptionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
+    }
     if(m_StartDateIsSet)
     {
         val[utility::conversions::to_string_t(U("startDate"))] = ModelBase::toJson(m_StartDate);
@@ -59,6 +71,26 @@ bool ProjectTaskUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t(U("title"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("title")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
+            setTitle(refVal_setTitle);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("description"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setDescription;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
+            setDescription(refVal_setDescription);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("startDate"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("startDate")));
@@ -89,6 +121,14 @@ void ProjectTaskUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
+    if(m_TitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
+    }
+    if(m_DescriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
+    }
     if(m_StartDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("startDate")), m_StartDate));
@@ -108,6 +148,18 @@ bool ProjectTaskUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
+    {
+        utility::string_t refVal_setTitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
+        setTitle(refVal_setTitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
+    {
+        utility::string_t refVal_setDescription;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
+        setDescription(refVal_setDescription);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("startDate"))))
     {
         utility::datetime refVal_setStartDate;
@@ -123,6 +175,46 @@ bool ProjectTaskUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     return ok;
 }
 
+utility::string_t ProjectTaskUpdateDto::getTitle() const
+{
+    return m_Title;
+}
+
+void ProjectTaskUpdateDto::setTitle(const utility::string_t& value)
+{
+    m_Title = value;
+    m_TitleIsSet = true;
+}
+
+bool ProjectTaskUpdateDto::titleIsSet() const
+{
+    return m_TitleIsSet;
+}
+
+void ProjectTaskUpdateDto::unsetTitle()
+{
+    m_TitleIsSet = false;
+}
+utility::string_t ProjectTaskUpdateDto::getDescription() const
+{
+    return m_Description;
+}
+
+void ProjectTaskUpdateDto::setDescription(const utility::string_t& value)
+{
+    m_Description = value;
+    m_DescriptionIsSet = true;
+}
+
+bool ProjectTaskUpdateDto::descriptionIsSet() const
+{
+    return m_DescriptionIsSet;
+}
+
+void ProjectTaskUpdateDto::unsetDescription()
+{
+    m_DescriptionIsSet = false;
+}
 utility::datetime ProjectTaskUpdateDto::getStartDate() const
 {
     return m_StartDate;

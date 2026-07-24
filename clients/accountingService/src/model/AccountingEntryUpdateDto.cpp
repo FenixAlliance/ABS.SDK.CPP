@@ -23,22 +23,18 @@ namespace model {
 
 AccountingEntryUpdateDto::AccountingEntryUpdateDto()
 {
-    m_Description = utility::conversions::to_string_t("");
-    m_DescriptionIsSet = false;
-    m_Amount = 0.0;
-    m_AmountIsSet = false;
-    m_date = utility::datetime();
-    m_dateIsSet = false;
-    m_CurrencyId = utility::conversions::to_string_t("");
-    m_CurrencyIdIsSet = false;
-    m_DebitAccountId = utility::conversions::to_string_t("");
-    m_DebitAccountIdIsSet = false;
-    m_CreditAccountId = utility::conversions::to_string_t("");
-    m_CreditAccountIdIsSet = false;
     m_JournalEntryId = utility::conversions::to_string_t("");
     m_JournalEntryIdIsSet = false;
-    m_AccountingEntryType = utility::conversions::to_string_t("");
-    m_AccountingEntryTypeIsSet = false;
+    m_AccountId = utility::conversions::to_string_t("");
+    m_AccountIdIsSet = false;
+    m_Direction = utility::conversions::to_string_t("");
+    m_DirectionIsSet = false;
+    m_TransactionAmount = 0.0;
+    m_TransactionAmountIsSet = false;
+    m_TransactionCurrencyId = utility::conversions::to_string_t("");
+    m_TransactionCurrencyIdIsSet = false;
+    m_Description = utility::conversions::to_string_t("");
+    m_DescriptionIsSet = false;
 }
 
 AccountingEntryUpdateDto::~AccountingEntryUpdateDto()
@@ -55,37 +51,29 @@ web::json::value AccountingEntryUpdateDto::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_DescriptionIsSet)
-    {
-        val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
-    }
-    if(m_AmountIsSet)
-    {
-        val[utility::conversions::to_string_t(U("amount"))] = ModelBase::toJson(m_Amount);
-    }
-    if(m_dateIsSet)
-    {
-        val[utility::conversions::to_string_t(U("date"))] = ModelBase::toJson(m_date);
-    }
-    if(m_CurrencyIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("currencyId"))] = ModelBase::toJson(m_CurrencyId);
-    }
-    if(m_DebitAccountIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("debitAccountId"))] = ModelBase::toJson(m_DebitAccountId);
-    }
-    if(m_CreditAccountIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("creditAccountId"))] = ModelBase::toJson(m_CreditAccountId);
-    }
     if(m_JournalEntryIdIsSet)
     {
         val[utility::conversions::to_string_t(U("journalEntryId"))] = ModelBase::toJson(m_JournalEntryId);
     }
-    if(m_AccountingEntryTypeIsSet)
+    if(m_AccountIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("accountingEntryType"))] = ModelBase::toJson(m_AccountingEntryType);
+        val[utility::conversions::to_string_t(U("accountId"))] = ModelBase::toJson(m_AccountId);
+    }
+    if(m_DirectionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("direction"))] = ModelBase::toJson(m_Direction);
+    }
+    if(m_TransactionAmountIsSet)
+    {
+        val[utility::conversions::to_string_t(U("transactionAmount"))] = ModelBase::toJson(m_TransactionAmount);
+    }
+    if(m_TransactionCurrencyIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("transactionCurrencyId"))] = ModelBase::toJson(m_TransactionCurrencyId);
+    }
+    if(m_DescriptionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
 
     return val;
@@ -95,66 +83,6 @@ bool AccountingEntryUpdateDto::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("description"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDescription;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
-            setDescription(refVal_setDescription);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("amount"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("amount")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setAmount;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAmount);
-            setAmount(refVal_setAmount);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("date"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("date")));
-        if(!fieldValue.is_null())
-        {
-            utility::datetime refVal_setDate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDate);
-            setDate(refVal_setDate);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("currencyId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCurrencyId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCurrencyId);
-            setCurrencyId(refVal_setCurrencyId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("debitAccountId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("debitAccountId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDebitAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDebitAccountId);
-            setDebitAccountId(refVal_setDebitAccountId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("creditAccountId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("creditAccountId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCreditAccountId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCreditAccountId);
-            setCreditAccountId(refVal_setCreditAccountId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("journalEntryId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("journalEntryId")));
@@ -165,14 +93,54 @@ bool AccountingEntryUpdateDto::fromJson(const web::json::value& val)
             setJournalEntryId(refVal_setJournalEntryId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("accountingEntryType"))))
+    if(val.has_field(utility::conversions::to_string_t(U("accountId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountingEntryType")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("accountId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setAccountingEntryType;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountingEntryType);
-            setAccountingEntryType(refVal_setAccountingEntryType);
+            utility::string_t refVal_setAccountId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAccountId);
+            setAccountId(refVal_setAccountId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("direction"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("direction")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setDirection;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDirection);
+            setDirection(refVal_setDirection);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("transactionAmount"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("transactionAmount")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setTransactionAmount;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTransactionAmount);
+            setTransactionAmount(refVal_setTransactionAmount);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("transactionCurrencyId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("transactionCurrencyId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTransactionCurrencyId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTransactionCurrencyId);
+            setTransactionCurrencyId(refVal_setTransactionCurrencyId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("description"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setDescription;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
+            setDescription(refVal_setDescription);
         }
     }
     return ok;
@@ -185,37 +153,29 @@ void AccountingEntryUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mu
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_DescriptionIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
-    }
-    if(m_AmountIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("amount")), m_Amount));
-    }
-    if(m_dateIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("date")), m_date));
-    }
-    if(m_CurrencyIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("currencyId")), m_CurrencyId));
-    }
-    if(m_DebitAccountIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("debitAccountId")), m_DebitAccountId));
-    }
-    if(m_CreditAccountIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("creditAccountId")), m_CreditAccountId));
-    }
     if(m_JournalEntryIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("journalEntryId")), m_JournalEntryId));
     }
-    if(m_AccountingEntryTypeIsSet)
+    if(m_AccountIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountingEntryType")), m_AccountingEntryType));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("accountId")), m_AccountId));
+    }
+    if(m_DirectionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("direction")), m_Direction));
+    }
+    if(m_TransactionAmountIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("transactionAmount")), m_TransactionAmount));
+    }
+    if(m_TransactionCurrencyIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("transactionCurrencyId")), m_TransactionCurrencyId));
+    }
+    if(m_DescriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
 }
 
@@ -228,177 +188,45 @@ bool AccountingEntryUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> 
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
-    {
-        utility::string_t refVal_setDescription;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
-        setDescription(refVal_setDescription);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("amount"))))
-    {
-        double refVal_setAmount;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("amount"))), refVal_setAmount );
-        setAmount(refVal_setAmount);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("date"))))
-    {
-        utility::datetime refVal_setDate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("date"))), refVal_setDate );
-        setDate(refVal_setDate);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
-    {
-        utility::string_t refVal_setCurrencyId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("currencyId"))), refVal_setCurrencyId );
-        setCurrencyId(refVal_setCurrencyId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("debitAccountId"))))
-    {
-        utility::string_t refVal_setDebitAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("debitAccountId"))), refVal_setDebitAccountId );
-        setDebitAccountId(refVal_setDebitAccountId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("creditAccountId"))))
-    {
-        utility::string_t refVal_setCreditAccountId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("creditAccountId"))), refVal_setCreditAccountId );
-        setCreditAccountId(refVal_setCreditAccountId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("journalEntryId"))))
     {
         utility::string_t refVal_setJournalEntryId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("journalEntryId"))), refVal_setJournalEntryId );
         setJournalEntryId(refVal_setJournalEntryId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("accountingEntryType"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("accountId"))))
     {
-        utility::string_t refVal_setAccountingEntryType;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountingEntryType"))), refVal_setAccountingEntryType );
-        setAccountingEntryType(refVal_setAccountingEntryType);
+        utility::string_t refVal_setAccountId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("accountId"))), refVal_setAccountId );
+        setAccountId(refVal_setAccountId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("direction"))))
+    {
+        utility::string_t refVal_setDirection;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("direction"))), refVal_setDirection );
+        setDirection(refVal_setDirection);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("transactionAmount"))))
+    {
+        double refVal_setTransactionAmount;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("transactionAmount"))), refVal_setTransactionAmount );
+        setTransactionAmount(refVal_setTransactionAmount);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("transactionCurrencyId"))))
+    {
+        utility::string_t refVal_setTransactionCurrencyId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("transactionCurrencyId"))), refVal_setTransactionCurrencyId );
+        setTransactionCurrencyId(refVal_setTransactionCurrencyId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
+    {
+        utility::string_t refVal_setDescription;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
+        setDescription(refVal_setDescription);
     }
     return ok;
 }
 
-utility::string_t AccountingEntryUpdateDto::getDescription() const
-{
-    return m_Description;
-}
-
-void AccountingEntryUpdateDto::setDescription(const utility::string_t& value)
-{
-    m_Description = value;
-    m_DescriptionIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::descriptionIsSet() const
-{
-    return m_DescriptionIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetDescription()
-{
-    m_DescriptionIsSet = false;
-}
-double AccountingEntryUpdateDto::getAmount() const
-{
-    return m_Amount;
-}
-
-void AccountingEntryUpdateDto::setAmount(double value)
-{
-    m_Amount = value;
-    m_AmountIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::amountIsSet() const
-{
-    return m_AmountIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetAmount()
-{
-    m_AmountIsSet = false;
-}
-utility::datetime AccountingEntryUpdateDto::getDate() const
-{
-    return m_date;
-}
-
-void AccountingEntryUpdateDto::setDate(const utility::datetime& value)
-{
-    m_date = value;
-    m_dateIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::dateIsSet() const
-{
-    return m_dateIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetdate()
-{
-    m_dateIsSet = false;
-}
-utility::string_t AccountingEntryUpdateDto::getCurrencyId() const
-{
-    return m_CurrencyId;
-}
-
-void AccountingEntryUpdateDto::setCurrencyId(const utility::string_t& value)
-{
-    m_CurrencyId = value;
-    m_CurrencyIdIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::currencyIdIsSet() const
-{
-    return m_CurrencyIdIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetCurrencyId()
-{
-    m_CurrencyIdIsSet = false;
-}
-utility::string_t AccountingEntryUpdateDto::getDebitAccountId() const
-{
-    return m_DebitAccountId;
-}
-
-void AccountingEntryUpdateDto::setDebitAccountId(const utility::string_t& value)
-{
-    m_DebitAccountId = value;
-    m_DebitAccountIdIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::debitAccountIdIsSet() const
-{
-    return m_DebitAccountIdIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetDebitAccountId()
-{
-    m_DebitAccountIdIsSet = false;
-}
-utility::string_t AccountingEntryUpdateDto::getCreditAccountId() const
-{
-    return m_CreditAccountId;
-}
-
-void AccountingEntryUpdateDto::setCreditAccountId(const utility::string_t& value)
-{
-    m_CreditAccountId = value;
-    m_CreditAccountIdIsSet = true;
-}
-
-bool AccountingEntryUpdateDto::creditAccountIdIsSet() const
-{
-    return m_CreditAccountIdIsSet;
-}
-
-void AccountingEntryUpdateDto::unsetCreditAccountId()
-{
-    m_CreditAccountIdIsSet = false;
-}
 utility::string_t AccountingEntryUpdateDto::getJournalEntryId() const
 {
     return m_JournalEntryId;
@@ -419,25 +247,105 @@ void AccountingEntryUpdateDto::unsetJournalEntryId()
 {
     m_JournalEntryIdIsSet = false;
 }
-utility::string_t AccountingEntryUpdateDto::getAccountingEntryType() const
+utility::string_t AccountingEntryUpdateDto::getAccountId() const
 {
-    return m_AccountingEntryType;
+    return m_AccountId;
 }
 
-void AccountingEntryUpdateDto::setAccountingEntryType(const utility::string_t& value)
+void AccountingEntryUpdateDto::setAccountId(const utility::string_t& value)
 {
-    m_AccountingEntryType = value;
-    m_AccountingEntryTypeIsSet = true;
+    m_AccountId = value;
+    m_AccountIdIsSet = true;
 }
 
-bool AccountingEntryUpdateDto::accountingEntryTypeIsSet() const
+bool AccountingEntryUpdateDto::accountIdIsSet() const
 {
-    return m_AccountingEntryTypeIsSet;
+    return m_AccountIdIsSet;
 }
 
-void AccountingEntryUpdateDto::unsetAccountingEntryType()
+void AccountingEntryUpdateDto::unsetAccountId()
 {
-    m_AccountingEntryTypeIsSet = false;
+    m_AccountIdIsSet = false;
+}
+utility::string_t AccountingEntryUpdateDto::getDirection() const
+{
+    return m_Direction;
+}
+
+void AccountingEntryUpdateDto::setDirection(const utility::string_t& value)
+{
+    m_Direction = value;
+    m_DirectionIsSet = true;
+}
+
+bool AccountingEntryUpdateDto::directionIsSet() const
+{
+    return m_DirectionIsSet;
+}
+
+void AccountingEntryUpdateDto::unsetDirection()
+{
+    m_DirectionIsSet = false;
+}
+double AccountingEntryUpdateDto::getTransactionAmount() const
+{
+    return m_TransactionAmount;
+}
+
+void AccountingEntryUpdateDto::setTransactionAmount(double value)
+{
+    m_TransactionAmount = value;
+    m_TransactionAmountIsSet = true;
+}
+
+bool AccountingEntryUpdateDto::transactionAmountIsSet() const
+{
+    return m_TransactionAmountIsSet;
+}
+
+void AccountingEntryUpdateDto::unsetTransactionAmount()
+{
+    m_TransactionAmountIsSet = false;
+}
+utility::string_t AccountingEntryUpdateDto::getTransactionCurrencyId() const
+{
+    return m_TransactionCurrencyId;
+}
+
+void AccountingEntryUpdateDto::setTransactionCurrencyId(const utility::string_t& value)
+{
+    m_TransactionCurrencyId = value;
+    m_TransactionCurrencyIdIsSet = true;
+}
+
+bool AccountingEntryUpdateDto::transactionCurrencyIdIsSet() const
+{
+    return m_TransactionCurrencyIdIsSet;
+}
+
+void AccountingEntryUpdateDto::unsetTransactionCurrencyId()
+{
+    m_TransactionCurrencyIdIsSet = false;
+}
+utility::string_t AccountingEntryUpdateDto::getDescription() const
+{
+    return m_Description;
+}
+
+void AccountingEntryUpdateDto::setDescription(const utility::string_t& value)
+{
+    m_Description = value;
+    m_DescriptionIsSet = true;
+}
+
+bool AccountingEntryUpdateDto::descriptionIsSet() const
+{
+    return m_DescriptionIsSet;
+}
+
+void AccountingEntryUpdateDto::unsetDescription()
+{
+    m_DescriptionIsSet = false;
 }
 }
 }

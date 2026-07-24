@@ -27,14 +27,22 @@ ProjectTaskDto::ProjectTaskDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
+    m_Title = utility::conversions::to_string_t("");
+    m_TitleIsSet = false;
+    m_Description = utility::conversions::to_string_t("");
+    m_DescriptionIsSet = false;
     m_StartDate = utility::datetime();
     m_StartDateIsSet = false;
     m_DueLine = utility::datetime();
     m_DueLineIsSet = false;
-    m_ProjectID = utility::conversions::to_string_t("");
-    m_ProjectIDIsSet = false;
-    m_ProjectTaskBucketID = utility::conversions::to_string_t("");
-    m_ProjectTaskBucketIDIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
+    m_ProjectTaskBucketId = utility::conversions::to_string_t("");
+    m_ProjectTaskBucketIdIsSet = false;
+    m_TenantId = utility::conversions::to_string_t("");
+    m_TenantIdIsSet = false;
+    m_EnrollmentId = utility::conversions::to_string_t("");
+    m_EnrollmentIdIsSet = false;
 }
 
 ProjectTaskDto::~ProjectTaskDto()
@@ -59,6 +67,14 @@ web::json::value ProjectTaskDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
     }
+    if(m_TitleIsSet)
+    {
+        val[utility::conversions::to_string_t(U("title"))] = ModelBase::toJson(m_Title);
+    }
+    if(m_DescriptionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
+    }
     if(m_StartDateIsSet)
     {
         val[utility::conversions::to_string_t(U("startDate"))] = ModelBase::toJson(m_StartDate);
@@ -67,13 +83,21 @@ web::json::value ProjectTaskDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("dueLine"))] = ModelBase::toJson(m_DueLine);
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("projectID"))] = ModelBase::toJson(m_ProjectID);
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
     }
-    if(m_ProjectTaskBucketIDIsSet)
+    if(m_ProjectTaskBucketIdIsSet)
     {
-        val[utility::conversions::to_string_t(U("projectTaskBucketID"))] = ModelBase::toJson(m_ProjectTaskBucketID);
+        val[utility::conversions::to_string_t(U("projectTaskBucketId"))] = ModelBase::toJson(m_ProjectTaskBucketId);
+    }
+    if(m_TenantIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("enrollmentId"))] = ModelBase::toJson(m_EnrollmentId);
     }
 
     return val;
@@ -103,6 +127,26 @@ bool ProjectTaskDto::fromJson(const web::json::value& val)
             setTimestamp(refVal_setTimestamp);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("title"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("title")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
+            setTitle(refVal_setTitle);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("description"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setDescription;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
+            setDescription(refVal_setDescription);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("startDate"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("startDate")));
@@ -123,24 +167,44 @@ bool ProjectTaskDto::fromJson(const web::json::value& val)
             setDueLine(refVal_setDueLine);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("projectID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectID);
-            setProjectID(refVal_setProjectID);
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("projectTaskBucketID"))))
+    if(val.has_field(utility::conversions::to_string_t(U("projectTaskBucketId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectTaskBucketID")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectTaskBucketId")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectTaskBucketID;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectTaskBucketID);
-            setProjectTaskBucketID(refVal_setProjectTaskBucketID);
+            utility::string_t refVal_setProjectTaskBucketId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectTaskBucketId);
+            setProjectTaskBucketId(refVal_setProjectTaskBucketId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("tenantId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTenantId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTenantId);
+            setTenantId(refVal_setTenantId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("enrollmentId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setEnrollmentId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setEnrollmentId);
+            setEnrollmentId(refVal_setEnrollmentId);
         }
     }
     return ok;
@@ -161,6 +225,14 @@ void ProjectTaskDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
+    if(m_TitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("title")), m_Title));
+    }
+    if(m_DescriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
+    }
     if(m_StartDateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("startDate")), m_StartDate));
@@ -169,13 +241,21 @@ void ProjectTaskDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dueLine")), m_DueLine));
     }
-    if(m_ProjectIDIsSet)
+    if(m_ProjectIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectID")), m_ProjectID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
     }
-    if(m_ProjectTaskBucketIDIsSet)
+    if(m_ProjectTaskBucketIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectTaskBucketID")), m_ProjectTaskBucketID));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectTaskBucketId")), m_ProjectTaskBucketId));
+    }
+    if(m_TenantIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
+    }
+    if(m_EnrollmentIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("enrollmentId")), m_EnrollmentId));
     }
 }
 
@@ -200,6 +280,18 @@ bool ProjectTaskDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
+    {
+        utility::string_t refVal_setTitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("title"))), refVal_setTitle );
+        setTitle(refVal_setTitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
+    {
+        utility::string_t refVal_setDescription;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
+        setDescription(refVal_setDescription);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("startDate"))))
     {
         utility::datetime refVal_setStartDate;
@@ -212,17 +304,29 @@ bool ProjectTaskDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dueLine"))), refVal_setDueLine );
         setDueLine(refVal_setDueLine);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("projectID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
     {
-        utility::string_t refVal_setProjectID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectID"))), refVal_setProjectID );
-        setProjectID(refVal_setProjectID);
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("projectTaskBucketID"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectTaskBucketId"))))
     {
-        utility::string_t refVal_setProjectTaskBucketID;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectTaskBucketID"))), refVal_setProjectTaskBucketID );
-        setProjectTaskBucketID(refVal_setProjectTaskBucketID);
+        utility::string_t refVal_setProjectTaskBucketId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectTaskBucketId"))), refVal_setProjectTaskBucketId );
+        setProjectTaskBucketId(refVal_setProjectTaskBucketId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("tenantId"))))
+    {
+        utility::string_t refVal_setTenantId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
+        setTenantId(refVal_setTenantId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("enrollmentId"))))
+    {
+        utility::string_t refVal_setEnrollmentId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("enrollmentId"))), refVal_setEnrollmentId );
+        setEnrollmentId(refVal_setEnrollmentId);
     }
     return ok;
 }
@@ -267,6 +371,46 @@ void ProjectTaskDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
 }
+utility::string_t ProjectTaskDto::getTitle() const
+{
+    return m_Title;
+}
+
+void ProjectTaskDto::setTitle(const utility::string_t& value)
+{
+    m_Title = value;
+    m_TitleIsSet = true;
+}
+
+bool ProjectTaskDto::titleIsSet() const
+{
+    return m_TitleIsSet;
+}
+
+void ProjectTaskDto::unsetTitle()
+{
+    m_TitleIsSet = false;
+}
+utility::string_t ProjectTaskDto::getDescription() const
+{
+    return m_Description;
+}
+
+void ProjectTaskDto::setDescription(const utility::string_t& value)
+{
+    m_Description = value;
+    m_DescriptionIsSet = true;
+}
+
+bool ProjectTaskDto::descriptionIsSet() const
+{
+    return m_DescriptionIsSet;
+}
+
+void ProjectTaskDto::unsetDescription()
+{
+    m_DescriptionIsSet = false;
+}
 utility::datetime ProjectTaskDto::getStartDate() const
 {
     return m_StartDate;
@@ -307,45 +451,85 @@ void ProjectTaskDto::unsetDueLine()
 {
     m_DueLineIsSet = false;
 }
-utility::string_t ProjectTaskDto::getProjectID() const
+utility::string_t ProjectTaskDto::getProjectId() const
 {
-    return m_ProjectID;
+    return m_ProjectId;
 }
 
-void ProjectTaskDto::setProjectID(const utility::string_t& value)
+void ProjectTaskDto::setProjectId(const utility::string_t& value)
 {
-    m_ProjectID = value;
-    m_ProjectIDIsSet = true;
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
 }
 
-bool ProjectTaskDto::projectIDIsSet() const
+bool ProjectTaskDto::projectIdIsSet() const
 {
-    return m_ProjectIDIsSet;
+    return m_ProjectIdIsSet;
 }
 
-void ProjectTaskDto::unsetProjectID()
+void ProjectTaskDto::unsetProjectId()
 {
-    m_ProjectIDIsSet = false;
+    m_ProjectIdIsSet = false;
 }
-utility::string_t ProjectTaskDto::getProjectTaskBucketID() const
+utility::string_t ProjectTaskDto::getProjectTaskBucketId() const
 {
-    return m_ProjectTaskBucketID;
-}
-
-void ProjectTaskDto::setProjectTaskBucketID(const utility::string_t& value)
-{
-    m_ProjectTaskBucketID = value;
-    m_ProjectTaskBucketIDIsSet = true;
+    return m_ProjectTaskBucketId;
 }
 
-bool ProjectTaskDto::projectTaskBucketIDIsSet() const
+void ProjectTaskDto::setProjectTaskBucketId(const utility::string_t& value)
 {
-    return m_ProjectTaskBucketIDIsSet;
+    m_ProjectTaskBucketId = value;
+    m_ProjectTaskBucketIdIsSet = true;
 }
 
-void ProjectTaskDto::unsetProjectTaskBucketID()
+bool ProjectTaskDto::projectTaskBucketIdIsSet() const
 {
-    m_ProjectTaskBucketIDIsSet = false;
+    return m_ProjectTaskBucketIdIsSet;
+}
+
+void ProjectTaskDto::unsetProjectTaskBucketId()
+{
+    m_ProjectTaskBucketIdIsSet = false;
+}
+utility::string_t ProjectTaskDto::getTenantId() const
+{
+    return m_TenantId;
+}
+
+void ProjectTaskDto::setTenantId(const utility::string_t& value)
+{
+    m_TenantId = value;
+    m_TenantIdIsSet = true;
+}
+
+bool ProjectTaskDto::tenantIdIsSet() const
+{
+    return m_TenantIdIsSet;
+}
+
+void ProjectTaskDto::unsetTenantId()
+{
+    m_TenantIdIsSet = false;
+}
+utility::string_t ProjectTaskDto::getEnrollmentId() const
+{
+    return m_EnrollmentId;
+}
+
+void ProjectTaskDto::setEnrollmentId(const utility::string_t& value)
+{
+    m_EnrollmentId = value;
+    m_EnrollmentIdIsSet = true;
+}
+
+bool ProjectTaskDto::enrollmentIdIsSet() const
+{
+    return m_EnrollmentIdIsSet;
+}
+
+void ProjectTaskDto::unsetEnrollmentId()
+{
+    m_EnrollmentIdIsSet = false;
 }
 }
 }

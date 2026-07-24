@@ -23,8 +23,13 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/NewsletterSubscriptionCreateDto.h"
+#include "CppRestOpenAPIClient/model/NewsletterSubscriptionDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/NewsletterSubscriptionDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/NewsletterSubscriptionUpdateDto.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -46,6 +51,68 @@ public:
     virtual ~NewsletterSubscriptionsApi();
 
     /// <summary>
+    /// Create a newsletter subscription
+    /// </summary>
+    /// <remarks>
+    /// Creates a new newsletter subscription for the specified tenant.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="newsletterSubscriptionCreateDto"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> createNewsletterSubscriptionAsync(
+        utility::string_t tenantId,
+        std::shared_ptr<NewsletterSubscriptionCreateDto> newsletterSubscriptionCreateDto,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Delete a newsletter subscription
+    /// </summary>
+    /// <remarks>
+    /// Deletes a newsletter subscription by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="newsletterSubscriptionId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteNewsletterSubscriptionAsync(
+        utility::string_t tenantId,
+        utility::string_t newsletterSubscriptionId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get newsletter subscription by ID
+    /// </summary>
+    /// <remarks>
+    /// Retrieves the details of a specific newsletter subscription by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="newsletterSubscriptionId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<NewsletterSubscriptionDtoEnvelope>> getNewsletterSubscriptionByIdAsync(
+        utility::string_t tenantId,
+        utility::string_t newsletterSubscriptionId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get newsletter subscriptions
+    /// </summary>
+    /// <remarks>
+    /// Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<NewsletterSubscriptionDtoListEnvelope>> getNewsletterSubscriptionsAsync(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get newsletter subscriptions count
     /// </summary>
     /// <remarks>
@@ -56,6 +123,24 @@ public:
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getNewsletterSubscriptionsCountAsync(
         utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Update a newsletter subscription
+    /// </summary>
+    /// <remarks>
+    /// Updates an existing newsletter subscription by its ID.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="newsletterSubscriptionId"></param>
+    /// <param name="newsletterSubscriptionUpdateDto"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateNewsletterSubscriptionAsync(
+        utility::string_t tenantId,
+        utility::string_t newsletterSubscriptionId,
+        std::shared_ptr<NewsletterSubscriptionUpdateDto> newsletterSubscriptionUpdateDto,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

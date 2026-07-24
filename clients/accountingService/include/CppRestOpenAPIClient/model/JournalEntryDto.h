@@ -22,14 +22,17 @@
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
+#include "CppRestOpenAPIClient/model/AccountingEntryDto.h"
 #include <cpprest/details/basic_types.h>
 #include "CppRestOpenAPIClient/model/Money.h"
+#include <vector>
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
+class AccountingEntryDto;
 class Money;
 
 
@@ -65,114 +68,6 @@ public:
     void unsetId();
 
     void setId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::datetime getTimestamp() const;
-    bool timestampIsSet() const;
-    void unsetTimestamp();
-
-    void setTimestamp(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    bool isGroup() const;
-    bool groupIsSet() const;
-    void unsetGroup();
-
-    void setGroup(bool value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    bool isOpening() const;
-    bool openingIsSet() const;
-    void unsetOpening();
-
-    void setOpening(bool value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getDescription() const;
-    bool descriptionIsSet() const;
-    void unsetDescription();
-
-    void setDescription(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::datetime getDate() const;
-    bool dateIsSet() const;
-    void unsetdate();
-
-    void setDate(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getForexRatesSnapshot() const;
-    bool forexRatesSnapshotIsSet() const;
-    void unsetForexRatesSnapshot();
-
-    void setForexRatesSnapshot(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getForexRate() const;
-    bool forexRateIsSet() const;
-    void unsetForexRate();
-
-    void setForexRate(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getCredit() const;
-    bool creditIsSet() const;
-    void unsetCredit();
-
-    void setCredit(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getDebit() const;
-    bool debitIsSet() const;
-    void unsetDebit();
-
-    void setDebit(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getCreditInUsd() const;
-    bool creditInUsdIsSet() const;
-    void unsetCreditInUsd();
-
-    void setCreditInUsd(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    double getDebitInUsd() const;
-    bool debitInUsdIsSet() const;
-    void unsetDebitInUsd();
-
-    void setDebitInUsd(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getCurrencyId() const;
-    bool currencyIdIsSet() const;
-    void unsetCurrencyId();
-
-    void setCurrencyId(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -222,121 +117,214 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCreditAccountId() const;
-    bool creditAccountIdIsSet() const;
-    void unsetCreditAccountId();
+    utility::string_t getFiscalPeriodId() const;
+    bool fiscalPeriodIdIsSet() const;
+    void unsetFiscalPeriodId();
 
-    void setCreditAccountId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getCreditAccountName() const;
-    bool creditAccountNameIsSet() const;
-    void unsetCreditAccountName();
-
-    void setCreditAccountName(const utility::string_t& value);
+    void setFiscalPeriodId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getDebitAccountId() const;
-    bool debitAccountIdIsSet() const;
-    void unsetDebitAccountId();
+    utility::string_t getFinancialBookId() const;
+    bool financialBookIdIsSet() const;
+    void unsetFinancialBookId();
 
-    void setDebitAccountId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getDebitAccountName() const;
-    bool debitAccountNameIsSet() const;
-    void unsetDebitAccountName();
-
-    void setDebitAccountName(const utility::string_t& value);
+    void setFinancialBookId(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getInvoiceCode() const;
-    bool invoiceCodeIsSet() const;
-    void unsetInvoiceCode();
+    utility::string_t getDescription() const;
+    bool descriptionIsSet() const;
+    void unsetDescription();
 
-    void setInvoiceCode(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getParentJournalEntryId() const;
-    bool parentJournalEntryIdIsSet() const;
-    void unsetParentJournalEntryId();
-
-    void setParentJournalEntryId(const utility::string_t& value);
+    void setDescription(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Money> getCreditAmount() const;
-    bool creditAmountIsSet() const;
-    void unsetCreditAmount();
+    utility::string_t getEntryType() const;
+    bool entryTypeIsSet() const;
+    void unsetEntryType();
 
-    void setCreditAmount(const std::shared_ptr<Money>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::shared_ptr<Money> getDebitAmount() const;
-    bool debitAmountIsSet() const;
-    void unsetDebitAmount();
-
-    void setDebitAmount(const std::shared_ptr<Money>& value);
+    void setEntryType(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Money> getCreditAmountInUsd() const;
-    bool creditAmountInUsdIsSet() const;
-    void unsetCreditAmountInUsd();
+    utility::string_t getStatus() const;
+    bool statusIsSet() const;
+    void unsetStatus();
 
-    void setCreditAmountInUsd(const std::shared_ptr<Money>& value);
+    void setStatus(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<Money> getDebitAmountInUsd() const;
-    bool debitAmountInUsdIsSet() const;
-    void unsetDebitAmountInUsd();
+    utility::datetime getPostingDate() const;
+    bool postingDateIsSet() const;
+    void unsetPostingDate();
 
-    void setDebitAmountInUsd(const std::shared_ptr<Money>& value);
+    void setPostingDate(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isIsOpeningBalance() const;
+    bool isOpeningBalanceIsSet() const;
+    void unsetIsOpeningBalance();
+
+    void setIsOpeningBalance(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getTransactionCurrencyId() const;
+    bool transactionCurrencyIdIsSet() const;
+    void unsetTransactionCurrencyId();
+
+    void setTransactionCurrencyId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSourceDocumentType() const;
+    bool sourceDocumentTypeIsSet() const;
+    void unsetSourceDocumentType();
+
+    void setSourceDocumentType(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSourceDocumentId() const;
+    bool sourceDocumentIdIsSet() const;
+    void unsetSourceDocumentId();
+
+    void setSourceDocumentId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getIdempotencyKey() const;
+    bool idempotencyKeyIsSet() const;
+    void unsetIdempotencyKey();
+
+    void setIdempotencyKey(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getReversalOfJournalEntryId() const;
+    bool reversalOfJournalEntryIdIsSet() const;
+    void unsetReversalOfJournalEntryId();
+
+    void setReversalOfJournalEntryId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPostedBy() const;
+    bool postedByIsSet() const;
+    void unsetPostedBy();
+
+    void setPostedBy(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getForexRate() const;
+    bool forexRateIsSet() const;
+    void unsetForexRate();
+
+    void setForexRate(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getForexRatesSnapshot() const;
+    bool forexRatesSnapshotIsSet() const;
+    void unsetForexRatesSnapshot();
+
+    void setForexRatesSnapshot(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getDebitInUsd() const;
+    bool debitInUsdIsSet() const;
+    void unsetDebitInUsd();
+
+    void setDebitInUsd(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getCreditInUsd() const;
+    bool creditInUsdIsSet() const;
+    void unsetCreditInUsd();
+
+    void setCreditInUsd(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::vector<std::shared_ptr<AccountingEntryDto>>& getAccountingEntries();
+    bool accountingEntriesIsSet() const;
+    void unsetAccountingEntries();
+
+    void setAccountingEntries(const std::vector<std::shared_ptr<AccountingEntryDto>>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getTotalDebit() const;
+    bool totalDebitIsSet() const;
+    void unsetTotalDebit();
+
+    void setTotalDebit(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getTotalCredit() const;
+    bool totalCreditIsSet() const;
+    void unsetTotalCredit();
+
+    void setTotalCredit(double value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Money> getTotalDebitAmount() const;
+    bool totalDebitAmountIsSet() const;
+    void unsetTotalDebitAmount();
+
+    void setTotalDebitAmount(const std::shared_ptr<Money>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Money> getTotalCreditAmount() const;
+    bool totalCreditAmountIsSet() const;
+    void unsetTotalCreditAmount();
+
+    void setTotalCreditAmount(const std::shared_ptr<Money>& value);
 
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::datetime m_Timestamp;
-    bool m_TimestampIsSet;
-    bool m_Group;
-    bool m_GroupIsSet;
-    bool m_Opening;
-    bool m_OpeningIsSet;
-    utility::string_t m_Description;
-    bool m_DescriptionIsSet;
-    utility::datetime m_date;
-    bool m_dateIsSet;
-    utility::string_t m_ForexRatesSnapshot;
-    bool m_ForexRatesSnapshotIsSet;
-    double m_ForexRate;
-    bool m_ForexRateIsSet;
-    double m_Credit;
-    bool m_CreditIsSet;
-    double m_Debit;
-    bool m_DebitIsSet;
-    double m_CreditInUsd;
-    bool m_CreditInUsdIsSet;
-    double m_DebitInUsd;
-    bool m_DebitInUsdIsSet;
-    utility::string_t m_CurrencyId;
-    bool m_CurrencyIdIsSet;
     utility::string_t m_TenantId;
     bool m_TenantIdIsSet;
     utility::string_t m_EnrollmentId;
@@ -347,26 +335,52 @@ protected:
     bool m_JournalNameIsSet;
     utility::string_t m_JournalCode;
     bool m_JournalCodeIsSet;
-    utility::string_t m_CreditAccountId;
-    bool m_CreditAccountIdIsSet;
-    utility::string_t m_CreditAccountName;
-    bool m_CreditAccountNameIsSet;
-    utility::string_t m_DebitAccountId;
-    bool m_DebitAccountIdIsSet;
-    utility::string_t m_DebitAccountName;
-    bool m_DebitAccountNameIsSet;
-    utility::string_t m_InvoiceCode;
-    bool m_InvoiceCodeIsSet;
-    utility::string_t m_ParentJournalEntryId;
-    bool m_ParentJournalEntryIdIsSet;
-    std::shared_ptr<Money> m_CreditAmount;
-    bool m_CreditAmountIsSet;
-    std::shared_ptr<Money> m_DebitAmount;
-    bool m_DebitAmountIsSet;
-    std::shared_ptr<Money> m_CreditAmountInUsd;
-    bool m_CreditAmountInUsdIsSet;
-    std::shared_ptr<Money> m_DebitAmountInUsd;
-    bool m_DebitAmountInUsdIsSet;
+    utility::string_t m_FiscalPeriodId;
+    bool m_FiscalPeriodIdIsSet;
+    utility::string_t m_FinancialBookId;
+    bool m_FinancialBookIdIsSet;
+    utility::string_t m_Description;
+    bool m_DescriptionIsSet;
+    utility::string_t m_EntryType;
+    bool m_EntryTypeIsSet;
+    utility::string_t m_Status;
+    bool m_StatusIsSet;
+    utility::datetime m_PostingDate;
+    bool m_PostingDateIsSet;
+    bool m_IsOpeningBalance;
+    bool m_IsOpeningBalanceIsSet;
+    utility::string_t m_TransactionCurrencyId;
+    bool m_TransactionCurrencyIdIsSet;
+    utility::string_t m_SourceDocumentType;
+    bool m_SourceDocumentTypeIsSet;
+    utility::string_t m_SourceDocumentId;
+    bool m_SourceDocumentIdIsSet;
+    utility::string_t m_IdempotencyKey;
+    bool m_IdempotencyKeyIsSet;
+    utility::string_t m_ReversalOfJournalEntryId;
+    bool m_ReversalOfJournalEntryIdIsSet;
+    utility::string_t m_PostedBy;
+    bool m_PostedByIsSet;
+    double m_ForexRate;
+    bool m_ForexRateIsSet;
+    utility::string_t m_ForexRatesSnapshot;
+    bool m_ForexRatesSnapshotIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
+    double m_DebitInUsd;
+    bool m_DebitInUsdIsSet;
+    double m_CreditInUsd;
+    bool m_CreditInUsdIsSet;
+    std::vector<std::shared_ptr<AccountingEntryDto>> m_AccountingEntries;
+    bool m_AccountingEntriesIsSet;
+    double m_TotalDebit;
+    bool m_TotalDebitIsSet;
+    double m_TotalCredit;
+    bool m_TotalCreditIsSet;
+    std::shared_ptr<Money> m_TotalDebitAmount;
+    bool m_TotalDebitAmountIsSet;
+    std::shared_ptr<Money> m_TotalCreditAmount;
+    bool m_TotalCreditAmountIsSet;
 };
 
 
