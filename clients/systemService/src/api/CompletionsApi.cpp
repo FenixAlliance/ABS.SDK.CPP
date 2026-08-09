@@ -41,7 +41,7 @@ pplx::task<void> CompletionsApi::apiV2AiServiceCompletionsCompleteGet(utility::s
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/AiService/Completions/Complete");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/IntelligenceService/Completions/Complete");
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
