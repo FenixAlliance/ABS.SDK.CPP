@@ -36,7 +36,7 @@ SocialFeedsApi::~SocialFeedsApi()
 {
 }
 
-pplx::task<std::shared_ptr<SocialFeedPostDtoEnvelope>> SocialFeedsApi::createFeedPostAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedPostCreateDto>> socialFeedPostCreateDto) const
+pplx::task<std::shared_ptr<StringEnvelope>> SocialFeedsApi::createFeedPostAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedPostCreateDto>> socialFeedPostCreateDto) const
 {
 
 
@@ -168,7 +168,7 @@ pplx::task<std::shared_ptr<SocialFeedPostDtoEnvelope>> SocialFeedsApi::createFee
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<SocialFeedPostDtoEnvelope> localVarResult(new SocialFeedPostDtoEnvelope());
+        std::shared_ptr<StringEnvelope> localVarResult(new StringEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -325,7 +325,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialFeedsApi::deleteFeedPostAsync(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialFeedDtoListEnvelope>> SocialFeedsApi::getFeedNotifications(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialFeedDtoListEnvelope>> SocialFeedsApi::getFeedNotifications(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedDtoCollectionQueryParameters>> socialFeedDtoCollectionQueryParameters) const
 {
 
 
@@ -366,6 +366,8 @@ pplx::task<std::shared_ptr<SocialFeedDtoListEnvelope>> SocialFeedsApi::getFeedNo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -386,11 +388,27 @@ pplx::task<std::shared_ptr<SocialFeedDtoListEnvelope>> SocialFeedsApi::getFeedNo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialFeedDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialFeedDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialFeedDtoCollectionQueryParameters && (*socialFeedDtoCollectionQueryParameters).get())
+        {
+            (*socialFeedDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialFeedDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -595,7 +613,7 @@ pplx::task<std::shared_ptr<SocialFeedPostDtoEnvelope>> SocialFeedsApi::getFeedPo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> SocialFeedsApi::getFeedPostsAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> SocialFeedsApi::getFeedPostsAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedPostDtoCollectionQueryParameters>> socialFeedPostDtoCollectionQueryParameters) const
 {
 
 
@@ -637,6 +655,8 @@ pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> SocialFeedsApi::getFe
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -657,11 +677,27 @@ pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> SocialFeedsApi::getFe
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialFeedPostDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialFeedPostDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialFeedPostDtoCollectionQueryParameters && (*socialFeedPostDtoCollectionQueryParameters).get())
+        {
+            (*socialFeedPostDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialFeedPostDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -730,7 +766,7 @@ pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> SocialFeedsApi::getFe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getFeedPostsCountAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getFeedPostsCountAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedPostDtoCollectionQueryParameters>> socialFeedPostDtoCollectionQueryParameters) const
 {
 
 
@@ -772,6 +808,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getFeedPostsCountAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -792,11 +830,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getFeedPostsCountAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialFeedPostDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialFeedPostDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialFeedPostDtoCollectionQueryParameters && (*socialFeedPostDtoCollectionQueryParameters).get())
+        {
+            (*socialFeedPostDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialFeedPostDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1000,7 +1054,7 @@ pplx::task<std::shared_ptr<SocialFeedDtoEnvelope>> SocialFeedsApi::getNotificati
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getNotificationsCountAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getNotificationsCountAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialFeedDtoCollectionQueryParameters>> socialFeedDtoCollectionQueryParameters) const
 {
 
 
@@ -1041,6 +1095,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getNotificationsCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -1061,11 +1117,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getNotificationsCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialFeedDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialFeedDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialFeedDtoCollectionQueryParameters && (*socialFeedDtoCollectionQueryParameters).get())
+        {
+            (*socialFeedDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialFeedDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1134,7 +1206,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialFeedsApi::getNotificationsCount
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> SocialFeedsApi::patchFeedPostAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, utility::string_t feedPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> SocialFeedsApi::patchFeedPostAsync(utility::string_t socialProfileId, utility::string_t socialFeedId, utility::string_t feedPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1203,7 +1275,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialFeedsApi::patchFeedPostAsync(ut
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1221,11 +1293,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialFeedsApi::patchFeedPostAsync(ut
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

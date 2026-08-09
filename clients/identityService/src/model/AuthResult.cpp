@@ -33,6 +33,11 @@ AuthResult::AuthResult()
     m_ScopesIsSet = false;
     m_Error = utility::conversions::to_string_t("");
     m_ErrorIsSet = false;
+    m_RunAs = utility::conversions::to_string_t("");
+    m_RunAsIsSet = false;
+    m_PrincipalKind = utility::conversions::to_string_t("");
+    m_PrincipalKindIsSet = false;
+    m_ProvenanceIsSet = false;
 }
 
 AuthResult::~AuthResult()
@@ -80,6 +85,18 @@ web::json::value AuthResult::toJson() const
     if(m_ErrorIsSet)
     {
         val[utility::conversions::to_string_t(U("error"))] = ModelBase::toJson(m_Error);
+    }
+    if(m_RunAsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("runAs"))] = ModelBase::toJson(m_RunAs);
+    }
+    if(m_PrincipalKindIsSet)
+    {
+        val[utility::conversions::to_string_t(U("principalKind"))] = ModelBase::toJson(m_PrincipalKind);
+    }
+    if(m_ProvenanceIsSet)
+    {
+        val[utility::conversions::to_string_t(U("provenance"))] = ModelBase::toJson(m_Provenance);
     }
 
     return val;
@@ -169,6 +186,36 @@ bool AuthResult::fromJson(const web::json::value& val)
             setError(refVal_setError);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("runAs"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("runAs")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setRunAs;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRunAs);
+            setRunAs(refVal_setRunAs);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("principalKind"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("principalKind")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setPrincipalKind;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPrincipalKind);
+            setPrincipalKind(refVal_setPrincipalKind);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("provenance"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("provenance")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<ExecutionProvenance> refVal_setProvenance;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProvenance);
+            setProvenance(refVal_setProvenance);
+        }
+    }
     return ok;
 }
 
@@ -210,6 +257,18 @@ void AuthResult::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_ErrorIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("error")), m_Error));
+    }
+    if(m_RunAsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("runAs")), m_RunAs));
+    }
+    if(m_PrincipalKindIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("principalKind")), m_PrincipalKind));
+    }
+    if(m_ProvenanceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("provenance")), m_Provenance));
     }
 }
 
@@ -269,6 +328,24 @@ bool AuthResult::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         utility::string_t refVal_setError;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("error"))), refVal_setError );
         setError(refVal_setError);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("runAs"))))
+    {
+        utility::string_t refVal_setRunAs;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("runAs"))), refVal_setRunAs );
+        setRunAs(refVal_setRunAs);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("principalKind"))))
+    {
+        utility::string_t refVal_setPrincipalKind;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("principalKind"))), refVal_setPrincipalKind );
+        setPrincipalKind(refVal_setPrincipalKind);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("provenance"))))
+    {
+        std::shared_ptr<ExecutionProvenance> refVal_setProvenance;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("provenance"))), refVal_setProvenance );
+        setProvenance(refVal_setProvenance);
     }
     return ok;
 }
@@ -432,6 +509,66 @@ bool AuthResult::errorIsSet() const
 void AuthResult::unsetError()
 {
     m_ErrorIsSet = false;
+}
+utility::string_t AuthResult::getRunAs() const
+{
+    return m_RunAs;
+}
+
+void AuthResult::setRunAs(const utility::string_t& value)
+{
+    m_RunAs = value;
+    m_RunAsIsSet = true;
+}
+
+bool AuthResult::runAsIsSet() const
+{
+    return m_RunAsIsSet;
+}
+
+void AuthResult::unsetRunAs()
+{
+    m_RunAsIsSet = false;
+}
+utility::string_t AuthResult::getPrincipalKind() const
+{
+    return m_PrincipalKind;
+}
+
+void AuthResult::setPrincipalKind(const utility::string_t& value)
+{
+    m_PrincipalKind = value;
+    m_PrincipalKindIsSet = true;
+}
+
+bool AuthResult::principalKindIsSet() const
+{
+    return m_PrincipalKindIsSet;
+}
+
+void AuthResult::unsetPrincipalKind()
+{
+    m_PrincipalKindIsSet = false;
+}
+std::shared_ptr<ExecutionProvenance> AuthResult::getProvenance() const
+{
+    return m_Provenance;
+}
+
+void AuthResult::setProvenance(const std::shared_ptr<ExecutionProvenance>& value)
+{
+    m_Provenance = value;
+    m_ProvenanceIsSet = true;
+}
+
+bool AuthResult::provenanceIsSet() const
+{
+    return m_ProvenanceIsSet;
+}
+
+void AuthResult::unsetProvenance()
+{
+    m_ProvenanceIsSet = false;
 }
 }
 }

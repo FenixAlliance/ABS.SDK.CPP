@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LeaveTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/LeaveTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LeaveTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LeaveTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LeaveTypeUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="leaveTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> getLeaveTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LeaveTypeDtoCollectionQueryParameters>> leaveTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count leave types
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="leaveTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLeaveTypesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LeaveTypeDtoCollectionQueryParameters>> leaveTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a leave type

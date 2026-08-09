@@ -22,6 +22,7 @@
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
+#include "CppRestOpenAPIClient/model/ExecutionProvenance.h"
 #include <cpprest/details/basic_types.h>
 #include "CppRestOpenAPIClient/Object.h"
 #include <vector>
@@ -31,6 +32,7 @@ namespace openapitools {
 namespace client {
 namespace model {
 
+class ExecutionProvenance;
 
 
 /// <summary>
@@ -129,6 +131,33 @@ public:
 
     void setError(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getRunAs() const;
+    bool runAsIsSet() const;
+    void unsetRunAs();
+
+    void setRunAs(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPrincipalKind() const;
+    bool principalKindIsSet() const;
+    void unsetPrincipalKind();
+
+    void setPrincipalKind(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<ExecutionProvenance> getProvenance() const;
+    bool provenanceIsSet() const;
+    void unsetProvenance();
+
+    void setProvenance(const std::shared_ptr<ExecutionProvenance>& value);
+
 
 protected:
     std::shared_ptr<Object> m_UserId;
@@ -147,6 +176,12 @@ protected:
     bool m_ScopesIsSet;
     utility::string_t m_Error;
     bool m_ErrorIsSet;
+    utility::string_t m_RunAs;
+    bool m_RunAsIsSet;
+    utility::string_t m_PrincipalKind;
+    bool m_PrincipalKindIsSet;
+    std::shared_ptr<ExecutionProvenance> m_Provenance;
+    bool m_ProvenanceIsSet;
 };
 
 

@@ -1185,7 +1185,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::deleteWalletTokenAsync(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getIncomingPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getIncomingPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -1227,6 +1227,8 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getIncomingPayme
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1244,11 +1246,27 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getIncomingPayme
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1317,7 +1335,7 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getIncomingPayme
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -1359,6 +1377,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingPaymentsCountA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1376,11 +1396,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingPaymentsCountA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1449,7 +1485,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingPaymentsCountA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getIncomingWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getIncomingWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -1491,6 +1527,8 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getIncomingWalle
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1508,11 +1546,27 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getIncomingWalle
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1581,7 +1635,7 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getIncomingWalle
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -1623,6 +1677,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingWalletInvoices
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1640,11 +1696,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getIncomingWalletInvoices
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1846,7 +1918,7 @@ pplx::task<std::shared_ptr<LocationDtoEnvelope>> WalletsApi::getLocationForWalle
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LocationDtoListEnvelope>> WalletsApi::getLocationsForWalletAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LocationDtoListEnvelope>> WalletsApi::getLocationsForWalletAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -1888,6 +1960,8 @@ pplx::task<std::shared_ptr<LocationDtoListEnvelope>> WalletsApi::getLocationsFor
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1905,11 +1979,27 @@ pplx::task<std::shared_ptr<LocationDtoListEnvelope>> WalletsApi::getLocationsFor
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1978,7 +2068,7 @@ pplx::task<std::shared_ptr<LocationDtoListEnvelope>> WalletsApi::getLocationsFor
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getLocationsForWalletCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getLocationsForWalletCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -2020,6 +2110,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getLocationsForWalletCoun
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2037,11 +2129,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getLocationsForWalletCoun
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2110,7 +2218,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getLocationsForWalletCoun
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getOutgoingPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getOutgoingPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -2152,6 +2260,8 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getOutgoingPayme
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2169,11 +2279,27 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getOutgoingPayme
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2242,7 +2368,7 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getOutgoingPayme
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -2284,6 +2410,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingPaymentsCountA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2301,11 +2429,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingPaymentsCountA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2374,7 +2518,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingPaymentsCountA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getOutgoingWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getOutgoingWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -2416,6 +2560,8 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getOutgoingWalle
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2433,11 +2579,27 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getOutgoingWalle
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2506,7 +2668,7 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getOutgoingWalle
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -2548,6 +2710,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingWalletInvoices
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2565,11 +2729,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getOutgoingWalletInvoices
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2771,7 +2951,7 @@ pplx::task<std::shared_ptr<BankAccountDtoEnvelope>> WalletsApi::getWalletBankAcc
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> WalletsApi::getWalletBankAccountsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> WalletsApi::getWalletBankAccountsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters) const
 {
 
 
@@ -2813,6 +2993,8 @@ pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> WalletsApi::getWalletBan
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2830,11 +3012,27 @@ pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> WalletsApi::getWalletBan
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (bankAccountDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*bankAccountDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(bankAccountDtoCollectionQueryParameters && (*bankAccountDtoCollectionQueryParameters).get())
+        {
+            (*bankAccountDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("bankAccountDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2903,7 +3101,7 @@ pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> WalletsApi::getWalletBan
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletBankAccountsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletBankAccountsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters) const
 {
 
 
@@ -2945,6 +3143,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletBankAccountsCoun
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2962,11 +3162,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletBankAccountsCoun
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (bankAccountDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*bankAccountDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(bankAccountDtoCollectionQueryParameters && (*bankAccountDtoCollectionQueryParameters).get())
+        {
+            (*bankAccountDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("bankAccountDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3035,7 +3251,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletBankAccountsCoun
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> WalletsApi::getWalletChargebacksAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> WalletsApi::getWalletChargebacksAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentChargebackDtoCollectionQueryParameters>> paymentChargebackDtoCollectionQueryParameters) const
 {
 
 
@@ -3077,6 +3293,8 @@ pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> WalletsApi::getWal
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3094,11 +3312,27 @@ pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> WalletsApi::getWal
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentChargebackDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentChargebackDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentChargebackDtoCollectionQueryParameters && (*paymentChargebackDtoCollectionQueryParameters).get())
+        {
+            (*paymentChargebackDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentChargebackDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3167,7 +3401,7 @@ pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> WalletsApi::getWal
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletChargebacksCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletChargebacksCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentChargebackDtoCollectionQueryParameters>> paymentChargebackDtoCollectionQueryParameters) const
 {
 
 
@@ -3209,6 +3443,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletChargebacksCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3226,11 +3462,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletChargebacksCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentChargebackDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentChargebackDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentChargebackDtoCollectionQueryParameters && (*paymentChargebackDtoCollectionQueryParameters).get())
+        {
+            (*paymentChargebackDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentChargebackDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3431,7 +3683,7 @@ pplx::task<std::shared_ptr<WalletDtoEnvelope>> WalletsApi::getWalletDetailsAsync
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> WalletsApi::getWalletExtendedOrdersAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> WalletsApi::getWalletExtendedOrdersAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ExtendedOrderDtoCollectionQueryParameters>> extendedOrderDtoCollectionQueryParameters) const
 {
 
 
@@ -3473,6 +3725,8 @@ pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> WalletsApi::getWalletE
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3490,11 +3744,27 @@ pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> WalletsApi::getWalletE
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (extendedOrderDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*extendedOrderDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(extendedOrderDtoCollectionQueryParameters && (*extendedOrderDtoCollectionQueryParameters).get())
+        {
+            (*extendedOrderDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("extendedOrderDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3563,7 +3833,7 @@ pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> WalletsApi::getWalletE
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getWalletInvoicesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -3605,6 +3875,8 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getWalletInvoice
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3622,11 +3894,27 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getWalletInvoice
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3695,7 +3983,7 @@ pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> WalletsApi::getWalletInvoice
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletInvoicesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters) const
 {
 
 
@@ -3737,6 +4025,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletInvoicesCountAsy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3754,11 +4044,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletInvoicesCountAsy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceDtoCollectionQueryParameters && (*invoiceDtoCollectionQueryParameters).get())
+        {
+            (*invoiceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3827,7 +4133,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletInvoicesCountAsy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<OrderDtoListEnvelope>> WalletsApi::getWalletOrdersAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<OrderDtoListEnvelope>> WalletsApi::getWalletOrdersAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters) const
 {
 
 
@@ -3869,6 +4175,8 @@ pplx::task<std::shared_ptr<OrderDtoListEnvelope>> WalletsApi::getWalletOrdersAsy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3886,11 +4194,27 @@ pplx::task<std::shared_ptr<OrderDtoListEnvelope>> WalletsApi::getWalletOrdersAsy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (orderDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*orderDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(orderDtoCollectionQueryParameters && (*orderDtoCollectionQueryParameters).get())
+        {
+            (*orderDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("orderDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3959,7 +4283,7 @@ pplx::task<std::shared_ptr<OrderDtoListEnvelope>> WalletsApi::getWalletOrdersAsy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletOrdersCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletOrdersCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters) const
 {
 
 
@@ -4001,6 +4325,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletOrdersCountAsync
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4018,11 +4344,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletOrdersCountAsync
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (orderDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*orderDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(orderDtoCollectionQueryParameters && (*orderDtoCollectionQueryParameters).get())
+        {
+            (*orderDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("orderDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4091,7 +4433,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletOrdersCountAsync
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getWalletPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getWalletPaymentsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -4133,6 +4475,8 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getWalletPayment
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4150,11 +4494,27 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getWalletPayment
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4223,7 +4583,7 @@ pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> WalletsApi::getWalletPayment
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletPaymentsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters) const
 {
 
 
@@ -4265,6 +4625,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletPaymentsCountAsy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4282,11 +4644,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletPaymentsCountAsy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentDtoCollectionQueryParameters && (*paymentDtoCollectionQueryParameters).get())
+        {
+            (*paymentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4355,7 +4733,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletPaymentsCountAsy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> WalletsApi::getWalletQuotesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> WalletsApi::getWalletQuotesAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters) const
 {
 
 
@@ -4397,6 +4775,8 @@ pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> WalletsApi::getWalletQuotesAsy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4414,11 +4794,27 @@ pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> WalletsApi::getWalletQuotesAsy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (quoteDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*quoteDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(quoteDtoCollectionQueryParameters && (*quoteDtoCollectionQueryParameters).get())
+        {
+            (*quoteDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("quoteDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4487,7 +4883,7 @@ pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> WalletsApi::getWalletQuotesAsy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletQuotesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletQuotesCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters) const
 {
 
 
@@ -4529,6 +4925,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletQuotesCountAsync
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4546,11 +4944,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletQuotesCountAsync
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (quoteDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*quoteDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(quoteDtoCollectionQueryParameters && (*quoteDtoCollectionQueryParameters).get())
+        {
+            (*quoteDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("quoteDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4619,7 +5033,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletQuotesCountAsync
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> WalletsApi::getWalletRefundsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> WalletsApi::getWalletRefundsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentRefundDtoCollectionQueryParameters>> paymentRefundDtoCollectionQueryParameters) const
 {
 
 
@@ -4661,6 +5075,8 @@ pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> WalletsApi::getWalletR
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4678,11 +5094,27 @@ pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> WalletsApi::getWalletR
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentRefundDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentRefundDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentRefundDtoCollectionQueryParameters && (*paymentRefundDtoCollectionQueryParameters).get())
+        {
+            (*paymentRefundDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentRefundDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4751,7 +5183,7 @@ pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> WalletsApi::getWalletR
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletRefundsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletRefundsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentRefundDtoCollectionQueryParameters>> paymentRefundDtoCollectionQueryParameters) const
 {
 
 
@@ -4793,6 +5225,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletRefundsCountAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4810,11 +5244,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletRefundsCountAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentRefundDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentRefundDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentRefundDtoCollectionQueryParameters && (*paymentRefundDtoCollectionQueryParameters).get())
+        {
+            (*paymentRefundDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentRefundDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5016,7 +5466,7 @@ pplx::task<std::shared_ptr<PaymentTokenDtoEnvelope>> WalletsApi::getWalletTokenA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> WalletsApi::getWalletTokensAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> WalletsApi::getWalletTokensAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentTokenDtoCollectionQueryParameters>> paymentTokenDtoCollectionQueryParameters) const
 {
 
 
@@ -5058,6 +5508,8 @@ pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> WalletsApi::getWalletTo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5075,11 +5527,27 @@ pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> WalletsApi::getWalletTo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentTokenDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentTokenDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentTokenDtoCollectionQueryParameters && (*paymentTokenDtoCollectionQueryParameters).get())
+        {
+            (*paymentTokenDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentTokenDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5148,7 +5616,7 @@ pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> WalletsApi::getWalletTo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletTokensCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletTokensCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentTokenDtoCollectionQueryParameters>> paymentTokenDtoCollectionQueryParameters) const
 {
 
 
@@ -5190,6 +5658,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletTokensCountAsync
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5207,11 +5677,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletTokensCountAsync
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentTokenDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentTokenDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentTokenDtoCollectionQueryParameters && (*paymentTokenDtoCollectionQueryParameters).get())
+        {
+            (*paymentTokenDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentTokenDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5280,7 +5766,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletTokensCountAsync
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> WalletsApi::getWalletWithdrawRequestsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> WalletsApi::getWalletWithdrawRequestsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WalletWithdrawRequestDtoCollectionQueryParameters>> walletWithdrawRequestDtoCollectionQueryParameters) const
 {
 
 
@@ -5322,6 +5808,8 @@ pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> WalletsApi::ge
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5339,11 +5827,27 @@ pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> WalletsApi::ge
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (walletWithdrawRequestDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*walletWithdrawRequestDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(walletWithdrawRequestDtoCollectionQueryParameters && (*walletWithdrawRequestDtoCollectionQueryParameters).get())
+        {
+            (*walletWithdrawRequestDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("walletWithdrawRequestDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5412,7 +5916,7 @@ pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> WalletsApi::ge
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawRequestsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawRequestsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WalletWithdrawRequestDtoCollectionQueryParameters>> walletWithdrawRequestDtoCollectionQueryParameters) const
 {
 
 
@@ -5454,6 +5958,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawRequests
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5471,11 +5977,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawRequests
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (walletWithdrawRequestDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*walletWithdrawRequestDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(walletWithdrawRequestDtoCollectionQueryParameters && (*walletWithdrawRequestDtoCollectionQueryParameters).get())
+        {
+            (*walletWithdrawRequestDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("walletWithdrawRequestDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5544,7 +6066,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawRequests
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> WalletsApi::getWalletWithdrawsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> WalletsApi::getWalletWithdrawsAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WalletWithdrawDtoCollectionQueryParameters>> walletWithdrawDtoCollectionQueryParameters) const
 {
 
 
@@ -5586,6 +6108,8 @@ pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> WalletsApi::getWallet
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5603,11 +6127,27 @@ pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> WalletsApi::getWallet
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (walletWithdrawDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*walletWithdrawDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(walletWithdrawDtoCollectionQueryParameters && (*walletWithdrawDtoCollectionQueryParameters).get())
+        {
+            (*walletWithdrawDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("walletWithdrawDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5676,7 +6216,7 @@ pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> WalletsApi::getWallet
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawsCountAsync(utility::string_t walletId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WalletWithdrawDtoCollectionQueryParameters>> walletWithdrawDtoCollectionQueryParameters) const
 {
 
 
@@ -5718,6 +6258,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawsCountAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5735,11 +6277,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawsCountAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (walletWithdrawDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*walletWithdrawDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(walletWithdrawDtoCollectionQueryParameters && (*walletWithdrawDtoCollectionQueryParameters).get())
+        {
+            (*walletWithdrawDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("walletWithdrawDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5808,7 +6366,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> WalletsApi::getWalletWithdrawsCountAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletBankAccountAsync(utility::string_t walletId, utility::string_t bankAccountId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletBankAccountAsync(utility::string_t walletId, utility::string_t bankAccountId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -5874,7 +6432,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletBankAccountAsy
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -5892,11 +6450,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletBankAccountAsy
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -5970,7 +6528,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletBankAccountAsy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletTokenAsync(utility::string_t walletId, utility::string_t tokenId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletTokenAsync(utility::string_t walletId, utility::string_t tokenId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -6036,7 +6594,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletTokenAsync(uti
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -6054,11 +6612,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> WalletsApi::patchWalletTokenAsync(uti
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

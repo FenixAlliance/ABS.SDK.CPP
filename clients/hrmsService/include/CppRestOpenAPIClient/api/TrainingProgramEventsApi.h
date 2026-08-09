@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramEventCreateDto.h"
+#include "CppRestOpenAPIClient/model/TrainingProgramEventDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramEventDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramEventDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramEventUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trainingProgramEventDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TrainingProgramEventDtoListEnvelope>> getTrainingProgramEventsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrainingProgramEventDtoCollectionQueryParameters>> trainingProgramEventDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count training program events
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trainingProgramEventDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTrainingProgramEventsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrainingProgramEventDtoCollectionQueryParameters>> trainingProgramEventDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a training program event
@@ -138,13 +143,13 @@ public:
     /// <param name="eventId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTrainingProgramEventAsync(
         utility::string_t tenantId,
         utility::string_t eventId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a training program event

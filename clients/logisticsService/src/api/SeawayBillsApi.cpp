@@ -746,7 +746,7 @@ pplx::task<std::shared_ptr<SeawayBillDtoEnvelope>> SeawayBillsApi::getSeawayBill
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> SeawayBillsApi::getSeawayBillLinesAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> SeawayBillsApi::getSeawayBillLinesAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -788,6 +788,8 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> SeawayBillsApi::getSeawa
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -808,11 +810,27 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> SeawayBillsApi::getSeawa
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -881,7 +899,7 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> SeawayBillsApi::getSeawa
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillLinesCountAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillLinesCountAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -923,6 +941,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillLinesCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -943,11 +963,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillLinesCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1016,7 +1052,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillLinesCou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SeawayBillDtoListEnvelope>> SeawayBillsApi::getSeawayBillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SeawayBillDtoListEnvelope>> SeawayBillsApi::getSeawayBillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SeawayBillDtoCollectionQueryParameters>> seawayBillDtoCollectionQueryParameters) const
 {
 
 
@@ -1057,6 +1093,8 @@ pplx::task<std::shared_ptr<SeawayBillDtoListEnvelope>> SeawayBillsApi::getSeaway
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1077,11 +1115,27 @@ pplx::task<std::shared_ptr<SeawayBillDtoListEnvelope>> SeawayBillsApi::getSeaway
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (seawayBillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*seawayBillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(seawayBillDtoCollectionQueryParameters && (*seawayBillDtoCollectionQueryParameters).get())
+        {
+            (*seawayBillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("seawayBillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1150,7 +1204,7 @@ pplx::task<std::shared_ptr<SeawayBillDtoListEnvelope>> SeawayBillsApi::getSeaway
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SeawayBillDtoCollectionQueryParameters>> seawayBillDtoCollectionQueryParameters) const
 {
 
 
@@ -1191,6 +1245,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillsCountAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1211,11 +1267,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SeawayBillsApi::getSeawayBillsCountAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (seawayBillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*seawayBillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(seawayBillDtoCollectionQueryParameters && (*seawayBillDtoCollectionQueryParameters).get())
+        {
+            (*seawayBillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("seawayBillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1689,7 +1761,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::markSeawayBillInTrans
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1757,7 +1829,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1775,11 +1847,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1853,7 +1925,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillAsync(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillLineAsync(utility::string_t tenantId, utility::string_t billId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillLineAsync(utility::string_t tenantId, utility::string_t billId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1922,7 +1994,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillLineAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1940,11 +2012,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SeawayBillsApi::patchSeawayBillLineAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

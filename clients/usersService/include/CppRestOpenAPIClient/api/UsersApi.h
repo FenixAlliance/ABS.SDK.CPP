@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/AddressDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AddressDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CartDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
@@ -30,12 +31,15 @@
 #include "CppRestOpenAPIClient/model/ExtendedTenantDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedTenantEnrollmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedUserDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/FollowRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FollowRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/NotificationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/TenantDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantEnrollmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantEnrollmentDtoListEnvelope.h"
@@ -74,9 +78,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCurrentUserFollowersAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count the social profiles that the current user follows
@@ -86,9 +92,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCurrentUserFollowsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count the notifications for the current user
@@ -98,9 +106,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCurrentUserNotificationsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count the tenants that the current user is enrolled in
@@ -110,9 +120,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCurrentUserTenantsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the list of addresses for the current user
@@ -122,9 +134,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="addressDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AddressDtoListEnvelope>> getCurrentUserAddressesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AddressDtoCollectionQueryParameters>> addressDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current user
@@ -194,9 +208,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> getCurrentUserFollowersAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the social profiles that the current user follows
@@ -206,9 +222,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> getCurrentUserFollowsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the list of tenant enrollment invitations for the current user
@@ -230,9 +248,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> getCurrentUserNotificationsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the settings for the current user
@@ -266,9 +286,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantDtoListEnvelope>> getCurrentUserTenantsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the tenants that the current user is enrolled in
@@ -328,11 +350,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCurrentUserAsync(
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update the current user&#39;s avatar

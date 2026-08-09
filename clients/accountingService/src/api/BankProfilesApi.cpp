@@ -36,7 +36,7 @@ BankProfilesApi::~BankProfilesApi()
 {
 }
 
-pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> BankProfilesApi::getBankProfiles(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> BankProfilesApi::getBankProfiles(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BankProfileDtoCollectionQueryParameters>> bankProfileDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> BankProfilesApi::getBank
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -97,11 +99,27 @@ pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> BankProfilesApi::getBank
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (bankProfileDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*bankProfileDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(bankProfileDtoCollectionQueryParameters && (*bankProfileDtoCollectionQueryParameters).get())
+        {
+            (*bankProfileDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("bankProfileDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -170,7 +188,7 @@ pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> BankProfilesApi::getBank
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> BankProfilesApi::getBankProfilesCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> BankProfilesApi::getBankProfilesCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BankProfileDtoCollectionQueryParameters>> bankProfileDtoCollectionQueryParameters) const
 {
 
 
@@ -211,6 +229,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> BankProfilesApi::getBankProfilesCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -231,11 +251,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> BankProfilesApi::getBankProfilesCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (bankProfileDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*bankProfileDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(bankProfileDtoCollectionQueryParameters && (*bankProfileDtoCollectionQueryParameters).get())
+        {
+            (*bankProfileDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("bankProfileDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

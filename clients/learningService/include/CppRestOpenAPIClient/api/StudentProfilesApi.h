@@ -27,7 +27,7 @@
 #include "CppRestOpenAPIClient/model/CountDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/StudentProfileCreateDto.h"
 #include "CppRestOpenAPIClient/model/StudentProfileDto.h"
 #include "CppRestOpenAPIClient/model/StudentProfileUpdateDto.h"
@@ -170,13 +170,13 @@ public:
     /// <param name="studentProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> apiV2LearningServiceStudentProfilesStudentProfileIdPatch(
         utility::string_t tenantId,
         utility::string_t studentProfileId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// 

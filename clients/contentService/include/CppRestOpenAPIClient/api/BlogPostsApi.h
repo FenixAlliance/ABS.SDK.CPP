@@ -24,19 +24,23 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BlogPostCategoryCreateDto.h"
+#include "CppRestOpenAPIClient/model/BlogPostCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostCommentCreateDto.h"
+#include "CppRestOpenAPIClient/model/BlogPostCommentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostCommentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostCreateDto.h"
+#include "CppRestOpenAPIClient/model/BlogPostDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostTagCreateDto.h"
+#include "CppRestOpenAPIClient/model/BlogPostTagDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostTagDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -155,8 +159,10 @@ public:
     /// Retrieves all blog posts, optionally filtered by tenant using OData query options.
     /// </remarks>
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostDtoListEnvelope>> getBlogPostsAsync(
-        boost::optional<utility::string_t> tenantId
+        boost::optional<utility::string_t> tenantId,
+        boost::optional<std::shared_ptr<BlogPostDtoCollectionQueryParameters>> blogPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of blog posts
@@ -165,8 +171,10 @@ public:
     /// Returns the total count of blog posts, optionally filtered by tenant using OData query options.
     /// </remarks>
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBlogPostsCountAsync(
-        boost::optional<utility::string_t> tenantId
+        boost::optional<utility::string_t> tenantId,
+        boost::optional<std::shared_ptr<BlogPostDtoCollectionQueryParameters>> blogPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get categories for a blog post
@@ -175,8 +183,10 @@ public:
     /// Retrieves all categories related to a specific blog post.
     /// </remarks>
     /// <param name="blogPostId"></param>
+    /// <param name="blogPostCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostCategoryDtoListEnvelope>> getCategoriesForBlogPostAsync(
-        utility::string_t blogPostId
+        utility::string_t blogPostId,
+        boost::optional<std::shared_ptr<BlogPostCategoryDtoCollectionQueryParameters>> blogPostCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get comments for a blog post
@@ -185,8 +195,10 @@ public:
     /// Retrieves all comments for a specific blog post.
     /// </remarks>
     /// <param name="blogPostId"></param>
+    /// <param name="blogPostCommentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostCommentDtoListEnvelope>> getCommentsForBlogPostAsync(
-        utility::string_t blogPostId
+        utility::string_t blogPostId,
+        boost::optional<std::shared_ptr<BlogPostCommentDtoCollectionQueryParameters>> blogPostCommentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get replies for a comment
@@ -196,9 +208,11 @@ public:
     /// </remarks>
     /// <param name="commentId"></param>
     /// <param name="blogPostId"></param>
+    /// <param name="blogPostCommentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostCommentDtoListEnvelope>> getRepliesForCommentAsync(
         utility::string_t commentId,
-        utility::string_t blogPostId
+        utility::string_t blogPostId,
+        boost::optional<std::shared_ptr<BlogPostCommentDtoCollectionQueryParameters>> blogPostCommentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tags for a blog post
@@ -207,8 +221,10 @@ public:
     /// Retrieves all tags related to a specific blog post.
     /// </remarks>
     /// <param name="blogPostId"></param>
+    /// <param name="blogPostTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostTagDtoListEnvelope>> getTagsForBlogPostAsync(
-        utility::string_t blogPostId
+        utility::string_t blogPostId,
+        boost::optional<std::shared_ptr<BlogPostTagDtoCollectionQueryParameters>> blogPostTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a blog post
@@ -218,11 +234,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="blogPostId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBlogPostAsync(
         utility::string_t tenantId,
         utility::string_t blogPostId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Relate an existing category to a blog post

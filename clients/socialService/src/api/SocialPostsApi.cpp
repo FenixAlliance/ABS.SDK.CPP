@@ -36,6 +36,160 @@ SocialPostsApi::~SocialPostsApi()
 {
 }
 
+pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> SocialPostsApi::createSocialCommentReactionAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionCreateDto>> socialReactionCreateDto) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->createSocialCommentReactionAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialReactionCreateDto)
+            localVarJson = ModelBase::toJson(*socialReactionCreateDto);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialReactionCreateDto && (*socialReactionCreateDto).get())
+        {
+            (*socialReactionCreateDto)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialReactionCreateDto"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->createSocialCommentReactionAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling createSocialCommentReactionAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling createSocialCommentReactionAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SocialCommentReactionDtoEnvelope> localVarResult(new SocialCommentReactionDtoEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling createSocialCommentReactionAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::shared_ptr<SocialPostDtoEnvelope>> SocialPostsApi::createSocialPostAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostCreateDto>> socialPostCreateDto) const
 {
 
@@ -494,7 +648,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::createSocialPostComme
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialReactionDtoEnvelope>> SocialPostsApi::createSocialPostReactionAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionCreateDto>> socialReactionCreateDto) const
+pplx::task<std::shared_ptr<SocialPostReactionDtoEnvelope>> SocialPostsApi::createSocialPostReactionAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionCreateDto>> socialReactionCreateDto) const
 {
 
 
@@ -626,7 +780,7 @@ pplx::task<std::shared_ptr<SocialReactionDtoEnvelope>> SocialPostsApi::createSoc
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<SocialReactionDtoEnvelope> localVarResult(new SocialReactionDtoEnvelope());
+        std::shared_ptr<SocialPostReactionDtoEnvelope> localVarResult(new SocialPostReactionDtoEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -642,6 +796,143 @@ pplx::task<std::shared_ptr<SocialReactionDtoEnvelope>> SocialPostsApi::createSoc
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling createSocialPostReactionAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::deleteSocialCommentReactionAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t reactionId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("reactionId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(reactionId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->deleteSocialCommentReactionAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->deleteSocialCommentReactionAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling deleteSocialCommentReactionAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling deleteSocialCommentReactionAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<EmptyEnvelope> localVarResult(new EmptyEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling deleteSocialCommentReactionAsync: unsupported response type"));
         }
 
         return localVarResult;
@@ -1190,6 +1481,448 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::deleteSocialPostReact
         return localVarResult;
     });
 }
+pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> SocialPostsApi::getSocialCommentReactionAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t reactionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("reactionId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(reactionId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getSocialCommentReactionAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SocialCommentReactionDtoEnvelope> localVarResult(new SocialCommentReactionDtoEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<SocialCommentReactionDtoListEnvelope>> SocialPostsApi::getSocialCommentReactionsAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialCommentReactionDtoCollectionQueryParameters>> socialCommentReactionDtoCollectionQueryParameters) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionsAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialCommentReactionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialCommentReactionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialCommentReactionDtoCollectionQueryParameters && (*socialCommentReactionDtoCollectionQueryParameters).get())
+        {
+            (*socialCommentReactionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialCommentReactionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionsAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionsAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getSocialCommentReactionsAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SocialCommentReactionDtoListEnvelope> localVarResult(new SocialCommentReactionDtoListEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionsAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialCommentReactionsCountAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialCommentReactionDtoCollectionQueryParameters>> socialCommentReactionDtoCollectionQueryParameters) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/Count");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionsCountAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialCommentReactionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialCommentReactionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialCommentReactionDtoCollectionQueryParameters && (*socialCommentReactionDtoCollectionQueryParameters).get())
+        {
+            (*socialCommentReactionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialCommentReactionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->getSocialCommentReactionsCountAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionsCountAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getSocialCommentReactionsCountAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Int32Envelope> localVarResult(new Int32Envelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSocialCommentReactionsCountAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::shared_ptr<SocialPostDtoEnvelope>> SocialPostsApi::getSocialPostAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
@@ -1458,7 +2191,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::getSocialPostAttachme
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> SocialPostsApi::getSocialPostAttachmentsAsync(utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> SocialPostsApi::getSocialPostAttachmentsAsync(utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostAttachmentDtoCollectionQueryParameters>> socialPostAttachmentDtoCollectionQueryParameters) const
 {
 
 
@@ -1500,6 +2233,8 @@ pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> SocialPostsApi:
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1517,11 +2252,27 @@ pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> SocialPostsApi:
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostAttachmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostAttachmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostAttachmentDtoCollectionQueryParameters && (*socialPostAttachmentDtoCollectionQueryParameters).get())
+        {
+            (*socialPostAttachmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostAttachmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1590,7 +2341,7 @@ pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> SocialPostsApi:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostAttachmentsCountAsync(utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostAttachmentsCountAsync(utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostAttachmentDtoCollectionQueryParameters>> socialPostAttachmentDtoCollectionQueryParameters) const
 {
 
 
@@ -1632,6 +2383,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostAttachme
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1649,11 +2402,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostAttachme
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostAttachmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostAttachmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostAttachmentDtoCollectionQueryParameters && (*socialPostAttachmentDtoCollectionQueryParameters).get())
+        {
+            (*socialPostAttachmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostAttachmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1858,7 +2627,7 @@ pplx::task<std::shared_ptr<SocialPostCommentDtoEnvelope>> SocialPostsApi::getSoc
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> SocialPostsApi::getSocialPostCommentsAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> SocialPostsApi::getSocialPostCommentsAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> parentCommentId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostCommentDtoCollectionQueryParameters>> socialPostCommentDtoCollectionQueryParameters) const
 {
 
 
@@ -1900,9 +2669,15 @@ pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> SocialPostsApi::ge
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (parentCommentId)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("parentCommentId")] = ApiClient::parameterToString(*parentCommentId);
     }
     if (apiVersion)
     {
@@ -1920,11 +2695,27 @@ pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> SocialPostsApi::ge
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostCommentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostCommentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostCommentDtoCollectionQueryParameters && (*socialPostCommentDtoCollectionQueryParameters).get())
+        {
+            (*socialPostCommentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostCommentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1993,7 +2784,7 @@ pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> SocialPostsApi::ge
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostCommentsCountAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostCommentsCountAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> parentCommentId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostCommentDtoCollectionQueryParameters>> socialPostCommentDtoCollectionQueryParameters) const
 {
 
 
@@ -2035,9 +2826,15 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostComments
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (parentCommentId)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("parentCommentId")] = ApiClient::parameterToString(*parentCommentId);
     }
     if (apiVersion)
     {
@@ -2055,11 +2852,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostComments
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostCommentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostCommentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostCommentDtoCollectionQueryParameters && (*socialPostCommentDtoCollectionQueryParameters).get())
+        {
+            (*socialPostCommentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostCommentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2261,7 +3074,7 @@ pplx::task<std::shared_ptr<SocialReactionDtoEnvelope>> SocialPostsApi::getSocial
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> SocialPostsApi::getSocialPostReactionsAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> SocialPostsApi::getSocialPostReactionsAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostReactionDtoCollectionQueryParameters>> socialPostReactionDtoCollectionQueryParameters) const
 {
 
 
@@ -2303,6 +3116,8 @@ pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> SocialPostsApi::getSo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -2323,11 +3138,27 @@ pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> SocialPostsApi::getSo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostReactionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostReactionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostReactionDtoCollectionQueryParameters && (*socialPostReactionDtoCollectionQueryParameters).get())
+        {
+            (*socialPostReactionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostReactionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2396,7 +3227,7 @@ pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> SocialPostsApi::getSo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostReactionsCountAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostReactionsCountAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostReactionDtoCollectionQueryParameters>> socialPostReactionDtoCollectionQueryParameters) const
 {
 
 
@@ -2438,6 +3269,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostReaction
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -2458,11 +3291,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostReaction
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostReactionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostReactionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostReactionDtoCollectionQueryParameters && (*socialPostReactionDtoCollectionQueryParameters).get())
+        {
+            (*socialPostReactionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostReactionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2531,7 +3380,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostReaction
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> SocialPostsApi::getSocialPostsAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> SocialPostsApi::getSocialPostsAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostDtoCollectionQueryParameters>> socialPostDtoCollectionQueryParameters) const
 {
 
 
@@ -2572,6 +3421,8 @@ pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> SocialPostsApi::getSocial
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -2592,11 +3443,27 @@ pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> SocialPostsApi::getSocial
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostDtoCollectionQueryParameters && (*socialPostDtoCollectionQueryParameters).get())
+        {
+            (*socialPostDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2665,7 +3532,7 @@ pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> SocialPostsApi::getSocial
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostsCountAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostsCountAsync(utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialPostDtoCollectionQueryParameters>> socialPostDtoCollectionQueryParameters) const
 {
 
 
@@ -2706,6 +3573,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostsCountAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -2726,11 +3595,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostsCountAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialPostDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*socialPostDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialPostDtoCollectionQueryParameters && (*socialPostDtoCollectionQueryParameters).get())
+        {
+            (*socialPostDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialPostDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2799,7 +3684,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> SocialPostsApi::getSocialPostsCountAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::patchSocialPostAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::patchSocialPostAsync(utility::string_t socialProfileId, utility::string_t socialPostId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2867,7 +3752,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::patchSocialPostAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2885,11 +3770,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::patchSocialPostAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2958,6 +3843,161 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::patchSocialPostAsync(
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling patchSocialPostAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> SocialPostsApi::updateSocialCommentReactionAsync(utility::string_t socialPostId, utility::string_t commentId, utility::string_t reactionId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionUpdateDto>> socialReactionUpdateDto) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("commentId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(commentId)));
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("reactionId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(reactionId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->updateSocialCommentReactionAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (socialReactionUpdateDto)
+            localVarJson = ModelBase::toJson(*socialReactionUpdateDto);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(socialReactionUpdateDto && (*socialReactionUpdateDto).get())
+        {
+            (*socialReactionUpdateDto)->toMultipart(localVarMultipart, utility::conversions::to_string_t("socialReactionUpdateDto"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->updateSocialCommentReactionAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling updateSocialCommentReactionAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling updateSocialCommentReactionAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SocialCommentReactionDtoEnvelope> localVarResult(new SocialCommentReactionDtoEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling updateSocialCommentReactionAsync: unsupported response type"));
         }
 
         return localVarResult;
@@ -3424,7 +4464,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::updateSocialPostComme
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::updateSocialPostReactionAsync(utility::string_t socialProfileId, utility::string_t socialPostId, utility::string_t reactionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionUpdateDto>> socialReactionUpdateDto) const
+pplx::task<std::shared_ptr<SocialPostReactionDtoEnvelope>> SocialPostsApi::updateSocialPostReactionAsync(utility::string_t socialProfileId, utility::string_t socialPostId, utility::string_t reactionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SocialReactionUpdateDto>> socialReactionUpdateDto) const
 {
 
 
@@ -3557,7 +4597,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::updateSocialPostReact
     })
     .then([=, this](utility::string_t localVarResponse)
     {
-        std::shared_ptr<EmptyEnvelope> localVarResult(new EmptyEnvelope());
+        std::shared_ptr<SocialPostReactionDtoEnvelope> localVarResult(new SocialPostReactionDtoEnvelope());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -3573,6 +4613,148 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> SocialPostsApi::updateSocialPostReact
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling updateSocialPostReactionAsync: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<SocialPostAttachmentDtoEnvelope>> SocialPostsApi::uploadSocialPostImageAttachmentAsync(utility::string_t socialPostId, utility::string_t socialProfileId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<HttpContent>> file) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Image");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("socialPostId") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(socialPostId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SocialPostsApi->uploadSocialPostImageAttachmentAsync does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+
+    {
+        localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
+    }
+    if (apiVersion)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("api-version")] = ApiClient::parameterToString(*apiVersion);
+    }
+    if (xApiVersion)
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+    if (file && *file != nullptr)
+    {
+        localVarFileParams[ utility::conversions::to_string_t("file") ] = *file;
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SocialPostsApi->uploadSocialPostImageAttachmentAsync does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling uploadSocialPostImageAttachmentAsync: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling uploadSocialPostImageAttachmentAsync: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<SocialPostAttachmentDtoEnvelope> localVarResult(new SocialPostAttachmentDtoEnvelope());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling uploadSocialPostImageAttachmentAsync: unsupported response type"));
         }
 
         return localVarResult;

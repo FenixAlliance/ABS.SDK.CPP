@@ -26,18 +26,22 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ProjectCreateDto.h"
+#include "CppRestOpenAPIClient/model/ProjectDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProjectDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectPeriodCreateDto.h"
 #include "CppRestOpenAPIClient/model/ProjectPeriodDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectPeriodUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ProjectTaskCreateDto.h"
+#include "CppRestOpenAPIClient/model/ProjectTaskDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProjectTaskDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectTaskUpdateDto.h"
+#include "CppRestOpenAPIClient/model/ProjectTimeLogDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProjectTimeLogDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectUpdateDto.h"
+#include "CppRestOpenAPIClient/model/TaskCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDtoListEnvelope.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -172,9 +176,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="taskCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TaskCategoryDtoListEnvelope>> getProjectTaskCategoriesAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<TaskCategoryDtoCollectionQueryParameters>> taskCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts project task categories
@@ -184,9 +190,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="taskCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProjectTaskCategoriesCountAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<TaskCategoryDtoCollectionQueryParameters>> taskCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts project time logs
@@ -196,9 +204,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="projectTimeLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProjectTimeLogsCountAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectTimeLogDtoCollectionQueryParameters>> projectTimeLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieves all projects
@@ -207,8 +217,10 @@ public:
     /// Gets all projects for the current tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="projectDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProjectDtoListEnvelope>> getProjectsByTenantIdAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectDtoCollectionQueryParameters>> projectDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts projects
@@ -217,8 +229,10 @@ public:
     /// Gets the count of projects for the current tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="projectDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProjectsCountByTenantIdAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectDtoCollectionQueryParameters>> projectDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieves project tasks
@@ -228,9 +242,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="projectTaskDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProjectTaskDtoListEnvelope>> getTasksForProjectAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectTaskDtoCollectionQueryParameters>> projectTaskDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts project tasks
@@ -240,9 +256,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="projectTaskDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTasksForProjectCountAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectTaskDtoCollectionQueryParameters>> projectTaskDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieves project time logs
@@ -252,9 +270,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
+    /// <param name="projectTimeLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProjectTimeLogDtoListEnvelope>> getTimeLogsForProjectAsync(
         utility::string_t projectId,
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ProjectTimeLogDtoCollectionQueryParameters>> projectTimeLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a project
@@ -264,11 +284,11 @@ public:
     /// </remarks>
     /// <param name="projectId"></param>
     /// <param name="tenantId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchProjectAsync(
         utility::string_t projectId,
         utility::string_t tenantId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a project period
@@ -279,12 +299,12 @@ public:
     /// <param name="projectId"></param>
     /// <param name="projectPeriodId"></param>
     /// <param name="tenantId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchProjectPeriodAsync(
         utility::string_t projectId,
         utility::string_t projectPeriodId,
         utility::string_t tenantId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a project task
@@ -295,12 +315,12 @@ public:
     /// <param name="projectId"></param>
     /// <param name="projectTaskId"></param>
     /// <param name="tenantId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaskForProjectAsync(
         utility::string_t projectId,
         utility::string_t projectTaskId,
         utility::string_t tenantId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a project

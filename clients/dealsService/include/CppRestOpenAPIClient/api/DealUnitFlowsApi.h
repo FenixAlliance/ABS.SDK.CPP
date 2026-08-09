@@ -24,9 +24,11 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/DealUnitFlowCreateDto.h"
+#include "CppRestOpenAPIClient/model/DealUnitFlowDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowStageCreateDto.h"
+#include "CppRestOpenAPIClient/model/DealUnitFlowStageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowStageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowStageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitFlowStageUpdateDto.h"
@@ -34,7 +36,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -142,9 +144,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="dealUnitFlowId"></param>
+    /// <param name="dealUnitFlowStageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DealUnitFlowStageDtoListEnvelope>> getDealUnitFlowStagesAsync(
         utility::string_t tenantId,
-        utility::string_t dealUnitFlowId
+        utility::string_t dealUnitFlowId,
+        boost::optional<std::shared_ptr<DealUnitFlowStageDtoCollectionQueryParameters>> dealUnitFlowStageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get stages count for a deal unit flow
@@ -154,9 +158,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="dealUnitFlowId"></param>
+    /// <param name="dealUnitFlowStageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDealUnitFlowStagesCountAsync(
         utility::string_t tenantId,
-        utility::string_t dealUnitFlowId
+        utility::string_t dealUnitFlowId,
+        boost::optional<std::shared_ptr<DealUnitFlowStageDtoCollectionQueryParameters>> dealUnitFlowStageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get deal unit flows
@@ -165,8 +171,10 @@ public:
     /// Retrieves a list of deal unit flows for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="dealUnitFlowDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DealUnitFlowDtoListEnvelope>> getDealUnitFlowsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DealUnitFlowDtoCollectionQueryParameters>> dealUnitFlowDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get deal unit flows count
@@ -175,8 +183,10 @@ public:
     /// Returns the total count of deal unit flows for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="dealUnitFlowDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDealUnitFlowsCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DealUnitFlowDtoCollectionQueryParameters>> dealUnitFlowDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a deal unit flow
@@ -186,11 +196,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="dealUnitFlowId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDealUnitFlowAsync(
         utility::string_t tenantId,
         utility::string_t dealUnitFlowId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a deal unit flow stage
@@ -201,12 +211,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="dealUnitFlowId"></param>
     /// <param name="dealUnitFlowStageId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDealUnitFlowStageAsync(
         utility::string_t tenantId,
         utility::string_t dealUnitFlowId,
         utility::string_t dealUnitFlowStageId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a deal unit flow

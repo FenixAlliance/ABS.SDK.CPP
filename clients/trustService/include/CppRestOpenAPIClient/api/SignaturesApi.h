@@ -26,6 +26,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/SignatureDto.h"
+#include "CppRestOpenAPIClient/model/SignatureDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SignatureDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -72,10 +73,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signatureDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SignatureDtoListEnvelope>> getSignaturesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SignatureDtoCollectionQueryParameters>> signatureDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signatures count
@@ -86,10 +89,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signatureDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSignaturesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SignatureDtoCollectionQueryParameters>> signatureDtoCollectionQueryParameters
     ) const;
 
 protected:

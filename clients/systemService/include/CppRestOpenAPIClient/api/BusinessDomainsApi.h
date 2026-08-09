@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/BusinessDomainDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BusinessDomainDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BusinessDomainDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
@@ -84,9 +85,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> getSystemBusinessDomains(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of all business domains in the system
@@ -96,9 +99,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSystemBusinessDomainsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Verify a business domain

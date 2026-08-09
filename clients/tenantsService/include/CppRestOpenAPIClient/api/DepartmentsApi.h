@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TenantDepartmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantDepartmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantDepartmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantDepartmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantDepartmentUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDepartmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantDepartmentDtoListEnvelope>> getTenantDepartments(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDepartmentDtoCollectionQueryParameters>> tenantDepartmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant departments
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDepartmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantDepartmentsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDepartmentDtoCollectionQueryParameters>> tenantDepartmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a tenant department
@@ -138,13 +143,13 @@ public:
     /// <param name="tenantDepartmentId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenantDepartmentAsync(
         utility::string_t tenantId,
         utility::string_t tenantDepartmentId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tenant department

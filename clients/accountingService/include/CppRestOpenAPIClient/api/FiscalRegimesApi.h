@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalRegimeCreateDto.h"
+#include "CppRestOpenAPIClient/model/FiscalRegimeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FiscalRegimeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalRegimeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalRegimeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -113,12 +114,14 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalRegimeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FiscalRegimeDtoListEnvelope>> getFiscalRegimes(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalRegimeDtoCollectionQueryParameters>> fiscalRegimeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get fiscal regimes count
@@ -130,11 +133,13 @@ public:
     /// <param name="fiscalAuthorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalRegimeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getFiscalRegimesCount(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalRegimeDtoCollectionQueryParameters>> fiscalRegimeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a fiscal regime
@@ -146,13 +151,13 @@ public:
     /// <param name="regimeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchFiscalRegimeAsync(
         utility::string_t tenantId,
         utility::string_t regimeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a fiscal regime

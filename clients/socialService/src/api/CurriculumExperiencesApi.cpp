@@ -473,7 +473,7 @@ pplx::task<std::shared_ptr<CurriculumExperienceDtoEnvelope>> CurriculumExperienc
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> CurriculumExperiencesApi::getCurriculumExperiencesAsync(utility::string_t curriculumId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> CurriculumExperiencesApi::getCurriculumExperiencesAsync(utility::string_t curriculumId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CurriculumExperienceDtoCollectionQueryParameters>> curriculumExperienceDtoCollectionQueryParameters) const
 {
 
 
@@ -515,6 +515,8 @@ pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> CurriculumExper
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -539,11 +541,27 @@ pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> CurriculumExper
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (curriculumExperienceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*curriculumExperienceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(curriculumExperienceDtoCollectionQueryParameters && (*curriculumExperienceDtoCollectionQueryParameters).get())
+        {
+            (*curriculumExperienceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("curriculumExperienceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -612,7 +630,7 @@ pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> CurriculumExper
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> CurriculumExperiencesApi::getCurriculumExperiencesCountAsync(utility::string_t curriculumId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CurriculumExperiencesApi::getCurriculumExperiencesCountAsync(utility::string_t curriculumId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CurriculumExperienceDtoCollectionQueryParameters>> curriculumExperienceDtoCollectionQueryParameters) const
 {
 
 
@@ -654,6 +672,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CurriculumExperiencesApi::getCurricul
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("socialProfileId")] = ApiClient::parameterToString(socialProfileId);
@@ -678,11 +698,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CurriculumExperiencesApi::getCurricul
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (curriculumExperienceDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*curriculumExperienceDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(curriculumExperienceDtoCollectionQueryParameters && (*curriculumExperienceDtoCollectionQueryParameters).get())
+        {
+            (*curriculumExperienceDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("curriculumExperienceDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -751,7 +787,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> CurriculumExperiencesApi::getCurricul
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CurriculumExperiencesApi::patchCurriculumExperienceAsync(utility::string_t curriculumId, utility::string_t experienceId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CurriculumExperiencesApi::patchCurriculumExperienceAsync(utility::string_t curriculumId, utility::string_t experienceId, utility::string_t socialProfileId, boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -824,7 +860,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CurriculumExperiencesApi::patchCurric
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -842,11 +878,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CurriculumExperiencesApi::patchCurric
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelCreateDto.h"
+#include "CppRestOpenAPIClient/model/ServiceLevelDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelUpdateDto.h"
@@ -61,10 +62,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countAllServiceLevelsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelDtoCollectionQueryParameters>> serviceLevelDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a service level
@@ -111,10 +114,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ServiceLevelDtoIReadOnlyListEnvelope>> getAllServiceLevelsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelDtoCollectionQueryParameters>> serviceLevelDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a service level by ID
@@ -144,11 +149,13 @@ public:
     /// <param name="serviceId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ServiceLevelDtoIReadOnlyListEnvelope>> getServiceLevelsAsync(
         utility::string_t tenantId,
         utility::string_t serviceId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelDtoCollectionQueryParameters>> serviceLevelDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get service levels count
@@ -160,11 +167,13 @@ public:
     /// <param name="serviceId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getServiceLevelsCountAsync(
         utility::string_t tenantId,
         utility::string_t serviceId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelDtoCollectionQueryParameters>> serviceLevelDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a service level
@@ -177,14 +186,14 @@ public:
     /// <param name="serviceLevelId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<Envelope>> patchServiceLevelAsync(
         utility::string_t tenantId,
         utility::string_t serviceId,
         utility::string_t serviceLevelId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a service level

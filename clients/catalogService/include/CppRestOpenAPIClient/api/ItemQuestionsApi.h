@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemQuestionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemQuestionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> getItemQuestionsAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemQuestionDtoCollectionQueryParameters>> itemQuestionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item question
@@ -122,13 +125,13 @@ public:
     /// <param name="itemQuestionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchItemQuestionAsync(
         utility::string_t tenantId,
         utility::string_t itemQuestionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item question

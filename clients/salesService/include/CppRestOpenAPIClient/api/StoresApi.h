@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/StoreCreateDto.h"
+#include "CppRestOpenAPIClient/model/StoreDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/StoreDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/StoreDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/StoreUpdateDto.h"
@@ -59,8 +60,10 @@ public:
     /// Returns the total count of stores for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="storeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countStoresAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<StoreDtoCollectionQueryParameters>> storeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a store
@@ -105,8 +108,10 @@ public:
     /// Retrieves a list of stores for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="storeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<StoreDtoListEnvelope>> getStoresAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<StoreDtoCollectionQueryParameters>> storeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a store
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="storeId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchStoreAsync(
         utility::string_t tenantId,
         utility::string_t storeId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a store

@@ -39,6 +39,8 @@ FiscalPeriodDto::FiscalPeriodDto()
     m_EnrollmentIdIsSet = false;
     m_FiscalYearId = utility::conversions::to_string_t("");
     m_FiscalYearIdIsSet = false;
+    m_Status = utility::conversions::to_string_t("");
+    m_StatusIsSet = false;
 }
 
 FiscalPeriodDto::~FiscalPeriodDto()
@@ -86,6 +88,10 @@ web::json::value FiscalPeriodDto::toJson() const
     if(m_FiscalYearIdIsSet)
     {
         val[utility::conversions::to_string_t(U("fiscalYearId"))] = ModelBase::toJson(m_FiscalYearId);
+    }
+    if(m_StatusIsSet)
+    {
+        val[utility::conversions::to_string_t(U("status"))] = ModelBase::toJson(m_Status);
     }
 
     return val;
@@ -175,6 +181,16 @@ bool FiscalPeriodDto::fromJson(const web::json::value& val)
             setFiscalYearId(refVal_setFiscalYearId);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("status"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("status")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStatus;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStatus);
+            setStatus(refVal_setStatus);
+        }
+    }
     return ok;
 }
 
@@ -216,6 +232,10 @@ void FiscalPeriodDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if(m_FiscalYearIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fiscalYearId")), m_FiscalYearId));
+    }
+    if(m_StatusIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("status")), m_Status));
     }
 }
 
@@ -275,6 +295,12 @@ bool FiscalPeriodDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         utility::string_t refVal_setFiscalYearId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fiscalYearId"))), refVal_setFiscalYearId );
         setFiscalYearId(refVal_setFiscalYearId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("status"))))
+    {
+        utility::string_t refVal_setStatus;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("status"))), refVal_setStatus );
+        setStatus(refVal_setStatus);
     }
     return ok;
 }
@@ -438,6 +464,26 @@ bool FiscalPeriodDto::fiscalYearIdIsSet() const
 void FiscalPeriodDto::unsetFiscalYearId()
 {
     m_FiscalYearIdIsSet = false;
+}
+utility::string_t FiscalPeriodDto::getStatus() const
+{
+    return m_Status;
+}
+
+void FiscalPeriodDto::setStatus(const utility::string_t& value)
+{
+    m_Status = value;
+    m_StatusIsSet = true;
+}
+
+bool FiscalPeriodDto::statusIsSet() const
+{
+    return m_StatusIsSet;
+}
+
+void FiscalPeriodDto::unsetStatus()
+{
+    m_StatusIsSet = false;
 }
 }
 }

@@ -28,11 +28,13 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryCreateDto.h"
+#include "CppRestOpenAPIClient/model/ProofOfDeliveryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/ProofOfDeliveryLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryLineUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ProofOfDeliveryUpdateDto.h"
@@ -221,11 +223,13 @@ public:
     /// <param name="podId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="proofOfDeliveryLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProofOfDeliveryLineDtoListEnvelope>> getProofOfDeliveryLinesAsync(
         utility::string_t tenantId,
         utility::string_t podId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProofOfDeliveryLineDtoCollectionQueryParameters>> proofOfDeliveryLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get proof of delivery lines count
@@ -237,11 +241,13 @@ public:
     /// <param name="podId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="proofOfDeliveryLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProofOfDeliveryLinesCountAsync(
         utility::string_t tenantId,
         utility::string_t podId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProofOfDeliveryLineDtoCollectionQueryParameters>> proofOfDeliveryLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all proofs of delivery
@@ -252,10 +258,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="proofOfDeliveryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProofOfDeliveryDtoListEnvelope>> getProofsOfDeliveryAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProofOfDeliveryDtoCollectionQueryParameters>> proofOfDeliveryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get proofs of delivery count
@@ -266,10 +274,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="proofOfDeliveryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProofsOfDeliveryCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProofOfDeliveryDtoCollectionQueryParameters>> proofOfDeliveryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a proof of delivery
@@ -281,13 +291,13 @@ public:
     /// <param name="podId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchProofOfDeliveryAsync(
         utility::string_t tenantId,
         utility::string_t podId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a proof of delivery line
@@ -300,14 +310,14 @@ public:
     /// <param name="lineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchProofOfDeliveryLineAsync(
         utility::string_t tenantId,
         utility::string_t podId,
         utility::string_t lineId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Reject a proof of delivery

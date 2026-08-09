@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/ExpenseTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExpenseTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseTypeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expenseTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExpenseTypeDtoListEnvelope>> getExpenseTypes(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExpenseTypeDtoCollectionQueryParameters>> expenseTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of expense types for a tenant
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expenseTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getExpenseTypesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExpenseTypeDtoCollectionQueryParameters>> expenseTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an expense type
@@ -138,13 +143,13 @@ public:
     /// <param name="expenseTypeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchExpenseType(
         utility::string_t tenantId,
         utility::string_t expenseTypeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an expense type

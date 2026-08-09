@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ServiceQueueCreateDto.h"
+#include "CppRestOpenAPIClient/model/ServiceQueueDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ServiceQueueDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceQueueDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceQueueUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceQueueDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ServiceQueueDtoIReadOnlyListEnvelope>> getServiceQueuesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceQueueDtoCollectionQueryParameters>> serviceQueueDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get service queues count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceQueueDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getServiceQueuesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceQueueDtoCollectionQueryParameters>> serviceQueueDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a service queue
@@ -138,13 +143,13 @@ public:
     /// <param name="serviceQueueId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<Envelope>> patchServiceQueueAsync(
         utility::string_t tenantId,
         utility::string_t serviceQueueId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a service queue

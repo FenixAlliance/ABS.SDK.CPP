@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BlogPostTagCreateDto.h"
+#include "CppRestOpenAPIClient/model/BlogPostTagDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostTagDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostTagDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogPostTagUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -61,10 +62,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countBlogPostTagsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlogPostTagDtoCollectionQueryParameters>> blogPostTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a blog post tag
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostTagDtoListEnvelope>> getBlogPostTagsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlogPostTagDtoCollectionQueryParameters>> blogPostTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a blog post tag
@@ -138,13 +143,13 @@ public:
     /// <param name="blogPostTagId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBlogPostTagAsync(
         utility::string_t tenantId,
         utility::string_t blogPostTagId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a blog post tag

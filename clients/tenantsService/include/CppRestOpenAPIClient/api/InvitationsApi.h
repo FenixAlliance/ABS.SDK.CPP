@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/TenantInvitationCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantInvitationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantInvitationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantInvitationDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -118,10 +119,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantInvitationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantInvitationDtoListEnvelope>> getTenantInvitations(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantInvitationDtoCollectionQueryParameters>> tenantInvitationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant invitations
@@ -132,10 +135,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantInvitationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantInvitationsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantInvitationDtoCollectionQueryParameters>> tenantInvitationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Send an invitation to a user to join a tenant

@@ -24,9 +24,11 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BillOfLadingCreateDto.h"
+#include "CppRestOpenAPIClient/model/BillOfLadingDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/BillOfLadingLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingLineDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BillOfLadingLineUpdateDto.h"
@@ -34,7 +36,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -168,11 +170,13 @@ public:
     /// <param name="billOfLadingId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="billOfLadingLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BillOfLadingLineDtoListEnvelope>> getBillOfLadingLinesAsync(
         utility::string_t tenantId,
         utility::string_t billOfLadingId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BillOfLadingLineDtoCollectionQueryParameters>> billOfLadingLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get bill of lading lines count
@@ -184,11 +188,13 @@ public:
     /// <param name="billOfLadingId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="billOfLadingLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBillOfLadingLinesCountAsync(
         utility::string_t tenantId,
         utility::string_t billOfLadingId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BillOfLadingLineDtoCollectionQueryParameters>> billOfLadingLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all bills of lading
@@ -199,10 +205,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="billOfLadingDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BillOfLadingDtoListEnvelope>> getBillsOfLadingAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BillOfLadingDtoCollectionQueryParameters>> billOfLadingDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get bills of lading count
@@ -213,10 +221,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="billOfLadingDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBillsOfLadingCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BillOfLadingDtoCollectionQueryParameters>> billOfLadingDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a bill of lading
@@ -228,13 +238,13 @@ public:
     /// <param name="billOfLadingId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBillOfLadingAsync(
         utility::string_t tenantId,
         utility::string_t billOfLadingId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a bill of lading line
@@ -247,14 +257,14 @@ public:
     /// <param name="lineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBillOfLadingLineAsync(
         utility::string_t tenantId,
         utility::string_t billOfLadingId,
         utility::string_t lineId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a bill of lading

@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/MarketingAreaCreateDto.h"
+#include "CppRestOpenAPIClient/model/MarketingAreaDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MarketingAreaDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/MarketingAreaDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/MarketingAreaUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="marketingAreaDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MarketingAreaDtoListEnvelope>> getMarketingAreasAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MarketingAreaDtoCollectionQueryParameters>> marketingAreaDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count marketing areas
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="marketingAreaDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getMarketingAreasCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MarketingAreaDtoCollectionQueryParameters>> marketingAreaDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a marketing area
@@ -138,13 +143,13 @@ public:
     /// <param name="marketingAreaId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchMarketingAreaAsync(
         utility::string_t tenantId,
         utility::string_t marketingAreaId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a marketing area

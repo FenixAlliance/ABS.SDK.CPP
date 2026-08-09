@@ -24,17 +24,19 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BudgetAccountEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/BudgetAccountEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BudgetAccountEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BudgetAccountEntryDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BudgetAccountEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/BudgetCreateDto.h"
+#include "CppRestOpenAPIClient/model/BudgetDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BudgetDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BudgetDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BudgetUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -134,11 +136,13 @@ public:
     /// <param name="budgetId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="budgetAccountEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BudgetAccountEntryDtoIReadOnlyListEnvelope>> getBudgetAccountEntriesCollectionAsync(
         utility::string_t tenantId,
         utility::string_t budgetId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BudgetAccountEntryDtoCollectionQueryParameters>> budgetAccountEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a budget account entry by id
@@ -183,10 +187,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="budgetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BudgetDtoIReadOnlyListEnvelope>> getBudgetsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BudgetDtoCollectionQueryParameters>> budgetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of budgets
@@ -197,10 +203,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="budgetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBudgetsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BudgetDtoCollectionQueryParameters>> budgetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a budget account entry
@@ -213,14 +221,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBudgetAccountEntryAsync(
         utility::string_t tenantId,
         utility::string_t budgetId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a budget
@@ -232,13 +240,13 @@ public:
     /// <param name="budgetId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBudgetAsync(
         utility::string_t tenantId,
         utility::string_t budgetId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a budget account entry

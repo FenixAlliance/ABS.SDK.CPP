@@ -287,7 +287,7 @@ pplx::task<void> CoursesApi::deleteCourseAsync(utility::string_t tenantId, utili
         return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> CoursesApi::getCourseArticlesByCourseWikiAsync(utility::string_t courseId, utility::string_t wikiId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> CoursesApi::getCourseArticlesByCourseWikiAsync(utility::string_t courseId, utility::string_t wikiId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseArticleDtoCollectionQueryParameters>> courseArticleDtoCollectionQueryParameters) const
 {
 
 
@@ -330,6 +330,8 @@ pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> CoursesApi::getCourse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -347,11 +349,27 @@ pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> CoursesApi::getCourse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseArticleDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseArticleDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseArticleDtoCollectionQueryParameters && (*courseArticleDtoCollectionQueryParameters).get())
+        {
+            (*courseArticleDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseArticleDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -424,7 +442,7 @@ pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> CoursesApi::getCourse
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseArticlesByCourseWikiCountAsync(utility::string_t courseId, utility::string_t wikiId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseArticlesByCourseWikiCountAsync(utility::string_t courseId, utility::string_t wikiId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseArticleDtoCollectionQueryParameters>> courseArticleDtoCollectionQueryParameters) const
 {
 
 
@@ -467,6 +485,8 @@ pplx::task<int32_t> CoursesApi::getCourseArticlesByCourseWikiCountAsync(utility:
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -484,11 +504,27 @@ pplx::task<int32_t> CoursesApi::getCourseArticlesByCourseWikiCountAsync(utility:
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseArticleDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseArticleDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseArticleDtoCollectionQueryParameters && (*courseArticleDtoCollectionQueryParameters).get())
+        {
+            (*courseArticleDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseArticleDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -557,7 +593,7 @@ pplx::task<int32_t> CoursesApi::getCourseArticlesByCourseWikiCountAsync(utility:
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> CoursesApi::getCourseAssignmentsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> CoursesApi::getCourseAssignmentsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters) const
 {
 
 
@@ -599,6 +635,8 @@ pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> CoursesApi::getCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -616,11 +654,27 @@ pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> CoursesApi::getCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseAssignmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseAssignmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseAssignmentDtoCollectionQueryParameters && (*courseAssignmentDtoCollectionQueryParameters).get())
+        {
+            (*courseAssignmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseAssignmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -693,7 +747,7 @@ pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> CoursesApi::getCou
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseAssignmentsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseAssignmentsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters) const
 {
 
 
@@ -735,6 +789,8 @@ pplx::task<int32_t> CoursesApi::getCourseAssignmentsByCourseCountAsync(utility::
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -752,11 +808,27 @@ pplx::task<int32_t> CoursesApi::getCourseAssignmentsByCourseCountAsync(utility::
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseAssignmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseAssignmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseAssignmentDtoCollectionQueryParameters && (*courseAssignmentDtoCollectionQueryParameters).get())
+        {
+            (*courseAssignmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseAssignmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -961,7 +1033,7 @@ pplx::task<std::shared_ptr<CourseDto>> CoursesApi::getCourseByIdAsync(utility::s
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> CoursesApi::getCourseCategoriesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> CoursesApi::getCourseCategoriesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseCategoryDtoCollectionQueryParameters>> courseCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -1003,6 +1075,8 @@ pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> CoursesApi::getCours
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1020,11 +1094,27 @@ pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> CoursesApi::getCours
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseCategoryDtoCollectionQueryParameters && (*courseCategoryDtoCollectionQueryParameters).get())
+        {
+            (*courseCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1097,7 +1187,7 @@ pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> CoursesApi::getCours
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseCategoriesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseCategoriesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseCategoryDtoCollectionQueryParameters>> courseCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -1139,6 +1229,8 @@ pplx::task<int32_t> CoursesApi::getCourseCategoriesByCourseCountAsync(utility::s
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1156,11 +1248,27 @@ pplx::task<int32_t> CoursesApi::getCourseCategoriesByCourseCountAsync(utility::s
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseCategoryDtoCollectionQueryParameters && (*courseCategoryDtoCollectionQueryParameters).get())
+        {
+            (*courseCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1229,7 +1337,7 @@ pplx::task<int32_t> CoursesApi::getCourseCategoriesByCourseCountAsync(utility::s
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> CoursesApi::getCourseCohortsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> CoursesApi::getCourseCohortsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseCohortDtoCollectionQueryParameters>> courseCohortDtoCollectionQueryParameters) const
 {
 
 
@@ -1271,6 +1379,8 @@ pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> CoursesApi::getCourseC
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1288,11 +1398,27 @@ pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> CoursesApi::getCourseC
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseCohortDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseCohortDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseCohortDtoCollectionQueryParameters && (*courseCohortDtoCollectionQueryParameters).get())
+        {
+            (*courseCohortDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseCohortDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1365,7 +1491,7 @@ pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> CoursesApi::getCourseC
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseCohortsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseCohortsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseCohortDtoCollectionQueryParameters>> courseCohortDtoCollectionQueryParameters) const
 {
 
 
@@ -1407,6 +1533,8 @@ pplx::task<int32_t> CoursesApi::getCourseCohortsByCourseCountAsync(utility::stri
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1424,11 +1552,27 @@ pplx::task<int32_t> CoursesApi::getCourseCohortsByCourseCountAsync(utility::stri
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseCohortDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseCohortDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseCohortDtoCollectionQueryParameters && (*courseCohortDtoCollectionQueryParameters).get())
+        {
+            (*courseCohortDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseCohortDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1497,7 +1641,7 @@ pplx::task<int32_t> CoursesApi::getCourseCohortsByCourseCountAsync(utility::stri
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> CoursesApi::getCourseEnrollmentsByCourseAsync(utility::string_t tenantId, utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> CoursesApi::getCourseEnrollmentsByCourseAsync(utility::string_t tenantId, utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseEnrollmentDtoCollectionQueryParameters>> courseEnrollmentDtoCollectionQueryParameters) const
 {
 
 
@@ -1539,6 +1683,8 @@ pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> CoursesApi::getCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1559,11 +1705,27 @@ pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> CoursesApi::getCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseEnrollmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseEnrollmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseEnrollmentDtoCollectionQueryParameters && (*courseEnrollmentDtoCollectionQueryParameters).get())
+        {
+            (*courseEnrollmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseEnrollmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1636,7 +1798,7 @@ pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> CoursesApi::getCou
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> CoursesApi::getCourseFilesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> CoursesApi::getCourseFilesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseFileDtoCollectionQueryParameters>> courseFileDtoCollectionQueryParameters) const
 {
 
 
@@ -1678,6 +1840,8 @@ pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> CoursesApi::getCourseFil
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1695,11 +1859,27 @@ pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> CoursesApi::getCourseFil
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseFileDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseFileDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseFileDtoCollectionQueryParameters && (*courseFileDtoCollectionQueryParameters).get())
+        {
+            (*courseFileDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseFileDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1772,7 +1952,7 @@ pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> CoursesApi::getCourseFil
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseFilesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseFilesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseFileDtoCollectionQueryParameters>> courseFileDtoCollectionQueryParameters) const
 {
 
 
@@ -1814,6 +1994,8 @@ pplx::task<int32_t> CoursesApi::getCourseFilesByCourseCountAsync(utility::string
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1831,11 +2013,27 @@ pplx::task<int32_t> CoursesApi::getCourseFilesByCourseCountAsync(utility::string
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseFileDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseFileDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseFileDtoCollectionQueryParameters && (*courseFileDtoCollectionQueryParameters).get())
+        {
+            (*courseFileDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseFileDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1904,7 +2102,7 @@ pplx::task<int32_t> CoursesApi::getCourseFilesByCourseCountAsync(utility::string
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> CoursesApi::getCourseForumsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> CoursesApi::getCourseForumsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters) const
 {
 
 
@@ -1946,6 +2144,8 @@ pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> CoursesApi::getCourseFo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1963,11 +2163,27 @@ pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> CoursesApi::getCourseFo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseForumDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseForumDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseForumDtoCollectionQueryParameters && (*courseForumDtoCollectionQueryParameters).get())
+        {
+            (*courseForumDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseForumDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2040,7 +2256,7 @@ pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> CoursesApi::getCourseFo
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseForumsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseForumsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters) const
 {
 
 
@@ -2082,6 +2298,8 @@ pplx::task<int32_t> CoursesApi::getCourseForumsByCourseCountAsync(utility::strin
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2099,11 +2317,27 @@ pplx::task<int32_t> CoursesApi::getCourseForumsByCourseCountAsync(utility::strin
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseForumDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseForumDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseForumDtoCollectionQueryParameters && (*courseForumDtoCollectionQueryParameters).get())
+        {
+            (*courseForumDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseForumDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2172,7 +2406,7 @@ pplx::task<int32_t> CoursesApi::getCourseForumsByCourseCountAsync(utility::strin
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> CoursesApi::getCourseHandoutsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> CoursesApi::getCourseHandoutsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters) const
 {
 
 
@@ -2214,6 +2448,8 @@ pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> CoursesApi::getCourse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2231,11 +2467,27 @@ pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> CoursesApi::getCourse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseHandoutDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseHandoutDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseHandoutDtoCollectionQueryParameters && (*courseHandoutDtoCollectionQueryParameters).get())
+        {
+            (*courseHandoutDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseHandoutDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2308,7 +2560,7 @@ pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> CoursesApi::getCourse
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseHandoutsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseHandoutsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters) const
 {
 
 
@@ -2350,6 +2602,8 @@ pplx::task<int32_t> CoursesApi::getCourseHandoutsByCourseCountAsync(utility::str
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2367,11 +2621,27 @@ pplx::task<int32_t> CoursesApi::getCourseHandoutsByCourseCountAsync(utility::str
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseHandoutDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseHandoutDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseHandoutDtoCollectionQueryParameters && (*courseHandoutDtoCollectionQueryParameters).get())
+        {
+            (*courseHandoutDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseHandoutDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2440,7 +2710,7 @@ pplx::task<int32_t> CoursesApi::getCourseHandoutsByCourseCountAsync(utility::str
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> CoursesApi::getCourseLibrariesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> CoursesApi::getCourseLibrariesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters) const
 {
 
 
@@ -2482,6 +2752,8 @@ pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> CoursesApi::getCourse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2499,11 +2771,27 @@ pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> CoursesApi::getCourse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseLibraryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseLibraryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseLibraryDtoCollectionQueryParameters && (*courseLibraryDtoCollectionQueryParameters).get())
+        {
+            (*courseLibraryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseLibraryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2576,7 +2864,7 @@ pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> CoursesApi::getCourse
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseLibrariesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseLibrariesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters) const
 {
 
 
@@ -2618,6 +2906,8 @@ pplx::task<int32_t> CoursesApi::getCourseLibrariesByCourseCountAsync(utility::st
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2635,11 +2925,27 @@ pplx::task<int32_t> CoursesApi::getCourseLibrariesByCourseCountAsync(utility::st
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseLibraryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseLibraryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseLibraryDtoCollectionQueryParameters && (*courseLibraryDtoCollectionQueryParameters).get())
+        {
+            (*courseLibraryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseLibraryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2708,7 +3014,7 @@ pplx::task<int32_t> CoursesApi::getCourseLibrariesByCourseCountAsync(utility::st
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> CoursesApi::getCoursePagesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> CoursesApi::getCoursePagesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters) const
 {
 
 
@@ -2750,6 +3056,8 @@ pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> CoursesApi::getCoursePag
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2767,11 +3075,27 @@ pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> CoursesApi::getCoursePag
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (coursePageDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*coursePageDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(coursePageDtoCollectionQueryParameters && (*coursePageDtoCollectionQueryParameters).get())
+        {
+            (*coursePageDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("coursePageDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2844,7 +3168,7 @@ pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> CoursesApi::getCoursePag
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCoursePagesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCoursePagesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters) const
 {
 
 
@@ -2886,6 +3210,8 @@ pplx::task<int32_t> CoursesApi::getCoursePagesByCourseCountAsync(utility::string
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2903,11 +3229,27 @@ pplx::task<int32_t> CoursesApi::getCoursePagesByCourseCountAsync(utility::string
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (coursePageDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*coursePageDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(coursePageDtoCollectionQueryParameters && (*coursePageDtoCollectionQueryParameters).get())
+        {
+            (*coursePageDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("coursePageDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2976,7 +3318,7 @@ pplx::task<int32_t> CoursesApi::getCoursePagesByCourseCountAsync(utility::string
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> CoursesApi::getCourseProblemSetsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> CoursesApi::getCourseProblemSetsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseProblemSetDtoCollectionQueryParameters>> courseProblemSetDtoCollectionQueryParameters) const
 {
 
 
@@ -3018,6 +3360,8 @@ pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> CoursesApi::getCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3035,11 +3379,27 @@ pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> CoursesApi::getCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseProblemSetDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseProblemSetDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseProblemSetDtoCollectionQueryParameters && (*courseProblemSetDtoCollectionQueryParameters).get())
+        {
+            (*courseProblemSetDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseProblemSetDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3112,7 +3472,7 @@ pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> CoursesApi::getCou
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseProblemSetsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseProblemSetsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseProblemSetDtoCollectionQueryParameters>> courseProblemSetDtoCollectionQueryParameters) const
 {
 
 
@@ -3154,6 +3514,8 @@ pplx::task<int32_t> CoursesApi::getCourseProblemSetsByCourseCountAsync(utility::
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3171,11 +3533,27 @@ pplx::task<int32_t> CoursesApi::getCourseProblemSetsByCourseCountAsync(utility::
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseProblemSetDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseProblemSetDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseProblemSetDtoCollectionQueryParameters && (*courseProblemSetDtoCollectionQueryParameters).get())
+        {
+            (*courseProblemSetDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseProblemSetDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3244,7 +3622,7 @@ pplx::task<int32_t> CoursesApi::getCourseProblemSetsByCourseCountAsync(utility::
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> CoursesApi::getCourseSectionsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> CoursesApi::getCourseSectionsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseSectionDtoCollectionQueryParameters>> courseSectionDtoCollectionQueryParameters) const
 {
 
 
@@ -3286,6 +3664,8 @@ pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> CoursesApi::getCourse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3303,11 +3683,27 @@ pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> CoursesApi::getCourse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseSectionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseSectionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseSectionDtoCollectionQueryParameters && (*courseSectionDtoCollectionQueryParameters).get())
+        {
+            (*courseSectionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseSectionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3380,7 +3776,7 @@ pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> CoursesApi::getCourse
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseSectionsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseSectionsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseSectionDtoCollectionQueryParameters>> courseSectionDtoCollectionQueryParameters) const
 {
 
 
@@ -3422,6 +3818,8 @@ pplx::task<int32_t> CoursesApi::getCourseSectionsByCourseCountAsync(utility::str
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3439,11 +3837,27 @@ pplx::task<int32_t> CoursesApi::getCourseSectionsByCourseCountAsync(utility::str
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseSectionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseSectionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseSectionDtoCollectionQueryParameters && (*courseSectionDtoCollectionQueryParameters).get())
+        {
+            (*courseSectionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseSectionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3512,7 +3926,7 @@ pplx::task<int32_t> CoursesApi::getCourseSectionsByCourseCountAsync(utility::str
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> CoursesApi::getCourseUnitComponentsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> CoursesApi::getCourseUnitComponentsByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseUnitComponentDtoCollectionQueryParameters>> courseUnitComponentDtoCollectionQueryParameters) const
 {
 
 
@@ -3554,6 +3968,8 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> CoursesApi::get
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3571,11 +3987,27 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> CoursesApi::get
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseUnitComponentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseUnitComponentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseUnitComponentDtoCollectionQueryParameters && (*courseUnitComponentDtoCollectionQueryParameters).get())
+        {
+            (*courseUnitComponentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseUnitComponentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3648,7 +4080,7 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> CoursesApi::get
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseUnitComponentsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseUnitComponentsByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseUnitComponentDtoCollectionQueryParameters>> courseUnitComponentDtoCollectionQueryParameters) const
 {
 
 
@@ -3690,6 +4122,8 @@ pplx::task<int32_t> CoursesApi::getCourseUnitComponentsByCourseCountAsync(utilit
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3707,11 +4141,27 @@ pplx::task<int32_t> CoursesApi::getCourseUnitComponentsByCourseCountAsync(utilit
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseUnitComponentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseUnitComponentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseUnitComponentDtoCollectionQueryParameters && (*courseUnitComponentDtoCollectionQueryParameters).get())
+        {
+            (*courseUnitComponentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseUnitComponentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3780,7 +4230,7 @@ pplx::task<int32_t> CoursesApi::getCourseUnitComponentsByCourseCountAsync(utilit
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> CoursesApi::getCourseUnitsBySectionAsync(utility::string_t courseId, utility::string_t sectionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> CoursesApi::getCourseUnitsBySectionAsync(utility::string_t courseId, utility::string_t sectionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseUnitDtoCollectionQueryParameters>> courseUnitDtoCollectionQueryParameters) const
 {
 
 
@@ -3823,6 +4273,8 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> CoursesApi::getCourseUni
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3840,11 +4292,27 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> CoursesApi::getCourseUni
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseUnitDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseUnitDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseUnitDtoCollectionQueryParameters && (*courseUnitDtoCollectionQueryParameters).get())
+        {
+            (*courseUnitDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseUnitDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3917,7 +4385,7 @@ pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> CoursesApi::getCourseUni
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseUnitsBySectionCountAsync(utility::string_t courseId, utility::string_t sectionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseUnitsBySectionCountAsync(utility::string_t courseId, utility::string_t sectionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseUnitDtoCollectionQueryParameters>> courseUnitDtoCollectionQueryParameters) const
 {
 
 
@@ -3960,6 +4428,8 @@ pplx::task<int32_t> CoursesApi::getCourseUnitsBySectionCountAsync(utility::strin
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3977,11 +4447,27 @@ pplx::task<int32_t> CoursesApi::getCourseUnitsBySectionCountAsync(utility::strin
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseUnitDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseUnitDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseUnitDtoCollectionQueryParameters && (*courseUnitDtoCollectionQueryParameters).get())
+        {
+            (*courseUnitDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseUnitDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4050,7 +4536,7 @@ pplx::task<int32_t> CoursesApi::getCourseUnitsBySectionCountAsync(utility::strin
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> CoursesApi::getCourseUpdatesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> CoursesApi::getCourseUpdatesByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseNewsDtoCollectionQueryParameters>> courseNewsDtoCollectionQueryParameters) const
 {
 
 
@@ -4092,6 +4578,8 @@ pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> CoursesApi::getCourseUpd
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4109,11 +4597,27 @@ pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> CoursesApi::getCourseUpd
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseNewsDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseNewsDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseNewsDtoCollectionQueryParameters && (*courseNewsDtoCollectionQueryParameters).get())
+        {
+            (*courseNewsDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseNewsDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4186,7 +4690,7 @@ pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> CoursesApi::getCourseUpd
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseUpdatesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseUpdatesByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseNewsDtoCollectionQueryParameters>> courseNewsDtoCollectionQueryParameters) const
 {
 
 
@@ -4228,6 +4732,8 @@ pplx::task<int32_t> CoursesApi::getCourseUpdatesByCourseCountAsync(utility::stri
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4245,11 +4751,27 @@ pplx::task<int32_t> CoursesApi::getCourseUpdatesByCourseCountAsync(utility::stri
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseNewsDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseNewsDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseNewsDtoCollectionQueryParameters && (*courseNewsDtoCollectionQueryParameters).get())
+        {
+            (*courseNewsDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseNewsDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4318,7 +4840,7 @@ pplx::task<int32_t> CoursesApi::getCourseUpdatesByCourseCountAsync(utility::stri
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> CoursesApi::getCourseWikisByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> CoursesApi::getCourseWikisByCourseAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseWikiDtoCollectionQueryParameters>> courseWikiDtoCollectionQueryParameters) const
 {
 
 
@@ -4360,6 +4882,8 @@ pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> CoursesApi::getCourseWik
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4377,11 +4901,27 @@ pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> CoursesApi::getCourseWik
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseWikiDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseWikiDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseWikiDtoCollectionQueryParameters && (*courseWikiDtoCollectionQueryParameters).get())
+        {
+            (*courseWikiDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseWikiDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4454,7 +4994,7 @@ pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> CoursesApi::getCourseWik
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCourseWikisByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCourseWikisByCourseCountAsync(utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseWikiDtoCollectionQueryParameters>> courseWikiDtoCollectionQueryParameters) const
 {
 
 
@@ -4496,6 +5036,8 @@ pplx::task<int32_t> CoursesApi::getCourseWikisByCourseCountAsync(utility::string
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4513,11 +5055,27 @@ pplx::task<int32_t> CoursesApi::getCourseWikisByCourseCountAsync(utility::string
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseWikiDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseWikiDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseWikiDtoCollectionQueryParameters && (*courseWikiDtoCollectionQueryParameters).get())
+        {
+            (*courseWikiDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseWikiDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4586,7 +5144,7 @@ pplx::task<int32_t> CoursesApi::getCourseWikisByCourseCountAsync(utility::string
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<CourseDto>>> CoursesApi::getCoursesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::vector<std::shared_ptr<CourseDto>>> CoursesApi::getCoursesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters) const
 {
 
 
@@ -4627,6 +5185,8 @@ pplx::task<std::vector<std::shared_ptr<CourseDto>>> CoursesApi::getCoursesAsync(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -4647,11 +5207,27 @@ pplx::task<std::vector<std::shared_ptr<CourseDto>>> CoursesApi::getCoursesAsync(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseDtoCollectionQueryParameters && (*courseDtoCollectionQueryParameters).get())
+        {
+            (*courseDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4724,7 +5300,7 @@ pplx::task<std::vector<std::shared_ptr<CourseDto>>> CoursesApi::getCoursesAsync(
         return localVarResult;
     });
 }
-pplx::task<int32_t> CoursesApi::getCoursesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int32_t> CoursesApi::getCoursesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters) const
 {
 
 
@@ -4765,6 +5341,8 @@ pplx::task<int32_t> CoursesApi::getCoursesCountAsync(utility::string_t tenantId,
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -4785,11 +5363,27 @@ pplx::task<int32_t> CoursesApi::getCoursesCountAsync(utility::string_t tenantId,
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (courseDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*courseDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(courseDtoCollectionQueryParameters && (*courseDtoCollectionQueryParameters).get())
+        {
+            (*courseDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("courseDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5394,7 +5988,7 @@ pplx::task<int32_t> CoursesApi::getStudentProfilesByCourseCountAsync(utility::st
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CoursesApi::patchCourseAsync(utility::string_t tenantId, utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CoursesApi::patchCourseAsync(utility::string_t tenantId, utility::string_t courseId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -5462,7 +6056,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CoursesApi::patchCourseAsync(utility:
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -5480,11 +6074,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CoursesApi::patchCourseAsync(utility:
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

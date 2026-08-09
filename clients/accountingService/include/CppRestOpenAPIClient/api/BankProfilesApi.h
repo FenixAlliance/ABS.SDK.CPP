@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/BankProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankProfileDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
@@ -55,10 +56,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankProfileDtoListEnvelope>> getBankProfiles(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankProfileDtoCollectionQueryParameters>> bankProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get bank profiles count
@@ -69,10 +72,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBankProfilesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankProfileDtoCollectionQueryParameters>> bankProfileDtoCollectionQueryParameters
     ) const;
 
 protected:

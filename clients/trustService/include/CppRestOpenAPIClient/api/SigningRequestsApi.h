@@ -33,6 +33,7 @@
 #include "CppRestOpenAPIClient/model/SigningParticipantDto.h"
 #include "CppRestOpenAPIClient/model/SigningParticipantDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SigningRequestDto.h"
+#include "CppRestOpenAPIClient/model/SigningRequestDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SigningRequestDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/VoidSigningRequestDto.h"
 #include <cpprest/details/basic_types.h>
@@ -184,10 +185,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SigningRequestDtoListEnvelope>> getSigningRequestsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningRequestDtoCollectionQueryParameters>> signingRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signing requests count
@@ -198,10 +201,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSigningRequestsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningRequestDtoCollectionQueryParameters>> signingRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create, store, freeze a document and open a signing request in one call

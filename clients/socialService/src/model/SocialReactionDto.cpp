@@ -37,6 +37,8 @@ SocialReactionDto::SocialReactionDto()
     m_SocialProfileNameIsSet = false;
     m_SocialProfileAvatarUrl = utility::conversions::to_string_t("");
     m_SocialProfileAvatarUrlIsSet = false;
+    m_SocialProfileType = utility::conversions::to_string_t("");
+    m_SocialProfileTypeIsSet = false;
 }
 
 SocialReactionDto::~SocialReactionDto()
@@ -80,6 +82,10 @@ web::json::value SocialReactionDto::toJson() const
     if(m_SocialProfileAvatarUrlIsSet)
     {
         val[utility::conversions::to_string_t(U("socialProfileAvatarUrl"))] = ModelBase::toJson(m_SocialProfileAvatarUrl);
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileType"))] = ModelBase::toJson(m_SocialProfileType);
     }
 
     return val;
@@ -159,6 +165,16 @@ bool SocialReactionDto::fromJson(const web::json::value& val)
             setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileType);
+            setSocialProfileType(refVal_setSocialProfileType);
+        }
+    }
     return ok;
 }
 
@@ -196,6 +212,10 @@ void SocialReactionDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_SocialProfileAvatarUrlIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileAvatarUrl")), m_SocialProfileAvatarUrl));
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileType")), m_SocialProfileType));
     }
 }
 
@@ -249,6 +269,12 @@ bool SocialReactionDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setSocialProfileAvatarUrl;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileAvatarUrl"))), refVal_setSocialProfileAvatarUrl );
         setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        utility::string_t refVal_setSocialProfileType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileType"))), refVal_setSocialProfileType );
+        setSocialProfileType(refVal_setSocialProfileType);
     }
     return ok;
 }
@@ -392,6 +418,26 @@ bool SocialReactionDto::socialProfileAvatarUrlIsSet() const
 void SocialReactionDto::unsetSocialProfileAvatarUrl()
 {
     m_SocialProfileAvatarUrlIsSet = false;
+}
+utility::string_t SocialReactionDto::getSocialProfileType() const
+{
+    return m_SocialProfileType;
+}
+
+void SocialReactionDto::setSocialProfileType(const utility::string_t& value)
+{
+    m_SocialProfileType = value;
+    m_SocialProfileTypeIsSet = true;
+}
+
+bool SocialReactionDto::socialProfileTypeIsSet() const
+{
+    return m_SocialProfileTypeIsSet;
+}
+
+void SocialReactionDto::unsetSocialProfileType()
+{
+    m_SocialProfileTypeIsSet = false;
 }
 }
 }

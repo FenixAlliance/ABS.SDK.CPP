@@ -747,7 +747,7 @@ pplx::task<std::shared_ptr<ItemPickListDtoEnvelope>> ItemPickListsApi::getItemPi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> ItemPickListsApi::getItemPickListEntriesAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> ItemPickListsApi::getItemPickListEntriesAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemPickListEntryDtoCollectionQueryParameters>> itemPickListEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -789,6 +789,8 @@ pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> ItemPickListsApi::
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -809,11 +811,27 @@ pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> ItemPickListsApi::
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemPickListEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemPickListEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemPickListEntryDtoCollectionQueryParameters && (*itemPickListEntryDtoCollectionQueryParameters).get())
+        {
+            (*itemPickListEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemPickListEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -882,7 +900,7 @@ pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> ItemPickListsApi::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListEntriesCountAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListEntriesCountAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemPickListEntryDtoCollectionQueryParameters>> itemPickListEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -924,6 +942,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListEntr
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -944,11 +964,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListEntr
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemPickListEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemPickListEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemPickListEntryDtoCollectionQueryParameters && (*itemPickListEntryDtoCollectionQueryParameters).get())
+        {
+            (*itemPickListEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemPickListEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1153,7 +1189,7 @@ pplx::task<std::shared_ptr<ItemPickListEntryDtoEnvelope>> ItemPickListsApi::getI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> ItemPickListsApi::getItemPickListsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> ItemPickListsApi::getItemPickListsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemPickListDtoCollectionQueryParameters>> itemPickListDtoCollectionQueryParameters) const
 {
 
 
@@ -1194,6 +1230,8 @@ pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> ItemPickListsApi::getIt
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1214,11 +1252,27 @@ pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> ItemPickListsApi::getIt
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemPickListDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemPickListDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemPickListDtoCollectionQueryParameters && (*itemPickListDtoCollectionQueryParameters).get())
+        {
+            (*itemPickListDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemPickListDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1287,7 +1341,7 @@ pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> ItemPickListsApi::getIt
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemPickListDtoCollectionQueryParameters>> itemPickListDtoCollectionQueryParameters) const
 {
 
 
@@ -1328,6 +1382,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListsCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1348,11 +1404,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListsCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemPickListDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemPickListDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemPickListDtoCollectionQueryParameters && (*itemPickListDtoCollectionQueryParameters).get())
+        {
+            (*itemPickListDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemPickListDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1421,7 +1493,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemPickListsApi::getItemPickListsCou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListAsync(utility::string_t tenantId, utility::string_t pickListId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1489,7 +1561,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1507,11 +1579,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1585,7 +1657,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListEntryAsync(utility::string_t tenantId, utility::string_t pickListId, utility::string_t entryId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListEntryAsync(utility::string_t tenantId, utility::string_t pickListId, utility::string_t entryId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1654,7 +1726,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListEn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1672,11 +1744,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ItemPickListsApi::patchItemPickListEn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

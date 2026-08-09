@@ -25,12 +25,13 @@
 
 #include "CppRestOpenAPIClient/model/ContactSourceCreateDto.h"
 #include "CppRestOpenAPIClient/model/ContactSourceDto.h"
+#include "CppRestOpenAPIClient/model/ContactSourceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ContactSourceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactSourceUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactSourceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactSourceDtoListEnvelope>> getContactSourcesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactSourceDtoCollectionQueryParameters>> contactSourceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get contact sources count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactSourceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getContactSourcesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactSourceDtoCollectionQueryParameters>> contactSourceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a contact source
@@ -138,13 +143,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchContactSourceAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a contact source

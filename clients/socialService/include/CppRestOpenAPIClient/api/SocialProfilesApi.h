@@ -25,16 +25,22 @@
 
 #include "CppRestOpenAPIClient/model/BooleanEnvelope.h"
 #include "CppRestOpenAPIClient/model/ConversationCreateDto.h"
+#include "CppRestOpenAPIClient/model/ConversationDtoCollectionQueryParameters.h"
+#include "CppRestOpenAPIClient/model/ConversationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ConversationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/FollowRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FollowRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/NotificationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/NotificationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PrivateMessageCreateDto.h"
+#include "CppRestOpenAPIClient/model/PrivateMessageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PrivateMessageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PrivateMessageUpdateDto.h"
+#include "CppRestOpenAPIClient/model/SocialProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -66,10 +72,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="conversationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countConversationsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ConversationDtoCollectionQueryParameters>> conversationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Followed Profiles
@@ -80,10 +88,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countFollowedProfilesAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Follower Profiles
@@ -94,10 +104,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countFollowerProfilesAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Followers
@@ -108,10 +120,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countFollowersAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Follows
@@ -122,10 +136,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countFollowsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Messages
@@ -137,11 +153,13 @@ public:
     /// <param name="conversationId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="privateMessageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countMessagesAsync(
         utility::string_t socialProfileId,
         utility::string_t conversationId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PrivateMessageDtoCollectionQueryParameters>> privateMessageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Notifications
@@ -152,10 +170,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countNotificationsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count Social Profiles
@@ -165,9 +185,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countSocialProfilesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create Conversation
@@ -262,10 +284,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="conversationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ConversationDtoListEnvelope>> getConversationsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ConversationDtoCollectionQueryParameters>> conversationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Followed Profiles
@@ -276,10 +300,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialProfileDtoListEnvelope>> getFollowedProfilesAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Follower Profiles
@@ -290,10 +316,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialProfileDtoListEnvelope>> getFollowerProfilesAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Followers
@@ -304,10 +332,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> getFollowersAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Follows
@@ -318,10 +348,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="followRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> getFollowsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Messages
@@ -333,11 +365,13 @@ public:
     /// <param name="conversationId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="privateMessageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PrivateMessageDtoListEnvelope>> getMessagesAsync(
         utility::string_t socialProfileId,
         utility::string_t conversationId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PrivateMessageDtoCollectionQueryParameters>> privateMessageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Notification
@@ -364,10 +398,28 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> getNotificationsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
+    /// Get or Create Direct Conversation
+    /// </summary>
+    /// <remarks>
+    /// Get or create the direct two-party conversation between the acting profile and a counterparty.
+    /// </remarks>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="body"> (optional)</param>
+    pplx::task<std::shared_ptr<ConversationDtoEnvelope>> getOrCreateDirectConversationAsync(
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<utility::string_t> body
     ) const;
     /// <summary>
     /// Get Social Profile
@@ -391,9 +443,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialProfileDtoListEnvelope>> getSocialProfilesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialProfileDtoCollectionQueryParameters>> socialProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Unfollow

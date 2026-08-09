@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LicenseCreateDto.h"
 #include "CppRestOpenAPIClient/model/LicenseDto.h"
+#include "CppRestOpenAPIClient/model/LicenseDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LicenseDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LicenseUpdateDto.h"
 #include <cpprest/details/basic_types.h>
@@ -106,10 +107,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="licenseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> getLicensesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LicenseDtoCollectionQueryParameters>> licenseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get licenses count
@@ -120,10 +123,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="licenseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLicensesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LicenseDtoCollectionQueryParameters>> licenseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a license

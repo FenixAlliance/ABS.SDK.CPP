@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseClaimCreateDto.h"
+#include "CppRestOpenAPIClient/model/ExpenseClaimDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExpenseClaimDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseClaimDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExpenseClaimUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expenseClaimDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> getExpenseClaims(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExpenseClaimDtoCollectionQueryParameters>> expenseClaimDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of expense claims for a tenant
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expenseClaimDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getExpenseClaimsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExpenseClaimDtoCollectionQueryParameters>> expenseClaimDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an expense claim
@@ -138,13 +143,13 @@ public:
     /// <param name="expenseClaimId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchExpenseClaim(
         utility::string_t tenantId,
         utility::string_t expenseClaimId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an expense claim

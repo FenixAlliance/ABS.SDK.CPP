@@ -25,11 +25,16 @@
 
 #include "CppRestOpenAPIClient/model/AverageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CountDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/CourseCompletionCertificateDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseCompletionCertificateDtoIReadOnlyListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CourseDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseDtoIReadOnlyListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CourseEnrollmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseEnrollmentDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/InstructorProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InstructorProfileDtoIReadOnlyListEnvelope.h"
+#include "CppRestOpenAPIClient/model/StudentProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/StudentProfileDtoIReadOnlyListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -71,9 +76,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCompletionCertificateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CourseCompletionCertificateDtoIReadOnlyListEnvelope>> getMyCertificatesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCompletionCertificateDtoCollectionQueryParameters>> courseCompletionCertificateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s certificates count
@@ -83,9 +90,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCompletionCertificateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyCertificatesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCompletionCertificateDtoCollectionQueryParameters>> courseCompletionCertificateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s course enrollments
@@ -95,9 +104,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseEnrollmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CourseEnrollmentDtoIReadOnlyListEnvelope>> getMyEnrollmentsAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseEnrollmentDtoCollectionQueryParameters>> courseEnrollmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s enrollment count
@@ -107,9 +118,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseEnrollmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyEnrollmentsCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseEnrollmentDtoCollectionQueryParameters>> courseEnrollmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s completed hours
@@ -131,9 +144,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CourseDtoIReadOnlyListEnvelope>> getMyInstructorCoursesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s instructor courses count
@@ -143,9 +158,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyInstructorCoursesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s instructor profiles
@@ -155,9 +172,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="instructorProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InstructorProfileDtoIReadOnlyListEnvelope>> getMyInstructorProfilesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InstructorProfileDtoCollectionQueryParameters>> instructorProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s instructor profiles count
@@ -167,9 +186,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="instructorProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyInstructorProfilesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InstructorProfileDtoCollectionQueryParameters>> instructorProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s pending task count
@@ -191,9 +212,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CourseDtoIReadOnlyListEnvelope>> getMyStudentCoursesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s enrolled courses count
@@ -203,9 +226,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyStudentCoursesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s student profiles
@@ -215,9 +240,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="studentProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<StudentProfileDtoIReadOnlyListEnvelope>> getMyStudentProfilesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<StudentProfileDtoCollectionQueryParameters>> studentProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get current user&#39;s student profiles count
@@ -227,9 +254,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="studentProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getMyStudentProfilesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<StudentProfileDtoCollectionQueryParameters>> studentProfileDtoCollectionQueryParameters
     ) const;
 
 protected:

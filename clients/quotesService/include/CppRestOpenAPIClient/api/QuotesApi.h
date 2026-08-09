@@ -27,13 +27,16 @@
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedQuoteDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedQuoteDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/QuoteCreateDto.h"
+#include "CppRestOpenAPIClient/model/QuoteDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/QuoteDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/QuoteDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/QuoteLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/QuoteLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/QuoteLineDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/QuoteLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/QuoteLineUpdateDto.h"
@@ -169,8 +172,10 @@ public:
     /// Retrieves a list of extended quotes for the specified tenant, supporting OData query options.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedQuoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedQuoteDtoListEnvelope>> getExtendedQuotes(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedQuoteDtoCollectionQueryParameters>> extendedQuoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a quote by ID.
@@ -207,10 +212,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="quoteId"></param>
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="quoteLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<QuoteLineDtoListEnvelope>> getQuoteLines(
         utility::string_t tenantId,
         utility::string_t quoteId,
-        boost::optional<utility::string_t> itemId
+        boost::optional<utility::string_t> itemId,
+        boost::optional<std::shared_ptr<QuoteLineDtoCollectionQueryParameters>> quoteLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of quote lines.
@@ -220,9 +227,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="quoteId"></param>
+    /// <param name="quoteLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getQuoteLinesCount(
         utility::string_t tenantId,
-        utility::string_t quoteId
+        utility::string_t quoteId,
+        boost::optional<std::shared_ptr<QuoteLineDtoCollectionQueryParameters>> quoteLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a list of quotes.
@@ -231,8 +240,10 @@ public:
     /// Retrieves a list of quotes for the specified tenant, supporting OData query options.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="quoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> getQuotes(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of quotes.
@@ -241,8 +252,10 @@ public:
     /// Retrieves the total count of quotes for the specified tenant, supporting OData query options.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="quoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getQuotesCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an existing quote.
@@ -252,11 +265,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="quoteId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchQuoteAsync(
         utility::string_t tenantId,
         utility::string_t quoteId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a quote line.
@@ -267,12 +280,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="quoteId"></param>
     /// <param name="quoteLineId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchQuoteLineAsync(
         utility::string_t tenantId,
         utility::string_t quoteId,
         utility::string_t quoteLineId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Preview the rendered email for an invoice.

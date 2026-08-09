@@ -315,7 +315,7 @@ pplx::task<void> ItemsApi::bulkUpsertStockItems(utility::string_t tenantId, boos
         return void();
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemTagsByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemTagsByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemTagDtoCollectionQueryParameters>> itemTagDtoCollectionQueryParameters) const
 {
 
 
@@ -357,6 +357,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemTagsByItemId(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -377,11 +379,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemTagsByItemId(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemTagDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemTagDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemTagDtoCollectionQueryParameters && (*itemTagDtoCollectionQueryParameters).get())
+        {
+            (*itemTagDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemTagDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -450,7 +468,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemTagsByItemId(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemsByBusiness(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemsByBusiness(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters) const
 {
 
 
@@ -491,6 +509,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemsByBusiness(b
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -512,11 +532,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> ItemsApi::countStockItemsByBusiness(b
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (catalogItemDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*catalogItemDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(catalogItemDtoCollectionQueryParameters && (*catalogItemDtoCollectionQueryParameters).get())
+        {
+            (*catalogItemDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("catalogItemDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1233,7 +1269,7 @@ pplx::task<std::shared_ptr<ItemAttachmentDtoEnvelope>> ItemsApi::getStockItemAtt
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> ItemsApi::getStockItemAttachmentsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> ItemsApi::getStockItemAttachmentsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemAttachmentDtoCollectionQueryParameters>> itemAttachmentDtoCollectionQueryParameters) const
 {
 
 
@@ -1275,6 +1311,8 @@ pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> ItemsApi::getStockIte
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1292,11 +1330,27 @@ pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> ItemsApi::getStockIte
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemAttachmentDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemAttachmentDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemAttachmentDtoCollectionQueryParameters && (*itemAttachmentDtoCollectionQueryParameters).get())
+        {
+            (*itemAttachmentDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemAttachmentDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1763,7 +1817,7 @@ pplx::task<std::shared_ptr<ItemBrandDtoEnvelope>> ItemsApi::getStockItemBrandByI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> ItemsApi::getStockItemBrandsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> ItemsApi::getStockItemBrandsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemBrandDtoCollectionQueryParameters>> itemBrandDtoCollectionQueryParameters) const
 {
 
 
@@ -1805,6 +1859,8 @@ pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> ItemsApi::getStockItemBran
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -1822,11 +1878,27 @@ pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> ItemsApi::getStockItemBran
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemBrandDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemBrandDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemBrandDtoCollectionQueryParameters && (*itemBrandDtoCollectionQueryParameters).get())
+        {
+            (*itemBrandDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemBrandDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2027,7 +2099,7 @@ pplx::task<std::shared_ptr<CatalogItemDtoEnvelope>> ItemsApi::getStockItemById(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> ItemsApi::getStockItemCategoriesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> ItemsApi::getStockItemCategoriesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemCategoryDtoCollectionQueryParameters>> itemCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -2069,6 +2141,8 @@ pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> ItemsApi::getStockItemC
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2086,11 +2160,27 @@ pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> ItemsApi::getStockItemC
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemCategoryDtoCollectionQueryParameters && (*itemCategoryDtoCollectionQueryParameters).get())
+        {
+            (*itemCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2292,7 +2382,7 @@ pplx::task<std::shared_ptr<ItemCategoryDtoEnvelope>> ItemsApi::getStockItemCateg
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> ItemsApi::getStockItemGoogleCategoriesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> ItemsApi::getStockItemGoogleCategoriesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemGoogleCategoryDtoCollectionQueryParameters>> itemGoogleCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -2334,6 +2424,8 @@ pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> ItemsApi::getStoc
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2351,11 +2443,27 @@ pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> ItemsApi::getStoc
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemGoogleCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemGoogleCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemGoogleCategoryDtoCollectionQueryParameters && (*itemGoogleCategoryDtoCollectionQueryParameters).get())
+        {
+            (*itemGoogleCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemGoogleCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2690,7 +2798,7 @@ pplx::task<std::shared_ptr<ItemImageDtoEnvelope>> ItemsApi::getStockItemImageByI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemImageDtoListEnvelope>> ItemsApi::getStockItemImagesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemImageDtoListEnvelope>> ItemsApi::getStockItemImagesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemImageDtoCollectionQueryParameters>> itemImageDtoCollectionQueryParameters) const
 {
 
 
@@ -2732,6 +2840,8 @@ pplx::task<std::shared_ptr<ItemImageDtoListEnvelope>> ItemsApi::getStockItemImag
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -2749,11 +2859,27 @@ pplx::task<std::shared_ptr<ItemImageDtoListEnvelope>> ItemsApi::getStockItemImag
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemImageDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemImageDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemImageDtoCollectionQueryParameters && (*itemImageDtoCollectionQueryParameters).get())
+        {
+            (*itemImageDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemImageDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3220,7 +3346,7 @@ pplx::task<std::shared_ptr<ItemQuestionDtoEnvelope>> ItemsApi::getStockItemQuest
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> ItemsApi::getStockItemQuestionsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> ItemsApi::getStockItemQuestionsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemQuestionDtoCollectionQueryParameters>> itemQuestionDtoCollectionQueryParameters) const
 {
 
 
@@ -3262,6 +3388,8 @@ pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> ItemsApi::getStockItemQ
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3279,11 +3407,27 @@ pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> ItemsApi::getStockItemQ
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemQuestionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemQuestionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemQuestionDtoCollectionQueryParameters && (*itemQuestionDtoCollectionQueryParameters).get())
+        {
+            (*itemQuestionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemQuestionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3352,7 +3496,7 @@ pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> ItemsApi::getStockItemQ
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemRefundPolicyDtoListEnvelope>> ItemsApi::getStockItemRefundPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemRefundPolicyDtoListEnvelope>> ItemsApi::getStockItemRefundPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemRefundPolicyDtoCollectionQueryParameters>> itemRefundPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -3394,6 +3538,8 @@ pplx::task<std::shared_ptr<ItemRefundPolicyDtoListEnvelope>> ItemsApi::getStockI
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3411,11 +3557,27 @@ pplx::task<std::shared_ptr<ItemRefundPolicyDtoListEnvelope>> ItemsApi::getStockI
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemRefundPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemRefundPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemRefundPolicyDtoCollectionQueryParameters && (*itemRefundPolicyDtoCollectionQueryParameters).get())
+        {
+            (*itemRefundPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemRefundPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3617,7 +3779,7 @@ pplx::task<std::shared_ptr<ItemRefundPolicyDtoEnvelope>> ItemsApi::getStockItemR
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> ItemsApi::getStockItemReturnPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> ItemsApi::getStockItemReturnPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemReturnPolicyDtoCollectionQueryParameters>> itemReturnPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -3659,6 +3821,8 @@ pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> ItemsApi::getStockI
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -3676,11 +3840,27 @@ pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> ItemsApi::getStockI
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemReturnPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemReturnPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemReturnPolicyDtoCollectionQueryParameters && (*itemReturnPolicyDtoCollectionQueryParameters).get())
+        {
+            (*itemReturnPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemReturnPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4015,7 +4195,7 @@ pplx::task<std::shared_ptr<ItemReviewDtoEnvelope>> ItemsApi::getStockItemReviewB
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> ItemsApi::getStockItemReviewsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> ItemsApi::getStockItemReviewsByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemReviewDtoCollectionQueryParameters>> itemReviewDtoCollectionQueryParameters) const
 {
 
 
@@ -4057,6 +4237,8 @@ pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> ItemsApi::getStockItemRev
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4074,11 +4256,27 @@ pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> ItemsApi::getStockItemRev
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemReviewDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemReviewDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemReviewDtoCollectionQueryParameters && (*itemReviewDtoCollectionQueryParameters).get())
+        {
+            (*itemReviewDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemReviewDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4147,7 +4345,7 @@ pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> ItemsApi::getStockItemRev
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemsApi::getStockItemShippingPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemsApi::getStockItemShippingPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemShippingPolicyDtoCollectionQueryParameters>> itemShippingPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -4189,6 +4387,8 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemsApi::getStoc
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4206,11 +4406,27 @@ pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> ItemsApi::getStoc
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemShippingPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemShippingPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemShippingPolicyDtoCollectionQueryParameters && (*itemShippingPolicyDtoCollectionQueryParameters).get())
+        {
+            (*itemShippingPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemShippingPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4548,7 +4764,7 @@ pplx::task<std::shared_ptr<ItemTagDtoEnvelope>> ItemsApi::getStockItemTagById(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> ItemsApi::getStockItemTagsByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> ItemsApi::getStockItemTagsByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemTagDtoCollectionQueryParameters>> itemTagDtoCollectionQueryParameters) const
 {
 
 
@@ -4590,6 +4806,8 @@ pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> ItemsApi::getStockItemTagsBy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -4610,11 +4828,27 @@ pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> ItemsApi::getStockItemTagsBy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemTagDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemTagDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemTagDtoCollectionQueryParameters && (*itemTagDtoCollectionQueryParameters).get())
+        {
+            (*itemTagDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemTagDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -4683,7 +4917,7 @@ pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> ItemsApi::getStockItemTagsBy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> ItemsApi::getStockItemTaxPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> ItemsApi::getStockItemTaxPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemTaxPolicyDtoCollectionQueryParameters>> itemTaxPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -4725,6 +4959,8 @@ pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> ItemsApi::getStockItem
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -4742,11 +4978,27 @@ pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> ItemsApi::getStockItem
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemTaxPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemTaxPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemTaxPolicyDtoCollectionQueryParameters && (*itemTaxPolicyDtoCollectionQueryParameters).get())
+        {
+            (*itemTaxPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemTaxPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5084,7 +5336,7 @@ pplx::task<std::shared_ptr<ItemTypeDtoEnvelope>> ItemsApi::getStockItemTypeById(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> ItemsApi::getStockItemTypesByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> ItemsApi::getStockItemTypesByItemId(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemTypeDtoCollectionQueryParameters>> itemTypeDtoCollectionQueryParameters) const
 {
 
 
@@ -5126,6 +5378,8 @@ pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> ItemsApi::getStockItemTypes
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -5146,11 +5400,27 @@ pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> ItemsApi::getStockItemTypes
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemTypeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemTypeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemTypeDtoCollectionQueryParameters && (*itemTypeDtoCollectionQueryParameters).get())
+        {
+            (*itemTypeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemTypeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5219,7 +5489,7 @@ pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> ItemsApi::getStockItemTypes
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> ItemsApi::getStockItemWarrantyPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> ItemsApi::getStockItemWarrantyPoliciesByItemId(utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemWarrantyPolicyDtoCollectionQueryParameters>> itemWarrantyPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -5261,6 +5531,8 @@ pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> ItemsApi::getStoc
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -5278,11 +5550,27 @@ pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> ItemsApi::getStoc
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemWarrantyPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemWarrantyPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemWarrantyPolicyDtoCollectionQueryParameters && (*itemWarrantyPolicyDtoCollectionQueryParameters).get())
+        {
+            (*itemWarrantyPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemWarrantyPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5484,7 +5772,7 @@ pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoEnvelope>> ItemsApi::getStockIte
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMaxPrice(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMaxPrice(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters) const
 {
 
 
@@ -5525,6 +5813,8 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMaxPrice(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -5546,11 +5836,27 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMaxPrice(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (catalogItemDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*catalogItemDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(catalogItemDtoCollectionQueryParameters && (*catalogItemDtoCollectionQueryParameters).get())
+        {
+            (*catalogItemDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("catalogItemDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5619,7 +5925,7 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMaxPrice(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMinPrice(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMinPrice(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters) const
 {
 
 
@@ -5660,6 +5966,8 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMinPrice(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -5681,11 +5989,27 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMinPrice(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (catalogItemDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*catalogItemDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(catalogItemDtoCollectionQueryParameters && (*catalogItemDtoCollectionQueryParameters).get())
+        {
+            (*catalogItemDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("catalogItemDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5754,7 +6078,7 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> ItemsApi::getStockItemsOdataMinPrice(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> ItemsApi::getStockItemsQuery(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> ItemsApi::getStockItemsQuery(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters) const
 {
 
 
@@ -5795,6 +6119,8 @@ pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> ItemsApi::getStockItemsQ
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -5816,11 +6142,27 @@ pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> ItemsApi::getStockItemsQ
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (catalogItemDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*catalogItemDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(catalogItemDtoCollectionQueryParameters && (*catalogItemDtoCollectionQueryParameters).get())
+        {
+            (*catalogItemDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("catalogItemDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -5889,7 +6231,7 @@ pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> ItemsApi::getStockItemsQ
         return localVarResult;
     });
 }
-pplx::task<void> ItemsApi::patchStockItem(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<void> ItemsApi::patchStockItem(utility::string_t tenantId, utility::string_t itemId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -5957,7 +6299,7 @@ pplx::task<void> ItemsApi::patchStockItem(utility::string_t tenantId, utility::s
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -5975,11 +6317,11 @@ pplx::task<void> ItemsApi::patchStockItem(utility::string_t tenantId, utility::s
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

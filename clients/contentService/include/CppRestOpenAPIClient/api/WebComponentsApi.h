@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/WebComponentCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebComponentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebComponentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebComponentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebComponentUpdateDto.h"
@@ -59,10 +60,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webComponentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countWebComponentsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebComponentDtoCollectionQueryParameters>> webComponentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a web component
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webComponentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebComponentDtoListEnvelope>> getWebComponentsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebComponentDtoCollectionQueryParameters>> webComponentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a web component

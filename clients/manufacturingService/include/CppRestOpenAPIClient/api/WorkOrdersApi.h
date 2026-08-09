@@ -26,9 +26,10 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/WorkOrderCreateDto.h"
 #include "CppRestOpenAPIClient/model/WorkOrderDto.h"
+#include "CppRestOpenAPIClient/model/WorkOrderDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WorkOrderDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WorkOrderUpdateDto.h"
 #include <vector>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="workOrderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WorkOrderDtoListEnvelope>> getWorkOrdersAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WorkOrderDtoCollectionQueryParameters>> workOrderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get work orders count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="workOrderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWorkOrdersCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WorkOrderDtoCollectionQueryParameters>> workOrderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a work order
@@ -138,13 +143,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchWorkOrderAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a work order

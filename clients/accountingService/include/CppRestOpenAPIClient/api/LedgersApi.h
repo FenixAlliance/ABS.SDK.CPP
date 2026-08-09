@@ -27,9 +27,10 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/LedgerDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LedgerDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LedgerDtoIReadOnlyListEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/UpdateLedgerDto.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="ledgerDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LedgerDtoIReadOnlyListEnvelope>> getLedgersAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LedgerDtoCollectionQueryParameters>> ledgerDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts ledgers
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="ledgerDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLedgersCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LedgerDtoCollectionQueryParameters>> ledgerDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a ledger
@@ -138,13 +143,13 @@ public:
     /// <param name="ledgerId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLedgerAsync(
         utility::string_t tenantId,
         utility::string_t ledgerId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a ledger

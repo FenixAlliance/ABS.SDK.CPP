@@ -28,9 +28,10 @@
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenCreateDto.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenDto.h"
+#include "CppRestOpenAPIClient/model/NonFungibleTokenDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/NonFungibleTokenUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="nonFungibleTokenDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<NonFungibleTokenDtoListEnvelope>> getNonFungibleTokensAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NonFungibleTokenDtoCollectionQueryParameters>> nonFungibleTokenDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get NFTs count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="nonFungibleTokenDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getNonFungibleTokensCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NonFungibleTokenDtoCollectionQueryParameters>> nonFungibleTokenDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a non-fungible token
@@ -138,13 +143,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchNonFungibleTokenAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an NFT

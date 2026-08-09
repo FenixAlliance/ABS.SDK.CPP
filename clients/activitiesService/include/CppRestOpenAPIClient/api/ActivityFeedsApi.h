@@ -23,13 +23,16 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/ActivityFeedDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ActivityFeedDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityFeedDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/ActivityRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ActivityRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityRecordUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ActivityTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/ActivityTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ActivityTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ActivityTypeUpdateDto.h"
@@ -37,7 +40,7 @@
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -68,10 +71,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countActivityTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityTypeDtoCollectionQueryParameters>> activityTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create an activity
@@ -151,11 +156,13 @@ public:
     /// <param name="activityFeedId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ActivityRecordDtoListEnvelope>> getActivitiesAsync(
         utility::string_t tenantId,
         utility::string_t activityFeedId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityRecordDtoCollectionQueryParameters>> activityRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count activities
@@ -167,11 +174,13 @@ public:
     /// <param name="activityFeedId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getActivitiesCountAsync(
         utility::string_t tenantId,
         utility::string_t activityFeedId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityRecordDtoCollectionQueryParameters>> activityRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get activity by ID
@@ -216,10 +225,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityFeedDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ActivityFeedDtoListEnvelope>> getActivityFeedsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityFeedDtoCollectionQueryParameters>> activityFeedDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count activity feeds
@@ -230,10 +241,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityFeedDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getActivityFeedsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityFeedDtoCollectionQueryParameters>> activityFeedDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count activity records
@@ -244,10 +257,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getActivityRecordsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityRecordDtoCollectionQueryParameters>> activityRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Activity Type
@@ -274,10 +289,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="activityTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ActivityTypeDtoListEnvelope>> getActivityTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ActivityTypeDtoCollectionQueryParameters>> activityTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an activity
@@ -290,14 +307,14 @@ public:
     /// <param name="activityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchActivityAsync(
         utility::string_t tenantId,
         utility::string_t activityFeedId,
         utility::string_t activityId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch Activity Type
@@ -309,13 +326,13 @@ public:
     /// <param name="activityTypeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchActivityTypeAsync(
         utility::string_t tenantId,
         utility::string_t activityTypeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an activity

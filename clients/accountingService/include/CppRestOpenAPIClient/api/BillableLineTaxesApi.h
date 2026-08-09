@@ -24,12 +24,13 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AppliedItemTaxRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/AppliedItemTaxRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AppliedItemTaxRecordDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppliedItemTaxRecordUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -97,11 +98,13 @@ public:
     /// <param name="billableLineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appliedItemTaxRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AppliedItemTaxRecordDtoIReadOnlyListEnvelope>> getBillableLineTaxes(
         utility::string_t tenantId,
         utility::string_t billableLineId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppliedItemTaxRecordDtoCollectionQueryParameters>> appliedItemTaxRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of taxes for a billable line.
@@ -113,11 +116,13 @@ public:
     /// <param name="billableLineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appliedItemTaxRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBillableLineTaxesCount(
         utility::string_t tenantId,
         utility::string_t billableLineId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppliedItemTaxRecordDtoCollectionQueryParameters>> appliedItemTaxRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a billable line tax
@@ -130,14 +135,14 @@ public:
     /// <param name="taxId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBillableLineTaxAsync(
         utility::string_t tenantId,
         utility::string_t billableLineId,
         utility::string_t taxId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tax for a billable line.

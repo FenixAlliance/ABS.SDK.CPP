@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -93,10 +94,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemReturnPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> getReturnPoliciesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemReturnPolicyDtoCollectionQueryParameters>> itemReturnPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of return policies
@@ -107,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemReturnPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getReturnPoliciesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemReturnPolicyDtoCollectionQueryParameters>> itemReturnPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve a return policy by ID
@@ -138,13 +143,13 @@ public:
     /// <param name="returnPolicyId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchReturnPolicyAsync(
         utility::string_t tenantId,
         utility::string_t returnPolicyId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a return policy

@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ReceiptCreateDto.h"
+#include "CppRestOpenAPIClient/model/ReceiptDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ReceiptDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ReceiptDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ReceiptUpdateDto.h"
@@ -95,8 +96,10 @@ public:
     /// Fetches all receipts for a given tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="receiptDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ReceiptDtoIReadOnlyListEnvelope>> getReceiptsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ReceiptDtoCollectionQueryParameters>> receiptDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets count of tenant receipts
@@ -105,8 +108,10 @@ public:
     /// Returns total number of receipts for the tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="receiptDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getReceiptsCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ReceiptDtoCollectionQueryParameters>> receiptDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a receipt
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="receiptId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchReceiptAsync(
         utility::string_t tenantId,
         utility::string_t receiptId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a receipt

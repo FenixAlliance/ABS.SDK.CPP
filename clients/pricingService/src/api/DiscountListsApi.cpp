@@ -707,7 +707,7 @@ pplx::task<std::shared_ptr<DiscountListDtoEnvelope>> DiscountListsApi::getDiscou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> DiscountListsApi::getDiscountListEntries(utility::string_t tenantId, utility::string_t discountListId) const
+pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> DiscountListsApi::getDiscountListEntries(utility::string_t tenantId, utility::string_t discountListId, boost::optional<std::shared_ptr<DiscountDtoCollectionQueryParameters>> discountDtoCollectionQueryParameters) const
 {
 
 
@@ -749,6 +749,8 @@ pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> DiscountListsApi::getDiscou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -761,11 +763,27 @@ pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> DiscountListsApi::getDiscou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (discountDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*discountDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(discountDtoCollectionQueryParameters && (*discountDtoCollectionQueryParameters).get())
+        {
+            (*discountDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("discountDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -834,7 +852,7 @@ pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> DiscountListsApi::getDiscou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListEntriesCount(utility::string_t tenantId, utility::string_t discountListId) const
+pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListEntriesCount(utility::string_t tenantId, utility::string_t discountListId, boost::optional<std::shared_ptr<DiscountDtoCollectionQueryParameters>> discountDtoCollectionQueryParameters) const
 {
 
 
@@ -876,6 +894,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListEntr
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -888,11 +908,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListEntr
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (discountDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*discountDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(discountDtoCollectionQueryParameters && (*discountDtoCollectionQueryParameters).get())
+        {
+            (*discountDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("discountDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1089,7 +1125,7 @@ pplx::task<std::shared_ptr<DiscountDtoEnvelope>> DiscountListsApi::getDiscountLi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> DiscountListsApi::getDiscountLists(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> DiscountListsApi::getDiscountLists(utility::string_t tenantId, boost::optional<std::shared_ptr<DiscountListDtoCollectionQueryParameters>> discountListDtoCollectionQueryParameters) const
 {
 
 
@@ -1130,6 +1166,8 @@ pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> DiscountListsApi::getDi
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1142,11 +1180,27 @@ pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> DiscountListsApi::getDi
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (discountListDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*discountListDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(discountListDtoCollectionQueryParameters && (*discountListDtoCollectionQueryParameters).get())
+        {
+            (*discountListDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("discountListDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1215,7 +1269,7 @@ pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> DiscountListsApi::getDi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListsCount(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListsCount(utility::string_t tenantId, boost::optional<std::shared_ptr<DiscountListDtoCollectionQueryParameters>> discountListDtoCollectionQueryParameters) const
 {
 
 
@@ -1256,6 +1310,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListsCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1268,11 +1324,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListsCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (discountListDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*discountListDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(discountListDtoCollectionQueryParameters && (*discountListDtoCollectionQueryParameters).get())
+        {
+            (*discountListDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("discountListDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1341,7 +1413,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> DiscountListsApi::getDiscountListsCou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountList(utility::string_t tenantId, utility::string_t discountListId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountList(utility::string_t tenantId, utility::string_t discountListId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1401,7 +1473,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountList(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1419,11 +1491,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountList(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1497,7 +1569,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountList(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountListEntry(utility::string_t tenantId, utility::string_t discountListId, utility::string_t discountListEntryId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountListEntry(utility::string_t tenantId, utility::string_t discountListId, utility::string_t discountListEntryId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1558,7 +1630,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountListEn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1576,11 +1648,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> DiscountListsApi::patchDiscountListEn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

@@ -24,19 +24,22 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/DealUnitCreateDto.h"
+#include "CppRestOpenAPIClient/model/DealUnitDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DealUnitDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/DealUnitLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DealUnitLineDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DealUnitLineUpdateDto.h"
 #include "CppRestOpenAPIClient/model/DealUnitUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedDealUnitDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedDealUnitDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedDealUnitDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -157,10 +160,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="dealUnitId"></param>
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="dealUnitLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DealUnitLineDtoListEnvelope>> getDealUnitLinesAsync(
         utility::string_t tenantId,
         utility::string_t dealUnitId,
-        boost::optional<utility::string_t> itemId
+        boost::optional<utility::string_t> itemId,
+        boost::optional<std::shared_ptr<DealUnitLineDtoCollectionQueryParameters>> dealUnitLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get deal unit lines count
@@ -170,9 +175,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="dealUnitId"></param>
+    /// <param name="dealUnitLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDealUnitLinesCountAsync(
         utility::string_t tenantId,
-        utility::string_t dealUnitId
+        utility::string_t dealUnitId,
+        boost::optional<std::shared_ptr<DealUnitLineDtoCollectionQueryParameters>> dealUnitLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a deal unit line by ID
@@ -195,8 +202,10 @@ public:
     /// Retrieves a list of deal units for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="dealUnitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DealUnitDtoListEnvelope>> getDealUnitsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DealUnitDtoCollectionQueryParameters>> dealUnitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get deal units count
@@ -205,8 +214,10 @@ public:
     /// Returns the total count of deal units for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="dealUnitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDealUnitsCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DealUnitDtoCollectionQueryParameters>> dealUnitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get extended deal unit by ID
@@ -227,8 +238,10 @@ public:
     /// Retrieves a list of deal units with extended details for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedDealUnitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedDealUnitDtoListEnvelope>> getExtendedDealUnitsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedDealUnitDtoCollectionQueryParameters>> extendedDealUnitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a deal unit
@@ -238,11 +251,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="dealUnitId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDealUnitAsync(
         utility::string_t tenantId,
         utility::string_t dealUnitId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a deal unit line
@@ -253,12 +266,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="dealUnitId"></param>
     /// <param name="dealUnitLineId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDealUnitLineAsync(
         utility::string_t tenantId,
         utility::string_t dealUnitId,
         utility::string_t dealUnitLineId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a deal unit

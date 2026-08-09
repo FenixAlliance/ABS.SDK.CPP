@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/MaintenanceVisitCreateDto.h"
+#include "CppRestOpenAPIClient/model/MaintenanceVisitDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MaintenanceVisitDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/MaintenanceVisitDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/Object.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="maintenanceVisitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MaintenanceVisitDtoListEnvelope>> getMaintenanceVisitsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MaintenanceVisitDtoCollectionQueryParameters>> maintenanceVisitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get maintenance visits count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="maintenanceVisitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getMaintenanceVisitsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MaintenanceVisitDtoCollectionQueryParameters>> maintenanceVisitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a maintenance visit
@@ -138,13 +143,13 @@ public:
     /// <param name="maintenanceVisitId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchMaintenanceVisitAsync(
         utility::string_t tenantId,
         utility::string_t maintenanceVisitId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a maintenance visit

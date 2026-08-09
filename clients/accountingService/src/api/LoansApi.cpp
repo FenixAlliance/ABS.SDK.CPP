@@ -1050,7 +1050,7 @@ pplx::task<std::shared_ptr<LoanApplicationDtoEnvelope>> LoansApi::getLoanApplica
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> LoansApi::getLoanApplicationsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> LoansApi::getLoanApplicationsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanApplicationDtoCollectionQueryParameters>> loanApplicationDtoCollectionQueryParameters) const
 {
 
 
@@ -1091,6 +1091,8 @@ pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> LoansApi::g
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1111,11 +1113,27 @@ pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> LoansApi::g
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanApplicationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanApplicationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanApplicationDtoCollectionQueryParameters && (*loanApplicationDtoCollectionQueryParameters).get())
+        {
+            (*loanApplicationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanApplicationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1184,7 +1202,7 @@ pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> LoansApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanApplicationsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanApplicationsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanApplicationDtoCollectionQueryParameters>> loanApplicationDtoCollectionQueryParameters) const
 {
 
 
@@ -1225,6 +1243,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanApplicationsCountAsy
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1245,11 +1265,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanApplicationsCountAsy
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanApplicationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanApplicationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanApplicationDtoCollectionQueryParameters && (*loanApplicationDtoCollectionQueryParameters).get())
+        {
+            (*loanApplicationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanApplicationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1588,7 +1624,7 @@ pplx::task<std::shared_ptr<LoanTypeDtoEnvelope>> LoansApi::getLoanTypeByIdAsync(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> LoansApi::getLoanTypesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> LoansApi::getLoanTypesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanTypeDtoCollectionQueryParameters>> loanTypeDtoCollectionQueryParameters) const
 {
 
 
@@ -1629,6 +1665,8 @@ pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> LoansApi::getLoanT
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1649,11 +1687,27 @@ pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> LoansApi::getLoanT
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanTypeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanTypeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanTypeDtoCollectionQueryParameters && (*loanTypeDtoCollectionQueryParameters).get())
+        {
+            (*loanTypeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanTypeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1722,7 +1776,7 @@ pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> LoansApi::getLoanT
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanTypesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanTypesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanTypeDtoCollectionQueryParameters>> loanTypeDtoCollectionQueryParameters) const
 {
 
 
@@ -1763,6 +1817,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanTypesCountAsync(util
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1783,11 +1839,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanTypesCountAsync(util
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanTypeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanTypeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanTypeDtoCollectionQueryParameters && (*loanTypeDtoCollectionQueryParameters).get())
+        {
+            (*loanTypeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanTypeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1856,7 +1928,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoanTypesCountAsync(util
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> LoansApi::getLoansAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> LoansApi::getLoansAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanDtoCollectionQueryParameters>> loanDtoCollectionQueryParameters) const
 {
 
 
@@ -1897,6 +1969,8 @@ pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> LoansApi::getLoansAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1917,11 +1991,27 @@ pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> LoansApi::getLoansAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanDtoCollectionQueryParameters && (*loanDtoCollectionQueryParameters).get())
+        {
+            (*loanDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1990,7 +2080,7 @@ pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> LoansApi::getLoansAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LoanDtoCollectionQueryParameters>> loanDtoCollectionQueryParameters) const
 {
 
 
@@ -2031,6 +2121,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility:
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -2051,11 +2143,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility:
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (loanDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*loanDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(loanDtoCollectionQueryParameters && (*loanDtoCollectionQueryParameters).get())
+        {
+            (*loanDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("loanDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2124,7 +2232,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> LoansApi::getLoansCountAsync(utility:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2192,7 +2300,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanApplicationAsync(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2210,11 +2318,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanApplicationAsync(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2288,7 +2396,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanApplicationAsync(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanAsync(utility::string_t tenantId, utility::string_t loanId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanAsync(utility::string_t tenantId, utility::string_t loanId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2356,7 +2464,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanAsync(utility::str
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2374,11 +2482,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanAsync(utility::str
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2452,7 +2560,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanAsync(utility::str
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanTypeAsync(utility::string_t tenantId, utility::string_t loanTypeId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanTypeAsync(utility::string_t tenantId, utility::string_t loanTypeId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2520,7 +2628,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanTypeAsync(utility:
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2538,11 +2646,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LoansApi::patchLoanTypeAsync(utility:
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

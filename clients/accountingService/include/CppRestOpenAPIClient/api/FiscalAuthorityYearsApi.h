@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalYearCreateDto.h"
+#include "CppRestOpenAPIClient/model/FiscalYearDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FiscalYearDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalYearDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalYearUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -113,12 +114,14 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalYearDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FiscalYearDtoListEnvelope>> getFiscalYears(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalYearDtoCollectionQueryParameters>> fiscalYearDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get fiscal years count for an authority
@@ -130,11 +133,13 @@ public:
     /// <param name="fiscalAuthorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalYearDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getFiscalYearsCount(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalYearDtoCollectionQueryParameters>> fiscalYearDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a fiscal authority year
@@ -146,13 +151,13 @@ public:
     /// <param name="fiscalYearId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchFiscalAuthorityYearAsync(
         utility::string_t tenantId,
         utility::string_t fiscalYearId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a fiscal year

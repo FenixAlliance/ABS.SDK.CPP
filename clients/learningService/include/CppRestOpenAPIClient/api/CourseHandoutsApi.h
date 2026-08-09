@@ -25,9 +25,10 @@
 
 #include "CppRestOpenAPIClient/model/CourseHandoutCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseHandoutDto.h"
+#include "CppRestOpenAPIClient/model/CourseHandoutDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseHandoutUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -104,10 +105,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseHandoutDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> getCourseHandoutsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course handouts count
@@ -118,10 +121,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseHandoutDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseHandoutsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course handout
@@ -133,13 +138,13 @@ public:
     /// <param name="handoutId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchCourseHandoutAsync(
         utility::string_t tenantId,
         utility::string_t handoutId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course handout

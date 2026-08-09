@@ -26,12 +26,14 @@
 #include "CppRestOpenAPIClient/model/BusinessDomainDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExecutionContextEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PortalOptionsEnvelope.h"
 #include "CppRestOpenAPIClient/model/PortalSettings.h"
 #include "CppRestOpenAPIClient/model/PortalSettingsEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebPortalDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebPortalDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalUpdateDto.h"
@@ -83,10 +85,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPortalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countPortalsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPortalDtoCollectionQueryParameters>> webPortalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a new web portal
@@ -153,10 +157,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPortalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebPortalDtoListEnvelope>> getPortalsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPortalDtoCollectionQueryParameters>> webPortalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the root portal
@@ -236,7 +242,7 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    pplx::task<std::shared_ptr<WebPortalDtoEnvelope>> initializeCurrentWebPortalAsync(
+    pplx::task<std::shared_ptr<ExecutionContextEnvelope>> initializeCurrentWebPortalAsync(
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -250,13 +256,13 @@ public:
     /// <param name="portalId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchWebPortalAsync(
         utility::string_t tenantId,
         utility::string_t portalId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Search for a portal by its domain

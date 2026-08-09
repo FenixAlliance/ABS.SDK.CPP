@@ -18,6 +18,7 @@ include/CppRestOpenAPIClient/api/OptionsApi.h
 include/CppRestOpenAPIClient/api/UsersApi.h
 include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/AddressDto.h
+include/CppRestOpenAPIClient/model/AddressDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/AddressDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/CartDto.h
 include/CppRestOpenAPIClient/model/CartDtoEnvelope.h
@@ -30,6 +31,7 @@ include/CppRestOpenAPIClient/model/ExtendedTenantEnrollmentDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ExtendedUserDto.h
 include/CppRestOpenAPIClient/model/ExtendedUserDtoEnvelope.h
 include/CppRestOpenAPIClient/model/FollowRecordDto.h
+include/CppRestOpenAPIClient/model/FollowRecordDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/FollowRecordDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
 include/CppRestOpenAPIClient/model/HttpValidationProblemDetails.h
@@ -38,13 +40,15 @@ include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
 include/CppRestOpenAPIClient/model/NotificationDto.h
+include/CppRestOpenAPIClient/model/NotificationDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h
-include/CppRestOpenAPIClient/model/Operation.h
 include/CppRestOpenAPIClient/model/OptionCreateDto.h
 include/CppRestOpenAPIClient/model/OptionDto.h
+include/CppRestOpenAPIClient/model/OptionDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/OptionDtoEnvelope.h
 include/CppRestOpenAPIClient/model/OptionDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/OptionUpdateDto.h
+include/CppRestOpenAPIClient/model/PatchOperation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -52,6 +56,7 @@ include/CppRestOpenAPIClient/model/ResetPasswordRequest.h
 include/CppRestOpenAPIClient/model/SocialProfileDto.h
 include/CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h
 include/CppRestOpenAPIClient/model/TenantDto.h
+include/CppRestOpenAPIClient/model/TenantDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/TenantDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/TenantEnrollmentDto.h
 include/CppRestOpenAPIClient/model/TenantEnrollmentDtoEnvelope.h
@@ -83,6 +88,7 @@ src/api/OptionsApi.cpp
 src/api/UsersApi.cpp
 src/model/AccessTokenResponse.cpp
 src/model/AddressDto.cpp
+src/model/AddressDtoCollectionQueryParameters.cpp
 src/model/AddressDtoListEnvelope.cpp
 src/model/CartDto.cpp
 src/model/CartDtoEnvelope.cpp
@@ -95,6 +101,7 @@ src/model/ExtendedTenantEnrollmentDtoListEnvelope.cpp
 src/model/ExtendedUserDto.cpp
 src/model/ExtendedUserDtoEnvelope.cpp
 src/model/FollowRecordDto.cpp
+src/model/FollowRecordDtoCollectionQueryParameters.cpp
 src/model/FollowRecordDtoListEnvelope.cpp
 src/model/ForgotPasswordRequest.cpp
 src/model/HttpValidationProblemDetails.cpp
@@ -103,13 +110,15 @@ src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
 src/model/NotificationDto.cpp
+src/model/NotificationDtoCollectionQueryParameters.cpp
 src/model/NotificationDtoListEnvelope.cpp
-src/model/Operation.cpp
 src/model/OptionCreateDto.cpp
 src/model/OptionDto.cpp
+src/model/OptionDtoCollectionQueryParameters.cpp
 src/model/OptionDtoEnvelope.cpp
 src/model/OptionDtoListEnvelope.cpp
 src/model/OptionUpdateDto.cpp
+src/model/PatchOperation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp
@@ -117,6 +126,7 @@ src/model/ResetPasswordRequest.cpp
 src/model/SocialProfileDto.cpp
 src/model/SocialProfileDtoEnvelope.cpp
 src/model/TenantDto.cpp
+src/model/TenantDtoCollectionQueryParameters.cpp
 src/model/TenantDtoListEnvelope.cpp
 src/model/TenantEnrollmentDto.cpp
 src/model/TenantEnrollmentDtoEnvelope.cpp

@@ -26,17 +26,20 @@
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedOrderDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedOrderDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/OrderCreateDto.h"
+#include "CppRestOpenAPIClient/model/OrderDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/OrderDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/OrderDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/OrderLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/OrderLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/OrderLineDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/OrderLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/OrderLineUpdateDto.h"
 #include "CppRestOpenAPIClient/model/OrderUpdateDto.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -143,8 +146,10 @@ public:
     /// Retrieves a list of extended order details for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedOrderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> getExtendedOrders(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedOrderDtoCollectionQueryParameters>> extendedOrderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a specific order by ID.
@@ -181,10 +186,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="orderId"></param>
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<OrderLineDtoListEnvelope>> getOrderLines(
         utility::string_t tenantId,
         utility::string_t orderId,
-        boost::optional<utility::string_t> itemId
+        boost::optional<utility::string_t> itemId,
+        boost::optional<std::shared_ptr<OrderLineDtoCollectionQueryParameters>> orderLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of order lines for an order.
@@ -194,9 +201,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="orderId"></param>
+    /// <param name="orderLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getOrderLinesCount(
         utility::string_t tenantId,
-        utility::string_t orderId
+        utility::string_t orderId,
+        boost::optional<std::shared_ptr<OrderLineDtoCollectionQueryParameters>> orderLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a list of orders for a tenant.
@@ -205,8 +214,10 @@ public:
     /// Retrieves a list of orders for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="orderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<OrderDtoListEnvelope>> getOrders(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of orders for a tenant.
@@ -215,8 +226,10 @@ public:
     /// Retrieves the total number of orders for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="orderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getOrdersCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially updates an existing order.
@@ -226,11 +239,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="orderId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchOrder(
         utility::string_t tenantId,
         utility::string_t orderId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates an order line.
@@ -241,12 +254,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="orderId"></param>
     /// <param name="orderLineId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchOrderLine(
         utility::string_t tenantId,
         utility::string_t orderId,
         utility::string_t orderLineId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Preview the rendered email for an Order.

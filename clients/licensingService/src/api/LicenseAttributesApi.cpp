@@ -422,7 +422,7 @@ pplx::task<std::shared_ptr<LicenseAttributeDto>> LicenseAttributesApi::getLicens
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LicenseAttributeDtoListEnvelope>> LicenseAttributesApi::getLicenseAttributesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LicenseAttributeDtoListEnvelope>> LicenseAttributesApi::getLicenseAttributesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LicenseAttributeDtoCollectionQueryParameters>> licenseAttributeDtoCollectionQueryParameters) const
 {
 
 
@@ -463,6 +463,8 @@ pplx::task<std::shared_ptr<LicenseAttributeDtoListEnvelope>> LicenseAttributesAp
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -483,11 +485,27 @@ pplx::task<std::shared_ptr<LicenseAttributeDtoListEnvelope>> LicenseAttributesAp
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (licenseAttributeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*licenseAttributeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(licenseAttributeDtoCollectionQueryParameters && (*licenseAttributeDtoCollectionQueryParameters).get())
+        {
+            (*licenseAttributeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("licenseAttributeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -556,7 +574,7 @@ pplx::task<std::shared_ptr<LicenseAttributeDtoListEnvelope>> LicenseAttributesAp
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LicenseAttributesApi::getLicenseAttributesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LicenseAttributesApi::getLicenseAttributesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LicenseAttributeDtoCollectionQueryParameters>> licenseAttributeDtoCollectionQueryParameters) const
 {
 
 
@@ -597,6 +615,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LicenseAttributesApi::getLicenseAttri
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -617,11 +637,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LicenseAttributesApi::getLicenseAttri
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (licenseAttributeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*licenseAttributeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(licenseAttributeDtoCollectionQueryParameters && (*licenseAttributeDtoCollectionQueryParameters).get())
+        {
+            (*licenseAttributeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("licenseAttributeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -690,7 +726,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> LicenseAttributesApi::getLicenseAttri
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LicenseAttributesApi::patchLicenseAttributeAsync(utility::string_t tenantId, utility::string_t id, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LicenseAttributesApi::patchLicenseAttributeAsync(utility::string_t tenantId, utility::string_t id, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -758,7 +794,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LicenseAttributesApi::patchLicenseAtt
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -776,11 +812,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LicenseAttributesApi::patchLicenseAtt
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

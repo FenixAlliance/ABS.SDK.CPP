@@ -26,11 +26,13 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TruckCreateDto.h"
+#include "CppRestOpenAPIClient/model/TruckDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TruckDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TruckDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TruckTripCreateDto.h"
+#include "CppRestOpenAPIClient/model/TruckTripDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TruckTripDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TruckTripUpdateDto.h"
 #include "CppRestOpenAPIClient/model/TruckUpdateDto.h"
@@ -239,11 +241,13 @@ public:
     /// <param name="truckId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="truckTripDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> getTruckTripsAsync(
         utility::string_t tenantId,
         utility::string_t truckId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TruckTripDtoCollectionQueryParameters>> truckTripDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get truck trips count
@@ -255,11 +259,13 @@ public:
     /// <param name="truckId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="truckTripDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTruckTripsCountAsync(
         utility::string_t tenantId,
         utility::string_t truckId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TruckTripDtoCollectionQueryParameters>> truckTripDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all trucks
@@ -270,10 +276,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="truckDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TruckDtoListEnvelope>> getTrucksAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TruckDtoCollectionQueryParameters>> truckDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get trucks count
@@ -284,10 +292,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="truckDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTrucksCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TruckDtoCollectionQueryParameters>> truckDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a truck
@@ -299,13 +309,13 @@ public:
     /// <param name="truckId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTruckAsync(
         utility::string_t tenantId,
         utility::string_t truckId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a truck trip
@@ -318,14 +328,14 @@ public:
     /// <param name="tripId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTruckTripAsync(
         utility::string_t tenantId,
         utility::string_t truckId,
         utility::string_t tripId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a truck

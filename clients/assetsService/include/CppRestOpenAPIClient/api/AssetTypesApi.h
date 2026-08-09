@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AssetTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTypeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -95,8 +96,10 @@ public:
     /// Retrieves all asset types for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetTypeDtoListEnvelope>> getAssetTypes(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetTypeDtoCollectionQueryParameters>> assetTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of asset types
@@ -105,8 +108,10 @@ public:
     /// Returns the total number of asset types for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetTypesCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetTypeDtoCollectionQueryParameters>> assetTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially updates an existing asset type
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="r_typeId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetType(
         utility::string_t tenantId,
         utility::string_t r_typeId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates an existing asset type

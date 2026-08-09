@@ -26,12 +26,14 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PrivateMessageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketConversationCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupportTicketConversationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupportTicketConversationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketConversationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupportTicketDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupportTicketDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketUpdateDto.h"
@@ -172,11 +174,13 @@ public:
     /// <param name="supportTicketId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportTicketConversationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupportTicketConversationDtoListEnvelope>> getSupportTicketConversationsAsync(
         utility::string_t tenantId,
         utility::string_t supportTicketId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportTicketConversationDtoCollectionQueryParameters>> supportTicketConversationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve a list of support tickets
@@ -187,10 +191,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportTicketDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupportTicketDtoListEnvelope>> getSupportTicketsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportTicketDtoCollectionQueryParameters>> supportTicketDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of support tickets
@@ -201,10 +207,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportTicketDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSupportTicketsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportTicketDtoCollectionQueryParameters>> supportTicketDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a support ticket
@@ -216,13 +224,13 @@ public:
     /// <param name="supportTicketId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSupportTicketAsync(
         utility::string_t tenantId,
         utility::string_t supportTicketId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Create a conversation for a support ticket

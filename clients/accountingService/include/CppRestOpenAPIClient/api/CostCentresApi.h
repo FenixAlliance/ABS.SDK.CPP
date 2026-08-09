@@ -24,13 +24,16 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/CostCentreBudgetCreateDto.h"
+#include "CppRestOpenAPIClient/model/CostCentreBudgetDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CostCentreBudgetDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreBudgetDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreBudgetUpdateDto.h"
 #include "CppRestOpenAPIClient/model/CostCentreCreateDto.h"
+#include "CppRestOpenAPIClient/model/CostCentreDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CostCentreDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreGroupCreateDto.h"
+#include "CppRestOpenAPIClient/model/CostCentreGroupDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CostCentreGroupDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreGroupDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CostCentreGroupUpdateDto.h"
@@ -38,7 +41,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -197,10 +200,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="costCentreBudgetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CostCentreBudgetDtoListEnvelope>> getCostCentreBudgets(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CostCentreBudgetDtoCollectionQueryParameters>> costCentreBudgetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a cost centre group by id
@@ -227,10 +232,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="costCentreGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> getCostCentreGroups(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CostCentreGroupDtoCollectionQueryParameters>> costCentreGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of cost centre groups for a tenant
@@ -241,10 +248,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="costCentreGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getCostCentreGroupsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CostCentreGroupDtoCollectionQueryParameters>> costCentreGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all cost centres for a tenant
@@ -255,10 +264,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="costCentreDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> getCostCentres(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CostCentreDtoCollectionQueryParameters>> costCentreDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of cost centres for a tenant
@@ -269,10 +280,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="costCentreDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getCostCentresCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CostCentreDtoCollectionQueryParameters>> costCentreDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a cost centre
@@ -284,13 +297,13 @@ public:
     /// <param name="costCentreId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCostCentre(
         utility::string_t tenantId,
         utility::string_t costCentreId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a cost centre budget
@@ -302,13 +315,13 @@ public:
     /// <param name="budgetId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCostCentreBudget(
         utility::string_t tenantId,
         utility::string_t budgetId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a cost centre group
@@ -320,13 +333,13 @@ public:
     /// <param name="groupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCostCentreGroup(
         utility::string_t tenantId,
         utility::string_t groupId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a cost centre

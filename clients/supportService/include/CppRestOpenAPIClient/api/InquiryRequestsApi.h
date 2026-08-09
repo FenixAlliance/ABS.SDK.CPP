@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/InquiryRequestCreateDto.h"
+#include "CppRestOpenAPIClient/model/InquiryRequestDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InquiryRequestDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/InquiryRequestDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InquiryRequestUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="inquiryRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InquiryRequestDtoListEnvelope>> getInquiryRequestsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InquiryRequestDtoCollectionQueryParameters>> inquiryRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get inquiry requests count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="inquiryRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInquiryRequestsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InquiryRequestDtoCollectionQueryParameters>> inquiryRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an inquiry request
@@ -138,13 +143,13 @@ public:
     /// <param name="inquiryRequestId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInquiryRequestAsync(
         utility::string_t tenantId,
         utility::string_t inquiryRequestId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an inquiry request

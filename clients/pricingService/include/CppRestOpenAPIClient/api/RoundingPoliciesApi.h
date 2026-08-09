@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/RoundingPolicyCreateDto.h"
+#include "CppRestOpenAPIClient/model/RoundingPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/RoundingPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/RoundingPolicyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/RoundingPolicyUpdateDto.h"
@@ -93,10 +94,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="roundingPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<RoundingPolicyDtoListEnvelope>> getRoundingPoliciesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RoundingPolicyDtoCollectionQueryParameters>> roundingPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts rounding policies
@@ -107,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="roundingPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRoundingPoliciesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RoundingPolicyDtoCollectionQueryParameters>> roundingPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a rounding policy by ID
@@ -138,13 +143,13 @@ public:
     /// <param name="roundingPolicyId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRoundingPolicyAsync(
         utility::string_t tenantId,
         utility::string_t roundingPolicyId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a rounding policy

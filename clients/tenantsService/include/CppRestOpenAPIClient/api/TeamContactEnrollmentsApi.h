@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TenantTeamContactEnrollmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantTeamContactEnrollmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantTeamContactEnrollmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantTeamContactEnrollmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantTeamContactEnrollmentUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantTeamContactEnrollmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantTeamContactEnrollmentDtoListEnvelope>> getTenantTeamContactEnrollments(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantTeamContactEnrollmentDtoCollectionQueryParameters>> tenantTeamContactEnrollmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant team contact enrollments
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantTeamContactEnrollmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantTeamContactEnrollmentsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantTeamContactEnrollmentDtoCollectionQueryParameters>> tenantTeamContactEnrollmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a tenant team contact enrollment
@@ -138,13 +143,13 @@ public:
     /// <param name="tenantTeamContactEnrollmentId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenantTeamContactEnrollment(
         utility::string_t tenantId,
         utility::string_t tenantTeamContactEnrollmentId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tenant team contact enrollment

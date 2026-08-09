@@ -27,14 +27,16 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemPickListCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemPickListDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemPickListDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPickListDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPickListEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemPickListEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemPickListEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPickListEntryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPickListEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ItemPickListUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -150,11 +152,13 @@ public:
     /// <param name="pickListId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPickListEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemPickListEntryDtoListEnvelope>> getItemPickListEntriesAsync(
         utility::string_t tenantId,
         utility::string_t pickListId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPickListEntryDtoCollectionQueryParameters>> itemPickListEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get pick list entries count
@@ -166,11 +170,13 @@ public:
     /// <param name="pickListId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPickListEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemPickListEntriesCountAsync(
         utility::string_t tenantId,
         utility::string_t pickListId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPickListEntryDtoCollectionQueryParameters>> itemPickListEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get pick list entry by ID
@@ -199,10 +205,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPickListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemPickListDtoListEnvelope>> getItemPickListsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPickListDtoCollectionQueryParameters>> itemPickListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item pick lists count
@@ -213,10 +221,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPickListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemPickListsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPickListDtoCollectionQueryParameters>> itemPickListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item pick list
@@ -228,13 +238,13 @@ public:
     /// <param name="pickListId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemPickListAsync(
         utility::string_t tenantId,
         utility::string_t pickListId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a pick list entry
@@ -247,14 +257,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemPickListEntryAsync(
         utility::string_t tenantId,
         utility::string_t pickListId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item pick list

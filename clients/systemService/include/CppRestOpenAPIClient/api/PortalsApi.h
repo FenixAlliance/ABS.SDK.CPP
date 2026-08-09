@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/WebPortalCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebPortalDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebPortalDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPortalUpdateDto.h"
@@ -102,9 +103,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPortalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebPortalDtoListEnvelope>> getSystemPortals(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPortalDtoCollectionQueryParameters>> webPortalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of system portals
@@ -114,9 +117,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPortalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSystemPortalsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPortalDtoCollectionQueryParameters>> webPortalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially update a system portal
@@ -127,12 +132,12 @@ public:
     /// <param name="portalId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSystemPortal(
         utility::string_t portalId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a system portal

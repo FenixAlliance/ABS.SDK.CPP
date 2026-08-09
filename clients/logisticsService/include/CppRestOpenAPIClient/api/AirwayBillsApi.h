@@ -24,14 +24,16 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AirwayBillCreateDto.h"
+#include "CppRestOpenAPIClient/model/AirwayBillDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AirwayBillDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AirwayBillDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AirwayBillUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/WaybillLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/WaybillLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WaybillLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WaybillLineUpdateDto.h"
 #include <vector>
@@ -147,11 +149,13 @@ public:
     /// <param name="billId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> getAirwayBillLinesAsync(
         utility::string_t tenantId,
         utility::string_t billId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get airway bill lines count
@@ -163,11 +167,13 @@ public:
     /// <param name="billId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAirwayBillLinesCountAsync(
         utility::string_t tenantId,
         utility::string_t billId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all airway bills
@@ -178,10 +184,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="airwayBillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> getAirwayBillsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AirwayBillDtoCollectionQueryParameters>> airwayBillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get airway bills count
@@ -192,10 +200,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="airwayBillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAirwayBillsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AirwayBillDtoCollectionQueryParameters>> airwayBillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Issue an airway bill
@@ -271,13 +281,13 @@ public:
     /// <param name="billId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAirwayBillAsync(
         utility::string_t tenantId,
         utility::string_t billId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch an airway bill line
@@ -290,14 +300,14 @@ public:
     /// <param name="lineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAirwayBillLineAsync(
         utility::string_t tenantId,
         utility::string_t billId,
         utility::string_t lineId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Remove an airway bill line

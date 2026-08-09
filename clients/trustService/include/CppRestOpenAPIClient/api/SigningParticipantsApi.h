@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/RecordSigningParticipantOutcomeDto.h"
 #include "CppRestOpenAPIClient/model/SigningParticipantDto.h"
+#include "CppRestOpenAPIClient/model/SigningParticipantDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SigningParticipantDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -73,10 +74,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingParticipantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> getSigningParticipantsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningParticipantDtoCollectionQueryParameters>> signingParticipantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signing participants count
@@ -87,10 +90,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingParticipantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSigningParticipantsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningParticipantDtoCollectionQueryParameters>> signingParticipantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Mark a participant as having viewed the request

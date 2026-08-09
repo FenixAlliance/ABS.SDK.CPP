@@ -787,15 +787,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getForexRatesSnapshot() const;
-    bool forexRatesSnapshotIsSet() const;
-    void unsetForexRatesSnapshot();
-
-    void setForexRatesSnapshot(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getTotalBaseAmountInUsd() const;
     bool totalBaseAmountInUsdIsSet() const;
     void unsetTotalBaseAmountInUsd();
@@ -1218,8 +1209,6 @@ protected:
     bool m_UnitIdIsSet;
     utility::string_t m_UnitGroupId;
     bool m_UnitGroupIdIsSet;
-    utility::string_t m_ForexRatesSnapshot;
-    bool m_ForexRatesSnapshotIsSet;
     double m_TotalBaseAmountInUsd;
     bool m_TotalBaseAmountInUsdIsSet;
     double m_TotalProfitInUsd;

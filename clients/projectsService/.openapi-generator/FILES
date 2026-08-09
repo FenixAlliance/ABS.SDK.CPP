@@ -29,9 +29,10 @@ include/CppRestOpenAPIClient/model/InfoRequest.h
 include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
-include/CppRestOpenAPIClient/model/Operation.h
+include/CppRestOpenAPIClient/model/PatchOperation.h
 include/CppRestOpenAPIClient/model/ProjectCreateDto.h
 include/CppRestOpenAPIClient/model/ProjectDto.h
+include/CppRestOpenAPIClient/model/ProjectDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/ProjectDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectHoursApprovalApproverUpdateDto.h
@@ -43,11 +44,13 @@ include/CppRestOpenAPIClient/model/ProjectPeriodDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectPeriodUpdateDto.h
 include/CppRestOpenAPIClient/model/ProjectTaskCreateDto.h
 include/CppRestOpenAPIClient/model/ProjectTaskDto.h
+include/CppRestOpenAPIClient/model/ProjectTaskDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/ProjectTaskDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectTaskDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectTaskUpdateDto.h
 include/CppRestOpenAPIClient/model/ProjectTimeLogCreateDto.h
 include/CppRestOpenAPIClient/model/ProjectTimeLogDto.h
+include/CppRestOpenAPIClient/model/ProjectTimeLogDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/ProjectTimeLogDtoEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectTimeLogDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/ProjectTimeLogUpdateDto.h
@@ -58,6 +61,7 @@ include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
 include/CppRestOpenAPIClient/model/ResetPasswordRequest.h
 include/CppRestOpenAPIClient/model/TaskCategoryCreateDto.h
 include/CppRestOpenAPIClient/model/TaskCategoryDto.h
+include/CppRestOpenAPIClient/model/TaskCategoryDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/TaskCategoryDtoListEnvelope.h
 include/CppRestOpenAPIClient/model/TaskCategoryUpdateDto.h
 include/CppRestOpenAPIClient/model/TaskTypeCreateDto.h
@@ -90,9 +94,10 @@ src/model/InfoRequest.cpp
 src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LoginRequest.cpp
-src/model/Operation.cpp
+src/model/PatchOperation.cpp
 src/model/ProjectCreateDto.cpp
 src/model/ProjectDto.cpp
+src/model/ProjectDtoCollectionQueryParameters.cpp
 src/model/ProjectDtoEnvelope.cpp
 src/model/ProjectDtoListEnvelope.cpp
 src/model/ProjectHoursApprovalApproverUpdateDto.cpp
@@ -104,11 +109,13 @@ src/model/ProjectPeriodDtoListEnvelope.cpp
 src/model/ProjectPeriodUpdateDto.cpp
 src/model/ProjectTaskCreateDto.cpp
 src/model/ProjectTaskDto.cpp
+src/model/ProjectTaskDtoCollectionQueryParameters.cpp
 src/model/ProjectTaskDtoEnvelope.cpp
 src/model/ProjectTaskDtoListEnvelope.cpp
 src/model/ProjectTaskUpdateDto.cpp
 src/model/ProjectTimeLogCreateDto.cpp
 src/model/ProjectTimeLogDto.cpp
+src/model/ProjectTimeLogDtoCollectionQueryParameters.cpp
 src/model/ProjectTimeLogDtoEnvelope.cpp
 src/model/ProjectTimeLogDtoListEnvelope.cpp
 src/model/ProjectTimeLogUpdateDto.cpp
@@ -119,6 +126,7 @@ src/model/ResendConfirmationEmailRequest.cpp
 src/model/ResetPasswordRequest.cpp
 src/model/TaskCategoryCreateDto.cpp
 src/model/TaskCategoryDto.cpp
+src/model/TaskCategoryDtoCollectionQueryParameters.cpp
 src/model/TaskCategoryDtoListEnvelope.cpp
 src/model/TaskCategoryUpdateDto.cpp
 src/model/TaskTypeCreateDto.cpp

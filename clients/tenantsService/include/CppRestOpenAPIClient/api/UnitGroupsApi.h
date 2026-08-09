@@ -26,11 +26,13 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/UnitCreateDto.h"
+#include "CppRestOpenAPIClient/model/UnitDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/UnitDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/UnitDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/UnitGroupCreateDto.h"
+#include "CppRestOpenAPIClient/model/UnitGroupDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/UnitGroupDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/UnitGroupDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/UnitGroupUpdateDto.h"
@@ -167,10 +169,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="unitGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<UnitGroupDtoListEnvelope>> getUnitGroupsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UnitGroupDtoCollectionQueryParameters>> unitGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of unit groups
@@ -181,10 +185,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="unitGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getUnitGroupsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UnitGroupDtoCollectionQueryParameters>> unitGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve units for a unit group
@@ -196,11 +202,13 @@ public:
     /// <param name="unitGroupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="unitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<UnitDtoListEnvelope>> getUnitsAsync(
         utility::string_t tenantId,
         utility::string_t unitGroupId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UnitDtoCollectionQueryParameters>> unitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of units in a unit group
@@ -212,11 +220,13 @@ public:
     /// <param name="unitGroupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="unitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getUnitsCountAsync(
         utility::string_t tenantId,
         utility::string_t unitGroupId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UnitDtoCollectionQueryParameters>> unitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a unit within a unit group
@@ -229,14 +239,14 @@ public:
     /// <param name="unitId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchUnitAsync(
         utility::string_t tenantId,
         utility::string_t unitGroupId,
         utility::string_t unitId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a unit group
@@ -248,13 +258,13 @@ public:
     /// <param name="unitGroupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchUnitGroupAsync(
         utility::string_t tenantId,
         utility::string_t unitGroupId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a unit within a unit group

@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/CurrencyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CurrencyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CurrencyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
@@ -55,9 +56,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="currencyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCurrenciesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CurrencyDtoCollectionQueryParameters>> currencyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get currency by ID
@@ -81,9 +84,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="currencyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> getEnabledCurrenciesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CurrencyDtoCollectionQueryParameters>> currencyDtoCollectionQueryParameters
     ) const;
 
 protected:

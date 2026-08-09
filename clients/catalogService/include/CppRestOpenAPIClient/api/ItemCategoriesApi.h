@@ -26,10 +26,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -60,10 +61,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countItemCategoriesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemCategoryDtoCollectionQueryParameters>> itemCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a new item category
@@ -106,10 +109,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> getItemCategoriesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemCategoryDtoCollectionQueryParameters>> itemCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item category by ID
@@ -137,13 +142,13 @@ public:
     /// <param name="itemCategoryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchItemCategoryAsync(
         utility::string_t tenantId,
         utility::string_t itemCategoryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item category

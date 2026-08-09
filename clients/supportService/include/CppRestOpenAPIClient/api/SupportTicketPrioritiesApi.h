@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SupportTicketPriorityCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupportTicketPriorityDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupportTicketPriorityDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketPriorityDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportTicketPriorityUpdateDto.h"
@@ -93,10 +94,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportTicketPriorityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupportTicketPriorityDtoListEnvelope>> getSupportTicketPrioritiesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportTicketPriorityDtoCollectionQueryParameters>> supportTicketPriorityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of support ticket priorities
@@ -107,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportTicketPriorityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSupportTicketPrioritiesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportTicketPriorityDtoCollectionQueryParameters>> supportTicketPriorityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve a support ticket priority by ID
@@ -138,13 +143,13 @@ public:
     /// <param name="supportTicketPriorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSupportTicketPriorityAsync(
         utility::string_t tenantId,
         utility::string_t supportTicketPriorityId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a support ticket priority

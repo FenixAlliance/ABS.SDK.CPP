@@ -27,30 +27,37 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedInvoiceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedInvoiceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceAdjustmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/InvoiceAdjustmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceAdjustmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceAdjustmentDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceAdjustmentUpdateDto.h"
 #include "CppRestOpenAPIClient/model/InvoiceCreateDto.h"
+#include "CppRestOpenAPIClient/model/InvoiceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineAppliedTaxCreateDto.h"
+#include "CppRestOpenAPIClient/model/InvoiceLineAppliedTaxDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineAppliedTaxUpdateDto.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/InvoiceLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceLineUpdateDto.h"
 #include "CppRestOpenAPIClient/model/InvoiceReferenceCreateDto.h"
+#include "CppRestOpenAPIClient/model/InvoiceReferenceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceReferenceDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceReferenceDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/InvoiceReferenceUpdateDto.h"
 #include "CppRestOpenAPIClient/model/InvoiceUpdateDto.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/PaymentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentDtoIReadOnlyListEnvelope.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -328,8 +335,10 @@ public:
     /// Retrieves a list of extended invoice details for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedInvoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedInvoiceDtoListEnvelope>> getExtendedInvoices(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedInvoiceDtoCollectionQueryParameters>> extendedInvoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of extended invoices.
@@ -338,8 +347,10 @@ public:
     /// Retrieves the total count of extended invoices for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedInvoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getExtendedInvoicesCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedInvoiceDtoCollectionQueryParameters>> extendedInvoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get an invoice by ID.
@@ -375,9 +386,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="invoiceAdjustmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceAdjustmentDtoIReadOnlyListEnvelope>> getInvoiceAdjustments(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<InvoiceAdjustmentDtoCollectionQueryParameters>> invoiceAdjustmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of invoice adjustments.
@@ -387,9 +400,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="invoiceAdjustmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoiceAdjustmentsCount(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<InvoiceAdjustmentDtoCollectionQueryParameters>> invoiceAdjustmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get an invoice line by ID.
@@ -414,10 +429,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="invoiceLineId"></param>
+    /// <param name="invoiceLineAppliedTaxDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope>> getInvoiceLineTaxes(
         utility::string_t tenantId,
         utility::string_t invoiceId,
-        utility::string_t invoiceLineId
+        utility::string_t invoiceLineId,
+        boost::optional<std::shared_ptr<InvoiceLineAppliedTaxDtoCollectionQueryParameters>> invoiceLineAppliedTaxDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of taxes for an invoice line.
@@ -428,10 +445,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="invoiceLineId"></param>
+    /// <param name="invoiceLineAppliedTaxDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoiceLineTaxesCount(
         utility::string_t tenantId,
         utility::string_t invoiceId,
-        utility::string_t invoiceLineId
+        utility::string_t invoiceLineId,
+        boost::optional<std::shared_ptr<InvoiceLineAppliedTaxDtoCollectionQueryParameters>> invoiceLineAppliedTaxDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get invoice lines.
@@ -442,10 +461,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceLineDtoListEnvelope>> getInvoiceLines(
         utility::string_t tenantId,
         utility::string_t invoiceId,
-        boost::optional<utility::string_t> itemId
+        boost::optional<utility::string_t> itemId,
+        boost::optional<std::shared_ptr<InvoiceLineDtoCollectionQueryParameters>> invoiceLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of invoice lines.
@@ -455,9 +476,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="invoiceLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoiceLinesCount(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<InvoiceLineDtoCollectionQueryParameters>> invoiceLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get payments for an invoice.
@@ -467,9 +490,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentDtoIReadOnlyListEnvelope>> getInvoicePayments(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of payments for an invoice.
@@ -479,9 +504,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoicePaymentsCount(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get an invoice reference by ID.
@@ -505,9 +532,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="invoiceReferenceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceReferenceDtoIReadOnlyListEnvelope>> getInvoiceReferences(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<InvoiceReferenceDtoCollectionQueryParameters>> invoiceReferenceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of invoice references.
@@ -517,9 +546,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
+    /// <param name="invoiceReferenceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoiceReferencesCount(
         utility::string_t tenantId,
-        utility::string_t invoiceId
+        utility::string_t invoiceId,
+        boost::optional<std::shared_ptr<InvoiceReferenceDtoCollectionQueryParameters>> invoiceReferenceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a list of invoices.
@@ -528,8 +559,10 @@ public:
     /// Retrieves a list of invoices for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> getInvoices(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of invoices.
@@ -538,8 +571,10 @@ public:
     /// Retrieves the total count of invoices for the specified tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getInvoicesCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant purchase-invoice totals.
@@ -548,8 +583,10 @@ public:
     /// Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType &#x3D;&#x3D; PurchaseInvoice, filtered by the supplied OData date range.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getPurchaseInvoicesSum(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant sales-invoice totals.
@@ -558,8 +595,10 @@ public:
     /// Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType &#x3D;&#x3D; SalesInvoice, filtered by the supplied OData date range.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getSalesInvoicesSum(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an invoice.
@@ -569,11 +608,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInvoice(
         utility::string_t tenantId,
         utility::string_t invoiceId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch an invoice adjustment.
@@ -584,12 +623,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="invoiceAdjustmentId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInvoiceAdjustment(
         utility::string_t tenantId,
         utility::string_t invoiceId,
         utility::string_t invoiceAdjustmentId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch an invoice line.
@@ -600,12 +639,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="invoiceLineId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInvoiceLine(
         utility::string_t tenantId,
         utility::string_t invoiceId,
         utility::string_t invoiceLineId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a tax for an invoice line.
@@ -617,13 +656,13 @@ public:
     /// <param name="invoiceId"></param>
     /// <param name="invoiceLineId"></param>
     /// <param name="invoiceLineTaxId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInvoiceLineTax(
         utility::string_t tenantId,
         utility::string_t invoiceId,
         utility::string_t invoiceLineId,
         utility::string_t invoiceLineTaxId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch an invoice reference.
@@ -634,12 +673,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="invoiceId"></param>
     /// <param name="invoiceReferenceId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchInvoiceReference(
         utility::string_t tenantId,
         utility::string_t invoiceId,
         utility::string_t invoiceReferenceId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Preview the rendered email for an invoice.

@@ -23,6 +23,7 @@ include/CppRestOpenAPIClient/model/AccessTokenResponse.h
 include/CppRestOpenAPIClient/model/AuthResult.h
 include/CppRestOpenAPIClient/model/AuthResultEnvelope.h
 include/CppRestOpenAPIClient/model/ErrorEnvelope.h
+include/CppRestOpenAPIClient/model/ExecutionProvenance.h
 include/CppRestOpenAPIClient/model/ForgotPasswordRequest.h
 include/CppRestOpenAPIClient/model/HttpValidationProblemDetails.h
 include/CppRestOpenAPIClient/model/InfoRequest.h
@@ -67,6 +68,7 @@ src/model/AccessTokenResponse.cpp
 src/model/AuthResult.cpp
 src/model/AuthResultEnvelope.cpp
 src/model/ErrorEnvelope.cpp
+src/model/ExecutionProvenance.cpp
 src/model/ForgotPasswordRequest.cpp
 src/model/HttpValidationProblemDetails.cpp
 src/model/InfoRequest.cpp

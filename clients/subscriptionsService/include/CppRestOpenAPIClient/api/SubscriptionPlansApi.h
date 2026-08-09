@@ -27,7 +27,8 @@
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/SubscriptionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SubscriptionPlanCreateDto.h"
 #include "CppRestOpenAPIClient/model/SubscriptionPlanDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SubscriptionPlanDtoIReadOnlyListEnvelope.h"
@@ -110,10 +111,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="subscriptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SubscriptionPlanDtoIReadOnlyListEnvelope>> getSubscriptionPlansAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SubscriptionDtoCollectionQueryParameters>> subscriptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get subscription plans count
@@ -124,10 +127,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="subscriptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSubscriptionPlansCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SubscriptionDtoCollectionQueryParameters>> subscriptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a subscription plan
@@ -139,13 +144,13 @@ public:
     /// <param name="planId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSubscriptionPlanAsync(
         utility::string_t tenantId,
         utility::string_t planId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a subscription plan

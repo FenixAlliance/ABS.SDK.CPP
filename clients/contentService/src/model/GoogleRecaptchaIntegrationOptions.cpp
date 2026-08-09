@@ -33,6 +33,12 @@ GoogleRecaptchaIntegrationOptions::GoogleRecaptchaIntegrationOptions()
     m_SecretKeyIsSet = false;
     m_Version = utility::conversions::to_string_t("");
     m_VersionIsSet = false;
+    m_ProjectId = utility::conversions::to_string_t("");
+    m_ProjectIdIsSet = false;
+    m_ApiKey = utility::conversions::to_string_t("");
+    m_ApiKeyIsSet = false;
+    m_ScoreThreshold = 0.0;
+    m_ScoreThresholdIsSet = false;
 }
 
 GoogleRecaptchaIntegrationOptions::~GoogleRecaptchaIntegrationOptions()
@@ -68,6 +74,18 @@ web::json::value GoogleRecaptchaIntegrationOptions::toJson() const
     if(m_VersionIsSet)
     {
         val[utility::conversions::to_string_t(U("version"))] = ModelBase::toJson(m_Version);
+    }
+    if(m_ProjectIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("projectId"))] = ModelBase::toJson(m_ProjectId);
+    }
+    if(m_ApiKeyIsSet)
+    {
+        val[utility::conversions::to_string_t(U("apiKey"))] = ModelBase::toJson(m_ApiKey);
+    }
+    if(m_ScoreThresholdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("scoreThreshold"))] = ModelBase::toJson(m_ScoreThreshold);
     }
 
     return val;
@@ -127,6 +145,36 @@ bool GoogleRecaptchaIntegrationOptions::fromJson(const web::json::value& val)
             setVersion(refVal_setVersion);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("projectId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("projectId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setProjectId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
+            setProjectId(refVal_setProjectId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("apiKey"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("apiKey")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setApiKey;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setApiKey);
+            setApiKey(refVal_setApiKey);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("scoreThreshold"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("scoreThreshold")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setScoreThreshold;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setScoreThreshold);
+            setScoreThreshold(refVal_setScoreThreshold);
+        }
+    }
     return ok;
 }
 
@@ -156,6 +204,18 @@ void GoogleRecaptchaIntegrationOptions::toMultipart(std::shared_ptr<MultipartFor
     if(m_VersionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("version")), m_Version));
+    }
+    if(m_ProjectIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("projectId")), m_ProjectId));
+    }
+    if(m_ApiKeyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("apiKey")), m_ApiKey));
+    }
+    if(m_ScoreThresholdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("scoreThreshold")), m_ScoreThreshold));
     }
 }
 
@@ -197,6 +257,24 @@ bool GoogleRecaptchaIntegrationOptions::fromMultiPart(std::shared_ptr<MultipartF
         utility::string_t refVal_setVersion;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("version"))), refVal_setVersion );
         setVersion(refVal_setVersion);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("projectId"))))
+    {
+        utility::string_t refVal_setProjectId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("projectId"))), refVal_setProjectId );
+        setProjectId(refVal_setProjectId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("apiKey"))))
+    {
+        utility::string_t refVal_setApiKey;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("apiKey"))), refVal_setApiKey );
+        setApiKey(refVal_setApiKey);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("scoreThreshold"))))
+    {
+        double refVal_setScoreThreshold;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("scoreThreshold"))), refVal_setScoreThreshold );
+        setScoreThreshold(refVal_setScoreThreshold);
     }
     return ok;
 }
@@ -300,6 +378,66 @@ bool GoogleRecaptchaIntegrationOptions::versionIsSet() const
 void GoogleRecaptchaIntegrationOptions::unsetVersion()
 {
     m_VersionIsSet = false;
+}
+utility::string_t GoogleRecaptchaIntegrationOptions::getProjectId() const
+{
+    return m_ProjectId;
+}
+
+void GoogleRecaptchaIntegrationOptions::setProjectId(const utility::string_t& value)
+{
+    m_ProjectId = value;
+    m_ProjectIdIsSet = true;
+}
+
+bool GoogleRecaptchaIntegrationOptions::projectIdIsSet() const
+{
+    return m_ProjectIdIsSet;
+}
+
+void GoogleRecaptchaIntegrationOptions::unsetProjectId()
+{
+    m_ProjectIdIsSet = false;
+}
+utility::string_t GoogleRecaptchaIntegrationOptions::getApiKey() const
+{
+    return m_ApiKey;
+}
+
+void GoogleRecaptchaIntegrationOptions::setApiKey(const utility::string_t& value)
+{
+    m_ApiKey = value;
+    m_ApiKeyIsSet = true;
+}
+
+bool GoogleRecaptchaIntegrationOptions::apiKeyIsSet() const
+{
+    return m_ApiKeyIsSet;
+}
+
+void GoogleRecaptchaIntegrationOptions::unsetApiKey()
+{
+    m_ApiKeyIsSet = false;
+}
+double GoogleRecaptchaIntegrationOptions::getScoreThreshold() const
+{
+    return m_ScoreThreshold;
+}
+
+void GoogleRecaptchaIntegrationOptions::setScoreThreshold(double value)
+{
+    m_ScoreThreshold = value;
+    m_ScoreThresholdIsSet = true;
+}
+
+bool GoogleRecaptchaIntegrationOptions::scoreThresholdIsSet() const
+{
+    return m_ScoreThresholdIsSet;
+}
+
+void GoogleRecaptchaIntegrationOptions::unsetScoreThreshold()
+{
+    m_ScoreThresholdIsSet = false;
 }
 }
 }

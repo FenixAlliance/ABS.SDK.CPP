@@ -73,6 +73,8 @@ ExtendedOrderDto::ExtendedOrderDto()
     m_CustomerNotesIsSet = false;
     m_TaxCalculationMethod = utility::conversions::to_string_t("");
     m_TaxCalculationMethodIsSet = false;
+    m_CostCalculationMethod = utility::conversions::to_string_t("");
+    m_CostCalculationMethodIsSet = false;
     m_ForexRate = 0.0;
     m_ForexRateIsSet = false;
     m_ForexRatesSnapshot = utility::conversions::to_string_t("");
@@ -173,8 +175,6 @@ ExtendedOrderDto::ExtendedOrderDto()
     m_SellerBillingProfileIdIsSet = false;
     m_BuyerBillingProfileId = utility::conversions::to_string_t("");
     m_BuyerBillingProfileIdIsSet = false;
-    m_CostCalculationMethod = utility::conversions::to_string_t("");
-    m_CostCalculationMethodIsSet = false;
     m_FreightTerms = utility::conversions::to_string_t("");
     m_FreightTermsIsSet = false;
     m_OrderStatus = utility::conversions::to_string_t("");
@@ -320,6 +320,10 @@ web::json::value ExtendedOrderDto::toJson() const
     if(m_TaxCalculationMethodIsSet)
     {
         val[utility::conversions::to_string_t(U("taxCalculationMethod"))] = ModelBase::toJson(m_TaxCalculationMethod);
+    }
+    if(m_CostCalculationMethodIsSet)
+    {
+        val[utility::conversions::to_string_t(U("costCalculationMethod"))] = ModelBase::toJson(m_CostCalculationMethod);
     }
     if(m_ForexRateIsSet)
     {
@@ -520,10 +524,6 @@ web::json::value ExtendedOrderDto::toJson() const
     if(m_BuyerBillingProfileIdIsSet)
     {
         val[utility::conversions::to_string_t(U("buyerBillingProfileId"))] = ModelBase::toJson(m_BuyerBillingProfileId);
-    }
-    if(m_CostCalculationMethodIsSet)
-    {
-        val[utility::conversions::to_string_t(U("costCalculationMethod"))] = ModelBase::toJson(m_CostCalculationMethod);
     }
     if(m_FreightTermsIsSet)
     {
@@ -853,6 +853,16 @@ bool ExtendedOrderDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setTaxCalculationMethod;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTaxCalculationMethod);
             setTaxCalculationMethod(refVal_setTaxCalculationMethod);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("costCalculationMethod"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("costCalculationMethod")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCostCalculationMethod;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCostCalculationMethod);
+            setCostCalculationMethod(refVal_setCostCalculationMethod);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("forexRate"))))
@@ -1355,16 +1365,6 @@ bool ExtendedOrderDto::fromJson(const web::json::value& val)
             setBuyerBillingProfileId(refVal_setBuyerBillingProfileId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("costCalculationMethod"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("costCalculationMethod")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setCostCalculationMethod;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCostCalculationMethod);
-            setCostCalculationMethod(refVal_setCostCalculationMethod);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("freightTerms"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("freightTerms")));
@@ -1655,6 +1655,10 @@ void ExtendedOrderDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("taxCalculationMethod")), m_TaxCalculationMethod));
     }
+    if(m_CostCalculationMethodIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("costCalculationMethod")), m_CostCalculationMethod));
+    }
     if(m_ForexRateIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("forexRate")), m_ForexRate));
@@ -1854,10 +1858,6 @@ void ExtendedOrderDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_BuyerBillingProfileIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("buyerBillingProfileId")), m_BuyerBillingProfileId));
-    }
-    if(m_CostCalculationMethodIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("costCalculationMethod")), m_CostCalculationMethod));
     }
     if(m_FreightTermsIsSet)
     {
@@ -2091,6 +2091,12 @@ bool ExtendedOrderDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setTaxCalculationMethod;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("taxCalculationMethod"))), refVal_setTaxCalculationMethod );
         setTaxCalculationMethod(refVal_setTaxCalculationMethod);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("costCalculationMethod"))))
+    {
+        utility::string_t refVal_setCostCalculationMethod;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("costCalculationMethod"))), refVal_setCostCalculationMethod );
+        setCostCalculationMethod(refVal_setCostCalculationMethod);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("forexRate"))))
     {
@@ -2391,12 +2397,6 @@ bool ExtendedOrderDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setBuyerBillingProfileId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("buyerBillingProfileId"))), refVal_setBuyerBillingProfileId );
         setBuyerBillingProfileId(refVal_setBuyerBillingProfileId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("costCalculationMethod"))))
-    {
-        utility::string_t refVal_setCostCalculationMethod;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("costCalculationMethod"))), refVal_setCostCalculationMethod );
-        setCostCalculationMethod(refVal_setCostCalculationMethod);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("freightTerms"))))
     {
@@ -3008,6 +3008,26 @@ bool ExtendedOrderDto::taxCalculationMethodIsSet() const
 void ExtendedOrderDto::unsetTaxCalculationMethod()
 {
     m_TaxCalculationMethodIsSet = false;
+}
+utility::string_t ExtendedOrderDto::getCostCalculationMethod() const
+{
+    return m_CostCalculationMethod;
+}
+
+void ExtendedOrderDto::setCostCalculationMethod(const utility::string_t& value)
+{
+    m_CostCalculationMethod = value;
+    m_CostCalculationMethodIsSet = true;
+}
+
+bool ExtendedOrderDto::costCalculationMethodIsSet() const
+{
+    return m_CostCalculationMethodIsSet;
+}
+
+void ExtendedOrderDto::unsetCostCalculationMethod()
+{
+    m_CostCalculationMethodIsSet = false;
 }
 double ExtendedOrderDto::getForexRate() const
 {
@@ -4008,26 +4028,6 @@ bool ExtendedOrderDto::buyerBillingProfileIdIsSet() const
 void ExtendedOrderDto::unsetBuyerBillingProfileId()
 {
     m_BuyerBillingProfileIdIsSet = false;
-}
-utility::string_t ExtendedOrderDto::getCostCalculationMethod() const
-{
-    return m_CostCalculationMethod;
-}
-
-void ExtendedOrderDto::setCostCalculationMethod(const utility::string_t& value)
-{
-    m_CostCalculationMethod = value;
-    m_CostCalculationMethodIsSet = true;
-}
-
-bool ExtendedOrderDto::costCalculationMethodIsSet() const
-{
-    return m_CostCalculationMethodIsSet;
-}
-
-void ExtendedOrderDto::unsetCostCalculationMethod()
-{
-    m_CostCalculationMethodIsSet = false;
 }
 utility::string_t ExtendedOrderDto::getFreightTerms() const
 {

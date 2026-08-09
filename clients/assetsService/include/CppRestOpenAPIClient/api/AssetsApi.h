@@ -24,33 +24,39 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AssetCategoryCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetCategoryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AssetCreateDto.h"
 #include "CppRestOpenAPIClient/model/AssetDepreciationRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetDepreciationRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetDepreciationRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetDepreciationRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetDepreciationRecordUpdateDto.h"
+#include "CppRestOpenAPIClient/model/AssetDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetRepairCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetRepairDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetRepairDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetRepairDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetRepairUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AssetTransferCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetTransferDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetTransferDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTransferDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTransferUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AssetUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AssetValueAmendCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetValueAmendDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetValueAmendDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetValueAmendDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetValueAmendUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -251,8 +257,10 @@ public:
     /// Retrieves all asset categories for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> getAssetAssetCategories(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetCategoryDtoCollectionQueryParameters>> assetCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of asset categories
@@ -261,8 +269,10 @@ public:
     /// Returns the total number of asset categories for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetAssetCategoriesCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetCategoryDtoCollectionQueryParameters>> assetCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a specific asset category
@@ -298,9 +308,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetDepreciationRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> getAssetDepreciationRecords(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetDepreciationRecordDtoCollectionQueryParameters>> assetDepreciationRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets count of depreciation records for a specific asset
@@ -310,9 +322,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetDepreciationRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetDepreciationRecordsCount(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetDepreciationRecordDtoCollectionQueryParameters>> assetDepreciationRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a specific repair for an asset
@@ -336,9 +350,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetRepairDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> getAssetRepairs(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetRepairDtoCollectionQueryParameters>> assetRepairDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets count of repairs for a specific asset
@@ -348,9 +364,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetRepairDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetRepairsCount(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetRepairDtoCollectionQueryParameters>> assetRepairDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a specific transfer for an asset
@@ -374,9 +392,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> getAssetTransfers(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets count of transfers for a specific asset
@@ -386,9 +406,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetTransfersCount(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a specific value amendment for an asset
@@ -412,9 +434,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetValueAmendDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> getAssetValueAmends(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetValueAmendDtoCollectionQueryParameters>> assetValueAmendDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets count of value amendments for a specific asset
@@ -424,9 +448,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
+    /// <param name="assetValueAmendDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetValueAmendsCount(
         utility::string_t tenantId,
-        utility::string_t assetId
+        utility::string_t assetId,
+        boost::optional<std::shared_ptr<AssetValueAmendDtoCollectionQueryParameters>> assetValueAmendDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets all assets for the current tenant
@@ -435,8 +461,10 @@ public:
     /// Retrieves all assets for the authenticated tenant with optional filtering.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetDtoListEnvelope>> getAssets(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetDtoCollectionQueryParameters>> assetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of assets
@@ -445,8 +473,10 @@ public:
     /// Returns the total number of assets for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetsCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetDtoCollectionQueryParameters>> assetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially updates an existing asset
@@ -456,11 +486,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAsset(
         utility::string_t tenantId,
         utility::string_t assetId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates an existing asset category
@@ -470,11 +500,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="categoryId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetAssetCategory(
         utility::string_t tenantId,
         utility::string_t categoryId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates a depreciation record for an asset
@@ -485,12 +515,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
     /// <param name="recordId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetDepreciationRecord(
         utility::string_t tenantId,
         utility::string_t assetId,
         utility::string_t recordId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates a repair for an asset
@@ -501,12 +531,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
     /// <param name="repairId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetRepair(
         utility::string_t tenantId,
         utility::string_t assetId,
         utility::string_t repairId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates a transfer for an asset
@@ -517,12 +547,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
     /// <param name="transferId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetTransfer(
         utility::string_t tenantId,
         utility::string_t assetId,
         utility::string_t transferId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Partially updates a value amendment for an asset
@@ -533,12 +563,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="assetId"></param>
     /// <param name="amendId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetValueAmend(
         utility::string_t tenantId,
         utility::string_t assetId,
         utility::string_t amendId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates an existing asset

@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
 #include "CppRestOpenAPIClient/model/OptionCreateDto.h"
+#include "CppRestOpenAPIClient/model/OptionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/OptionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/OptionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/OptionUpdateDto.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -114,11 +115,13 @@ public:
     /// <param name="portalId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="optionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<OptionDtoListEnvelope>> getSystemTenantOptions(
         utility::string_t tenantId,
         boost::optional<utility::string_t> portalId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<OptionDtoCollectionQueryParameters>> optionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant options (admin)
@@ -130,11 +133,13 @@ public:
     /// <param name="portalId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="optionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSystemTenantOptionsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> portalId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<OptionDtoCollectionQueryParameters>> optionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially update a tenant option (admin)
@@ -146,13 +151,13 @@ public:
     /// <param name="optionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSystemTenantOption(
         utility::string_t tenantId,
         utility::string_t optionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tenant option (admin)

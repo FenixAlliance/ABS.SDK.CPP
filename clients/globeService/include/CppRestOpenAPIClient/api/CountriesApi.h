@@ -23,16 +23,23 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/CityDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CityDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CountryCallingCodeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CountryCallingCodeDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CountryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CountryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CountryDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CountryStateDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CountryStateDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CountryStateDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CountryTopLevelDomainDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CountryTopLevelDomainDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/CurrencyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CurrencyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/TimezoneDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TimezoneDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -63,10 +70,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryCallingCodeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCallingCodesByCountryAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryCallingCodeDtoCollectionQueryParameters>> countryCallingCodeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count cities for a state
@@ -78,11 +87,13 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="cityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCitiesByStateAsync(
         utility::string_t countryStateId,
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CityDtoCollectionQueryParameters>> cityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count countries
@@ -92,9 +103,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCountries(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryDtoCollectionQueryParameters>> countryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count states for a country
@@ -105,10 +118,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryStateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countCountryStatesAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryStateDtoCollectionQueryParameters>> countryStateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count timezones for a country
@@ -119,10 +134,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="timezoneDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countTimezonesByCountryAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TimezoneDtoCollectionQueryParameters>> timezoneDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count top-level domains for a country
@@ -133,10 +150,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryTopLevelDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countTopLevelDomainsByCountryAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryTopLevelDomainDtoCollectionQueryParameters>> countryTopLevelDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all countries
@@ -146,9 +165,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryDtoListEnvelope>> getAllCountries(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryDtoCollectionQueryParameters>> countryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get calling codes for a country
@@ -159,10 +180,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryCallingCodeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryCallingCodeDtoListEnvelope>> getCallingCodesByCountryIdAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryCallingCodeDtoCollectionQueryParameters>> countryCallingCodeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get cities for a state
@@ -174,11 +197,13 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="cityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CityDtoListEnvelope>> getCitiesByCountryStateIdAsync(
         utility::string_t countryStateId,
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CityDtoCollectionQueryParameters>> cityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get country by ID
@@ -204,11 +229,13 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryStateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryStateDtoEnvelope>> getCountryStateByIdAsync(
         utility::string_t countryStateId,
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryStateDtoCollectionQueryParameters>> countryStateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get states for a country
@@ -219,10 +246,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryStateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryStateDtoListEnvelope>> getCountryStatesAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryStateDtoCollectionQueryParameters>> countryStateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get currencies for a country
@@ -233,10 +262,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="currencyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> getEnabledCurrenciesByCountryIdAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CurrencyDtoCollectionQueryParameters>> currencyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get timezones for a country
@@ -247,10 +278,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="timezoneDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TimezoneDtoListEnvelope>> getTimeZonesByCountryIdAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TimezoneDtoCollectionQueryParameters>> timezoneDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get top-level domains for a country
@@ -261,10 +294,12 @@ public:
     /// <param name="countryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryTopLevelDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryTopLevelDomainDtoListEnvelope>> getTopLevelDomainsByCountryIdAsync(
         utility::string_t countryId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryTopLevelDomainDtoCollectionQueryParameters>> countryTopLevelDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Search countries by name

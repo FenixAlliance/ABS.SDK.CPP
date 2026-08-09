@@ -101,16 +101,6 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="agentId"></param>
-    pplx::task<void> apiV2AIServiceAgentsAgentIdAguiPost(
-        utility::string_t agentId
-    ) const;
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
     /// <param name="forgotPasswordRequest"></param>
     pplx::task<void> forgotPasswordPost(
         std::shared_ptr<ForgotPasswordRequest> forgotPasswordRequest

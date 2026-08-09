@@ -72,6 +72,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTenantId() const;
     bool tenantIdIsSet() const;
     void unsetTenantId();
@@ -252,15 +261,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::datetime getTimestamp() const;
-    bool timestampIsSet() const;
-    void unsetTimestamp();
-
-    void setTimestamp(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getDebitInUsd() const;
     bool debitInUsdIsSet() const;
     void unsetDebitInUsd();
@@ -321,10 +321,30 @@ public:
 
     void setTotalCreditAmount(const std::shared_ptr<Money>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Money> getDebitInUsdAmount() const;
+    bool debitInUsdAmountIsSet() const;
+    void unsetDebitInUsdAmount();
+
+    void setDebitInUsdAmount(const std::shared_ptr<Money>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<Money> getCreditInUsdAmount() const;
+    bool creditInUsdAmountIsSet() const;
+    void unsetCreditInUsdAmount();
+
+    void setCreditInUsdAmount(const std::shared_ptr<Money>& value);
+
 
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_TenantId;
     bool m_TenantIdIsSet;
     utility::string_t m_EnrollmentId;
@@ -365,8 +385,6 @@ protected:
     bool m_ForexRateIsSet;
     utility::string_t m_ForexRatesSnapshot;
     bool m_ForexRatesSnapshotIsSet;
-    utility::datetime m_Timestamp;
-    bool m_TimestampIsSet;
     double m_DebitInUsd;
     bool m_DebitInUsdIsSet;
     double m_CreditInUsd;
@@ -381,6 +399,10 @@ protected:
     bool m_TotalDebitAmountIsSet;
     std::shared_ptr<Money> m_TotalCreditAmount;
     bool m_TotalCreditAmountIsSet;
+    std::shared_ptr<Money> m_DebitInUsdAmount;
+    bool m_DebitInUsdAmountIsSet;
+    std::shared_ptr<Money> m_CreditInUsdAmount;
+    bool m_CreditInUsdAmountIsSet;
 };
 
 

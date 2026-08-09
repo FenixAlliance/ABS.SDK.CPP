@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemAttributeOptionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemAttributeOptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemAttributeOptionDtoListEnvelope>> getItemAttributeOptionsAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemAttributeOptionDtoCollectionQueryParameters>> itemAttributeOptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item attribute options count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemAttributeOptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemAttributeOptionsCountAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemAttributeOptionDtoCollectionQueryParameters>> itemAttributeOptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item attribute option
@@ -138,13 +143,13 @@ public:
     /// <param name="itemAttributeOptionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemAttributeOptionAsync(
         utility::string_t tenantId,
         utility::string_t itemAttributeOptionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item attribute option

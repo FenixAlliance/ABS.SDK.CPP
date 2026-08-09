@@ -25,13 +25,16 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/WebPageCategoryCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebPageCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebPageCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebPageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebPageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageTagCreateDto.h"
+#include "CppRestOpenAPIClient/model/WebPageTagDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebPageTagDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebPageUpdateDto.h"
 #include <vector>
@@ -64,10 +67,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countWebPagesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPageDtoCollectionQueryParameters>> webPageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a web page
@@ -146,10 +151,12 @@ public:
     /// <param name="webPageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPageCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebPageCategoryDtoListEnvelope>> getCategoriesByWebPageAsync(
         utility::string_t webPageId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPageCategoryDtoCollectionQueryParameters>> webPageCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tags by web page
@@ -160,10 +167,12 @@ public:
     /// <param name="webPageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPageTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebPageTagDtoListEnvelope>> getTagsByWebPageAsync(
         utility::string_t webPageId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPageTagDtoCollectionQueryParameters>> webPageTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get web page by ID
@@ -190,10 +199,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="webPageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebPageDtoListEnvelope>> getWebPagesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebPageDtoCollectionQueryParameters>> webPageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a web page
@@ -205,13 +216,13 @@ public:
     /// <param name="webPageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchWebPageAsync(
         utility::string_t tenantId,
         utility::string_t webPageId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Relate web page to category

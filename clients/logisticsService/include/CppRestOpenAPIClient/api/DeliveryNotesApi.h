@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/DeliveryNoteCreateDto.h"
+#include "CppRestOpenAPIClient/model/DeliveryNoteDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DeliveryNoteDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DeliveryNoteDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DeliveryNoteUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="deliveryNoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DeliveryNoteDtoListEnvelope>> getDeliveryNotesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<DeliveryNoteDtoCollectionQueryParameters>> deliveryNoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get delivery notes count
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="deliveryNoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDeliveryNotesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<DeliveryNoteDtoCollectionQueryParameters>> deliveryNoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a delivery note

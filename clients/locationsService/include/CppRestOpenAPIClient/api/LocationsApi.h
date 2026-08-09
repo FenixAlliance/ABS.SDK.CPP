@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LocationCreateDto.h"
+#include "CppRestOpenAPIClient/model/LocationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LocationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocationDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocationUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -119,8 +120,10 @@ public:
     /// Get all locations with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> getLocationsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Locations Count
@@ -129,8 +132,10 @@ public:
     /// Get the count of locations with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLocationsCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Location
@@ -151,8 +156,10 @@ public:
     /// Get locations for a specific wallet by ID.
     /// </remarks>
     /// <param name="walletId"></param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> getWalletLocationsAsync(
-        utility::string_t walletId
+        utility::string_t walletId,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Locations Count
@@ -161,8 +168,10 @@ public:
     /// Get the count of locations for a specific wallet by ID.
     /// </remarks>
     /// <param name="walletId"></param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletLocationsCountAsync(
-        utility::string_t walletId
+        utility::string_t walletId,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a location
@@ -172,11 +181,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="locationId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLocationAsync(
         utility::string_t tenantId,
         utility::string_t locationId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a wallet location
@@ -186,11 +195,11 @@ public:
     /// </remarks>
     /// <param name="walletId"></param>
     /// <param name="locationId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchWalletLocationAsync(
         utility::string_t walletId,
         utility::string_t locationId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update Location

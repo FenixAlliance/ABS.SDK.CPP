@@ -291,6 +291,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getCostCalculationMethod() const;
+    bool costCalculationMethodIsSet() const;
+    void unsetCostCalculationMethod();
+
+    void setCostCalculationMethod(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     double getForexRate() const;
     bool forexRateIsSet() const;
     void unsetForexRate();
@@ -741,15 +750,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getCostCalculationMethod() const;
-    bool costCalculationMethodIsSet() const;
-    void unsetCostCalculationMethod();
-
-    void setCostCalculationMethod(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getFreightTerms() const;
     bool freightTermsIsSet() const;
     void unsetFreightTerms();
@@ -961,6 +961,8 @@ protected:
     bool m_CustomerNotesIsSet;
     utility::string_t m_TaxCalculationMethod;
     bool m_TaxCalculationMethodIsSet;
+    utility::string_t m_CostCalculationMethod;
+    bool m_CostCalculationMethodIsSet;
     double m_ForexRate;
     bool m_ForexRateIsSet;
     utility::string_t m_ForexRatesSnapshot;
@@ -1061,8 +1063,6 @@ protected:
     bool m_SellerBillingProfileIdIsSet;
     utility::string_t m_BuyerBillingProfileId;
     bool m_BuyerBillingProfileIdIsSet;
-    utility::string_t m_CostCalculationMethod;
-    bool m_CostCalculationMethodIsSet;
     utility::string_t m_FreightTerms;
     bool m_FreightTermsIsSet;
     utility::string_t m_OrderStatus;

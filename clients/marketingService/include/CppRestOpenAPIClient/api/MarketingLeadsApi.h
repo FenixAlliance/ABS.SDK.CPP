@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/MarketingLeadCreateDto.h"
+#include "CppRestOpenAPIClient/model/MarketingLeadDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MarketingLeadDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/MarketingLeadDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/MarketingLeadUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="marketingLeadDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getMarketingLeadsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MarketingLeadDtoCollectionQueryParameters>> marketingLeadDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get marketing leads
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="marketingLeadDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MarketingLeadDtoListEnvelope>> getMarketingLeadsODataAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MarketingLeadDtoCollectionQueryParameters>> marketingLeadDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a marketing lead
@@ -138,13 +143,13 @@ public:
     /// <param name="marketingLeadId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchMarketingLeadAsync(
         utility::string_t tenantId,
         utility::string_t marketingLeadId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a marketing lead

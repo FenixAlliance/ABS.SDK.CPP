@@ -27,6 +27,8 @@ ReceiptCreateDto::ReceiptCreateDto()
     m_IdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
+    m_Closed = false;
+    m_ClosedIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_PriceListId = utility::conversions::to_string_t("");
@@ -61,6 +63,8 @@ ReceiptCreateDto::ReceiptCreateDto()
     m_StateIdIsSet = false;
     m_CityId = utility::conversions::to_string_t("");
     m_CityIdIsSet = false;
+    m_ForexRate = 0.0;
+    m_ForexRateIsSet = false;
     m_CurrencyId = utility::conversions::to_string_t("");
     m_CurrencyIdIsSet = false;
     m_TotalDetail = 0.0;
@@ -117,14 +121,10 @@ ReceiptCreateDto::ReceiptCreateDto()
     m_TaxCalculationMethodIsSet = false;
     m_PaymentId = utility::conversions::to_string_t("");
     m_PaymentIdIsSet = false;
-    m_ForexRate = 0.0;
-    m_ForexRateIsSet = false;
     m_TotalAmount = 0.0;
     m_TotalAmountIsSet = false;
     m_TotalAmountInUSD = 0.0;
     m_TotalAmountInUSDIsSet = false;
-    m_Closed = false;
-    m_ClosedIsSet = false;
     m_ContactId = utility::conversions::to_string_t("");
     m_ContactIdIsSet = false;
     m_ReceiptType = utility::conversions::to_string_t("");
@@ -156,6 +156,10 @@ web::json::value ReceiptCreateDto::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
+    if(m_ClosedIsSet)
+    {
+        val[utility::conversions::to_string_t(U("closed"))] = ModelBase::toJson(m_Closed);
     }
     if(m_TitleIsSet)
     {
@@ -224,6 +228,10 @@ web::json::value ReceiptCreateDto::toJson() const
     if(m_CityIdIsSet)
     {
         val[utility::conversions::to_string_t(U("cityId"))] = ModelBase::toJson(m_CityId);
+    }
+    if(m_ForexRateIsSet)
+    {
+        val[utility::conversions::to_string_t(U("forexRate"))] = ModelBase::toJson(m_ForexRate);
     }
     if(m_CurrencyIdIsSet)
     {
@@ -337,10 +345,6 @@ web::json::value ReceiptCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("paymentId"))] = ModelBase::toJson(m_PaymentId);
     }
-    if(m_ForexRateIsSet)
-    {
-        val[utility::conversions::to_string_t(U("forexRate"))] = ModelBase::toJson(m_ForexRate);
-    }
     if(m_TotalAmountIsSet)
     {
         val[utility::conversions::to_string_t(U("totalAmount"))] = ModelBase::toJson(m_TotalAmount);
@@ -348,10 +352,6 @@ web::json::value ReceiptCreateDto::toJson() const
     if(m_TotalAmountInUSDIsSet)
     {
         val[utility::conversions::to_string_t(U("totalAmountInUSD"))] = ModelBase::toJson(m_TotalAmountInUSD);
-    }
-    if(m_ClosedIsSet)
-    {
-        val[utility::conversions::to_string_t(U("closed"))] = ModelBase::toJson(m_Closed);
     }
     if(m_ContactIdIsSet)
     {
@@ -395,6 +395,16 @@ bool ReceiptCreateDto::fromJson(const web::json::value& val)
             utility::datetime refVal_setTimestamp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimestamp);
             setTimestamp(refVal_setTimestamp);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("closed"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("closed")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setClosed;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setClosed);
+            setClosed(refVal_setClosed);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("title"))))
@@ -565,6 +575,16 @@ bool ReceiptCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setCityId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCityId);
             setCityId(refVal_setCityId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("forexRate"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("forexRate")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setForexRate;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setForexRate);
+            setForexRate(refVal_setForexRate);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("currencyId"))))
@@ -847,16 +867,6 @@ bool ReceiptCreateDto::fromJson(const web::json::value& val)
             setPaymentId(refVal_setPaymentId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("forexRate"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("forexRate")));
-        if(!fieldValue.is_null())
-        {
-            double refVal_setForexRate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setForexRate);
-            setForexRate(refVal_setForexRate);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("totalAmount"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalAmount")));
@@ -875,16 +885,6 @@ bool ReceiptCreateDto::fromJson(const web::json::value& val)
             double refVal_setTotalAmountInUSD;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTotalAmountInUSD);
             setTotalAmountInUSD(refVal_setTotalAmountInUSD);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("closed"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("closed")));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_setClosed;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setClosed);
-            setClosed(refVal_setClosed);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("contactId"))))
@@ -944,6 +944,10 @@ void ReceiptCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_TimestampIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
+    }
+    if(m_ClosedIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("closed")), m_Closed));
     }
     if(m_TitleIsSet)
     {
@@ -1012,6 +1016,10 @@ void ReceiptCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_CityIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("cityId")), m_CityId));
+    }
+    if(m_ForexRateIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("forexRate")), m_ForexRate));
     }
     if(m_CurrencyIdIsSet)
     {
@@ -1125,10 +1133,6 @@ void ReceiptCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("paymentId")), m_PaymentId));
     }
-    if(m_ForexRateIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("forexRate")), m_ForexRate));
-    }
     if(m_TotalAmountIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalAmount")), m_TotalAmount));
@@ -1136,10 +1140,6 @@ void ReceiptCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_TotalAmountInUSDIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalAmountInUSD")), m_TotalAmountInUSD));
-    }
-    if(m_ClosedIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("closed")), m_Closed));
     }
     if(m_ContactIdIsSet)
     {
@@ -1179,6 +1179,12 @@ bool ReceiptCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("closed"))))
+    {
+        bool refVal_setClosed;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("closed"))), refVal_setClosed );
+        setClosed(refVal_setClosed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("title"))))
     {
@@ -1281,6 +1287,12 @@ bool ReceiptCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setCityId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("cityId"))), refVal_setCityId );
         setCityId(refVal_setCityId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("forexRate"))))
+    {
+        double refVal_setForexRate;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("forexRate"))), refVal_setForexRate );
+        setForexRate(refVal_setForexRate);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("currencyId"))))
     {
@@ -1450,12 +1462,6 @@ bool ReceiptCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("paymentId"))), refVal_setPaymentId );
         setPaymentId(refVal_setPaymentId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("forexRate"))))
-    {
-        double refVal_setForexRate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("forexRate"))), refVal_setForexRate );
-        setForexRate(refVal_setForexRate);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("totalAmount"))))
     {
         double refVal_setTotalAmount;
@@ -1467,12 +1473,6 @@ bool ReceiptCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         double refVal_setTotalAmountInUSD;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("totalAmountInUSD"))), refVal_setTotalAmountInUSD );
         setTotalAmountInUSD(refVal_setTotalAmountInUSD);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("closed"))))
-    {
-        bool refVal_setClosed;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("closed"))), refVal_setClosed );
-        setClosed(refVal_setClosed);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("contactId"))))
     {
@@ -1540,6 +1540,26 @@ bool ReceiptCreateDto::timestampIsSet() const
 void ReceiptCreateDto::unsetTimestamp()
 {
     m_TimestampIsSet = false;
+}
+bool ReceiptCreateDto::isClosed() const
+{
+    return m_Closed;
+}
+
+void ReceiptCreateDto::setClosed(bool value)
+{
+    m_Closed = value;
+    m_ClosedIsSet = true;
+}
+
+bool ReceiptCreateDto::closedIsSet() const
+{
+    return m_ClosedIsSet;
+}
+
+void ReceiptCreateDto::unsetClosed()
+{
+    m_ClosedIsSet = false;
 }
 utility::string_t ReceiptCreateDto::getTitle() const
 {
@@ -1880,6 +1900,26 @@ bool ReceiptCreateDto::cityIdIsSet() const
 void ReceiptCreateDto::unsetCityId()
 {
     m_CityIdIsSet = false;
+}
+double ReceiptCreateDto::getForexRate() const
+{
+    return m_ForexRate;
+}
+
+void ReceiptCreateDto::setForexRate(double value)
+{
+    m_ForexRate = value;
+    m_ForexRateIsSet = true;
+}
+
+bool ReceiptCreateDto::forexRateIsSet() const
+{
+    return m_ForexRateIsSet;
+}
+
+void ReceiptCreateDto::unsetForexRate()
+{
+    m_ForexRateIsSet = false;
 }
 utility::string_t ReceiptCreateDto::getCurrencyId() const
 {
@@ -2441,26 +2481,6 @@ void ReceiptCreateDto::unsetPaymentId()
 {
     m_PaymentIdIsSet = false;
 }
-double ReceiptCreateDto::getForexRate() const
-{
-    return m_ForexRate;
-}
-
-void ReceiptCreateDto::setForexRate(double value)
-{
-    m_ForexRate = value;
-    m_ForexRateIsSet = true;
-}
-
-bool ReceiptCreateDto::forexRateIsSet() const
-{
-    return m_ForexRateIsSet;
-}
-
-void ReceiptCreateDto::unsetForexRate()
-{
-    m_ForexRateIsSet = false;
-}
 double ReceiptCreateDto::getTotalAmount() const
 {
     return m_TotalAmount;
@@ -2500,26 +2520,6 @@ bool ReceiptCreateDto::totalAmountInUSDIsSet() const
 void ReceiptCreateDto::unsetTotalAmountInUSD()
 {
     m_TotalAmountInUSDIsSet = false;
-}
-bool ReceiptCreateDto::isClosed() const
-{
-    return m_Closed;
-}
-
-void ReceiptCreateDto::setClosed(bool value)
-{
-    m_Closed = value;
-    m_ClosedIsSet = true;
-}
-
-bool ReceiptCreateDto::closedIsSet() const
-{
-    return m_ClosedIsSet;
-}
-
-void ReceiptCreateDto::unsetClosed()
-{
-    m_ClosedIsSet = false;
 }
 utility::string_t ReceiptCreateDto::getContactId() const
 {

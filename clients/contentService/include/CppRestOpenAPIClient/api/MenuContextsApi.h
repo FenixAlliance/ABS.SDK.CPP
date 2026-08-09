@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/MenuContextCreateDto.h"
+#include "CppRestOpenAPIClient/model/MenuContextDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MenuContextDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/MenuContextDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/MenuContextUpdateDto.h"
@@ -59,10 +60,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="menuContextDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countMenuContextsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MenuContextDtoCollectionQueryParameters>> menuContextDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a menu context
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="menuContextDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MenuContextDtoListEnvelope>> getMenuContextsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MenuContextDtoCollectionQueryParameters>> menuContextDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a menu context

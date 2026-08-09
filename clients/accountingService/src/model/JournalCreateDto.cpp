@@ -39,6 +39,10 @@ JournalCreateDto::JournalCreateDto()
     m_JournalTypeIdIsSet = false;
     m_LedgerId = utility::conversions::to_string_t("");
     m_LedgerIdIsSet = false;
+    m_FinancialBookId = utility::conversions::to_string_t("");
+    m_FinancialBookIdIsSet = false;
+    m_Code = utility::conversions::to_string_t("");
+    m_CodeIsSet = false;
 }
 
 JournalCreateDto::~JournalCreateDto()
@@ -86,6 +90,14 @@ web::json::value JournalCreateDto::toJson() const
     if(m_LedgerIdIsSet)
     {
         val[utility::conversions::to_string_t(U("ledgerId"))] = ModelBase::toJson(m_LedgerId);
+    }
+    if(m_FinancialBookIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("financialBookId"))] = ModelBase::toJson(m_FinancialBookId);
+    }
+    if(m_CodeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("code"))] = ModelBase::toJson(m_Code);
     }
 
     return val;
@@ -175,6 +187,26 @@ bool JournalCreateDto::fromJson(const web::json::value& val)
             setLedgerId(refVal_setLedgerId);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("financialBookId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("financialBookId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFinancialBookId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFinancialBookId);
+            setFinancialBookId(refVal_setFinancialBookId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("code"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("code")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCode);
+            setCode(refVal_setCode);
+        }
+    }
     return ok;
 }
 
@@ -216,6 +248,14 @@ void JournalCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     if(m_LedgerIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("ledgerId")), m_LedgerId));
+    }
+    if(m_FinancialBookIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("financialBookId")), m_FinancialBookId));
+    }
+    if(m_CodeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("code")), m_Code));
     }
 }
 
@@ -275,6 +315,18 @@ bool JournalCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_setLedgerId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("ledgerId"))), refVal_setLedgerId );
         setLedgerId(refVal_setLedgerId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("financialBookId"))))
+    {
+        utility::string_t refVal_setFinancialBookId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("financialBookId"))), refVal_setFinancialBookId );
+        setFinancialBookId(refVal_setFinancialBookId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("code"))))
+    {
+        utility::string_t refVal_setCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("code"))), refVal_setCode );
+        setCode(refVal_setCode);
     }
     return ok;
 }
@@ -438,6 +490,46 @@ bool JournalCreateDto::ledgerIdIsSet() const
 void JournalCreateDto::unsetLedgerId()
 {
     m_LedgerIdIsSet = false;
+}
+utility::string_t JournalCreateDto::getFinancialBookId() const
+{
+    return m_FinancialBookId;
+}
+
+void JournalCreateDto::setFinancialBookId(const utility::string_t& value)
+{
+    m_FinancialBookId = value;
+    m_FinancialBookIdIsSet = true;
+}
+
+bool JournalCreateDto::financialBookIdIsSet() const
+{
+    return m_FinancialBookIdIsSet;
+}
+
+void JournalCreateDto::unsetFinancialBookId()
+{
+    m_FinancialBookIdIsSet = false;
+}
+utility::string_t JournalCreateDto::getCode() const
+{
+    return m_Code;
+}
+
+void JournalCreateDto::setCode(const utility::string_t& value)
+{
+    m_Code = value;
+    m_CodeIsSet = true;
+}
+
+bool JournalCreateDto::codeIsSet() const
+{
+    return m_CodeIsSet;
+}
+
+void JournalCreateDto::unsetCode()
+{
+    m_CodeIsSet = false;
 }
 }
 }

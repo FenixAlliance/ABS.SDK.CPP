@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/CurriculumExperienceCreateDto.h"
+#include "CppRestOpenAPIClient/model/CurriculumExperienceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CurriculumExperienceDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CurriculumExperienceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CurriculumExperienceUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -123,12 +124,14 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="curriculumExperienceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CurriculumExperienceDtoListEnvelope>> getCurriculumExperiencesAsync(
         utility::string_t curriculumId,
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CurriculumExperienceDtoCollectionQueryParameters>> curriculumExperienceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count curriculum experiences
@@ -141,12 +144,14 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="curriculumExperienceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getCurriculumExperiencesCountAsync(
         utility::string_t curriculumId,
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CurriculumExperienceDtoCollectionQueryParameters>> curriculumExperienceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a curriculum experience
@@ -160,7 +165,7 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCurriculumExperienceAsync(
         utility::string_t curriculumId,
         utility::string_t experienceId,
@@ -168,7 +173,7 @@ public:
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a curriculum experience

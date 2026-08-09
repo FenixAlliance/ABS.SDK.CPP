@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BusinessApplicationCreateDto.h"
+#include "CppRestOpenAPIClient/model/BusinessApplicationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BusinessApplicationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BusinessApplicationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BusinessApplicationUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityRoleDtoListEnvelope.h"
 #include <vector>
@@ -111,10 +112,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BusinessApplicationDtoListEnvelope>> getBusinessApplicationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessApplicationDtoCollectionQueryParameters>> businessApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get business applications count
@@ -125,10 +128,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBusinessApplicationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessApplicationDtoCollectionQueryParameters>> businessApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get permissions by application
@@ -170,13 +175,13 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="applicationId"></param>
-    /// <param name="operation"></param>
+    /// <param name="patchOperation"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBusinessApplicationAsync(
         utility::string_t tenantId,
         utility::string_t applicationId,
-        std::vector<std::shared_ptr<Operation>> operation,
+        std::vector<std::shared_ptr<PatchOperation>> patchOperation,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

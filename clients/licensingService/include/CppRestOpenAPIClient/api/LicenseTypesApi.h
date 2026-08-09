@@ -28,9 +28,10 @@
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LicenseTypeCreateDto.h"
 #include "CppRestOpenAPIClient/model/LicenseTypeDto.h"
+#include "CppRestOpenAPIClient/model/LicenseTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LicenseTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LicenseTypeUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="licenseTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LicenseTypeDtoListEnvelope>> getLicenseTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LicenseTypeDtoCollectionQueryParameters>> licenseTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get license types count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="licenseTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLicenseTypesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LicenseTypeDtoCollectionQueryParameters>> licenseTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a license type
@@ -138,13 +143,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLicenseTypeAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a license type

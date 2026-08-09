@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BusinessDomainCreateDto.h"
+#include "CppRestOpenAPIClient/model/BusinessDomainDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BusinessDomainDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BusinessDomainDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BusinessDomainUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> getBusinessDomainsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get business domains count
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessDomainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBusinessDomainsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a business domain

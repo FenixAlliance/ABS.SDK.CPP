@@ -593,7 +593,7 @@ pplx::task<std::shared_ptr<GigApplicationDtoEnvelope>> GigApplicationsApi::getGi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<GigApplicationDtoListEnvelope>> GigApplicationsApi::getGigApplicationsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<GigApplicationDtoListEnvelope>> GigApplicationsApi::getGigApplicationsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<GigApplicationDtoCollectionQueryParameters>> gigApplicationDtoCollectionQueryParameters) const
 {
 
 
@@ -634,6 +634,8 @@ pplx::task<std::shared_ptr<GigApplicationDtoListEnvelope>> GigApplicationsApi::g
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -654,11 +656,27 @@ pplx::task<std::shared_ptr<GigApplicationDtoListEnvelope>> GigApplicationsApi::g
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (gigApplicationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*gigApplicationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(gigApplicationDtoCollectionQueryParameters && (*gigApplicationDtoCollectionQueryParameters).get())
+        {
+            (*gigApplicationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("gigApplicationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -727,7 +745,7 @@ pplx::task<std::shared_ptr<GigApplicationDtoListEnvelope>> GigApplicationsApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> GigApplicationsApi::getGigApplicationsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> GigApplicationsApi::getGigApplicationsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<GigApplicationDtoCollectionQueryParameters>> gigApplicationDtoCollectionQueryParameters) const
 {
 
 
@@ -768,6 +786,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> GigApplicationsApi::getGigApplication
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -788,11 +808,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> GigApplicationsApi::getGigApplication
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (gigApplicationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*gigApplicationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(gigApplicationDtoCollectionQueryParameters && (*gigApplicationDtoCollectionQueryParameters).get())
+        {
+            (*gigApplicationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("gigApplicationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -861,7 +897,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> GigApplicationsApi::getGigApplication
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> GigApplicationsApi::patchGigApplicationAsync(utility::string_t tenantId, utility::string_t gigApplicationId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> GigApplicationsApi::patchGigApplicationAsync(utility::string_t tenantId, utility::string_t gigApplicationId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -929,7 +965,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> GigApplicationsApi::patchGigApplicati
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -947,11 +983,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> GigApplicationsApi::patchGigApplicati
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

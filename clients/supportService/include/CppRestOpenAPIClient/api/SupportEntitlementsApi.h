@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SupportEntitlementCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupportEntitlementDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupportEntitlementDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportEntitlementDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportEntitlementUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportEntitlementDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupportEntitlementDtoListEnvelope>> getSupportEntitlementsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportEntitlementDtoCollectionQueryParameters>> supportEntitlementDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of support entitlements
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportEntitlementDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSupportEntitlementsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportEntitlementDtoCollectionQueryParameters>> supportEntitlementDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a support entitlement
@@ -138,13 +143,13 @@ public:
     /// <param name="supportEntitlementId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSupportEntitlementAsync(
         utility::string_t tenantId,
         utility::string_t supportEntitlementId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a support entitlement

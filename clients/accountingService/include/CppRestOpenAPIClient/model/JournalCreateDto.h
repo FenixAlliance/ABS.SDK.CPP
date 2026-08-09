@@ -127,6 +127,24 @@ public:
 
     void setLedgerId(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getFinancialBookId() const;
+    bool financialBookIdIsSet() const;
+    void unsetFinancialBookId();
+
+    void setFinancialBookId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getCode() const;
+    bool codeIsSet() const;
+    void unsetCode();
+
+    void setCode(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -145,6 +163,10 @@ protected:
     bool m_JournalTypeIdIsSet;
     utility::string_t m_LedgerId;
     bool m_LedgerIdIsSet;
+    utility::string_t m_FinancialBookId;
+    bool m_FinancialBookIdIsSet;
+    utility::string_t m_Code;
+    bool m_CodeIsSet;
 };
 
 

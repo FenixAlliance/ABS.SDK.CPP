@@ -73,12 +73,45 @@ public:
 
     void setMessage(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getBodyHtml() const;
+    bool bodyHtmlIsSet() const;
+    void unsetBodyHtml();
+
+    void setBodyHtml(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getBodyFormat() const;
+    bool bodyFormatIsSet() const;
+    void unsetBodyFormat();
+
+    void setBodyFormat(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getBackgroundStyle() const;
+    bool backgroundStyleIsSet() const;
+    void unsetBackgroundStyle();
+
+    void setBackgroundStyle(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
     utility::string_t m_Message;
     bool m_MessageIsSet;
+    utility::string_t m_BodyHtml;
+    bool m_BodyHtmlIsSet;
+    utility::string_t m_BodyFormat;
+    bool m_BodyFormatIsSet;
+    utility::string_t m_BackgroundStyle;
+    bool m_BackgroundStyleIsSet;
 };
 
 

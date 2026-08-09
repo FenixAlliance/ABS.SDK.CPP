@@ -25,17 +25,21 @@
 
 #include "CppRestOpenAPIClient/model/AccountCreateDto.h"
 #include "CppRestOpenAPIClient/model/AccountDto.h"
+#include "CppRestOpenAPIClient/model/AccountDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AccountDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountRelationCreateDto.h"
+#include "CppRestOpenAPIClient/model/AccountRelationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AccountRelationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountRelationUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AccountTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/AccountTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AccountTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountTypeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AccountUpdateDto.h"
 #include "CppRestOpenAPIClient/model/AccountingEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/AccountingEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AccountingEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountingEntryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountingEntryUpdateDto.h"
@@ -44,7 +48,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SeedChartOfAccountsRequest.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -77,11 +81,13 @@ public:
     /// <param name="currencyId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> aggregateAccountsBalanceAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> currencyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountDtoCollectionQueryParameters>> accountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Balance account
@@ -313,11 +319,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingEntryDtoListEnvelope>> getAccountCreditsAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account credits count
@@ -329,11 +337,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountCreditsCountAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account debits
@@ -345,11 +355,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingEntryDtoListEnvelope>> getAccountDebitsAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account debits count
@@ -361,11 +373,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountDebitsCountAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account details
@@ -393,11 +407,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingEntryDtoListEnvelope>> getAccountEntriesAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account entry
@@ -427,11 +443,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountRelationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountRelationDtoListEnvelope>> getAccountRelationsAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountRelationDtoCollectionQueryParameters>> accountRelationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account relations count
@@ -443,11 +461,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountRelationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountRelationsCountAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountRelationDtoCollectionQueryParameters>> accountRelationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account type by ID
@@ -474,10 +494,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountTypeDtoListEnvelope>> getAccountTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountTypeDtoCollectionQueryParameters>> accountTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get account types count
@@ -488,10 +510,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountTypesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountTypeDtoCollectionQueryParameters>> accountTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Creates a new account
@@ -502,10 +526,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountDtoListEnvelope>> getAccountsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountDtoCollectionQueryParameters>> accountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the number of accounts
@@ -516,10 +542,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountDtoCollectionQueryParameters>> accountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get charts of accounts
@@ -559,11 +587,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingEntryDtoListEnvelope>> getCreditAccountEntriesAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get debit account entries
@@ -575,11 +605,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingEntryDtoListEnvelope>> getDebitAccountEntriesAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get root accounts
@@ -590,10 +622,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountDtoListEnvelope>> getRootAccountsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountDtoCollectionQueryParameters>> accountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an account
@@ -605,13 +639,13 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch account entry
@@ -624,14 +658,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountEntryAsync(
         utility::string_t tenantId,
         utility::string_t accountId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch account relation
@@ -644,14 +678,14 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountRelationAsync(
         utility::string_t tenantId,
         utility::string_t accountRelationId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch account type
@@ -663,13 +697,13 @@ public:
     /// <param name="accountTypeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountTypeAsync(
         utility::string_t tenantId,
         utility::string_t accountTypeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Seed chart of accounts

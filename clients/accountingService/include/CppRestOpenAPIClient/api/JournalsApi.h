@@ -23,19 +23,22 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/AssignJournalToBookRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/JournalCreateDto.h"
+#include "CppRestOpenAPIClient/model/JournalDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/JournalDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/JournalEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/JournalEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/JournalEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/JournalUpdateDto.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ReverseJournalEntryRequest.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -69,12 +72,14 @@ public:
     /// <param name="currencyId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> aggregateJournalEntryCreditsAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         boost::optional<utility::string_t> currencyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Aggregate journal entry debits
@@ -87,12 +92,32 @@ public:
     /// <param name="currencyId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> aggregateJournalEntryDebitsAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         boost::optional<utility::string_t> currencyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
+    /// Bind a journal to a financial book
+    /// </summary>
+    /// <remarks>
+    /// Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="journalId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="assignJournalToBookRequest"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> assignJournalToBookAsync(
+        utility::string_t tenantId,
+        utility::string_t journalId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AssignJournalToBookRequest>> assignJournalToBookRequest
     ) const;
     /// <summary>
     /// Count journals
@@ -103,10 +128,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countJournalsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalDtoCollectionQueryParameters>> journalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create journal
@@ -202,11 +229,13 @@ public:
     /// <param name="journalId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<JournalEntryDtoIReadOnlyListEnvelope>> getJournalEntriesAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count journal entries
@@ -218,11 +247,13 @@ public:
     /// <param name="journalId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getJournalEntriesCountAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get journal entry by ID
@@ -251,10 +282,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<JournalDtoIReadOnlyListEnvelope>> getJournalsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalDtoCollectionQueryParameters>> journalDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a journal
@@ -266,13 +299,13 @@ public:
     /// <param name="journalId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchJournalAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a journal entry
@@ -285,14 +318,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchJournalEntryAsync(
         utility::string_t tenantId,
         utility::string_t journalId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Post a draft journal entry

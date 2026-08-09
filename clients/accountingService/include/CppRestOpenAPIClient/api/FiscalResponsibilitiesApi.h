@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalResponsibilityCreateDto.h"
+#include "CppRestOpenAPIClient/model/FiscalResponsibilityDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FiscalResponsibilityDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalResponsibilityDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalResponsibilityUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -95,12 +96,14 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalResponsibilityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FiscalResponsibilityDtoListEnvelope>> getFiscalResponsibilities(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalResponsibilityDtoCollectionQueryParameters>> fiscalResponsibilityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get fiscal responsibilities count
@@ -112,11 +115,13 @@ public:
     /// <param name="fiscalAuthorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalResponsibilityDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getFiscalResponsibilitiesCount(
         utility::string_t tenantId,
         utility::string_t fiscalAuthorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalResponsibilityDtoCollectionQueryParameters>> fiscalResponsibilityDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get fiscal responsibility by ID
@@ -146,13 +151,13 @@ public:
     /// <param name="fiscalResponsibilityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchFiscalResponsibilityAsync(
         utility::string_t tenantId,
         utility::string_t fiscalResponsibilityId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a fiscal responsibility

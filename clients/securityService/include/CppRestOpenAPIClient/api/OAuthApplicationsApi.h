@@ -32,7 +32,7 @@
 #include "CppRestOpenAPIClient/model/OAuthApplicationUpdateDto.h"
 #include "CppRestOpenAPIClient/model/OAuthAuthorizationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/OAuthAuthorizationDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -186,13 +186,13 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="applicationId"></param>
-    /// <param name="operation"></param>
+    /// <param name="patchOperation"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchOAuthApplicationAsync(
         utility::string_t tenantId,
         utility::string_t applicationId,
-        std::vector<std::shared_ptr<Operation>> operation,
+        std::vector<std::shared_ptr<PatchOperation>> patchOperation,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

@@ -24,28 +24,45 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/CourseArticleDto.h"
+#include "CppRestOpenAPIClient/model/CourseArticleDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseAssignmentDto.h"
+#include "CppRestOpenAPIClient/model/CourseAssignmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseCategoryDto.h"
+#include "CppRestOpenAPIClient/model/CourseCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseCohortDto.h"
+#include "CppRestOpenAPIClient/model/CourseCohortDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseDto.h"
+#include "CppRestOpenAPIClient/model/CourseDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseEnrollmentDto.h"
+#include "CppRestOpenAPIClient/model/CourseEnrollmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseFileDto.h"
+#include "CppRestOpenAPIClient/model/CourseFileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseForumDto.h"
+#include "CppRestOpenAPIClient/model/CourseForumDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseHandoutDto.h"
+#include "CppRestOpenAPIClient/model/CourseHandoutDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseLibraryDto.h"
+#include "CppRestOpenAPIClient/model/CourseLibraryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseNewsDto.h"
+#include "CppRestOpenAPIClient/model/CourseNewsDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CoursePageDto.h"
+#include "CppRestOpenAPIClient/model/CoursePageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseProblemSetDto.h"
+#include "CppRestOpenAPIClient/model/CourseProblemSetDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseSectionDto.h"
+#include "CppRestOpenAPIClient/model/CourseSectionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseUnitComponentDto.h"
+#include "CppRestOpenAPIClient/model/CourseUnitComponentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseUnitDto.h"
+#include "CppRestOpenAPIClient/model/CourseUnitDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseUpdateDto.h"
 #include "CppRestOpenAPIClient/model/CourseWikiDto.h"
+#include "CppRestOpenAPIClient/model/CourseWikiDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/InstructorProfileDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/StudentProfileDto.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -110,11 +127,13 @@ public:
     /// <param name="wikiId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseArticleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseArticleDto>>> getCourseArticlesByCourseWikiAsync(
         utility::string_t courseId,
         utility::string_t wikiId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseArticleDtoCollectionQueryParameters>> courseArticleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course articles by course wiki count
@@ -126,11 +145,13 @@ public:
     /// <param name="wikiId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseArticleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseArticlesByCourseWikiCountAsync(
         utility::string_t courseId,
         utility::string_t wikiId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseArticleDtoCollectionQueryParameters>> courseArticleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course assignments by course
@@ -141,10 +162,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseAssignmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> getCourseAssignmentsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course assignments by course count
@@ -155,10 +178,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseAssignmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseAssignmentsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course by ID
@@ -185,10 +210,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseCategoryDto>>> getCourseCategoriesByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCategoryDtoCollectionQueryParameters>> courseCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course categories by course count
@@ -199,10 +226,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseCategoriesByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCategoryDtoCollectionQueryParameters>> courseCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course cohorts by course
@@ -213,10 +242,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCohortDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseCohortDto>>> getCourseCohortsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCohortDtoCollectionQueryParameters>> courseCohortDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course cohorts by course count
@@ -227,10 +258,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseCohortDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseCohortsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseCohortDtoCollectionQueryParameters>> courseCohortDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get enrollments by course
@@ -242,11 +275,13 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseEnrollmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseEnrollmentDto>>> getCourseEnrollmentsByCourseAsync(
         utility::string_t tenantId,
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseEnrollmentDtoCollectionQueryParameters>> courseEnrollmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course files by course
@@ -257,10 +292,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseFileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseFileDto>>> getCourseFilesByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseFileDtoCollectionQueryParameters>> courseFileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course files by course count
@@ -271,10 +308,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseFileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseFilesByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseFileDtoCollectionQueryParameters>> courseFileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course forums by course
@@ -285,10 +324,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseForumDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> getCourseForumsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course forums by course count
@@ -299,10 +340,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseForumDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseForumsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course handouts by course
@@ -313,10 +356,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseHandoutDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseHandoutDto>>> getCourseHandoutsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course handouts by course count
@@ -327,10 +372,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseHandoutDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseHandoutsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseHandoutDtoCollectionQueryParameters>> courseHandoutDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course libraries by course
@@ -341,10 +388,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseLibraryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> getCourseLibrariesByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course libraries by course count
@@ -355,10 +404,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseLibraryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseLibrariesByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course pages by course
@@ -369,10 +420,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="coursePageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> getCoursePagesByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course pages by course count
@@ -383,10 +436,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="coursePageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCoursePagesByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course problem sets by course
@@ -397,10 +452,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseProblemSetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseProblemSetDto>>> getCourseProblemSetsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseProblemSetDtoCollectionQueryParameters>> courseProblemSetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course problem sets by course count
@@ -411,10 +468,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseProblemSetDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseProblemSetsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseProblemSetDtoCollectionQueryParameters>> courseProblemSetDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course sections by course
@@ -425,10 +484,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseSectionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseSectionDto>>> getCourseSectionsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseSectionDtoCollectionQueryParameters>> courseSectionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course sections by course count
@@ -439,10 +500,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseSectionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseSectionsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseSectionDtoCollectionQueryParameters>> courseSectionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course unit components by course
@@ -453,10 +516,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseUnitComponentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseUnitComponentDto>>> getCourseUnitComponentsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseUnitComponentDtoCollectionQueryParameters>> courseUnitComponentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course unit components by course count
@@ -467,10 +532,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseUnitComponentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseUnitComponentsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseUnitComponentDtoCollectionQueryParameters>> courseUnitComponentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course units by section
@@ -482,11 +549,13 @@ public:
     /// <param name="sectionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseUnitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseUnitDto>>> getCourseUnitsBySectionAsync(
         utility::string_t courseId,
         utility::string_t sectionId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseUnitDtoCollectionQueryParameters>> courseUnitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course units by section count
@@ -498,11 +567,13 @@ public:
     /// <param name="sectionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseUnitDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseUnitsBySectionCountAsync(
         utility::string_t courseId,
         utility::string_t sectionId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseUnitDtoCollectionQueryParameters>> courseUnitDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course updates by course
@@ -513,10 +584,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseNewsDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseNewsDto>>> getCourseUpdatesByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseNewsDtoCollectionQueryParameters>> courseNewsDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course updates by course count
@@ -527,10 +600,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseNewsDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseUpdatesByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseNewsDtoCollectionQueryParameters>> courseNewsDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course wikis by course
@@ -541,10 +616,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseWikiDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseWikiDto>>> getCourseWikisByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseWikiDtoCollectionQueryParameters>> courseWikiDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course wikis by course count
@@ -555,10 +632,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseWikiDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseWikisByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseWikiDtoCollectionQueryParameters>> courseWikiDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get courses
@@ -569,10 +648,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseDto>>> getCoursesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get courses count
@@ -583,10 +664,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCoursesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseDtoCollectionQueryParameters>> courseDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get instructor profiles by course
@@ -654,13 +737,13 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCourseAsync(
         utility::string_t tenantId,
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course

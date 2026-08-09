@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AppraisalWorkflowCreateDto.h"
+#include "CppRestOpenAPIClient/model/AppraisalWorkflowDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AppraisalWorkflowDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppraisalWorkflowDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppraisalWorkflowUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appraisalWorkflowDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> getAppraisalWorkflowsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppraisalWorkflowDtoCollectionQueryParameters>> appraisalWorkflowDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count appraisal workflows
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appraisalWorkflowDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAppraisalWorkflowsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppraisalWorkflowDtoCollectionQueryParameters>> appraisalWorkflowDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update an appraisal workflow

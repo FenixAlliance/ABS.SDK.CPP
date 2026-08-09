@@ -24,32 +24,44 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BankAccountCreateDto.h"
+#include "CppRestOpenAPIClient/model/BankAccountDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankAccountDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankAccountDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankAccountUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedOrderDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedOrderDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/InvoiceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/InvoiceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocationCreateDto.h"
+#include "CppRestOpenAPIClient/model/LocationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LocationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocationUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/OrderDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/OrderDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/PaymentChargebackDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentChargebackDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentCreateDto.h"
+#include "CppRestOpenAPIClient/model/PaymentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/PaymentRefundDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentRefundDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentTokenCreateDto.h"
+#include "CppRestOpenAPIClient/model/PaymentTokenDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentTokenDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentTokenDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentTokenUpdateDto.h"
+#include "CppRestOpenAPIClient/model/QuoteDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/QuoteDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WalletDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/WalletWithdrawDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WalletWithdrawDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WalletWithdrawRequestCreateDto.h"
+#include "CppRestOpenAPIClient/model/WalletWithdrawRequestDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WalletWithdrawRequestDtoListEnvelope.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -209,10 +221,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> getIncomingPaymentsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Incoming Payments Count
@@ -223,10 +237,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getIncomingPaymentsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Incoming Wallet Invoices
@@ -237,10 +253,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> getIncomingWalletInvoicesAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Incoming Wallet Invoices Count
@@ -251,10 +269,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getIncomingWalletInvoicesCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Location
@@ -281,10 +301,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LocationDtoListEnvelope>> getLocationsForWalletAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Locations Count
@@ -295,10 +317,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="locationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLocationsForWalletCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Outgoing Payments
@@ -309,10 +333,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> getOutgoingPaymentsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Outgoing Payments Count
@@ -323,10 +349,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getOutgoingPaymentsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Outgoing Wallet Invoices
@@ -337,10 +365,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> getOutgoingWalletInvoicesAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Outgoing Wallet Invoices Count
@@ -351,10 +381,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getOutgoingWalletInvoicesCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Bank Account
@@ -381,10 +413,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankAccountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> getWalletBankAccountsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Bank Accounts Count
@@ -395,10 +429,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankAccountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletBankAccountsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Chargebacks
@@ -409,10 +445,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentChargebackDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentChargebackDtoListEnvelope>> getWalletChargebacksAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentChargebackDtoCollectionQueryParameters>> paymentChargebackDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Chargebacks Count
@@ -423,10 +461,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentChargebackDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletChargebacksCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentChargebackDtoCollectionQueryParameters>> paymentChargebackDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Details
@@ -451,10 +491,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedOrderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedOrderDtoListEnvelope>> getWalletExtendedOrdersAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedOrderDtoCollectionQueryParameters>> extendedOrderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Invoices
@@ -465,10 +507,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<InvoiceDtoListEnvelope>> getWalletInvoicesAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Invoices Count
@@ -479,10 +523,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="invoiceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletInvoicesCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<InvoiceDtoCollectionQueryParameters>> invoiceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Orders
@@ -493,10 +539,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<OrderDtoListEnvelope>> getWalletOrdersAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Orders Count
@@ -507,10 +555,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletOrdersCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<OrderDtoCollectionQueryParameters>> orderDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Payments
@@ -521,10 +571,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> getWalletPaymentsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Payments Count
@@ -535,10 +587,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletPaymentsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Quotes
@@ -549,10 +603,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="quoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<QuoteDtoListEnvelope>> getWalletQuotesAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Quotes Count
@@ -563,10 +619,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="quoteDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletQuotesCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<QuoteDtoCollectionQueryParameters>> quoteDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Refunds
@@ -577,10 +635,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentRefundDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentRefundDtoListEnvelope>> getWalletRefundsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentRefundDtoCollectionQueryParameters>> paymentRefundDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Refunds Count
@@ -591,10 +651,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentRefundDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletRefundsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentRefundDtoCollectionQueryParameters>> paymentRefundDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Token
@@ -621,10 +683,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentTokenDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentTokenDtoListEnvelope>> getWalletTokensAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentTokenDtoCollectionQueryParameters>> paymentTokenDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Tokens Count
@@ -635,10 +699,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentTokenDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletTokensCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentTokenDtoCollectionQueryParameters>> paymentTokenDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Withdraw Requests
@@ -649,10 +715,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="walletWithdrawRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WalletWithdrawRequestDtoListEnvelope>> getWalletWithdrawRequestsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WalletWithdrawRequestDtoCollectionQueryParameters>> walletWithdrawRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Withdraw Requests Count
@@ -663,10 +731,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="walletWithdrawRequestDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletWithdrawRequestsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WalletWithdrawRequestDtoCollectionQueryParameters>> walletWithdrawRequestDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Withdraws
@@ -677,10 +747,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="walletWithdrawDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WalletWithdrawDtoListEnvelope>> getWalletWithdrawsAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WalletWithdrawDtoCollectionQueryParameters>> walletWithdrawDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Wallet Withdraws Count
@@ -691,10 +763,12 @@ public:
     /// <param name="walletId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="walletWithdrawDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWalletWithdrawsCountAsync(
         utility::string_t walletId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WalletWithdrawDtoCollectionQueryParameters>> walletWithdrawDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch Wallet Bank Account
@@ -706,13 +780,13 @@ public:
     /// <param name="bankAccountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchWalletBankAccountAsync(
         utility::string_t walletId,
         utility::string_t bankAccountId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch Wallet Token
@@ -724,13 +798,13 @@ public:
     /// <param name="tokenId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchWalletTokenAsync(
         utility::string_t walletId,
         utility::string_t tokenId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update Wallet Location

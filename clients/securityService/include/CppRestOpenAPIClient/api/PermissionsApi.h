@@ -27,8 +27,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionCreateDto.h"
+#include "CppRestOpenAPIClient/model/SecurityPermissionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionUpdateDto.h"
@@ -198,10 +199,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="securityPermissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SecurityPermissionDtoListEnvelope>> getPermissionsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SecurityPermissionDtoCollectionQueryParameters>> securityPermissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get permissions by enrollment
@@ -228,10 +231,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="securityPermissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPermissionsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SecurityPermissionDtoCollectionQueryParameters>> securityPermissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get roles by permission
@@ -257,13 +262,13 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="securityPermissionId"></param>
-    /// <param name="operation"></param>
+    /// <param name="patchOperation"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPermissionAsync(
         utility::string_t tenantId,
         utility::string_t securityPermissionId,
-        std::vector<std::shared_ptr<Operation>> operation,
+        std::vector<std::shared_ptr<PatchOperation>> patchOperation,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

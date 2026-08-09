@@ -45,6 +45,12 @@ PrivateMessageDto::PrivateMessageDto()
     m_ReadTimestampIsSet = false;
     m_ReceivedTimestamp = utility::datetime();
     m_ReceivedTimestampIsSet = false;
+    m_SocialProfileName = utility::conversions::to_string_t("");
+    m_SocialProfileNameIsSet = false;
+    m_SocialProfileAvatarUrl = utility::conversions::to_string_t("");
+    m_SocialProfileAvatarUrlIsSet = false;
+    m_SocialProfileType = utility::conversions::to_string_t("");
+    m_SocialProfileTypeIsSet = false;
 }
 
 PrivateMessageDto::~PrivateMessageDto()
@@ -104,6 +110,18 @@ web::json::value PrivateMessageDto::toJson() const
     if(m_ReceivedTimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("receivedTimestamp"))] = ModelBase::toJson(m_ReceivedTimestamp);
+    }
+    if(m_SocialProfileNameIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileName"))] = ModelBase::toJson(m_SocialProfileName);
+    }
+    if(m_SocialProfileAvatarUrlIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileAvatarUrl"))] = ModelBase::toJson(m_SocialProfileAvatarUrl);
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileType"))] = ModelBase::toJson(m_SocialProfileType);
     }
 
     return val;
@@ -223,6 +241,36 @@ bool PrivateMessageDto::fromJson(const web::json::value& val)
             setReceivedTimestamp(refVal_setReceivedTimestamp);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileName"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileName")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileName);
+            setSocialProfileName(refVal_setSocialProfileName);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileAvatarUrl"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileAvatarUrl")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileAvatarUrl;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileAvatarUrl);
+            setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileType);
+            setSocialProfileType(refVal_setSocialProfileType);
+        }
+    }
     return ok;
 }
 
@@ -276,6 +324,18 @@ void PrivateMessageDto::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_ReceivedTimestampIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receivedTimestamp")), m_ReceivedTimestamp));
+    }
+    if(m_SocialProfileNameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileName")), m_SocialProfileName));
+    }
+    if(m_SocialProfileAvatarUrlIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileAvatarUrl")), m_SocialProfileAvatarUrl));
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileType")), m_SocialProfileType));
     }
 }
 
@@ -353,6 +413,24 @@ bool PrivateMessageDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::datetime refVal_setReceivedTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receivedTimestamp"))), refVal_setReceivedTimestamp );
         setReceivedTimestamp(refVal_setReceivedTimestamp);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileName"))))
+    {
+        utility::string_t refVal_setSocialProfileName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileName"))), refVal_setSocialProfileName );
+        setSocialProfileName(refVal_setSocialProfileName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileAvatarUrl"))))
+    {
+        utility::string_t refVal_setSocialProfileAvatarUrl;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileAvatarUrl"))), refVal_setSocialProfileAvatarUrl );
+        setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        utility::string_t refVal_setSocialProfileType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileType"))), refVal_setSocialProfileType );
+        setSocialProfileType(refVal_setSocialProfileType);
     }
     return ok;
 }
@@ -576,6 +654,66 @@ bool PrivateMessageDto::receivedTimestampIsSet() const
 void PrivateMessageDto::unsetReceivedTimestamp()
 {
     m_ReceivedTimestampIsSet = false;
+}
+utility::string_t PrivateMessageDto::getSocialProfileName() const
+{
+    return m_SocialProfileName;
+}
+
+void PrivateMessageDto::setSocialProfileName(const utility::string_t& value)
+{
+    m_SocialProfileName = value;
+    m_SocialProfileNameIsSet = true;
+}
+
+bool PrivateMessageDto::socialProfileNameIsSet() const
+{
+    return m_SocialProfileNameIsSet;
+}
+
+void PrivateMessageDto::unsetSocialProfileName()
+{
+    m_SocialProfileNameIsSet = false;
+}
+utility::string_t PrivateMessageDto::getSocialProfileAvatarUrl() const
+{
+    return m_SocialProfileAvatarUrl;
+}
+
+void PrivateMessageDto::setSocialProfileAvatarUrl(const utility::string_t& value)
+{
+    m_SocialProfileAvatarUrl = value;
+    m_SocialProfileAvatarUrlIsSet = true;
+}
+
+bool PrivateMessageDto::socialProfileAvatarUrlIsSet() const
+{
+    return m_SocialProfileAvatarUrlIsSet;
+}
+
+void PrivateMessageDto::unsetSocialProfileAvatarUrl()
+{
+    m_SocialProfileAvatarUrlIsSet = false;
+}
+utility::string_t PrivateMessageDto::getSocialProfileType() const
+{
+    return m_SocialProfileType;
+}
+
+void PrivateMessageDto::setSocialProfileType(const utility::string_t& value)
+{
+    m_SocialProfileType = value;
+    m_SocialProfileTypeIsSet = true;
+}
+
+bool PrivateMessageDto::socialProfileTypeIsSet() const
+{
+    return m_SocialProfileTypeIsSet;
+}
+
+void PrivateMessageDto::unsetSocialProfileType()
+{
+    m_SocialProfileTypeIsSet = false;
 }
 }
 }

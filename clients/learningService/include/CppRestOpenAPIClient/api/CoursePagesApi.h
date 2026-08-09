@@ -25,9 +25,10 @@
 
 #include "CppRestOpenAPIClient/model/CoursePageCreateDto.h"
 #include "CppRestOpenAPIClient/model/CoursePageDto.h"
+#include "CppRestOpenAPIClient/model/CoursePageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CoursePageUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -104,10 +105,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="coursePageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CoursePageDto>>> getCoursePagesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course pages count
@@ -118,10 +121,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="coursePageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCoursePagesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CoursePageDtoCollectionQueryParameters>> coursePageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course page
@@ -133,13 +138,13 @@ public:
     /// <param name="pageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchCoursePageAsync(
         utility::string_t tenantId,
         utility::string_t pageId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course page

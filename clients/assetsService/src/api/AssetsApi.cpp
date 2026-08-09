@@ -1761,7 +1761,7 @@ pplx::task<std::shared_ptr<AssetDtoEnvelope>> AssetsApi::getAsset(utility::strin
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> AssetsApi::getAssetAssetCategories(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> AssetsApi::getAssetAssetCategories(utility::string_t tenantId, boost::optional<std::shared_ptr<AssetCategoryDtoCollectionQueryParameters>> assetCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -1802,6 +1802,8 @@ pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> AssetsApi::getAssetAss
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1814,11 +1816,27 @@ pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> AssetsApi::getAssetAss
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetCategoryDtoCollectionQueryParameters && (*assetCategoryDtoCollectionQueryParameters).get())
+        {
+            (*assetCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1887,7 +1905,7 @@ pplx::task<std::shared_ptr<AssetCategoryDtoListEnvelope>> AssetsApi::getAssetAss
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetAssetCategoriesCount(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetAssetCategoriesCount(utility::string_t tenantId, boost::optional<std::shared_ptr<AssetCategoryDtoCollectionQueryParameters>> assetCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -1928,6 +1946,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetAssetCategoriesCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1940,11 +1960,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetAssetCategoriesCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetCategoryDtoCollectionQueryParameters && (*assetCategoryDtoCollectionQueryParameters).get())
+        {
+            (*assetCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2268,7 +2304,7 @@ pplx::task<std::shared_ptr<AssetDepreciationRecordDtoEnvelope>> AssetsApi::getAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> AssetsApi::getAssetDepreciationRecords(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> AssetsApi::getAssetDepreciationRecords(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetDepreciationRecordDtoCollectionQueryParameters>> assetDepreciationRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -2310,6 +2346,8 @@ pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> AssetsApi::g
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -2322,11 +2360,27 @@ pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> AssetsApi::g
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetDepreciationRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetDepreciationRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetDepreciationRecordDtoCollectionQueryParameters && (*assetDepreciationRecordDtoCollectionQueryParameters).get())
+        {
+            (*assetDepreciationRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetDepreciationRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2395,7 +2449,7 @@ pplx::task<std::shared_ptr<AssetDepreciationRecordDtoListEnvelope>> AssetsApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetDepreciationRecordsCount(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetDepreciationRecordsCount(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetDepreciationRecordDtoCollectionQueryParameters>> assetDepreciationRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -2437,6 +2491,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetDepreciationRecord
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -2449,11 +2505,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetDepreciationRecord
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetDepreciationRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetDepreciationRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetDepreciationRecordDtoCollectionQueryParameters && (*assetDepreciationRecordDtoCollectionQueryParameters).get())
+        {
+            (*assetDepreciationRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetDepreciationRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2650,7 +2722,7 @@ pplx::task<std::shared_ptr<AssetRepairDtoEnvelope>> AssetsApi::getAssetRepair(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> AssetsApi::getAssetRepairs(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> AssetsApi::getAssetRepairs(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetRepairDtoCollectionQueryParameters>> assetRepairDtoCollectionQueryParameters) const
 {
 
 
@@ -2692,6 +2764,8 @@ pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> AssetsApi::getAssetRepai
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -2704,11 +2778,27 @@ pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> AssetsApi::getAssetRepai
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetRepairDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetRepairDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetRepairDtoCollectionQueryParameters && (*assetRepairDtoCollectionQueryParameters).get())
+        {
+            (*assetRepairDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetRepairDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2777,7 +2867,7 @@ pplx::task<std::shared_ptr<AssetRepairDtoListEnvelope>> AssetsApi::getAssetRepai
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetRepairsCount(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetRepairsCount(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetRepairDtoCollectionQueryParameters>> assetRepairDtoCollectionQueryParameters) const
 {
 
 
@@ -2819,6 +2909,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetRepairsCount(utili
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -2831,11 +2923,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetRepairsCount(utili
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetRepairDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetRepairDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetRepairDtoCollectionQueryParameters && (*assetRepairDtoCollectionQueryParameters).get())
+        {
+            (*assetRepairDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetRepairDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3032,7 +3140,7 @@ pplx::task<std::shared_ptr<AssetTransferDtoEnvelope>> AssetsApi::getAssetTransfe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> AssetsApi::getAssetTransfers(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> AssetsApi::getAssetTransfers(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters) const
 {
 
 
@@ -3074,6 +3182,8 @@ pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> AssetsApi::getAssetTra
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3086,11 +3196,27 @@ pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> AssetsApi::getAssetTra
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetTransferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetTransferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetTransferDtoCollectionQueryParameters && (*assetTransferDtoCollectionQueryParameters).get())
+        {
+            (*assetTransferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetTransferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3159,7 +3285,7 @@ pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> AssetsApi::getAssetTra
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetTransfersCount(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetTransfersCount(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters) const
 {
 
 
@@ -3201,6 +3327,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetTransfersCount(uti
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3213,11 +3341,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetTransfersCount(uti
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetTransferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetTransferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetTransferDtoCollectionQueryParameters && (*assetTransferDtoCollectionQueryParameters).get())
+        {
+            (*assetTransferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetTransferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3414,7 +3558,7 @@ pplx::task<std::shared_ptr<AssetValueAmendDtoEnvelope>> AssetsApi::getAssetValue
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> AssetsApi::getAssetValueAmends(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> AssetsApi::getAssetValueAmends(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetValueAmendDtoCollectionQueryParameters>> assetValueAmendDtoCollectionQueryParameters) const
 {
 
 
@@ -3456,6 +3600,8 @@ pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> AssetsApi::getAssetV
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3468,11 +3614,27 @@ pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> AssetsApi::getAssetV
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetValueAmendDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetValueAmendDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetValueAmendDtoCollectionQueryParameters && (*assetValueAmendDtoCollectionQueryParameters).get())
+        {
+            (*assetValueAmendDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetValueAmendDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3541,7 +3703,7 @@ pplx::task<std::shared_ptr<AssetValueAmendDtoListEnvelope>> AssetsApi::getAssetV
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetValueAmendsCount(utility::string_t tenantId, utility::string_t assetId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetValueAmendsCount(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::shared_ptr<AssetValueAmendDtoCollectionQueryParameters>> assetValueAmendDtoCollectionQueryParameters) const
 {
 
 
@@ -3583,6 +3745,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetValueAmendsCount(u
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3595,11 +3759,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetValueAmendsCount(u
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetValueAmendDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetValueAmendDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetValueAmendDtoCollectionQueryParameters && (*assetValueAmendDtoCollectionQueryParameters).get())
+        {
+            (*assetValueAmendDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetValueAmendDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3668,7 +3848,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetValueAmendsCount(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetDtoListEnvelope>> AssetsApi::getAssets(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<AssetDtoListEnvelope>> AssetsApi::getAssets(utility::string_t tenantId, boost::optional<std::shared_ptr<AssetDtoCollectionQueryParameters>> assetDtoCollectionQueryParameters) const
 {
 
 
@@ -3709,6 +3889,8 @@ pplx::task<std::shared_ptr<AssetDtoListEnvelope>> AssetsApi::getAssets(utility::
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3721,11 +3903,27 @@ pplx::task<std::shared_ptr<AssetDtoListEnvelope>> AssetsApi::getAssets(utility::
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetDtoCollectionQueryParameters && (*assetDtoCollectionQueryParameters).get())
+        {
+            (*assetDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3794,7 +3992,7 @@ pplx::task<std::shared_ptr<AssetDtoListEnvelope>> AssetsApi::getAssets(utility::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetsCount(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetsCount(utility::string_t tenantId, boost::optional<std::shared_ptr<AssetDtoCollectionQueryParameters>> assetDtoCollectionQueryParameters) const
 {
 
 
@@ -3835,6 +4033,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetsCount(utility::st
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -3847,11 +4047,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetsCount(utility::st
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (assetDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*assetDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(assetDtoCollectionQueryParameters && (*assetDtoCollectionQueryParameters).get())
+        {
+            (*assetDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("assetDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -3920,7 +4136,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> AssetsApi::getAssetsCount(utility::st
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAsset(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAsset(utility::string_t tenantId, utility::string_t assetId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -3980,7 +4196,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAsset(utility::string
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -3998,11 +4214,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAsset(utility::string
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -4076,7 +4292,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAsset(utility::string
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetAssetCategory(utility::string_t tenantId, utility::string_t categoryId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetAssetCategory(utility::string_t tenantId, utility::string_t categoryId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -4136,7 +4352,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetAssetCategory(ut
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -4154,11 +4370,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetAssetCategory(ut
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -4232,7 +4448,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetAssetCategory(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetDepreciationRecord(utility::string_t tenantId, utility::string_t assetId, utility::string_t recordId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetDepreciationRecord(utility::string_t tenantId, utility::string_t assetId, utility::string_t recordId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -4293,7 +4509,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetDepreciationReco
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -4311,11 +4527,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetDepreciationReco
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -4389,7 +4605,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetDepreciationReco
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetRepair(utility::string_t tenantId, utility::string_t assetId, utility::string_t repairId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetRepair(utility::string_t tenantId, utility::string_t assetId, utility::string_t repairId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -4450,7 +4666,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetRepair(utility::
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -4468,11 +4684,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetRepair(utility::
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -4546,7 +4762,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetRepair(utility::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetTransfer(utility::string_t tenantId, utility::string_t assetId, utility::string_t transferId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetTransfer(utility::string_t tenantId, utility::string_t assetId, utility::string_t transferId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -4607,7 +4823,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetTransfer(utility
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -4625,11 +4841,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetTransfer(utility
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -4703,7 +4919,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetTransfer(utility
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetValueAmend(utility::string_t tenantId, utility::string_t assetId, utility::string_t amendId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetValueAmend(utility::string_t tenantId, utility::string_t assetId, utility::string_t amendId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -4764,7 +4980,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetValueAmend(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -4782,11 +4998,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AssetsApi::patchAssetValueAmend(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

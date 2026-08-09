@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/CountryLanguageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CountryLanguageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CountryLanguageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
@@ -55,9 +56,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryLanguageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countLanguagesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryLanguageDtoCollectionQueryParameters>> countryLanguageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get language by ID
@@ -81,9 +84,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="countryLanguageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CountryLanguageDtoListEnvelope>> getLanguagesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CountryLanguageDtoCollectionQueryParameters>> countryLanguageDtoCollectionQueryParameters
     ) const;
 
 protected:

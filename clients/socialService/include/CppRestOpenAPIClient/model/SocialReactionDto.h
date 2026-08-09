@@ -118,6 +118,15 @@ public:
 
     void setSocialProfileAvatarUrl(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSocialProfileType() const;
+    bool socialProfileTypeIsSet() const;
+    void unsetSocialProfileType();
+
+    void setSocialProfileType(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -134,6 +143,8 @@ protected:
     bool m_SocialProfileNameIsSet;
     utility::string_t m_SocialProfileAvatarUrl;
     bool m_SocialProfileAvatarUrlIsSet;
+    utility::string_t m_SocialProfileType;
+    bool m_SocialProfileTypeIsSet;
 };
 
 

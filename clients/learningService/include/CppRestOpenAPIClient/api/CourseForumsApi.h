@@ -25,9 +25,10 @@
 
 #include "CppRestOpenAPIClient/model/CourseForumCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseForumDto.h"
+#include "CppRestOpenAPIClient/model/CourseForumDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseForumUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -104,10 +105,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseForumDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseForumDto>>> getCourseForumsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course forums count
@@ -118,10 +121,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseForumDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseForumsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseForumDtoCollectionQueryParameters>> courseForumDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course forum
@@ -133,13 +138,13 @@ public:
     /// <param name="forumId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchCourseForumAsync(
         utility::string_t tenantId,
         utility::string_t forumId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course forum

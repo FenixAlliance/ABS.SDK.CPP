@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/TrustSigningProviderDescriptorDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TrustSigningProviderDescriptorDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrustSigningReadinessDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrustSigningRequestDto.h"
@@ -57,10 +58,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trustSigningProviderDescriptorDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TrustSigningProviderDescriptorDtoListEnvelope>> getProvidersAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrustSigningProviderDescriptorDtoCollectionQueryParameters>> trustSigningProviderDescriptorDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count signing providers
@@ -71,10 +74,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trustSigningProviderDescriptorDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProvidersCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrustSigningProviderDescriptorDtoCollectionQueryParameters>> trustSigningProviderDescriptorDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Preview signing readiness

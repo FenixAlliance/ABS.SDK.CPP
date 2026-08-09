@@ -23,8 +23,10 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/AccountingEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DecimalEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/JournalEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -55,10 +57,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DecimalEnvelope>> getCreditsSumAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant accounting-entry debits
@@ -69,10 +73,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DecimalEnvelope>> getDebitsSumAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant expenses
@@ -83,10 +89,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getExpensesSumAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant incomes
@@ -97,10 +105,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="journalEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getIncomesSumAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters
     ) const;
 
 protected:

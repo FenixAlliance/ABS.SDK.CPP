@@ -24,6 +24,7 @@
 
 #include "CppRestOpenAPIClient/model/JournalTypeDto.h"
 #include <cpprest/details/basic_types.h>
+#include <map>
 #include <vector>
 
 namespace org {
@@ -97,6 +98,33 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    int32_t getHttpStatus() const;
+    bool httpStatusIsSet() const;
+    void unsetHttpStatus();
+
+    void setHttpStatus(int32_t value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getErrorCode() const;
+    bool errorCodeIsSet() const;
+    void unsetErrorCode();
+
+    void setErrorCode(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::map<utility::string_t, std::vector<utility::string_t>>& getValidationDetails();
+    bool validationDetailsIsSet() const;
+    void unsetValidationDetails();
+
+    void setValidationDetails(const std::map<utility::string_t, std::vector<utility::string_t>>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getActivityId() const;
     bool activityIdIsSet() const;
     void unsetActivityId();
@@ -122,6 +150,12 @@ protected:
     bool m_CorrelationIdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
+    int32_t m_HttpStatus;
+    bool m_HttpStatusIsSet;
+    utility::string_t m_ErrorCode;
+    bool m_ErrorCodeIsSet;
+    std::map<utility::string_t, std::vector<utility::string_t>> m_ValidationDetails;
+    bool m_ValidationDetailsIsSet;
     utility::string_t m_ActivityId;
     bool m_ActivityIdIsSet;
     std::vector<std::shared_ptr<JournalTypeDto>> m_Result;

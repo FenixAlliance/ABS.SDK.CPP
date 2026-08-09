@@ -25,16 +25,18 @@
 
 #include "CppRestOpenAPIClient/model/BlockchainBlockCreateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockDto.h"
+#include "CppRestOpenAPIClient/model/BlockchainBlockDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlockchainBlockUpdateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainCreateDto.h"
 #include "CppRestOpenAPIClient/model/BlockchainDto.h"
+#include "CppRestOpenAPIClient/model/BlockchainDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlockchainDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlockchainUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -152,11 +154,13 @@ public:
     /// <param name="blockchainId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blockchainBlockDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlockchainBlockDtoListEnvelope>> getBlockchainBlocksAsync(
         utility::string_t tenantId,
         utility::string_t blockchainId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlockchainBlockDtoCollectionQueryParameters>> blockchainBlockDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get block count for a blockchain
@@ -168,11 +172,13 @@ public:
     /// <param name="blockchainId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blockchainBlockDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBlockchainBlocksCountAsync(
         utility::string_t tenantId,
         utility::string_t blockchainId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlockchainBlockDtoCollectionQueryParameters>> blockchainBlockDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get blockchain by ID
@@ -199,10 +205,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blockchainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlockchainDtoListEnvelope>> getBlockchainsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlockchainDtoCollectionQueryParameters>> blockchainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get blockchains count
@@ -213,10 +221,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blockchainDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBlockchainsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlockchainDtoCollectionQueryParameters>> blockchainDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a blockchain
@@ -228,13 +238,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBlockchainAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a blockchain block
@@ -247,14 +257,14 @@ public:
     /// <param name="blockId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBlockchainBlockAsync(
         utility::string_t tenantId,
         utility::string_t blockchainId,
         utility::string_t blockId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a blockchain

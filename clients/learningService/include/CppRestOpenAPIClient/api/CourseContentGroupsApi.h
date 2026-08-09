@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/CourseContentGroupCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseContentGroupDto.h"
+#include "CppRestOpenAPIClient/model/CourseContentGroupDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseContentGroupUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -105,10 +106,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseContentGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseContentGroupDto>>> getCourseContentGroupsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseContentGroupDtoCollectionQueryParameters>> courseContentGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course content groups by course
@@ -119,10 +122,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseContentGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseContentGroupDto>>> getCourseContentGroupsByCourseAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseContentGroupDtoCollectionQueryParameters>> courseContentGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course content groups count by course
@@ -133,10 +138,12 @@ public:
     /// <param name="courseId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseContentGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseContentGroupsByCourseCountAsync(
         utility::string_t courseId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseContentGroupDtoCollectionQueryParameters>> courseContentGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course content groups count
@@ -147,10 +154,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseContentGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseContentGroupsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseContentGroupDtoCollectionQueryParameters>> courseContentGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course content group
@@ -162,13 +171,13 @@ public:
     /// <param name="groupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCourseContentGroupAsync(
         utility::string_t tenantId,
         utility::string_t groupId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course content group

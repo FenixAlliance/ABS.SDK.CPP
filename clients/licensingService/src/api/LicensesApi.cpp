@@ -422,7 +422,7 @@ pplx::task<std::shared_ptr<LicenseDto>> LicensesApi::getLicenseByIdAsync(utility
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> LicensesApi::getLicensesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> LicensesApi::getLicensesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LicenseDtoCollectionQueryParameters>> licenseDtoCollectionQueryParameters) const
 {
 
 
@@ -463,6 +463,8 @@ pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> LicensesApi::getLicensesAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -483,11 +485,27 @@ pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> LicensesApi::getLicensesAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (licenseDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*licenseDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(licenseDtoCollectionQueryParameters && (*licenseDtoCollectionQueryParameters).get())
+        {
+            (*licenseDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("licenseDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -556,7 +574,7 @@ pplx::task<std::shared_ptr<LicenseDtoListEnvelope>> LicensesApi::getLicensesAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LicensesApi::getLicensesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LicensesApi::getLicensesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LicenseDtoCollectionQueryParameters>> licenseDtoCollectionQueryParameters) const
 {
 
 
@@ -597,6 +615,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LicensesApi::getLicensesCountAsync(ut
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -617,11 +637,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LicensesApi::getLicensesCountAsync(ut
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (licenseDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*licenseDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(licenseDtoCollectionQueryParameters && (*licenseDtoCollectionQueryParameters).get())
+        {
+            (*licenseDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("licenseDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

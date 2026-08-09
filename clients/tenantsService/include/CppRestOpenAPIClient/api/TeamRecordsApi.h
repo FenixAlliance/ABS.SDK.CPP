@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TenantTeamRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantTeamRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantTeamRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantTeamRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantTeamRecordUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantTeamRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantTeamRecordDtoListEnvelope>> getTenantTeamRecords(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantTeamRecordDtoCollectionQueryParameters>> tenantTeamRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant team records
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantTeamRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantTeamRecordsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantTeamRecordDtoCollectionQueryParameters>> tenantTeamRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a tenant team record
@@ -138,13 +143,13 @@ public:
     /// <param name="tenantTeamRecordId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenantTeamRecord(
         utility::string_t tenantId,
         utility::string_t tenantTeamRecordId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tenant team record

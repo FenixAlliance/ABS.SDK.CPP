@@ -41,6 +41,8 @@ OrderCreateDto::OrderCreateDto()
     m_PaymentTermIdIsSet = false;
     m_OrganizationId = utility::conversions::to_string_t("");
     m_OrganizationIdIsSet = false;
+    m_ReceiverTenantId = utility::conversions::to_string_t("");
+    m_ReceiverTenantIdIsSet = false;
     m_FirstName = utility::conversions::to_string_t("");
     m_FirstNameIsSet = false;
     m_LastName = utility::conversions::to_string_t("");
@@ -137,8 +139,6 @@ OrderCreateDto::OrderCreateDto()
     m_QuoteStatusIsSet = false;
     m_FreightTerms = utility::conversions::to_string_t("");
     m_FreightTermsIsSet = false;
-    m_ReceiverTenantId = utility::conversions::to_string_t("");
-    m_ReceiverTenantIdIsSet = false;
     m_ShippingLocationId = utility::conversions::to_string_t("");
     m_ShippingLocationIdIsSet = false;
     m_QualifiedIdentifier = utility::conversions::to_string_t("");
@@ -211,6 +211,10 @@ web::json::value OrderCreateDto::toJson() const
     if(m_OrganizationIdIsSet)
     {
         val[utility::conversions::to_string_t(U("organizationId"))] = ModelBase::toJson(m_OrganizationId);
+    }
+    if(m_ReceiverTenantIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("receiverTenantId"))] = ModelBase::toJson(m_ReceiverTenantId);
     }
     if(m_FirstNameIsSet)
     {
@@ -404,10 +408,6 @@ web::json::value OrderCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("freightTerms"))] = ModelBase::toJson(m_FreightTerms);
     }
-    if(m_ReceiverTenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("receiverTenantId"))] = ModelBase::toJson(m_ReceiverTenantId);
-    }
     if(m_ShippingLocationIdIsSet)
     {
         val[utility::conversions::to_string_t(U("shippingLocationId"))] = ModelBase::toJson(m_ShippingLocationId);
@@ -548,6 +548,16 @@ bool OrderCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setOrganizationId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrganizationId);
             setOrganizationId(refVal_setOrganizationId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("receiverTenantId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("receiverTenantId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setReceiverTenantId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReceiverTenantId);
+            setReceiverTenantId(refVal_setReceiverTenantId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("firstName"))))
@@ -1030,16 +1040,6 @@ bool OrderCreateDto::fromJson(const web::json::value& val)
             setFreightTerms(refVal_setFreightTerms);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("receiverTenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("receiverTenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setReceiverTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setReceiverTenantId);
-            setReceiverTenantId(refVal_setReceiverTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("shippingLocationId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("shippingLocationId")));
@@ -1195,6 +1195,10 @@ void OrderCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_OrganizationIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("organizationId")), m_OrganizationId));
+    }
+    if(m_ReceiverTenantIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receiverTenantId")), m_ReceiverTenantId));
     }
     if(m_FirstNameIsSet)
     {
@@ -1388,10 +1392,6 @@ void OrderCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("freightTerms")), m_FreightTerms));
     }
-    if(m_ReceiverTenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receiverTenantId")), m_ReceiverTenantId));
-    }
     if(m_ShippingLocationIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("shippingLocationId")), m_ShippingLocationId));
@@ -1500,6 +1500,12 @@ bool OrderCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setOrganizationId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("organizationId"))), refVal_setOrganizationId );
         setOrganizationId(refVal_setOrganizationId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("receiverTenantId"))))
+    {
+        utility::string_t refVal_setReceiverTenantId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receiverTenantId"))), refVal_setReceiverTenantId );
+        setReceiverTenantId(refVal_setReceiverTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("firstName"))))
     {
@@ -1789,12 +1795,6 @@ bool OrderCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("freightTerms"))), refVal_setFreightTerms );
         setFreightTerms(refVal_setFreightTerms);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("receiverTenantId"))))
-    {
-        utility::string_t refVal_setReceiverTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receiverTenantId"))), refVal_setReceiverTenantId );
-        setReceiverTenantId(refVal_setReceiverTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("shippingLocationId"))))
     {
         utility::string_t refVal_setShippingLocationId;
@@ -2043,6 +2043,26 @@ bool OrderCreateDto::organizationIdIsSet() const
 void OrderCreateDto::unsetOrganizationId()
 {
     m_OrganizationIdIsSet = false;
+}
+utility::string_t OrderCreateDto::getReceiverTenantId() const
+{
+    return m_ReceiverTenantId;
+}
+
+void OrderCreateDto::setReceiverTenantId(const utility::string_t& value)
+{
+    m_ReceiverTenantId = value;
+    m_ReceiverTenantIdIsSet = true;
+}
+
+bool OrderCreateDto::receiverTenantIdIsSet() const
+{
+    return m_ReceiverTenantIdIsSet;
+}
+
+void OrderCreateDto::unsetReceiverTenantId()
+{
+    m_ReceiverTenantIdIsSet = false;
 }
 utility::string_t OrderCreateDto::getFirstName() const
 {
@@ -3003,26 +3023,6 @@ bool OrderCreateDto::freightTermsIsSet() const
 void OrderCreateDto::unsetFreightTerms()
 {
     m_FreightTermsIsSet = false;
-}
-utility::string_t OrderCreateDto::getReceiverTenantId() const
-{
-    return m_ReceiverTenantId;
-}
-
-void OrderCreateDto::setReceiverTenantId(const utility::string_t& value)
-{
-    m_ReceiverTenantId = value;
-    m_ReceiverTenantIdIsSet = true;
-}
-
-bool OrderCreateDto::receiverTenantIdIsSet() const
-{
-    return m_ReceiverTenantIdIsSet;
-}
-
-void OrderCreateDto::unsetReceiverTenantId()
-{
-    m_ReceiverTenantIdIsSet = false;
 }
 utility::string_t OrderCreateDto::getShippingLocationId() const
 {

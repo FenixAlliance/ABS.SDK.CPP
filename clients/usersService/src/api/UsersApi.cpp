@@ -36,7 +36,7 @@ UsersApi::~UsersApi()
 {
 }
 
-pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowersAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowersAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -78,6 +78,9 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowersAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -95,11 +98,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowersAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (followRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*followRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(followRecordDtoCollectionQueryParameters && (*followRecordDtoCollectionQueryParameters).get())
+        {
+            (*followRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("followRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -168,7 +187,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowersAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -210,6 +229,9 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowsAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -227,11 +249,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowsAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (followRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*followRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(followRecordDtoCollectionQueryParameters && (*followRecordDtoCollectionQueryParameters).get())
+        {
+            (*followRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("followRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -300,7 +338,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserFollowsAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserNotificationsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserNotificationsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters) const
 {
 
 
@@ -342,6 +380,9 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserNotificatio
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -359,11 +400,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserNotificatio
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (notificationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*notificationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(notificationDtoCollectionQueryParameters && (*notificationDtoCollectionQueryParameters).get())
+        {
+            (*notificationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("notificationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -432,7 +489,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserNotificatio
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserTenantsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserTenantsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters) const
 {
 
 
@@ -474,6 +531,9 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserTenantsAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -491,11 +551,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserTenantsAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (tenantDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*tenantDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(tenantDtoCollectionQueryParameters && (*tenantDtoCollectionQueryParameters).get())
+        {
+            (*tenantDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("tenantDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -564,7 +640,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> UsersApi::countCurrentUserTenantsAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AddressDtoListEnvelope>> UsersApi::getCurrentUserAddressesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<AddressDtoListEnvelope>> UsersApi::getCurrentUserAddressesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AddressDtoCollectionQueryParameters>> addressDtoCollectionQueryParameters) const
 {
 
 
@@ -606,6 +682,9 @@ pplx::task<std::shared_ptr<AddressDtoListEnvelope>> UsersApi::getCurrentUserAddr
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -623,11 +702,27 @@ pplx::task<std::shared_ptr<AddressDtoListEnvelope>> UsersApi::getCurrentUserAddr
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (addressDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*addressDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(addressDtoCollectionQueryParameters && (*addressDtoCollectionQueryParameters).get())
+        {
+            (*addressDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("addressDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1342,7 +1437,7 @@ pplx::task<std::shared_ptr<ExtendedTenantEnrollmentDtoListEnvelope>> UsersApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUserFollowersAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUserFollowersAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -1384,6 +1479,9 @@ pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -1401,11 +1499,27 @@ pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (followRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*followRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(followRecordDtoCollectionQueryParameters && (*followRecordDtoCollectionQueryParameters).get())
+        {
+            (*followRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("followRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1474,7 +1588,7 @@ pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUse
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUserFollowsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUserFollowsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<FollowRecordDtoCollectionQueryParameters>> followRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -1516,6 +1630,9 @@ pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -1533,11 +1650,27 @@ pplx::task<std::shared_ptr<FollowRecordDtoListEnvelope>> UsersApi::getCurrentUse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (followRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*followRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(followRecordDtoCollectionQueryParameters && (*followRecordDtoCollectionQueryParameters).get())
+        {
+            (*followRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("followRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1738,7 +1871,7 @@ pplx::task<std::shared_ptr<TenantInvitationDtoListEnvelope>> UsersApi::getCurren
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> UsersApi::getCurrentUserNotificationsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> UsersApi::getCurrentUserNotificationsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters) const
 {
 
 
@@ -1780,6 +1913,9 @@ pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> UsersApi::getCurrentUse
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -1797,11 +1933,27 @@ pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> UsersApi::getCurrentUse
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (notificationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*notificationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(notificationDtoCollectionQueryParameters && (*notificationDtoCollectionQueryParameters).get())
+        {
+            (*notificationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("notificationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2134,7 +2286,7 @@ pplx::task<std::shared_ptr<SocialProfileDtoEnvelope>> UsersApi::getCurrentUserSo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TenantDtoListEnvelope>> UsersApi::getCurrentUserTenantsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TenantDtoListEnvelope>> UsersApi::getCurrentUserTenantsAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters) const
 {
 
 
@@ -2176,6 +2328,9 @@ pplx::task<std::shared_ptr<TenantDtoListEnvelope>> UsersApi::getCurrentUserTenan
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (apiVersion)
     {
@@ -2193,11 +2348,27 @@ pplx::task<std::shared_ptr<TenantDtoListEnvelope>> UsersApi::getCurrentUserTenan
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (tenantDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*tenantDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(tenantDtoCollectionQueryParameters && (*tenantDtoCollectionQueryParameters).get())
+        {
+            (*tenantDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("tenantDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2795,7 +2966,7 @@ pplx::task<std::shared_ptr<ExtendedUserDtoEnvelope>> UsersApi::getExtendedCurren
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> UsersApi::patchCurrentUserAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> UsersApi::patchCurrentUserAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2861,7 +3032,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> UsersApi::patchCurrentUserAsync(boost
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2879,11 +3050,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> UsersApi::patchCurrentUserAsync(boost
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

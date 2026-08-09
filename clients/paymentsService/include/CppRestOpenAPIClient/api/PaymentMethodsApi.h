@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PaymentMethodCreateDto.h"
+#include "CppRestOpenAPIClient/model/PaymentMethodDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentMethodDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentMethodDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentMethodUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentMethodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentMethodDtoIReadOnlyListEnvelope>> getPaymentMethodsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentMethodDtoCollectionQueryParameters>> paymentMethodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts payment methods
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentMethodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPaymentMethodsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentMethodDtoCollectionQueryParameters>> paymentMethodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a payment method
@@ -138,13 +143,13 @@ public:
     /// <param name="paymentMethodId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPaymentMethodAsync(
         utility::string_t tenantId,
         utility::string_t paymentMethodId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a payment method

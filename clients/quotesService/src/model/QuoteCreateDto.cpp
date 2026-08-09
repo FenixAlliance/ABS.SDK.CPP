@@ -41,6 +41,8 @@ QuoteCreateDto::QuoteCreateDto()
     m_PaymentTermIdIsSet = false;
     m_OrganizationId = utility::conversions::to_string_t("");
     m_OrganizationIdIsSet = false;
+    m_ReceiverTenantId = utility::conversions::to_string_t("");
+    m_ReceiverTenantIdIsSet = false;
     m_FirstName = utility::conversions::to_string_t("");
     m_FirstNameIsSet = false;
     m_LastName = utility::conversions::to_string_t("");
@@ -121,8 +123,6 @@ QuoteCreateDto::QuoteCreateDto()
     m_CartIdIsSet = false;
     m_DealUnitId = utility::conversions::to_string_t("");
     m_DealUnitIdIsSet = false;
-    m_ReceiverTenantId = utility::conversions::to_string_t("");
-    m_ReceiverTenantIdIsSet = false;
     m_EffectiveTo = utility::datetime();
     m_EffectiveToIsSet = false;
     m_EffectiveFrom = utility::datetime();
@@ -181,6 +181,10 @@ web::json::value QuoteCreateDto::toJson() const
     if(m_OrganizationIdIsSet)
     {
         val[utility::conversions::to_string_t(U("organizationId"))] = ModelBase::toJson(m_OrganizationId);
+    }
+    if(m_ReceiverTenantIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("receiverTenantId"))] = ModelBase::toJson(m_ReceiverTenantId);
     }
     if(m_FirstNameIsSet)
     {
@@ -342,10 +346,6 @@ web::json::value QuoteCreateDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("dealUnitId"))] = ModelBase::toJson(m_DealUnitId);
     }
-    if(m_ReceiverTenantIdIsSet)
-    {
-        val[utility::conversions::to_string_t(U("receiverTenantId"))] = ModelBase::toJson(m_ReceiverTenantId);
-    }
     if(m_EffectiveToIsSet)
     {
         val[utility::conversions::to_string_t(U("effectiveTo"))] = ModelBase::toJson(m_EffectiveTo);
@@ -458,6 +458,16 @@ bool QuoteCreateDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setOrganizationId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setOrganizationId);
             setOrganizationId(refVal_setOrganizationId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("receiverTenantId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("receiverTenantId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setReceiverTenantId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReceiverTenantId);
+            setReceiverTenantId(refVal_setReceiverTenantId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("firstName"))))
@@ -860,16 +870,6 @@ bool QuoteCreateDto::fromJson(const web::json::value& val)
             setDealUnitId(refVal_setDealUnitId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("receiverTenantId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("receiverTenantId")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setReceiverTenantId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setReceiverTenantId);
-            setReceiverTenantId(refVal_setReceiverTenantId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("effectiveTo"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("effectiveTo")));
@@ -955,6 +955,10 @@ void QuoteCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_OrganizationIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("organizationId")), m_OrganizationId));
+    }
+    if(m_ReceiverTenantIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receiverTenantId")), m_ReceiverTenantId));
     }
     if(m_FirstNameIsSet)
     {
@@ -1116,10 +1120,6 @@ void QuoteCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("dealUnitId")), m_DealUnitId));
     }
-    if(m_ReceiverTenantIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("receiverTenantId")), m_ReceiverTenantId));
-    }
     if(m_EffectiveToIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("effectiveTo")), m_EffectiveTo));
@@ -1200,6 +1200,12 @@ bool QuoteCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setOrganizationId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("organizationId"))), refVal_setOrganizationId );
         setOrganizationId(refVal_setOrganizationId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("receiverTenantId"))))
+    {
+        utility::string_t refVal_setReceiverTenantId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receiverTenantId"))), refVal_setReceiverTenantId );
+        setReceiverTenantId(refVal_setReceiverTenantId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("firstName"))))
     {
@@ -1441,12 +1447,6 @@ bool QuoteCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("dealUnitId"))), refVal_setDealUnitId );
         setDealUnitId(refVal_setDealUnitId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("receiverTenantId"))))
-    {
-        utility::string_t refVal_setReceiverTenantId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("receiverTenantId"))), refVal_setReceiverTenantId );
-        setReceiverTenantId(refVal_setReceiverTenantId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("effectiveTo"))))
     {
         utility::datetime refVal_setEffectiveTo;
@@ -1653,6 +1653,26 @@ bool QuoteCreateDto::organizationIdIsSet() const
 void QuoteCreateDto::unsetOrganizationId()
 {
     m_OrganizationIdIsSet = false;
+}
+utility::string_t QuoteCreateDto::getReceiverTenantId() const
+{
+    return m_ReceiverTenantId;
+}
+
+void QuoteCreateDto::setReceiverTenantId(const utility::string_t& value)
+{
+    m_ReceiverTenantId = value;
+    m_ReceiverTenantIdIsSet = true;
+}
+
+bool QuoteCreateDto::receiverTenantIdIsSet() const
+{
+    return m_ReceiverTenantIdIsSet;
+}
+
+void QuoteCreateDto::unsetReceiverTenantId()
+{
+    m_ReceiverTenantIdIsSet = false;
 }
 utility::string_t QuoteCreateDto::getFirstName() const
 {
@@ -2453,26 +2473,6 @@ bool QuoteCreateDto::dealUnitIdIsSet() const
 void QuoteCreateDto::unsetDealUnitId()
 {
     m_DealUnitIdIsSet = false;
-}
-utility::string_t QuoteCreateDto::getReceiverTenantId() const
-{
-    return m_ReceiverTenantId;
-}
-
-void QuoteCreateDto::setReceiverTenantId(const utility::string_t& value)
-{
-    m_ReceiverTenantId = value;
-    m_ReceiverTenantIdIsSet = true;
-}
-
-bool QuoteCreateDto::receiverTenantIdIsSet() const
-{
-    return m_ReceiverTenantIdIsSet;
-}
-
-void QuoteCreateDto::unsetReceiverTenantId()
-{
-    m_ReceiverTenantIdIsSet = false;
 }
 utility::datetime QuoteCreateDto::getEffectiveTo() const
 {

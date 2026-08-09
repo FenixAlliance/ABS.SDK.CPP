@@ -154,6 +154,33 @@ public:
 
     void setReceivedTimestamp(const utility::datetime& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSocialProfileName() const;
+    bool socialProfileNameIsSet() const;
+    void unsetSocialProfileName();
+
+    void setSocialProfileName(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSocialProfileAvatarUrl() const;
+    bool socialProfileAvatarUrlIsSet() const;
+    void unsetSocialProfileAvatarUrl();
+
+    void setSocialProfileAvatarUrl(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSocialProfileType() const;
+    bool socialProfileTypeIsSet() const;
+    void unsetSocialProfileType();
+
+    void setSocialProfileType(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -178,6 +205,12 @@ protected:
     bool m_ReadTimestampIsSet;
     utility::datetime m_ReceivedTimestamp;
     bool m_ReceivedTimestampIsSet;
+    utility::string_t m_SocialProfileName;
+    bool m_SocialProfileNameIsSet;
+    utility::string_t m_SocialProfileAvatarUrl;
+    bool m_SocialProfileAvatarUrlIsSet;
+    utility::string_t m_SocialProfileType;
+    bool m_SocialProfileTypeIsSet;
 };
 
 

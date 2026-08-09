@@ -27,19 +27,23 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ShareClassCreateDto.h"
+#include "CppRestOpenAPIClient/model/ShareClassDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ShareClassDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareClassDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareClassUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ShareIssuanceCreateDto.h"
+#include "CppRestOpenAPIClient/model/ShareIssuanceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ShareIssuanceDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareIssuanceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareIssuanceUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ShareTransferCreateDto.h"
+#include "CppRestOpenAPIClient/model/ShareTransferDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ShareTransferDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareTransferDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareTransferReasonCreateDto.h"
+#include "CppRestOpenAPIClient/model/ShareTransferReasonDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ShareTransferReasonDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareTransferReasonDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ShareTransferReasonUpdateDto.h"
@@ -218,10 +222,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareClassDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ShareClassDtoListEnvelope>> getShareClasses(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareClassDtoCollectionQueryParameters>> shareClassDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant share classes count
@@ -232,10 +238,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareClassDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getShareClassesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareClassDtoCollectionQueryParameters>> shareClassDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a share issuance by id
@@ -262,10 +270,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareIssuanceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ShareIssuanceDtoListEnvelope>> getShareIssuances(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareIssuanceDtoCollectionQueryParameters>> shareIssuanceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant share issuances count
@@ -276,10 +286,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareIssuanceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getShareIssuancesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareIssuanceDtoCollectionQueryParameters>> shareIssuanceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Sum tenant share issuance quantities
@@ -290,10 +302,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareIssuanceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DecimalEnvelope>> getShareIssuancesSum(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareIssuanceDtoCollectionQueryParameters>> shareIssuanceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a share transfer by id
@@ -336,10 +350,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareTransferReasonDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ShareTransferReasonDtoListEnvelope>> getShareTransferReasons(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareTransferReasonDtoCollectionQueryParameters>> shareTransferReasonDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant share transfer reasons count
@@ -350,10 +366,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareTransferReasonDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getShareTransferReasonsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareTransferReasonDtoCollectionQueryParameters>> shareTransferReasonDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant share transfers
@@ -364,10 +382,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ShareTransferDtoListEnvelope>> getShareTransfers(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareTransferDtoCollectionQueryParameters>> shareTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant share transfers count
@@ -378,10 +398,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="shareTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getShareTransfersCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ShareTransferDtoCollectionQueryParameters>> shareTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a share class
@@ -393,13 +415,13 @@ public:
     /// <param name="shareClassId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchShareClass(
         utility::string_t tenantId,
         utility::string_t shareClassId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a share issuance
@@ -411,13 +433,13 @@ public:
     /// <param name="issuanceId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchShareIssuance(
         utility::string_t tenantId,
         utility::string_t issuanceId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a share transfer
@@ -429,13 +451,13 @@ public:
     /// <param name="transferId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchShareTransfer(
         utility::string_t tenantId,
         utility::string_t transferId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a share transfer reason
@@ -447,13 +469,13 @@ public:
     /// <param name="reasonId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchShareTransferReason(
         utility::string_t tenantId,
         utility::string_t reasonId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates an existing share class

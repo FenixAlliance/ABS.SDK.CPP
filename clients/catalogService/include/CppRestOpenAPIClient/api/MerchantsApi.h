@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/MerchantDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/MerchantDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/MerchantDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -69,9 +70,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="merchantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MerchantDtoListEnvelope>> getMerchants(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MerchantDtoCollectionQueryParameters>> merchantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count merchants
@@ -81,9 +84,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="merchantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getMerchantsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<MerchantDtoCollectionQueryParameters>> merchantDtoCollectionQueryParameters
     ) const;
 
 protected:

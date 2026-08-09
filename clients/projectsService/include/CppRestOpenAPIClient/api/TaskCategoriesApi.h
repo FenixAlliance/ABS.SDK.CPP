@@ -26,9 +26,10 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryCreateDto.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDto.h"
+#include "CppRestOpenAPIClient/model/TaskCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TaskCategoryUpdateDto.h"
 #include <vector>
@@ -59,8 +60,10 @@ public:
     /// Gets the count of task categories for the current tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="taskCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countTenantTaskCategoriesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<TaskCategoryDtoCollectionQueryParameters>> taskCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Creates a new task category
@@ -117,8 +120,10 @@ public:
     /// Gets all task categories for the current tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="taskCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TaskCategoryDtoListEnvelope>> getTenantTaskCategoriesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<TaskCategoryDtoCollectionQueryParameters>> taskCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a task category
@@ -128,11 +133,11 @@ public:
     /// </remarks>
     /// <param name="taskCategoryId"></param>
     /// <param name="tenantId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaskCategoryAsync(
         utility::string_t taskCategoryId,
         utility::string_t tenantId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a task category

@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/IPLookupDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/IPLookupDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/IPLookupDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
@@ -84,9 +85,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="iPLookupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<IPLookupDtoListEnvelope>> getSystemIPLookups(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<IPLookupDtoCollectionQueryParameters>> iPLookupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of system IP lookups
@@ -96,9 +99,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="iPLookupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSystemIPLookupsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<IPLookupDtoCollectionQueryParameters>> iPLookupDtoCollectionQueryParameters
     ) const;
 
 protected:

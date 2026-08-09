@@ -26,12 +26,14 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TransactionCategoryCreateDto.h"
+#include "CppRestOpenAPIClient/model/TransactionCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TransactionCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TransactionCategoryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TransactionCategoryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/TransactionCreateDto.h"
+#include "CppRestOpenAPIClient/model/TransactionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TransactionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TransactionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TransactionUpdateDto.h"
@@ -145,10 +147,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="transactionCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TransactionCategoryDtoListEnvelope>> getTransactionCategories(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TransactionCategoryDtoCollectionQueryParameters>> transactionCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get transaction categories count
@@ -159,10 +163,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="transactionCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTransactionCategoriesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TransactionCategoryDtoCollectionQueryParameters>> transactionCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get transaction category by ID
@@ -189,10 +195,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="transactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TransactionDtoListEnvelope>> getTransactions(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TransactionDtoCollectionQueryParameters>> transactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get transactions count
@@ -203,10 +211,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="transactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTransactionsCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TransactionDtoCollectionQueryParameters>> transactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a transaction
@@ -218,13 +228,13 @@ public:
     /// <param name="transactionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTransaction(
         utility::string_t tenantId,
         utility::string_t transactionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a transaction category
@@ -236,13 +246,13 @@ public:
     /// <param name="categoryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTransactionCategory(
         utility::string_t tenantId,
         utility::string_t categoryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a transaction

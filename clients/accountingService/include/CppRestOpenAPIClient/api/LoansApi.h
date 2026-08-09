@@ -27,18 +27,21 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LoanApplicationCreateDto.h"
+#include "CppRestOpenAPIClient/model/LoanApplicationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LoanApplicationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanApplicationDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanCreateDto.h"
+#include "CppRestOpenAPIClient/model/LoanDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LoanDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/LoanTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LoanTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanTypeDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoanTypeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/LoanUpdateDto.h"
 #include "CppRestOpenAPIClient/Object.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -181,10 +184,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LoanApplicationDtoIReadOnlyListEnvelope>> getLoanApplicationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanApplicationDtoCollectionQueryParameters>> loanApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts loan applications
@@ -195,10 +200,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLoanApplicationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanApplicationDtoCollectionQueryParameters>> loanApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a loan by ID
@@ -241,10 +248,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LoanTypeDtoIReadOnlyListEnvelope>> getLoanTypesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanTypeDtoCollectionQueryParameters>> loanTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts loan types
@@ -255,10 +264,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLoanTypesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanTypeDtoCollectionQueryParameters>> loanTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets all loans
@@ -269,10 +280,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LoanDtoIReadOnlyListEnvelope>> getLoansAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanDtoCollectionQueryParameters>> loanDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts loans
@@ -283,10 +296,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="loanDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLoansCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LoanDtoCollectionQueryParameters>> loanDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a loan application
@@ -298,13 +313,13 @@ public:
     /// <param name="applicationId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLoanApplicationAsync(
         utility::string_t tenantId,
         utility::string_t applicationId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a loan
@@ -316,13 +331,13 @@ public:
     /// <param name="loanId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLoanAsync(
         utility::string_t tenantId,
         utility::string_t loanId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a loan type
@@ -334,13 +349,13 @@ public:
     /// <param name="loanTypeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLoanTypeAsync(
         utility::string_t tenantId,
         utility::string_t loanTypeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a loan application

@@ -27,9 +27,10 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SigningCertificateCreateDto.h"
 #include "CppRestOpenAPIClient/model/SigningCertificateDto.h"
+#include "CppRestOpenAPIClient/model/SigningCertificateDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SigningCertificateDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SigningCertificateUpdateDto.h"
 #include <vector>
@@ -110,10 +111,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingCertificateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SigningCertificateDtoListEnvelope>> getSigningCertificatesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningCertificateDtoCollectionQueryParameters>> signingCertificateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signing certificates count
@@ -124,10 +127,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingCertificateDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSigningCertificatesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningCertificateDtoCollectionQueryParameters>> signingCertificateDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Import a PFX/P12 signing certificate into custody
@@ -163,13 +168,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSigningCertificateAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a signing certificate

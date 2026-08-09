@@ -26,6 +26,7 @@
 #include "CppRestOpenAPIClient/model/BatchStockItemUpdateRequest.h"
 #include "CppRestOpenAPIClient/model/BulkProduct.h"
 #include "CppRestOpenAPIClient/model/CatalogItemCreateDto.h"
+#include "CppRestOpenAPIClient/model/CatalogItemDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CatalogItemDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CatalogItemDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CatalogItemUpdateDto.h"
@@ -34,40 +35,54 @@
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemAttachmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttributeOptionDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemBrandDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemBrandDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemBrandDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemCategoryDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemImageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemImageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemImageDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemQuestionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemQuestionRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemRefundPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemRefundPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemRefundPolicyDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReturnPolicyDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemReviewDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemReviewDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReviewDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReviewRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemTagDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemTagDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTagDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTypeDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/MoneyEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PricingRuleDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PricingRuleDtoListEnvelope.h"
 #include <vector>
@@ -133,11 +148,13 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countStockItemTagsByItemId(
         utility::string_t tenantId,
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTagDtoCollectionQueryParameters>> itemTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count stock items by business
@@ -148,10 +165,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="catalogItemDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countStockItemsByBusiness(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a new stock item
@@ -238,10 +257,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> getStockItemAttachmentsByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemAttachmentDtoCollectionQueryParameters>> itemAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get attribute option by ID for a stock item
@@ -298,10 +319,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemBrandDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> getStockItemBrandsByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemBrandDtoCollectionQueryParameters>> itemBrandDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get stock item by ID
@@ -326,10 +349,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemCategoryDtoListEnvelope>> getStockItemCategoriesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemCategoryDtoCollectionQueryParameters>> itemCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get category by ID for a stock item
@@ -356,10 +381,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemGoogleCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> getStockItemGoogleCategoriesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemGoogleCategoryDtoCollectionQueryParameters>> itemGoogleCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Google category by ID for a stock item
@@ -402,10 +429,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemImageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemImageDtoListEnvelope>> getStockItemImagesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemImageDtoCollectionQueryParameters>> itemImageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get price rule by ID for a stock item
@@ -462,10 +491,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemQuestionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemQuestionDtoListEnvelope>> getStockItemQuestionsByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemQuestionDtoCollectionQueryParameters>> itemQuestionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get refund policies for a stock item
@@ -476,10 +507,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemRefundPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemRefundPolicyDtoListEnvelope>> getStockItemRefundPoliciesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemRefundPolicyDtoCollectionQueryParameters>> itemRefundPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get refund policy by ID for a stock item
@@ -506,10 +539,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemReturnPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemReturnPolicyDtoListEnvelope>> getStockItemReturnPoliciesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemReturnPolicyDtoCollectionQueryParameters>> itemReturnPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get return policy by ID for a stock item
@@ -552,10 +587,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemReviewDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> getStockItemReviewsByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemReviewDtoCollectionQueryParameters>> itemReviewDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get shipping policies for a stock item
@@ -566,10 +603,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemShippingPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> getStockItemShippingPoliciesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemShippingPolicyDtoCollectionQueryParameters>> itemShippingPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get shipping policy by ID for a stock item
@@ -615,11 +654,13 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTagDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemTagDtoListEnvelope>> getStockItemTagsByItemId(
         utility::string_t tenantId,
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTagDtoCollectionQueryParameters>> itemTagDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tax policies for a stock item
@@ -630,10 +671,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTaxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> getStockItemTaxPoliciesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTaxPolicyDtoCollectionQueryParameters>> itemTaxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tax policy by ID for a stock item
@@ -679,11 +722,13 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemTypeDtoListEnvelope>> getStockItemTypesByItemId(
         utility::string_t tenantId,
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTypeDtoCollectionQueryParameters>> itemTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get warranty policies for a stock item
@@ -694,10 +739,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemWarrantyPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> getStockItemWarrantyPoliciesByItemId(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemWarrantyPolicyDtoCollectionQueryParameters>> itemWarrantyPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get warranty policy by ID for a stock item
@@ -724,10 +771,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="catalogItemDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getStockItemsOdataMaxPrice(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get min price of stock items
@@ -738,10 +787,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="catalogItemDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<MoneyEnvelope>> getStockItemsOdataMinPrice(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all stock items
@@ -752,10 +803,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="catalogItemDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CatalogItemDtoListEnvelope>> getStockItemsQuery(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CatalogItemDtoCollectionQueryParameters>> catalogItemDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a stock item
@@ -767,13 +820,13 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchStockItem(
         utility::string_t tenantId,
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Recalculate stock item prices

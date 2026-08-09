@@ -100,6 +100,33 @@ public:
 
     void setVersion(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getProjectId() const;
+    bool projectIdIsSet() const;
+    void unsetProjectId();
+
+    void setProjectId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getApiKey() const;
+    bool apiKeyIsSet() const;
+    void unsetApiKey();
+
+    void setApiKey(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getScoreThreshold() const;
+    bool scoreThresholdIsSet() const;
+    void unsetScoreThreshold();
+
+    void setScoreThreshold(double value);
+
 
 protected:
     bool m_Enable;
@@ -112,6 +139,12 @@ protected:
     bool m_SecretKeyIsSet;
     utility::string_t m_Version;
     bool m_VersionIsSet;
+    utility::string_t m_ProjectId;
+    bool m_ProjectIdIsSet;
+    utility::string_t m_ApiKey;
+    bool m_ApiKeyIsSet;
+    double m_ScoreThreshold;
+    bool m_ScoreThresholdIsSet;
 };
 
 

@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AppliedTaxPolicyRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/AppliedTaxPolicyRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AppliedTaxPolicyRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppliedTaxPolicyRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppliedTaxPolicyRecordUpdateDto.h"
@@ -31,11 +32,13 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemTaxPolicyRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyRecordUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TaxPolicyCreateDto.h"
+#include "CppRestOpenAPIClient/model/TaxPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TaxPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TaxPolicyDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TaxPolicyUpdateDto.h"
@@ -192,11 +195,13 @@ public:
     /// <param name="taxPolicyId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appliedTaxPolicyRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> getAppliedTaxPolicyRecords(
         utility::string_t tenantId,
         utility::string_t taxPolicyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppliedTaxPolicyRecordDtoCollectionQueryParameters>> appliedTaxPolicyRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get applied tax policy records count
@@ -208,11 +213,13 @@ public:
     /// <param name="taxPolicyId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appliedTaxPolicyRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAppliedTaxPolicyRecordsCount(
         utility::string_t tenantId,
         utility::string_t taxPolicyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppliedTaxPolicyRecordDtoCollectionQueryParameters>> appliedTaxPolicyRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item tax policy record by ID
@@ -242,11 +249,13 @@ public:
     /// <param name="taxPolicyId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTaxPolicyRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> getItemTaxPolicyRecords(
         utility::string_t tenantId,
         utility::string_t taxPolicyId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTaxPolicyRecordDtoCollectionQueryParameters>> itemTaxPolicyRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all tax policies for a tenant
@@ -257,10 +266,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="taxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> getTaxPolicies(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tax policies by fiscal authority
@@ -272,11 +283,13 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="taxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> getTaxPoliciesByAuthority(
         utility::string_t tenantId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tax policies count
@@ -287,10 +300,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="taxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTaxPoliciesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get tax policy by ID
@@ -319,14 +334,14 @@ public:
     /// <param name="appliedTaxPolicyRecordId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAppliedTaxPolicyRecord(
         utility::string_t tenantId,
         utility::string_t taxPolicyId,
         utility::string_t appliedTaxPolicyRecordId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch an item tax policy record
@@ -339,14 +354,14 @@ public:
     /// <param name="itemTaxPolicyRecordId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemTaxPolicyRecord(
         utility::string_t tenantId,
         utility::string_t taxPolicyId,
         utility::string_t itemTaxPolicyRecordId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a tax policy
@@ -358,13 +373,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTaxPolicy(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an applied tax policy record

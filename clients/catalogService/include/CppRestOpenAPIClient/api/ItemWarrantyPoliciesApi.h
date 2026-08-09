@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemWarrantyPolicyDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -57,11 +58,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemWarrantyPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countItemWarrantyPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemWarrantyPolicyDtoCollectionQueryParameters>> itemWarrantyPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item warranty policies
@@ -73,11 +76,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemWarrantyPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemWarrantyPolicyDtoListEnvelope>> getItemWarrantyPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemWarrantyPolicyDtoCollectionQueryParameters>> itemWarrantyPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item warranty policy by ID

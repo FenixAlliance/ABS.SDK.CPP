@@ -458,7 +458,7 @@ pplx::task<std::shared_ptr<AppraisalWorkflowDtoEnvelope>> AppraisalWorkflowsApi:
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> AppraisalWorkflowsApi::getAppraisalWorkflowsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> AppraisalWorkflowsApi::getAppraisalWorkflowsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AppraisalWorkflowDtoCollectionQueryParameters>> appraisalWorkflowDtoCollectionQueryParameters) const
 {
 
 
@@ -499,6 +499,8 @@ pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> AppraisalWorkflows
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -519,11 +521,27 @@ pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> AppraisalWorkflows
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (appraisalWorkflowDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*appraisalWorkflowDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(appraisalWorkflowDtoCollectionQueryParameters && (*appraisalWorkflowDtoCollectionQueryParameters).get())
+        {
+            (*appraisalWorkflowDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("appraisalWorkflowDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -592,7 +610,7 @@ pplx::task<std::shared_ptr<AppraisalWorkflowDtoListEnvelope>> AppraisalWorkflows
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AppraisalWorkflowsApi::getAppraisalWorkflowsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> AppraisalWorkflowsApi::getAppraisalWorkflowsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AppraisalWorkflowDtoCollectionQueryParameters>> appraisalWorkflowDtoCollectionQueryParameters) const
 {
 
 
@@ -633,6 +651,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AppraisalWorkflowsApi::getAppraisalWo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -653,11 +673,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AppraisalWorkflowsApi::getAppraisalWo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (appraisalWorkflowDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*appraisalWorkflowDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(appraisalWorkflowDtoCollectionQueryParameters && (*appraisalWorkflowDtoCollectionQueryParameters).get())
+        {
+            (*appraisalWorkflowDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("appraisalWorkflowDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

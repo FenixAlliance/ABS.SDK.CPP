@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/JobOfferCreateDto.h"
+#include "CppRestOpenAPIClient/model/JobOfferDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/JobOfferDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/JobOfferDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/JobOfferUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -141,10 +142,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="jobOfferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> getJobOffersAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count job offers
@@ -155,10 +158,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="jobOfferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getJobOffersCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get public job offer by ID
@@ -185,10 +190,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="jobOfferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> getPublicJobOffersAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count public job offers
@@ -199,10 +206,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="jobOfferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPublicJobOffersCountAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a job offer
@@ -214,13 +223,13 @@ public:
     /// <param name="jobOfferId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchJobOfferAsync(
         utility::string_t tenantId,
         utility::string_t jobOfferId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Publish a job offer

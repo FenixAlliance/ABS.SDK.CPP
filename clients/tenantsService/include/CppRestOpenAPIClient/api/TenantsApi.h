@@ -31,8 +31,9 @@
 #include "CppRestOpenAPIClient/model/ExtendedTenantEnrollmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/NotificationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/NotificationDtoListEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/StringListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SuiteLicenseAssignmentDtoListEnvelope.h"
@@ -357,10 +358,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<NotificationDtoListEnvelope>> getTenantNotificationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of notifications for a tenant
@@ -371,10 +374,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="notificationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantNotificationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NotificationDtoCollectionQueryParameters>> notificationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the list of invitations issued by a tenant that are pending
@@ -483,12 +488,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenantAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Revoke a license from a specific enrollment

@@ -25,11 +25,12 @@ include/CppRestOpenAPIClient/model/InfoResponse.h
 include/CppRestOpenAPIClient/model/Int32Envelope.h
 include/CppRestOpenAPIClient/model/LocationCreateDto.h
 include/CppRestOpenAPIClient/model/LocationDto.h
+include/CppRestOpenAPIClient/model/LocationDtoCollectionQueryParameters.h
 include/CppRestOpenAPIClient/model/LocationDtoEnvelope.h
 include/CppRestOpenAPIClient/model/LocationDtoIReadOnlyListEnvelope.h
 include/CppRestOpenAPIClient/model/LocationUpdateDto.h
 include/CppRestOpenAPIClient/model/LoginRequest.h
-include/CppRestOpenAPIClient/model/Operation.h
+include/CppRestOpenAPIClient/model/PatchOperation.h
 include/CppRestOpenAPIClient/model/RefreshRequest.h
 include/CppRestOpenAPIClient/model/RegisterRequest.h
 include/CppRestOpenAPIClient/model/ResendConfirmationEmailRequest.h
@@ -57,11 +58,12 @@ src/model/InfoResponse.cpp
 src/model/Int32Envelope.cpp
 src/model/LocationCreateDto.cpp
 src/model/LocationDto.cpp
+src/model/LocationDtoCollectionQueryParameters.cpp
 src/model/LocationDtoEnvelope.cpp
 src/model/LocationDtoIReadOnlyListEnvelope.cpp
 src/model/LocationUpdateDto.cpp
 src/model/LoginRequest.cpp
-src/model/Operation.cpp
+src/model/PatchOperation.cpp
 src/model/RefreshRequest.cpp
 src/model/RegisterRequest.cpp
 src/model/ResendConfirmationEmailRequest.cpp

@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemShippingPolicyDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -57,11 +58,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemShippingPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countItemShippingPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemShippingPolicyDtoCollectionQueryParameters>> itemShippingPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item shipping policies
@@ -73,11 +76,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemShippingPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemShippingPolicyDtoListEnvelope>> getCatalogItemShippingPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemShippingPolicyDtoCollectionQueryParameters>> itemShippingPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item shipping policy by ID

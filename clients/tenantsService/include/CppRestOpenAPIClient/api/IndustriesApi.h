@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TenantIndustryCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantIndustryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantIndustryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantIndustryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantIndustryUpdateDto.h"
@@ -93,10 +94,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantIndustryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantIndustryDtoListEnvelope>> getTenantIndustries(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantIndustryDtoCollectionQueryParameters>> tenantIndustryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of tenant industries
@@ -107,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantIndustryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantIndustriesCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantIndustryDtoCollectionQueryParameters>> tenantIndustryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve a single tenant industry by its ID
@@ -138,13 +143,13 @@ public:
     /// <param name="tenantIndustryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenantIndustryAsync(
         utility::string_t tenantId,
         utility::string_t tenantIndustryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a tenant industry

@@ -25,8 +25,9 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ProjectTimeLogCreateDto.h"
+#include "CppRestOpenAPIClient/model/ProjectTimeLogDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ProjectTimeLogDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectTimeLogDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ProjectTimeLogUpdateDto.h"
@@ -61,11 +62,13 @@ public:
     /// <param name="projectPeriodId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="projectTimeLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countProjectPeriodTimeLogsAsync(
         utility::string_t tenantId,
         utility::string_t projectPeriodId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProjectTimeLogDtoCollectionQueryParameters>> projectTimeLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a new project time log
@@ -109,11 +112,13 @@ public:
     /// <param name="projectPeriodId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="projectTimeLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ProjectTimeLogDtoListEnvelope>> getProjectPeriodTimeLogsAsync(
         utility::string_t tenantId,
         utility::string_t projectPeriodId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ProjectTimeLogDtoCollectionQueryParameters>> projectTimeLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieve a project time log by ID
@@ -189,13 +194,13 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchProjectTimeLogAsync(
         utility::string_t timeLogId,
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a project time log

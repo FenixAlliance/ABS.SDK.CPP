@@ -26,23 +26,27 @@
 #include "CppRestOpenAPIClient/model/CartDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactCreateDto.h"
 #include "CppRestOpenAPIClient/model/ContactDto.h"
+#include "CppRestOpenAPIClient/model/ContactDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ContactDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactEmailCreateDto.h"
+#include "CppRestOpenAPIClient/model/ContactEmailDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ContactEmailDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactEmailUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ContactProfileCreateDto.h"
+#include "CppRestOpenAPIClient/model/ContactProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ContactProfileDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ContactProfileUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ContactUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedContactDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedContactDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedContactDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SocialProfileDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/WalletDtoEnvelope.h"
 #include <vector>
@@ -195,10 +199,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactDtoListEnvelope>> getBusinessOwnedIndividualsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all contacts of type individual count
@@ -209,10 +215,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactDtoListEnvelope>> getBusinessOwnedIndividualsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a Contact of type Organization by ID
@@ -239,10 +247,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<ContactDto>>> getBusinessOwnedOrganizationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all contacts of type organization count
@@ -253,10 +263,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactDtoListEnvelope>> getBusinessOwnedOrganizationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a contact by ID
@@ -316,11 +328,13 @@ public:
     /// <param name="contactId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactEmailDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactEmailDtoListEnvelope>> getContactEmailsAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactEmailDtoCollectionQueryParameters>> contactEmailDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get contact email addresses count
@@ -332,11 +346,13 @@ public:
     /// <param name="contactId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactEmailDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getContactEmailsCountAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactEmailDtoCollectionQueryParameters>> contactEmailDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a contact&#39;s social profile
@@ -379,10 +395,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactDtoListEnvelope>> getContactsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all business owned contacts count
@@ -393,10 +411,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ContactDtoListEnvelope>> getContactsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactDtoCollectionQueryParameters>> contactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all contacts of type individual
@@ -407,10 +427,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedContactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedContactDtoListEnvelope>> getExtendedBusinessOwnedIndividualsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedContactDtoCollectionQueryParameters>> extendedContactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all contacts of type organization
@@ -421,10 +443,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedContactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedContactDtoListEnvelope>> getExtendedBusinessOwnedOrganizationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedContactDtoCollectionQueryParameters>> extendedContactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a contact by ID
@@ -451,10 +475,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedContactDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedContactDtoListEnvelope>> getExtendedContactsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedContactDtoCollectionQueryParameters>> extendedContactDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get individual related individuals
@@ -546,11 +572,13 @@ public:
     /// <param name="contactId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="contactProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getProfilesForContactCountAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ContactProfileDtoCollectionQueryParameters>> contactProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a contact
@@ -562,13 +590,13 @@ public:
     /// <param name="contactId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchContactAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a contact email address
@@ -581,14 +609,14 @@ public:
     /// <param name="emailId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchContactEmailAsync(
         utility::string_t tenantId,
         utility::string_t contactId,
         utility::string_t emailId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Preview the rendered email for a contact.

@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/CourseAssignmentCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseAssignmentDto.h"
+#include "CppRestOpenAPIClient/model/CourseAssignmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseAssignmentUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -105,10 +106,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseAssignmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseAssignmentDto>>> getCourseAssignmentsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course assignments count
@@ -119,10 +122,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseAssignmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseAssignmentsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseAssignmentDtoCollectionQueryParameters>> courseAssignmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course assignment
@@ -134,13 +139,13 @@ public:
     /// <param name="assignmentId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCourseAssignmentAsync(
         utility::string_t tenantId,
         utility::string_t assignmentId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course assignment

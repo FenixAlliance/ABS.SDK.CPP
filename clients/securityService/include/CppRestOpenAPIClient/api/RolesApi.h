@@ -27,9 +27,10 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SecurityPermissionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityRoleCreateDto.h"
+#include "CppRestOpenAPIClient/model/SecurityRoleDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SecurityRoleDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityRoleDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SecurityRoleUpdateDto.h"
@@ -214,10 +215,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="securityRoleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SecurityRoleDtoListEnvelope>> getRolesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SecurityRoleDtoCollectionQueryParameters>> securityRoleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get roles by enrollment
@@ -244,10 +247,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="securityRoleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRolesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SecurityRoleDtoCollectionQueryParameters>> securityRoleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an existing role
@@ -257,13 +262,13 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="securityRoleId"></param>
-    /// <param name="operation"></param>
+    /// <param name="patchOperation"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRoleAsync(
         utility::string_t tenantId,
         utility::string_t securityRoleId,
-        std::vector<std::shared_ptr<Operation>> operation,
+        std::vector<std::shared_ptr<PatchOperation>> patchOperation,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

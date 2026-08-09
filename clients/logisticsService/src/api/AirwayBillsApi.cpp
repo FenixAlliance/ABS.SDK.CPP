@@ -746,7 +746,7 @@ pplx::task<std::shared_ptr<AirwayBillDtoEnvelope>> AirwayBillsApi::getAirwayBill
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> AirwayBillsApi::getAirwayBillLinesAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> AirwayBillsApi::getAirwayBillLinesAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -788,6 +788,8 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> AirwayBillsApi::getAirwa
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -808,11 +810,27 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> AirwayBillsApi::getAirwa
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -881,7 +899,7 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> AirwayBillsApi::getAirwa
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillLinesCountAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillLinesCountAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -923,6 +941,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillLinesCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -943,11 +963,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillLinesCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1016,7 +1052,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillLinesCou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> AirwayBillsApi::getAirwayBillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> AirwayBillsApi::getAirwayBillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AirwayBillDtoCollectionQueryParameters>> airwayBillDtoCollectionQueryParameters) const
 {
 
 
@@ -1057,6 +1093,8 @@ pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> AirwayBillsApi::getAirway
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1077,11 +1115,27 @@ pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> AirwayBillsApi::getAirway
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (airwayBillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*airwayBillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(airwayBillDtoCollectionQueryParameters && (*airwayBillDtoCollectionQueryParameters).get())
+        {
+            (*airwayBillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("airwayBillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1150,7 +1204,7 @@ pplx::task<std::shared_ptr<AirwayBillDtoListEnvelope>> AirwayBillsApi::getAirway
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AirwayBillDtoCollectionQueryParameters>> airwayBillDtoCollectionQueryParameters) const
 {
 
 
@@ -1191,6 +1245,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillsCountAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1211,11 +1267,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> AirwayBillsApi::getAirwayBillsCountAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (airwayBillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*airwayBillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(airwayBillDtoCollectionQueryParameters && (*airwayBillDtoCollectionQueryParameters).get())
+        {
+            (*airwayBillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("airwayBillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1824,7 +1896,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::markAirwayBillInTrans
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillAsync(utility::string_t tenantId, utility::string_t billId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1892,7 +1964,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1910,11 +1982,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1988,7 +2060,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillAsync(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillLineAsync(utility::string_t tenantId, utility::string_t billId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillLineAsync(utility::string_t tenantId, utility::string_t billId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2057,7 +2129,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillLineAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2075,11 +2147,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> AirwayBillsApi::patchAirwayBillLineAs
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

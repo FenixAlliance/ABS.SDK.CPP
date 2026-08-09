@@ -812,7 +812,7 @@ pplx::task<std::shared_ptr<HttpContent>> FilesApi::getFileThumbnailAsync(utility
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> FilesApi::getFilesAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> FilesApi::getFilesAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<int32_t> top, boost::optional<int32_t> skip, boost::optional<bool> count, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> orderBy, boost::optional<utility::string_t> search, boost::optional<utility::string_t> select, boost::optional<utility::string_t> expand, boost::optional<bool> isEmpty) const
 {
 
 
@@ -853,6 +853,7 @@ pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> FilesApi::getFilesAsync(boost
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (tenantId)
     {
@@ -865,6 +866,42 @@ pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> FilesApi::getFilesAsync(boost
     if (xApiVersion)
     {
         localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+    if (top)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("top") ] = ApiClient::parameterToString(*top);
+    }
+    if (skip)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("skip") ] = ApiClient::parameterToString(*skip);
+    }
+    if (count)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("count") ] = ApiClient::parameterToString(*count);
+    }
+    if (filter)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("filter") ] = ApiClient::parameterToString(*filter);
+    }
+    if (orderBy)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("orderBy") ] = ApiClient::parameterToString(*orderBy);
+    }
+    if (search)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("search") ] = ApiClient::parameterToString(*search);
+    }
+    if (select)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("select") ] = ApiClient::parameterToString(*select);
+    }
+    if (expand)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("expand") ] = ApiClient::parameterToString(*expand);
+    }
+    if (isEmpty)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("isEmpty") ] = ApiClient::parameterToString(*isEmpty);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -947,7 +984,7 @@ pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> FilesApi::getFilesAsync(boost
         return localVarResult;
     });
 }
-pplx::task<int64_t> FilesApi::getFilesCountAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<int64_t> FilesApi::getFilesCountAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<int32_t> top, boost::optional<int32_t> skip, boost::optional<bool> count, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> orderBy, boost::optional<utility::string_t> search, boost::optional<utility::string_t> select, boost::optional<utility::string_t> expand, boost::optional<bool> isEmpty) const
 {
 
 
@@ -988,6 +1025,7 @@ pplx::task<int64_t> FilesApi::getFilesCountAsync(boost::optional<utility::string
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("multipart/form-data") );
 
     if (tenantId)
     {
@@ -1000,6 +1038,42 @@ pplx::task<int64_t> FilesApi::getFilesCountAsync(boost::optional<utility::string
     if (xApiVersion)
     {
         localVarHeaderParams[utility::conversions::to_string_t("x-api-version")] = ApiClient::parameterToString(*xApiVersion);
+    }
+    if (top)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("top") ] = ApiClient::parameterToString(*top);
+    }
+    if (skip)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("skip") ] = ApiClient::parameterToString(*skip);
+    }
+    if (count)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("count") ] = ApiClient::parameterToString(*count);
+    }
+    if (filter)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("filter") ] = ApiClient::parameterToString(*filter);
+    }
+    if (orderBy)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("orderBy") ] = ApiClient::parameterToString(*orderBy);
+    }
+    if (search)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("search") ] = ApiClient::parameterToString(*search);
+    }
+    if (select)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("select") ] = ApiClient::parameterToString(*select);
+    }
+    if (expand)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("expand") ] = ApiClient::parameterToString(*expand);
+    }
+    if (isEmpty)
+    {
+        localVarFormParams[ utility::conversions::to_string_t("isEmpty") ] = ApiClient::parameterToString(*isEmpty);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

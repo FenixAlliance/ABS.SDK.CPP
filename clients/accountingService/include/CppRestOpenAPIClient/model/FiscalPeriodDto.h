@@ -127,6 +127,15 @@ public:
 
     void setFiscalYearId(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getStatus() const;
+    bool statusIsSet() const;
+    void unsetStatus();
+
+    void setStatus(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Id;
@@ -145,6 +154,8 @@ protected:
     bool m_EnrollmentIdIsSet;
     utility::string_t m_FiscalYearId;
     bool m_FiscalYearIdIsSet;
+    utility::string_t m_Status;
+    bool m_StatusIsSet;
 };
 
 

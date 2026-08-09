@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PointOfSaleCreateDto.h"
+#include "CppRestOpenAPIClient/model/PointOfSaleDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PointOfSaleDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PointOfSaleDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PointOfSaleUpdateDto.h"
@@ -59,8 +60,10 @@ public:
     /// Returns the total count of point of sales for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="pointOfSaleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countPointOfSalesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<PointOfSaleDtoCollectionQueryParameters>> pointOfSaleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a point of sale
@@ -105,8 +108,10 @@ public:
     /// Retrieves a list of point of sales for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="pointOfSaleDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PointOfSaleDtoListEnvelope>> getPointOfSalesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<PointOfSaleDtoCollectionQueryParameters>> pointOfSaleDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a point of sale
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="pointOfSaleId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPointOfSaleAsync(
         utility::string_t tenantId,
         utility::string_t pointOfSaleId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a point of sale

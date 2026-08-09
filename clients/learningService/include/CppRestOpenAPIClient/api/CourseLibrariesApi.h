@@ -25,9 +25,10 @@
 
 #include "CppRestOpenAPIClient/model/CourseLibraryCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseLibraryDto.h"
+#include "CppRestOpenAPIClient/model/CourseLibraryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseLibraryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -90,10 +91,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseLibraryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseLibraryDto>>> getCourseLibrariesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course libraries count
@@ -104,10 +107,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseLibraryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseLibrariesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseLibraryDtoCollectionQueryParameters>> courseLibraryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course library by ID
@@ -133,13 +138,13 @@ public:
     /// <param name="libraryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchCourseLibraryAsync(
         utility::string_t tenantId,
         utility::string_t libraryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course library

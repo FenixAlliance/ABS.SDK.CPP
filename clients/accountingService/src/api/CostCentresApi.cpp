@@ -1185,7 +1185,7 @@ pplx::task<std::shared_ptr<CostCentreBudgetDtoEnvelope>> CostCentresApi::getCost
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CostCentreBudgetDtoListEnvelope>> CostCentresApi::getCostCentreBudgets(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CostCentreBudgetDtoListEnvelope>> CostCentresApi::getCostCentreBudgets(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CostCentreBudgetDtoCollectionQueryParameters>> costCentreBudgetDtoCollectionQueryParameters) const
 {
 
 
@@ -1226,6 +1226,8 @@ pplx::task<std::shared_ptr<CostCentreBudgetDtoListEnvelope>> CostCentresApi::get
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1246,11 +1248,27 @@ pplx::task<std::shared_ptr<CostCentreBudgetDtoListEnvelope>> CostCentresApi::get
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (costCentreBudgetDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*costCentreBudgetDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(costCentreBudgetDtoCollectionQueryParameters && (*costCentreBudgetDtoCollectionQueryParameters).get())
+        {
+            (*costCentreBudgetDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("costCentreBudgetDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1454,7 +1472,7 @@ pplx::task<std::shared_ptr<CostCentreGroupDtoEnvelope>> CostCentresApi::getCostC
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> CostCentresApi::getCostCentreGroups(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> CostCentresApi::getCostCentreGroups(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CostCentreGroupDtoCollectionQueryParameters>> costCentreGroupDtoCollectionQueryParameters) const
 {
 
 
@@ -1495,6 +1513,8 @@ pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> CostCentresApi::getC
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1515,11 +1535,27 @@ pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> CostCentresApi::getC
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (costCentreGroupDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*costCentreGroupDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(costCentreGroupDtoCollectionQueryParameters && (*costCentreGroupDtoCollectionQueryParameters).get())
+        {
+            (*costCentreGroupDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("costCentreGroupDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1588,7 +1624,7 @@ pplx::task<std::shared_ptr<CostCentreGroupDtoListEnvelope>> CostCentresApi::getC
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentreGroupsCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentreGroupsCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CostCentreGroupDtoCollectionQueryParameters>> costCentreGroupDtoCollectionQueryParameters) const
 {
 
 
@@ -1629,6 +1665,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentreGroupsCo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1649,11 +1687,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentreGroupsCo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (costCentreGroupDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*costCentreGroupDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(costCentreGroupDtoCollectionQueryParameters && (*costCentreGroupDtoCollectionQueryParameters).get())
+        {
+            (*costCentreGroupDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("costCentreGroupDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1722,7 +1776,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentreGroupsCo
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> CostCentresApi::getCostCentres(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> CostCentresApi::getCostCentres(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CostCentreDtoCollectionQueryParameters>> costCentreDtoCollectionQueryParameters) const
 {
 
 
@@ -1763,6 +1817,8 @@ pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> CostCentresApi::getCostCe
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1783,11 +1839,27 @@ pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> CostCentresApi::getCostCe
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (costCentreDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*costCentreDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(costCentreDtoCollectionQueryParameters && (*costCentreDtoCollectionQueryParameters).get())
+        {
+            (*costCentreDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("costCentreDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1856,7 +1928,7 @@ pplx::task<std::shared_ptr<CostCentreDtoListEnvelope>> CostCentresApi::getCostCe
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentresCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentresCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CostCentreDtoCollectionQueryParameters>> costCentreDtoCollectionQueryParameters) const
 {
 
 
@@ -1897,6 +1969,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentresCount(u
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1917,11 +1991,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentresCount(u
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (costCentreDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*costCentreDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(costCentreDtoCollectionQueryParameters && (*costCentreDtoCollectionQueryParameters).get())
+        {
+            (*costCentreDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("costCentreDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1990,7 +2080,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> CostCentresApi::getCostCentresCount(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentre(utility::string_t tenantId, utility::string_t costCentreId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentre(utility::string_t tenantId, utility::string_t costCentreId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2058,7 +2148,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentre(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2076,11 +2166,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentre(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2154,7 +2244,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentre(utili
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreBudget(utility::string_t tenantId, utility::string_t budgetId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreBudget(utility::string_t tenantId, utility::string_t budgetId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2222,7 +2312,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreBudget
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2240,11 +2330,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreBudget
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2318,7 +2408,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreBudget
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreGroup(utility::string_t tenantId, utility::string_t groupId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreGroup(utility::string_t tenantId, utility::string_t groupId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2386,7 +2476,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreGroup(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2404,11 +2494,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CostCentresApi::patchCostCentreGroup(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

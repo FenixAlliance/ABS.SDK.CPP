@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemGoogleCategoryDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -81,9 +82,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemGoogleCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemGoogleCategoryDtoListEnvelope>> getItemGoogleCategoriesAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemGoogleCategoryDtoCollectionQueryParameters>> itemGoogleCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Google item categories count
@@ -93,9 +96,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemGoogleCategoryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemGoogleCategoriesCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemGoogleCategoryDtoCollectionQueryParameters>> itemGoogleCategoryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get Google item categories tree

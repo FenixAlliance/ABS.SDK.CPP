@@ -24,9 +24,11 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/DiscountCreateDto.h"
+#include "CppRestOpenAPIClient/model/DiscountDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DiscountDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DiscountDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DiscountListCreateDto.h"
+#include "CppRestOpenAPIClient/model/DiscountListDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/DiscountListDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/DiscountListDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/DiscountListUpdateDto.h"
@@ -34,7 +36,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -128,9 +130,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="discountListId"></param>
+    /// <param name="discountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DiscountDtoListEnvelope>> getDiscountListEntries(
         utility::string_t tenantId,
-        utility::string_t discountListId
+        utility::string_t discountListId,
+        boost::optional<std::shared_ptr<DiscountDtoCollectionQueryParameters>> discountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts discounts in a discount list
@@ -140,9 +144,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="discountListId"></param>
+    /// <param name="discountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDiscountListEntriesCount(
         utility::string_t tenantId,
-        utility::string_t discountListId
+        utility::string_t discountListId,
+        boost::optional<std::shared_ptr<DiscountDtoCollectionQueryParameters>> discountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets a discount list entry by ID
@@ -165,8 +171,10 @@ public:
     /// Gets all discount lists for the current tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="discountListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<DiscountListDtoListEnvelope>> getDiscountLists(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DiscountListDtoCollectionQueryParameters>> discountListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts discount lists
@@ -175,8 +183,10 @@ public:
     /// Gets the count of discount lists for the current tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="discountListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getDiscountListsCount(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<DiscountListDtoCollectionQueryParameters>> discountListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a discount list
@@ -186,11 +196,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="discountListId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDiscountList(
         utility::string_t tenantId,
         utility::string_t discountListId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a discount list entry
@@ -201,12 +211,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="discountListId"></param>
     /// <param name="discountListEntryId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchDiscountListEntry(
         utility::string_t tenantId,
         utility::string_t discountListId,
         utility::string_t discountListEntryId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a discount list

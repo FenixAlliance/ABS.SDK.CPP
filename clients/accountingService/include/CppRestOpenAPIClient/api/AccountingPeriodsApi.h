@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AccountingPeriodCreateDto.h"
+#include "CppRestOpenAPIClient/model/AccountingPeriodDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AccountingPeriodDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountingPeriodDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AccountingPeriodUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingPeriodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AccountingPeriodDtoListEnvelope>> getAccountingPeriods(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingPeriodDtoCollectionQueryParameters>> accountingPeriodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant accounting periods count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="accountingPeriodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAccountingPeriodsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AccountingPeriodDtoCollectionQueryParameters>> accountingPeriodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an accounting period
@@ -138,13 +143,13 @@ public:
     /// <param name="accountingPeriodId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountingPeriodAsync(
         utility::string_t tenantId,
         utility::string_t accountingPeriodId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates an existing accounting period

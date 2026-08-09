@@ -1427,7 +1427,7 @@ pplx::task<std::shared_ptr<TruckDtoEnvelope>> TrucksApi::getTruckByIdAsync(utili
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> TrucksApi::getTruckTripsAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> TrucksApi::getTruckTripsAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TruckTripDtoCollectionQueryParameters>> truckTripDtoCollectionQueryParameters) const
 {
 
 
@@ -1469,6 +1469,8 @@ pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> TrucksApi::getTruckTripsAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1489,11 +1491,27 @@ pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> TrucksApi::getTruckTripsAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (truckTripDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*truckTripDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(truckTripDtoCollectionQueryParameters && (*truckTripDtoCollectionQueryParameters).get())
+        {
+            (*truckTripDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("truckTripDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1562,7 +1580,7 @@ pplx::task<std::shared_ptr<TruckTripDtoListEnvelope>> TrucksApi::getTruckTripsAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTruckTripsCountAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTruckTripsCountAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TruckTripDtoCollectionQueryParameters>> truckTripDtoCollectionQueryParameters) const
 {
 
 
@@ -1604,6 +1622,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTruckTripsCountAsync(ut
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1624,11 +1644,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTruckTripsCountAsync(ut
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (truckTripDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*truckTripDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(truckTripDtoCollectionQueryParameters && (*truckTripDtoCollectionQueryParameters).get())
+        {
+            (*truckTripDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("truckTripDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1697,7 +1733,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTruckTripsCountAsync(ut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TruckDtoListEnvelope>> TrucksApi::getTrucksAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TruckDtoListEnvelope>> TrucksApi::getTrucksAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TruckDtoCollectionQueryParameters>> truckDtoCollectionQueryParameters) const
 {
 
 
@@ -1738,6 +1774,8 @@ pplx::task<std::shared_ptr<TruckDtoListEnvelope>> TrucksApi::getTrucksAsync(util
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1758,11 +1796,27 @@ pplx::task<std::shared_ptr<TruckDtoListEnvelope>> TrucksApi::getTrucksAsync(util
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (truckDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*truckDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(truckDtoCollectionQueryParameters && (*truckDtoCollectionQueryParameters).get())
+        {
+            (*truckDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("truckDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1831,7 +1885,7 @@ pplx::task<std::shared_ptr<TruckDtoListEnvelope>> TrucksApi::getTrucksAsync(util
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTrucksCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTrucksCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TruckDtoCollectionQueryParameters>> truckDtoCollectionQueryParameters) const
 {
 
 
@@ -1872,6 +1926,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTrucksCountAsync(utilit
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1892,11 +1948,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTrucksCountAsync(utilit
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (truckDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*truckDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(truckDtoCollectionQueryParameters && (*truckDtoCollectionQueryParameters).get())
+        {
+            (*truckDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("truckDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1965,7 +2037,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> TrucksApi::getTrucksCountAsync(utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckAsync(utility::string_t tenantId, utility::string_t truckId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2033,7 +2105,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckAsync(utility::s
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2051,11 +2123,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckAsync(utility::s
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2129,7 +2201,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckAsync(utility::s
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckTripAsync(utility::string_t tenantId, utility::string_t truckId, utility::string_t tripId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckTripAsync(utility::string_t tenantId, utility::string_t truckId, utility::string_t tripId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2198,7 +2270,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckTripAsync(utilit
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2216,11 +2288,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TrucksApi::patchTruckTripAsync(utilit
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

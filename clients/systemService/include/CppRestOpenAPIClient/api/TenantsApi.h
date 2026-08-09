@@ -26,10 +26,14 @@
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedTenantDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedTenantDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/ModuleGrantDto.h"
+#include "CppRestOpenAPIClient/model/ModuleGrantDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/TenantCreateDto.h"
+#include "CppRestOpenAPIClient/model/TenantDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TenantDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TenantUpdateDto.h"
@@ -122,9 +126,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedTenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedTenantDtoListEnvelope>> getAllExtendedTenants(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedTenantDtoCollectionQueryParameters>> extendedTenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all tenants available on this suite server instance.
@@ -134,9 +140,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TenantDtoListEnvelope>> getAllTenants(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the total count of extended tenants available on this suite server instance.
@@ -146,9 +154,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedTenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getExtendedTenantsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedTenantDtoCollectionQueryParameters>> extendedTenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a specific tenant by ID.
@@ -165,6 +175,20 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Get the per-tenant admin module grants for a specific tenant.
+    /// </summary>
+    /// <remarks>
+    /// This action is only available for global administrators.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<ModuleGrantDtoListEnvelope>> getTenantModuleGrants(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
     /// Get the total count of tenants available on this suite server instance.
     /// </summary>
     /// <remarks>
@@ -172,9 +196,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="tenantDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTenantsCount(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TenantDtoCollectionQueryParameters>> tenantDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially update a specific tenant by ID.
@@ -185,12 +211,28 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchTenant(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
+    ) const;
+    /// <summary>
+    /// Replace the per-tenant admin module grants for a specific tenant.
+    /// </summary>
+    /// <remarks>
+    /// This action is only available for global administrators. Grants supplement licensing.
+    /// </remarks>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="moduleGrantDto"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> setTenantModuleGrants(
+        utility::string_t tenantId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::vector<std::shared_ptr<ModuleGrantDto>>> moduleGrantDto
     ) const;
     /// <summary>
     /// Update a specific tenant by ID.

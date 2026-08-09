@@ -27,14 +27,16 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemRestockCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemRestockDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemRestockDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemRestockDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemRestockEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemRestockEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemRestockEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemRestockEntryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemRestockEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ItemRestockUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -150,11 +152,13 @@ public:
     /// <param name="restockId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemRestockEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemRestockEntryDtoListEnvelope>> getItemRestockEntriesAsync(
         utility::string_t tenantId,
         utility::string_t restockId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemRestockEntryDtoCollectionQueryParameters>> itemRestockEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get restock entries count
@@ -166,11 +170,13 @@ public:
     /// <param name="restockId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemRestockEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemRestockEntriesCountAsync(
         utility::string_t tenantId,
         utility::string_t restockId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemRestockEntryDtoCollectionQueryParameters>> itemRestockEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get restock entry by ID
@@ -199,10 +205,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemRestockDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemRestockDtoListEnvelope>> getItemRestocksAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemRestockDtoCollectionQueryParameters>> itemRestockDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item restocks count
@@ -213,10 +221,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemRestockDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemRestocksCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemRestockDtoCollectionQueryParameters>> itemRestockDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item restock
@@ -228,13 +238,13 @@ public:
     /// <param name="restockId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemRestockAsync(
         utility::string_t tenantId,
         utility::string_t restockId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a restock entry
@@ -247,14 +257,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemRestockEntryAsync(
         utility::string_t tenantId,
         utility::string_t restockId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item restock

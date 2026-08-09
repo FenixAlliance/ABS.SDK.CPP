@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/Envelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelAgreementCreateDto.h"
+#include "CppRestOpenAPIClient/model/ServiceLevelAgreementDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelAgreementDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelAgreementDtoIReadOnlyListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ServiceLevelAgreementUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelAgreementDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ServiceLevelAgreementDtoIReadOnlyListEnvelope>> getServiceLevelAgreementsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelAgreementDtoCollectionQueryParameters>> serviceLevelAgreementDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get service level agreements count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="serviceLevelAgreementDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getServiceLevelAgreementsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ServiceLevelAgreementDtoCollectionQueryParameters>> serviceLevelAgreementDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a service level agreement
@@ -138,13 +143,13 @@ public:
     /// <param name="serviceLevelAgreementId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<Envelope>> patchServiceLevelAgreementAsync(
         utility::string_t tenantId,
         utility::string_t serviceLevelAgreementId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a service level agreement

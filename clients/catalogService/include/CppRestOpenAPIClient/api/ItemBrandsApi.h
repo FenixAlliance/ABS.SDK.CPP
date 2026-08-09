@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemBrandCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemBrandDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemBrandDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemBrandDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemBrandUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemBrandDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemBrandDtoListEnvelope>> getItemBrandsAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemBrandDtoCollectionQueryParameters>> itemBrandDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item brand
@@ -122,13 +125,13 @@ public:
     /// <param name="itemBrandId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchItemBrandAsync(
         utility::string_t tenantId,
         utility::string_t itemBrandId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item brand

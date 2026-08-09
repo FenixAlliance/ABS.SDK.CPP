@@ -300,7 +300,7 @@ pplx::task<std::shared_ptr<BusinessDomainDtoEnvelope>> BusinessDomainsApi::getSy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> BusinessDomainsApi::getSystemBusinessDomains(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> BusinessDomainsApi::getSystemBusinessDomains(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters) const
 {
 
 
@@ -341,6 +341,8 @@ pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> BusinessDomainsApi::g
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -358,11 +360,27 @@ pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> BusinessDomainsApi::g
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (businessDomainDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*businessDomainDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(businessDomainDtoCollectionQueryParameters && (*businessDomainDtoCollectionQueryParameters).get())
+        {
+            (*businessDomainDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("businessDomainDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -431,7 +449,7 @@ pplx::task<std::shared_ptr<BusinessDomainDtoListEnvelope>> BusinessDomainsApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> BusinessDomainsApi::getSystemBusinessDomainsCount(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> BusinessDomainsApi::getSystemBusinessDomainsCount(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BusinessDomainDtoCollectionQueryParameters>> businessDomainDtoCollectionQueryParameters) const
 {
 
 
@@ -472,6 +490,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> BusinessDomainsApi::getSystemBusiness
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -489,11 +509,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> BusinessDomainsApi::getSystemBusiness
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (businessDomainDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*businessDomainDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(businessDomainDtoCollectionQueryParameters && (*businessDomainDtoCollectionQueryParameters).get())
+        {
+            (*businessDomainDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("businessDomainDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

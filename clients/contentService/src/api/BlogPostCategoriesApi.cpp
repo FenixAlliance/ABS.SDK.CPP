@@ -36,7 +36,7 @@ BlogPostCategoriesApi::~BlogPostCategoriesApi()
 {
 }
 
-pplx::task<std::shared_ptr<Int32Envelope>> BlogPostCategoriesApi::countBlogPostCategoriesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> BlogPostCategoriesApi::countBlogPostCategoriesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BlogPostCategoryDtoCollectionQueryParameters>> blogPostCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> BlogPostCategoriesApi::countBlogPostC
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -97,11 +99,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> BlogPostCategoriesApi::countBlogPostC
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (blogPostCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*blogPostCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(blogPostCategoryDtoCollectionQueryParameters && (*blogPostCategoryDtoCollectionQueryParameters).get())
+        {
+            (*blogPostCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("blogPostCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -457,7 +475,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> BlogPostCategoriesApi::deleteBlogPost
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<BlogPostCategoryDtoListEnvelope>> BlogPostCategoriesApi::getBlogPostCategoriesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<BlogPostCategoryDtoListEnvelope>> BlogPostCategoriesApi::getBlogPostCategoriesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<BlogPostCategoryDtoCollectionQueryParameters>> blogPostCategoryDtoCollectionQueryParameters) const
 {
 
 
@@ -498,6 +516,8 @@ pplx::task<std::shared_ptr<BlogPostCategoryDtoListEnvelope>> BlogPostCategoriesA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -518,11 +538,27 @@ pplx::task<std::shared_ptr<BlogPostCategoryDtoListEnvelope>> BlogPostCategoriesA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (blogPostCategoryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*blogPostCategoryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(blogPostCategoryDtoCollectionQueryParameters && (*blogPostCategoryDtoCollectionQueryParameters).get())
+        {
+            (*blogPostCategoryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("blogPostCategoryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -726,7 +762,7 @@ pplx::task<std::shared_ptr<BlogPostCategoryDtoEnvelope>> BlogPostCategoriesApi::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> BlogPostCategoriesApi::patchBlogPostCategoryAsync(utility::string_t tenantId, utility::string_t blogPostCategoryId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> BlogPostCategoriesApi::patchBlogPostCategoryAsync(utility::string_t tenantId, utility::string_t blogPostCategoryId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -794,7 +830,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> BlogPostCategoriesApi::patchBlogPostC
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -812,11 +848,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> BlogPostCategoriesApi::patchBlogPostC
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

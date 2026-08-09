@@ -26,11 +26,13 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/VoyageCreateDto.h"
+#include "CppRestOpenAPIClient/model/VoyageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/VoyageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/VoyageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/VoyagePortCallCreateDto.h"
+#include "CppRestOpenAPIClient/model/VoyagePortCallDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/VoyagePortCallDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/VoyagePortCallUpdateDto.h"
 #include "CppRestOpenAPIClient/model/VoyageUpdateDto.h"
@@ -181,11 +183,13 @@ public:
     /// <param name="voyageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="voyagePortCallDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<VoyagePortCallDtoListEnvelope>> getVoyagePortCallsAsync(
         utility::string_t tenantId,
         utility::string_t voyageId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<VoyagePortCallDtoCollectionQueryParameters>> voyagePortCallDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get voyage port calls count
@@ -197,11 +201,13 @@ public:
     /// <param name="voyageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="voyagePortCallDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getVoyagePortCallsCountAsync(
         utility::string_t tenantId,
         utility::string_t voyageId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<VoyagePortCallDtoCollectionQueryParameters>> voyagePortCallDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all voyages
@@ -212,10 +218,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="voyageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<VoyageDtoListEnvelope>> getVoyagesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<VoyageDtoCollectionQueryParameters>> voyageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get voyages count
@@ -226,10 +234,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="voyageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getVoyagesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<VoyageDtoCollectionQueryParameters>> voyageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a voyage
@@ -241,13 +251,13 @@ public:
     /// <param name="voyageId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchVoyageAsync(
         utility::string_t tenantId,
         utility::string_t voyageId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a voyage port call
@@ -260,14 +270,14 @@ public:
     /// <param name="portCallId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchVoyagePortCallAsync(
         utility::string_t tenantId,
         utility::string_t voyageId,
         utility::string_t portCallId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Start a voyage

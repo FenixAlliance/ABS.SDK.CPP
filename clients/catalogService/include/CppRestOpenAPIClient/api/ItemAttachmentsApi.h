@@ -26,10 +26,11 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemAttachmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemAttachmentUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -108,10 +109,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemAttachmentDtoListEnvelope>> getItemAttachmentsAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemAttachmentDtoCollectionQueryParameters>> itemAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item attachment
@@ -123,13 +126,13 @@ public:
     /// <param name="itemAttachmentId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemAttachmentAsync(
         utility::string_t tenantId,
         utility::string_t itemAttachmentId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item attachment

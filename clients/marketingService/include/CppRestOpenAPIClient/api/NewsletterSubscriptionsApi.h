@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/NewsletterSubscriptionCreateDto.h"
+#include "CppRestOpenAPIClient/model/NewsletterSubscriptionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/NewsletterSubscriptionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/NewsletterSubscriptionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/NewsletterSubscriptionUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="newsletterSubscriptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<NewsletterSubscriptionDtoListEnvelope>> getNewsletterSubscriptionsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NewsletterSubscriptionDtoCollectionQueryParameters>> newsletterSubscriptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get newsletter subscriptions count
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="newsletterSubscriptionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getNewsletterSubscriptionsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<NewsletterSubscriptionDtoCollectionQueryParameters>> newsletterSubscriptionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a newsletter subscription

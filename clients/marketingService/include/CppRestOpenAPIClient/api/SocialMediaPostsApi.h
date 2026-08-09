@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SocialMediaPostCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialMediaPostDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialMediaPostDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialMediaPostDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialMediaPostUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialMediaPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSocialMediaPostsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialMediaPostDtoCollectionQueryParameters>> socialMediaPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social media posts
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialMediaPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialMediaPostDtoListEnvelope>> getSocialMediaPostsODataAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialMediaPostDtoCollectionQueryParameters>> socialMediaPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a social media post
@@ -138,13 +143,13 @@ public:
     /// <param name="socialmediapostId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSocialMediaPostAsync(
         utility::string_t tenantId,
         utility::string_t socialmediapostId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a social media post

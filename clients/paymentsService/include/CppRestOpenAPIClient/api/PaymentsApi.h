@@ -25,8 +25,9 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PaymentCreateDto.h"
+#include "CppRestOpenAPIClient/model/PaymentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentUpdateDto.h"
 #include <vector>
@@ -105,8 +106,10 @@ public:
     /// Gets all payments for the current tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="paymentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentDtoListEnvelope>> getPaymentsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<PaymentDtoCollectionQueryParameters>> paymentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a payment
@@ -116,11 +119,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="paymentId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPaymentAsync(
         utility::string_t tenantId,
         utility::string_t paymentId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a payment

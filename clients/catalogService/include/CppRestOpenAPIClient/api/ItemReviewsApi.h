@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReviewCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemReviewDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemReviewDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReviewDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemReviewUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -107,10 +108,12 @@ public:
     /// <param name="itemId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemReviewDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemReviewDtoListEnvelope>> getItemReviewsAsync(
         utility::string_t itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemReviewDtoCollectionQueryParameters>> itemReviewDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item review
@@ -122,13 +125,13 @@ public:
     /// <param name="itemReviewId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchItemReviewAsync(
         utility::string_t tenantId,
         utility::string_t itemReviewId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item review

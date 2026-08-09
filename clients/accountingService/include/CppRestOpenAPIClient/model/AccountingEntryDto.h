@@ -69,6 +69,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::datetime getTimestamp() const;
+    bool timestampIsSet() const;
+    void unsetTimestamp();
+
+    void setTimestamp(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTenantId() const;
     bool tenantIdIsSet() const;
     void unsetTenantId();
@@ -231,15 +240,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::datetime getTimestamp() const;
-    bool timestampIsSet() const;
-    void unsetTimestamp();
-
-    void setTimestamp(const utility::datetime& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getDebit() const;
     bool debitIsSet() const;
     void unsetDebit();
@@ -277,6 +277,8 @@ public:
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
+    utility::datetime m_Timestamp;
+    bool m_TimestampIsSet;
     utility::string_t m_TenantId;
     bool m_TenantIdIsSet;
     utility::string_t m_EnrollmentId;
@@ -313,8 +315,6 @@ protected:
     bool m_CostCentreIdIsSet;
     utility::string_t m_ProjectId;
     bool m_ProjectIdIsSet;
-    utility::datetime m_Timestamp;
-    bool m_TimestampIsSet;
     double m_Debit;
     bool m_DebitIsSet;
     double m_Credit;

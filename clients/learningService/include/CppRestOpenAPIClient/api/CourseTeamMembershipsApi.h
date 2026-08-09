@@ -25,10 +25,11 @@
 
 #include "CppRestOpenAPIClient/model/CourseTeamMembershipCreateDto.h"
 #include "CppRestOpenAPIClient/model/CourseTeamMembershipDto.h"
+#include "CppRestOpenAPIClient/model/CourseTeamMembershipDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CourseTeamMembershipUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -105,10 +106,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseTeamMembershipDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::vector<std::shared_ptr<CourseTeamMembershipDto>>> getCourseTeamMembershipsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseTeamMembershipDtoCollectionQueryParameters>> courseTeamMembershipDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get course team memberships count
@@ -119,10 +122,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="courseTeamMembershipDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<int32_t> getCourseTeamMembershipsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CourseTeamMembershipDtoCollectionQueryParameters>> courseTeamMembershipDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a course team membership
@@ -134,13 +139,13 @@ public:
     /// <param name="membershipId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCourseTeamMembershipAsync(
         utility::string_t tenantId,
         utility::string_t membershipId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a course team membership

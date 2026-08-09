@@ -36,7 +36,7 @@ AccountingSummaryApi::~AccountingSummaryApi()
 {
 }
 
-pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getCreditsSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getCreditsSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getCreditsSum
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -97,11 +99,27 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getCreditsSum
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (accountingEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*accountingEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(accountingEntryDtoCollectionQueryParameters && (*accountingEntryDtoCollectionQueryParameters).get())
+        {
+            (*accountingEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("accountingEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -170,7 +188,7 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getCreditsSum
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getDebitsSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getDebitsSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AccountingEntryDtoCollectionQueryParameters>> accountingEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -211,6 +229,8 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getDebitsSumA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -231,11 +251,27 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getDebitsSumA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (accountingEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*accountingEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(accountingEntryDtoCollectionQueryParameters && (*accountingEntryDtoCollectionQueryParameters).get())
+        {
+            (*accountingEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("accountingEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -304,7 +340,7 @@ pplx::task<std::shared_ptr<DecimalEnvelope>> AccountingSummaryApi::getDebitsSumA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getExpensesSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getExpensesSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -345,6 +381,8 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getExpensesSumA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -365,11 +403,27 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getExpensesSumA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (journalEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*journalEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(journalEntryDtoCollectionQueryParameters && (*journalEntryDtoCollectionQueryParameters).get())
+        {
+            (*journalEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("journalEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -438,7 +492,7 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getExpensesSumA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getIncomesSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getIncomesSumAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JournalEntryDtoCollectionQueryParameters>> journalEntryDtoCollectionQueryParameters) const
 {
 
 
@@ -479,6 +533,8 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getIncomesSumAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -499,11 +555,27 @@ pplx::task<std::shared_ptr<MoneyEnvelope>> AccountingSummaryApi::getIncomesSumAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (journalEntryDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*journalEntryDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(journalEntryDtoCollectionQueryParameters && (*journalEntryDtoCollectionQueryParameters).get())
+        {
+            (*journalEntryDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("journalEntryDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

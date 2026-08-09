@@ -26,11 +26,12 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalIdentificationTypeCreateDto.h"
+#include "CppRestOpenAPIClient/model/FiscalIdentificationTypeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/FiscalIdentificationTypeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalIdentificationTypeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/FiscalIdentificationTypeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -112,11 +113,13 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalIdentificationTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<FiscalIdentificationTypeDtoListEnvelope>> getFiscalIdentificationTypes(
         utility::string_t tenantId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalIdentificationTypeDtoCollectionQueryParameters>> fiscalIdentificationTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get fiscal identification types count
@@ -128,11 +131,13 @@ public:
     /// <param name="authorityId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fiscalIdentificationTypeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getFiscalIdentificationTypesCount(
         utility::string_t tenantId,
         utility::string_t authorityId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<FiscalIdentificationTypeDtoCollectionQueryParameters>> fiscalIdentificationTypeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a fiscal identification type
@@ -144,13 +149,13 @@ public:
     /// <param name="identificationTypeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchFiscalIdentificationTypeAsync(
         utility::string_t tenantId,
         utility::string_t identificationTypeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a fiscal identification type

@@ -36,7 +36,7 @@ CurrenciesApi::~CurrenciesApi()
 {
 }
 
-pplx::task<std::shared_ptr<Int32Envelope>> CurrenciesApi::countCurrenciesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CurrenciesApi::countCurrenciesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CurrencyDtoCollectionQueryParameters>> currencyDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CurrenciesApi::countCurrenciesAsync(b
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -94,11 +96,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CurrenciesApi::countCurrenciesAsync(b
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (currencyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*currencyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(currencyDtoCollectionQueryParameters && (*currencyDtoCollectionQueryParameters).get())
+        {
+            (*currencyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("currencyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -299,7 +317,7 @@ pplx::task<std::shared_ptr<CurrencyDtoEnvelope>> CurrenciesApi::getCurrencyByIdA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> CurrenciesApi::getEnabledCurrenciesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> CurrenciesApi::getEnabledCurrenciesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CurrencyDtoCollectionQueryParameters>> currencyDtoCollectionQueryParameters) const
 {
 
 
@@ -340,6 +358,8 @@ pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> CurrenciesApi::getEnabledCu
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -357,11 +377,27 @@ pplx::task<std::shared_ptr<CurrencyDtoListEnvelope>> CurrenciesApi::getEnabledCu
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (currencyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*currencyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(currencyDtoCollectionQueryParameters && (*currencyDtoCollectionQueryParameters).get())
+        {
+            (*currencyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("currencyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

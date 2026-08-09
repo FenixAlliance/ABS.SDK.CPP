@@ -1135,7 +1135,7 @@ pplx::task<std::shared_ptr<BooleanEnvelope>> RecordsApi::isItemAlreadyInCart(uti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> RecordsApi::patchItemCartRecord(utility::string_t recordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> RecordsApi::patchItemCartRecord(utility::string_t recordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1200,7 +1200,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RecordsApi::patchItemCartRecord(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1218,11 +1218,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RecordsApi::patchItemCartRecord(utili
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

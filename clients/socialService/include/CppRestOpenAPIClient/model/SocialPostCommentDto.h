@@ -23,12 +23,15 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "CppRestOpenAPIClient/model/SocialPostReactionFacepileDto.h"
+#include <vector>
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
+class SocialPostReactionFacepileDto;
 
 
 /// <summary>
@@ -130,6 +133,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getSocialProfileType() const;
+    bool socialProfileTypeIsSet() const;
+    void unsetSocialProfileType();
+
+    void setSocialProfileType(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getBodyHtml() const;
     bool bodyHtmlIsSet() const;
     void unsetBodyHtml();
@@ -148,11 +160,56 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    int32_t getReplyCount() const;
+    bool replyCountIsSet() const;
+    void unsetReplyCount();
+
+    void setReplyCount(int32_t value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    int32_t getReactionsCount() const;
+    bool reactionsCountIsSet() const;
+    void unsetReactionsCount();
+
+    void setReactionsCount(int32_t value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getSocialPostId() const;
     bool socialPostIdIsSet() const;
     void unsetSocialPostId();
 
     void setSocialPostId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::vector<std::shared_ptr<SocialPostReactionFacepileDto>>& getFacepile();
+    bool facepileIsSet() const;
+    void unsetFacepile();
+
+    void setFacepile(const std::vector<std::shared_ptr<SocialPostReactionFacepileDto>>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getMyReaction() const;
+    bool myReactionIsSet() const;
+    void unsetMyReaction();
+
+    void setMyReaction(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getMyReactionId() const;
+    bool myReactionIdIsSet() const;
+    void unsetMyReactionId();
+
+    void setMyReactionId(const utility::string_t& value);
 
 
 protected:
@@ -172,12 +229,24 @@ protected:
     bool m_SocialProfileNameIsSet;
     utility::string_t m_SocialProfileAvatarUrl;
     bool m_SocialProfileAvatarUrlIsSet;
+    utility::string_t m_SocialProfileType;
+    bool m_SocialProfileTypeIsSet;
     utility::string_t m_BodyHtml;
     bool m_BodyHtmlIsSet;
     utility::string_t m_BodyFormat;
     bool m_BodyFormatIsSet;
+    int32_t m_ReplyCount;
+    bool m_ReplyCountIsSet;
+    int32_t m_ReactionsCount;
+    bool m_ReactionsCountIsSet;
     utility::string_t m_SocialPostId;
     bool m_SocialPostIdIsSet;
+    std::vector<std::shared_ptr<SocialPostReactionFacepileDto>> m_Facepile;
+    bool m_FacepileIsSet;
+    utility::string_t m_MyReaction;
+    bool m_MyReactionIsSet;
+    utility::string_t m_MyReactionId;
+    bool m_MyReactionIdIsSet;
 };
 
 

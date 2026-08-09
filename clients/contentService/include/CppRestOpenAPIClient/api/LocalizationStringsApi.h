@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LocalizationStringCreateDto.h"
+#include "CppRestOpenAPIClient/model/LocalizationStringDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LocalizationStringDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocalizationStringDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LocalizationStringUpdateDto.h"
@@ -59,10 +60,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="localizationStringDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countLocalizationStringsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocalizationStringDtoCollectionQueryParameters>> localizationStringDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a localization string
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="localizationStringDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LocalizationStringDtoListEnvelope>> getLocalizationStringsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LocalizationStringDtoCollectionQueryParameters>> localizationStringDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a localization string

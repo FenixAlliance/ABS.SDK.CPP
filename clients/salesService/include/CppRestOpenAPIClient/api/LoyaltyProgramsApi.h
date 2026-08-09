@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LoyaltyProgramCreateDto.h"
+#include "CppRestOpenAPIClient/model/LoyaltyProgramDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LoyaltyProgramDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoyaltyProgramDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LoyaltyProgramUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -59,8 +60,10 @@ public:
     /// Returns the total count of loyalty programs for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="loyaltyProgramDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countLoyaltyProgramsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<LoyaltyProgramDtoCollectionQueryParameters>> loyaltyProgramDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a loyalty program
@@ -105,8 +108,10 @@ public:
     /// Retrieves a list of loyalty programs for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="loyaltyProgramDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LoyaltyProgramDtoListEnvelope>> getLoyaltyProgramsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<LoyaltyProgramDtoCollectionQueryParameters>> loyaltyProgramDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a loyalty program
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="loyaltyProgramId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLoyaltyProgramAsync(
         utility::string_t tenantId,
         utility::string_t loyaltyProgramId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a loyalty program

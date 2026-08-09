@@ -142,6 +142,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getReceiverTenantId() const;
+    bool receiverTenantIdIsSet() const;
+    void unsetReceiverTenantId();
+
+    void setReceiverTenantId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getFirstName() const;
     bool firstNameIsSet() const;
     void unsetFirstName();
@@ -574,15 +583,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getReceiverTenantId() const;
-    bool receiverTenantIdIsSet() const;
-    void unsetReceiverTenantId();
-
-    void setReceiverTenantId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getShippingLocationId() const;
     bool shippingLocationIdIsSet() const;
     void unsetShippingLocationId();
@@ -699,6 +699,8 @@ protected:
     bool m_PaymentTermIdIsSet;
     utility::string_t m_OrganizationId;
     bool m_OrganizationIdIsSet;
+    utility::string_t m_ReceiverTenantId;
+    bool m_ReceiverTenantIdIsSet;
     utility::string_t m_FirstName;
     bool m_FirstNameIsSet;
     utility::string_t m_LastName;
@@ -795,8 +797,6 @@ protected:
     bool m_QuoteStatusIsSet;
     utility::string_t m_FreightTerms;
     bool m_FreightTermsIsSet;
-    utility::string_t m_ReceiverTenantId;
-    bool m_ReceiverTenantIdIsSet;
     utility::string_t m_ShippingLocationId;
     bool m_ShippingLocationIdIsSet;
     utility::string_t m_QualifiedIdentifier;

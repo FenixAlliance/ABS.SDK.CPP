@@ -26,12 +26,14 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/RoadWaybillCreateDto.h"
+#include "CppRestOpenAPIClient/model/RoadWaybillDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/RoadWaybillDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/RoadWaybillDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/RoadWaybillUpdateDto.h"
 #include "CppRestOpenAPIClient/model/WaybillLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/WaybillLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WaybillLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WaybillLineUpdateDto.h"
 #include <vector>
@@ -163,11 +165,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> getRoadWaybillLinesAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get road waybill lines count
@@ -179,11 +183,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRoadWaybillLinesCountAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all road waybills
@@ -194,10 +200,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="roadWaybillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> getRoadWaybillsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RoadWaybillDtoCollectionQueryParameters>> roadWaybillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get road waybills count
@@ -208,10 +216,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="roadWaybillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRoadWaybillsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RoadWaybillDtoCollectionQueryParameters>> roadWaybillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Issue a road waybill
@@ -271,13 +281,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRoadWaybillAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a road waybill line
@@ -290,14 +300,14 @@ public:
     /// <param name="lineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRoadWaybillLineAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         utility::string_t lineId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Remove a road waybill line

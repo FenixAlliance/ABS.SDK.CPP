@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/RequiredSkillRecordCreateDto.h"
+#include "CppRestOpenAPIClient/model/RequiredSkillRecordDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/RequiredSkillRecordDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/RequiredSkillRecordDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/RequiredSkillRecordUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="requiredSkillRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<RequiredSkillRecordDtoListEnvelope>> getRequiredSkillsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RequiredSkillRecordDtoCollectionQueryParameters>> requiredSkillRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count required skills
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="requiredSkillRecordDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRequiredSkillsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RequiredSkillRecordDtoCollectionQueryParameters>> requiredSkillRecordDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a required skill
@@ -138,13 +143,13 @@ public:
     /// <param name="requiredSkillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRequiredSkillAsync(
         utility::string_t tenantId,
         utility::string_t requiredSkillId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a required skill

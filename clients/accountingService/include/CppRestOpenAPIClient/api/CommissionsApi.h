@@ -24,14 +24,16 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/CommissionCreateDto.h"
+#include "CppRestOpenAPIClient/model/CommissionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CommissionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CommissionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/CommissionUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PaymentCommissionCreateDto.h"
+#include "CppRestOpenAPIClient/model/PaymentCommissionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PaymentCommissionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentCommissionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PaymentCommissionUpdateDto.h"
@@ -145,10 +147,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="commissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> getCommissionsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CommissionDtoCollectionQueryParameters>> commissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of commissions for a tenant
@@ -159,10 +163,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="commissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getCommissionsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CommissionDtoCollectionQueryParameters>> commissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get a payment commission by id
@@ -189,10 +195,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentCommissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> getPaymentCommissionsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentCommissionDtoCollectionQueryParameters>> paymentCommissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of payment commissions for a tenant
@@ -203,10 +211,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="paymentCommissionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPaymentCommissionsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PaymentCommissionDtoCollectionQueryParameters>> paymentCommissionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a commission
@@ -218,13 +228,13 @@ public:
     /// <param name="commissionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchCommissionAsync(
         utility::string_t tenantId,
         utility::string_t commissionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a payment commission
@@ -236,13 +246,13 @@ public:
     /// <param name="paymentCommissionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPaymentCommissionAsync(
         utility::string_t tenantId,
         utility::string_t paymentCommissionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a commission

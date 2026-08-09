@@ -1037,7 +1037,7 @@ pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoEnvelope>> TaxPoliciesApi::g
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::getAppliedTaxPolicyRecords(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::getAppliedTaxPolicyRecords(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AppliedTaxPolicyRecordDtoCollectionQueryParameters>> appliedTaxPolicyRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -1079,6 +1079,8 @@ pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> TaxPoliciesAp
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1099,11 +1101,27 @@ pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> TaxPoliciesAp
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (appliedTaxPolicyRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*appliedTaxPolicyRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(appliedTaxPolicyRecordDtoCollectionQueryParameters && (*appliedTaxPolicyRecordDtoCollectionQueryParameters).get())
+        {
+            (*appliedTaxPolicyRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("appliedTaxPolicyRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1172,7 +1190,7 @@ pplx::task<std::shared_ptr<AppliedTaxPolicyRecordDtoListEnvelope>> TaxPoliciesAp
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getAppliedTaxPolicyRecordsCount(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getAppliedTaxPolicyRecordsCount(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<AppliedTaxPolicyRecordDtoCollectionQueryParameters>> appliedTaxPolicyRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -1214,6 +1232,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getAppliedTaxPolicyRe
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1234,11 +1254,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getAppliedTaxPolicyRe
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (appliedTaxPolicyRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*appliedTaxPolicyRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(appliedTaxPolicyRecordDtoCollectionQueryParameters && (*appliedTaxPolicyRecordDtoCollectionQueryParameters).get())
+        {
+            (*appliedTaxPolicyRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("appliedTaxPolicyRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1443,7 +1479,7 @@ pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoEnvelope>> TaxPoliciesApi::getI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::getItemTaxPolicyRecords(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::getItemTaxPolicyRecords(utility::string_t tenantId, utility::string_t taxPolicyId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ItemTaxPolicyRecordDtoCollectionQueryParameters>> itemTaxPolicyRecordDtoCollectionQueryParameters) const
 {
 
 
@@ -1485,6 +1521,8 @@ pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1505,11 +1543,27 @@ pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (itemTaxPolicyRecordDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*itemTaxPolicyRecordDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(itemTaxPolicyRecordDtoCollectionQueryParameters && (*itemTaxPolicyRecordDtoCollectionQueryParameters).get())
+        {
+            (*itemTaxPolicyRecordDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("itemTaxPolicyRecordDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1578,7 +1632,7 @@ pplx::task<std::shared_ptr<ItemTaxPolicyRecordDtoListEnvelope>> TaxPoliciesApi::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPolicies(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPolicies(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -1619,6 +1673,8 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1639,11 +1695,27 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (taxPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*taxPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(taxPolicyDtoCollectionQueryParameters && (*taxPolicyDtoCollectionQueryParameters).get())
+        {
+            (*taxPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("taxPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1712,7 +1784,7 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoliciesByAuthority(utility::string_t tenantId, utility::string_t authorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoliciesByAuthority(utility::string_t tenantId, utility::string_t authorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -1754,6 +1826,8 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1774,11 +1848,27 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (taxPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*taxPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(taxPolicyDtoCollectionQueryParameters && (*taxPolicyDtoCollectionQueryParameters).get())
+        {
+            (*taxPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("taxPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1847,7 +1937,7 @@ pplx::task<std::shared_ptr<TaxPolicyDtoListEnvelope>> TaxPoliciesApi::getTaxPoli
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getTaxPoliciesCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getTaxPoliciesCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TaxPolicyDtoCollectionQueryParameters>> taxPolicyDtoCollectionQueryParameters) const
 {
 
 
@@ -1888,6 +1978,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getTaxPoliciesCount(u
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1908,11 +2000,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> TaxPoliciesApi::getTaxPoliciesCount(u
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (taxPolicyDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*taxPolicyDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(taxPolicyDtoCollectionQueryParameters && (*taxPolicyDtoCollectionQueryParameters).get())
+        {
+            (*taxPolicyDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("taxPolicyDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -2116,7 +2224,7 @@ pplx::task<std::shared_ptr<TaxPolicyDtoEnvelope>> TaxPoliciesApi::getTaxPolicy(u
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchAppliedTaxPolicyRecord(utility::string_t tenantId, utility::string_t taxPolicyId, utility::string_t appliedTaxPolicyRecordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchAppliedTaxPolicyRecord(utility::string_t tenantId, utility::string_t taxPolicyId, utility::string_t appliedTaxPolicyRecordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2185,7 +2293,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchAppliedTaxPolicy
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2203,11 +2311,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchAppliedTaxPolicy
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2281,7 +2389,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchAppliedTaxPolicy
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchItemTaxPolicyRecord(utility::string_t tenantId, utility::string_t taxPolicyId, utility::string_t itemTaxPolicyRecordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchItemTaxPolicyRecord(utility::string_t tenantId, utility::string_t taxPolicyId, utility::string_t itemTaxPolicyRecordId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2350,7 +2458,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchItemTaxPolicyRec
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2368,11 +2476,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchItemTaxPolicyRec
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -2446,7 +2554,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchItemTaxPolicyRec
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchTaxPolicy(utility::string_t tenantId, utility::string_t id, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchTaxPolicy(utility::string_t tenantId, utility::string_t id, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2514,7 +2622,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchTaxPolicy(utilit
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2532,11 +2640,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> TaxPoliciesApi::patchTaxPolicy(utilit
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

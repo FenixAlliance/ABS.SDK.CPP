@@ -94,6 +94,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getCategory() const;
+    bool categoryIsSet() const;
+    void unsetCategory();
+
+    void setCategory(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
     void unsetDescription();
@@ -119,6 +128,8 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_TenantId;
     bool m_TenantIdIsSet;
+    utility::string_t m_Category;
+    bool m_CategoryIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
     bool m_IsSystemPermission;

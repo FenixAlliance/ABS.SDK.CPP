@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramCreateDto.h"
+#include "CppRestOpenAPIClient/model/TrainingProgramDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/TrainingProgramUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trainingProgramDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<TrainingProgramDtoListEnvelope>> getTrainingProgramsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrainingProgramDtoCollectionQueryParameters>> trainingProgramDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count training programs
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="trainingProgramDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getTrainingProgramsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<TrainingProgramDtoCollectionQueryParameters>> trainingProgramDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a training program

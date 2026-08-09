@@ -27,6 +27,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/PayrollPeriodCreateDto.h"
+#include "CppRestOpenAPIClient/model/PayrollPeriodDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PayrollPeriodDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PayrollPeriodDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PayrollPeriodUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="payrollPeriodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PayrollPeriodDtoListEnvelope>> getPayrollPeriodsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PayrollPeriodDtoCollectionQueryParameters>> payrollPeriodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count payroll periods
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="payrollPeriodDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPayrollPeriodsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<PayrollPeriodDtoCollectionQueryParameters>> payrollPeriodDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update a payroll period

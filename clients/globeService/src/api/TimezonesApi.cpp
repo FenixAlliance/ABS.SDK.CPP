@@ -36,7 +36,7 @@ TimezonesApi::~TimezonesApi()
 {
 }
 
-pplx::task<std::shared_ptr<Int32Envelope>> TimezonesApi::countTimezonesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> TimezonesApi::countTimezonesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TimezoneDtoCollectionQueryParameters>> timezoneDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> TimezonesApi::countTimezonesAsync(boo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -94,11 +96,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> TimezonesApi::countTimezonesAsync(boo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (timezoneDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*timezoneDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(timezoneDtoCollectionQueryParameters && (*timezoneDtoCollectionQueryParameters).get())
+        {
+            (*timezoneDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("timezoneDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -299,7 +317,7 @@ pplx::task<std::shared_ptr<TimezoneDtoEnvelope>> TimezonesApi::getTimeZoneByIdAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TimezoneDtoListEnvelope>> TimezonesApi::getTimeZonesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<TimezoneDtoListEnvelope>> TimezonesApi::getTimeZonesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<TimezoneDtoCollectionQueryParameters>> timezoneDtoCollectionQueryParameters) const
 {
 
 
@@ -340,6 +358,8 @@ pplx::task<std::shared_ptr<TimezoneDtoListEnvelope>> TimezonesApi::getTimeZonesA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -357,11 +377,27 @@ pplx::task<std::shared_ptr<TimezoneDtoListEnvelope>> TimezonesApi::getTimeZonesA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (timezoneDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*timezoneDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(timezoneDtoCollectionQueryParameters && (*timezoneDtoCollectionQueryParameters).get())
+        {
+            (*timezoneDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("timezoneDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

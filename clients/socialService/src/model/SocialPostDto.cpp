@@ -41,6 +41,14 @@ SocialPostDto::SocialPostDto()
     m_CommentsCountIsSet = false;
     m_ReactionsCount = 0;
     m_ReactionsCountIsSet = false;
+    m_SocialProfileType = utility::conversions::to_string_t("");
+    m_SocialProfileTypeIsSet = false;
+    m_BodyHtml = utility::conversions::to_string_t("");
+    m_BodyHtmlIsSet = false;
+    m_BodyFormat = utility::conversions::to_string_t("");
+    m_BodyFormatIsSet = false;
+    m_BackgroundStyle = utility::conversions::to_string_t("");
+    m_BackgroundStyleIsSet = false;
 }
 
 SocialPostDto::~SocialPostDto()
@@ -92,6 +100,22 @@ web::json::value SocialPostDto::toJson() const
     if(m_ReactionsCountIsSet)
     {
         val[utility::conversions::to_string_t(U("reactionsCount"))] = ModelBase::toJson(m_ReactionsCount);
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileType"))] = ModelBase::toJson(m_SocialProfileType);
+    }
+    if(m_BodyHtmlIsSet)
+    {
+        val[utility::conversions::to_string_t(U("bodyHtml"))] = ModelBase::toJson(m_BodyHtml);
+    }
+    if(m_BodyFormatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("bodyFormat"))] = ModelBase::toJson(m_BodyFormat);
+    }
+    if(m_BackgroundStyleIsSet)
+    {
+        val[utility::conversions::to_string_t(U("backgroundStyle"))] = ModelBase::toJson(m_BackgroundStyle);
     }
 
     return val;
@@ -191,6 +215,46 @@ bool SocialPostDto::fromJson(const web::json::value& val)
             setReactionsCount(refVal_setReactionsCount);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileType);
+            setSocialProfileType(refVal_setSocialProfileType);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("bodyHtml"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bodyHtml")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBodyHtml;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBodyHtml);
+            setBodyHtml(refVal_setBodyHtml);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("bodyFormat"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bodyFormat")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBodyFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBodyFormat);
+            setBodyFormat(refVal_setBodyFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("backgroundStyle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("backgroundStyle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBackgroundStyle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBackgroundStyle);
+            setBackgroundStyle(refVal_setBackgroundStyle);
+        }
+    }
     return ok;
 }
 
@@ -236,6 +300,22 @@ void SocialPostDto::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     if(m_ReactionsCountIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("reactionsCount")), m_ReactionsCount));
+    }
+    if(m_SocialProfileTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileType")), m_SocialProfileType));
+    }
+    if(m_BodyHtmlIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyHtml")), m_BodyHtml));
+    }
+    if(m_BodyFormatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyFormat")), m_BodyFormat));
+    }
+    if(m_BackgroundStyleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("backgroundStyle")), m_BackgroundStyle));
     }
 }
 
@@ -301,6 +381,30 @@ bool SocialPostDto::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         int32_t refVal_setReactionsCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("reactionsCount"))), refVal_setReactionsCount );
         setReactionsCount(refVal_setReactionsCount);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        utility::string_t refVal_setSocialProfileType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileType"))), refVal_setSocialProfileType );
+        setSocialProfileType(refVal_setSocialProfileType);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("bodyHtml"))))
+    {
+        utility::string_t refVal_setBodyHtml;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bodyHtml"))), refVal_setBodyHtml );
+        setBodyHtml(refVal_setBodyHtml);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("bodyFormat"))))
+    {
+        utility::string_t refVal_setBodyFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bodyFormat"))), refVal_setBodyFormat );
+        setBodyFormat(refVal_setBodyFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("backgroundStyle"))))
+    {
+        utility::string_t refVal_setBackgroundStyle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("backgroundStyle"))), refVal_setBackgroundStyle );
+        setBackgroundStyle(refVal_setBackgroundStyle);
     }
     return ok;
 }
@@ -484,6 +588,86 @@ bool SocialPostDto::reactionsCountIsSet() const
 void SocialPostDto::unsetReactionsCount()
 {
     m_ReactionsCountIsSet = false;
+}
+utility::string_t SocialPostDto::getSocialProfileType() const
+{
+    return m_SocialProfileType;
+}
+
+void SocialPostDto::setSocialProfileType(const utility::string_t& value)
+{
+    m_SocialProfileType = value;
+    m_SocialProfileTypeIsSet = true;
+}
+
+bool SocialPostDto::socialProfileTypeIsSet() const
+{
+    return m_SocialProfileTypeIsSet;
+}
+
+void SocialPostDto::unsetSocialProfileType()
+{
+    m_SocialProfileTypeIsSet = false;
+}
+utility::string_t SocialPostDto::getBodyHtml() const
+{
+    return m_BodyHtml;
+}
+
+void SocialPostDto::setBodyHtml(const utility::string_t& value)
+{
+    m_BodyHtml = value;
+    m_BodyHtmlIsSet = true;
+}
+
+bool SocialPostDto::bodyHtmlIsSet() const
+{
+    return m_BodyHtmlIsSet;
+}
+
+void SocialPostDto::unsetBodyHtml()
+{
+    m_BodyHtmlIsSet = false;
+}
+utility::string_t SocialPostDto::getBodyFormat() const
+{
+    return m_BodyFormat;
+}
+
+void SocialPostDto::setBodyFormat(const utility::string_t& value)
+{
+    m_BodyFormat = value;
+    m_BodyFormatIsSet = true;
+}
+
+bool SocialPostDto::bodyFormatIsSet() const
+{
+    return m_BodyFormatIsSet;
+}
+
+void SocialPostDto::unsetBodyFormat()
+{
+    m_BodyFormatIsSet = false;
+}
+utility::string_t SocialPostDto::getBackgroundStyle() const
+{
+    return m_BackgroundStyle;
+}
+
+void SocialPostDto::setBackgroundStyle(const utility::string_t& value)
+{
+    m_BackgroundStyle = value;
+    m_BackgroundStyleIsSet = true;
+}
+
+bool SocialPostDto::backgroundStyleIsSet() const
+{
+    return m_BackgroundStyleIsSet;
+}
+
+void SocialPostDto::unsetBackgroundStyle()
+{
+    m_BackgroundStyleIsSet = false;
 }
 }
 }

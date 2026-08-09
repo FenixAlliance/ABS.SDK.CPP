@@ -26,11 +26,16 @@
 #include "CppRestOpenAPIClient/model/EmailDispatchRequest.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedUserDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedUserDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ExtendedUserDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/SetUserPasswordDto.h"
+#include "CppRestOpenAPIClient/model/UserAdminDetailDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/UserAdminUpdateDto.h"
 #include "CppRestOpenAPIClient/model/UserCreateDto.h"
+#include "CppRestOpenAPIClient/model/UserDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/UserDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/UserDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/UserUpdateDto.h"
@@ -137,9 +142,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedUserDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedUserDtoListEnvelope>> getExtendedUsersAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedUserDtoCollectionQueryParameters>> extendedUserDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of extended users
@@ -149,7 +156,25 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="extendedUserDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getExtendedUsersCountAsync(
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ExtendedUserDtoCollectionQueryParameters>> extendedUserDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
+    /// Retrieve the admin detail aggregate for a user
+    /// </summary>
+    /// <remarks>
+    /// Returns the user&#39;s orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.
+    /// </remarks>
+    /// <param name="userId"></param>
+    /// <param name="tenantId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<UserAdminDetailDtoEnvelope>> getUserAdminDetailAsync(
+        utility::string_t userId,
+        utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;
@@ -175,9 +200,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="userDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<UserDtoListEnvelope>> getUsersAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UserDtoCollectionQueryParameters>> userDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of users
@@ -187,9 +214,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="userDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getUsersCountAsync(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UserDtoCollectionQueryParameters>> userDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially update a user
@@ -200,12 +229,44 @@ public:
     /// <param name="userId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAccountHolderAsync(
         utility::string_t userId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
+    ) const;
+    /// <summary>
+    /// Set a user&#39;s password
+    /// </summary>
+    /// <remarks>
+    /// Replaces the user&#39;s password with the supplied value. Global administrators only.
+    /// </remarks>
+    /// <param name="userId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="setUserPasswordDto"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> setUserPasswordAsync(
+        utility::string_t userId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SetUserPasswordDto>> setUserPasswordDto
+    ) const;
+    /// <summary>
+    /// Update a user&#39;s admin-managed profile
+    /// </summary>
+    /// <remarks>
+    /// Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.
+    /// </remarks>
+    /// <param name="userId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="userAdminUpdateDto"> (optional)</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> updateAccountHolderAdminProfileAsync(
+        utility::string_t userId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<UserAdminUpdateDto>> userAdminUpdateDto
     ) const;
     /// <summary>
     /// Update a user

@@ -26,9 +26,10 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SigningProfileGraphicalRepresentationCreateDto.h"
 #include "CppRestOpenAPIClient/model/SigningProfileGraphicalRepresentationDto.h"
+#include "CppRestOpenAPIClient/model/SigningProfileGraphicalRepresentationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SigningProfileGraphicalRepresentationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SigningProfileGraphicalRepresentationUpdateDto.h"
 #include <vector>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingProfileGraphicalRepresentationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SigningProfileGraphicalRepresentationDtoListEnvelope>> getSigningProfileGraphicalRepresentationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningProfileGraphicalRepresentationDtoCollectionQueryParameters>> signingProfileGraphicalRepresentationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signature representations count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingProfileGraphicalRepresentationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSigningProfileGraphicalRepresentationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningProfileGraphicalRepresentationDtoCollectionQueryParameters>> signingProfileGraphicalRepresentationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a signature representation
@@ -138,13 +143,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSigningProfileGraphicalRepresentationAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a signature representation

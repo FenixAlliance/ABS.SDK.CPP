@@ -31,6 +31,8 @@ SecurityPermissionDto::SecurityPermissionDto()
     m_NameIsSet = false;
     m_TenantId = utility::conversions::to_string_t("");
     m_TenantIdIsSet = false;
+    m_Category = utility::conversions::to_string_t("");
+    m_CategoryIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_IsSystemPermission = false;
@@ -66,6 +68,10 @@ web::json::value SecurityPermissionDto::toJson() const
     if(m_TenantIdIsSet)
     {
         val[utility::conversions::to_string_t(U("tenantId"))] = ModelBase::toJson(m_TenantId);
+    }
+    if(m_CategoryIsSet)
+    {
+        val[utility::conversions::to_string_t(U("category"))] = ModelBase::toJson(m_Category);
     }
     if(m_DescriptionIsSet)
     {
@@ -123,6 +129,16 @@ bool SecurityPermissionDto::fromJson(const web::json::value& val)
             setTenantId(refVal_setTenantId);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("category"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("category")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCategory;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCategory);
+            setCategory(refVal_setCategory);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("description")));
@@ -169,6 +185,10 @@ void SecurityPermissionDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("tenantId")), m_TenantId));
     }
+    if(m_CategoryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("category")), m_Category));
+    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
@@ -211,6 +231,12 @@ bool SecurityPermissionDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setTenantId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("tenantId"))), refVal_setTenantId );
         setTenantId(refVal_setTenantId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("category"))))
+    {
+        utility::string_t refVal_setCategory;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("category"))), refVal_setCategory );
+        setCategory(refVal_setCategory);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
@@ -306,6 +332,26 @@ bool SecurityPermissionDto::tenantIdIsSet() const
 void SecurityPermissionDto::unsetTenantId()
 {
     m_TenantIdIsSet = false;
+}
+utility::string_t SecurityPermissionDto::getCategory() const
+{
+    return m_Category;
+}
+
+void SecurityPermissionDto::setCategory(const utility::string_t& value)
+{
+    m_Category = value;
+    m_CategoryIsSet = true;
+}
+
+bool SecurityPermissionDto::categoryIsSet() const
+{
+    return m_CategoryIsSet;
+}
+
+void SecurityPermissionDto::unsetCategory()
+{
+    m_CategoryIsSet = false;
 }
 utility::string_t SecurityPermissionDto::getDescription() const
 {

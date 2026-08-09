@@ -881,7 +881,7 @@ pplx::task<std::shared_ptr<RoadWaybillDtoEnvelope>> RoadWaybillsApi::getRoadWayb
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> RoadWaybillsApi::getRoadWaybillLinesAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> RoadWaybillsApi::getRoadWaybillLinesAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -923,6 +923,8 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> RoadWaybillsApi::getRoad
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -943,11 +945,27 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> RoadWaybillsApi::getRoad
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1016,7 +1034,7 @@ pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> RoadWaybillsApi::getRoad
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillLinesCountAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillLinesCountAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters) const
 {
 
 
@@ -1058,6 +1076,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillLinesC
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1078,11 +1098,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillLinesC
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (waybillLineDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*waybillLineDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(waybillLineDtoCollectionQueryParameters && (*waybillLineDtoCollectionQueryParameters).get())
+        {
+            (*waybillLineDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("waybillLineDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1151,7 +1187,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillLinesC
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> RoadWaybillsApi::getRoadWaybillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> RoadWaybillsApi::getRoadWaybillsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<RoadWaybillDtoCollectionQueryParameters>> roadWaybillDtoCollectionQueryParameters) const
 {
 
 
@@ -1192,6 +1228,8 @@ pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> RoadWaybillsApi::getRoad
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1212,11 +1250,27 @@ pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> RoadWaybillsApi::getRoad
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (roadWaybillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*roadWaybillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(roadWaybillDtoCollectionQueryParameters && (*roadWaybillDtoCollectionQueryParameters).get())
+        {
+            (*roadWaybillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("roadWaybillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1285,7 +1339,7 @@ pplx::task<std::shared_ptr<RoadWaybillDtoListEnvelope>> RoadWaybillsApi::getRoad
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<RoadWaybillDtoCollectionQueryParameters>> roadWaybillDtoCollectionQueryParameters) const
 {
 
 
@@ -1326,6 +1380,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillsCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1346,11 +1402,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> RoadWaybillsApi::getRoadWaybillsCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (roadWaybillDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*roadWaybillDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(roadWaybillDtoCollectionQueryParameters && (*roadWaybillDtoCollectionQueryParameters).get())
+        {
+            (*roadWaybillDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("roadWaybillDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1824,7 +1896,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::markRoadWaybillInTra
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillAsync(utility::string_t tenantId, utility::string_t waybillId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1892,7 +1964,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillAsyn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1910,11 +1982,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillAsyn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1988,7 +2060,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillAsyn
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillLineAsync(utility::string_t tenantId, utility::string_t waybillId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillLineAsync(utility::string_t tenantId, utility::string_t waybillId, utility::string_t lineId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -2057,7 +2129,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillLine
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -2075,11 +2147,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> RoadWaybillsApi::patchRoadWaybillLine
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

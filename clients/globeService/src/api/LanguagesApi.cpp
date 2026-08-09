@@ -36,7 +36,7 @@ LanguagesApi::~LanguagesApi()
 {
 }
 
-pplx::task<std::shared_ptr<Int32Envelope>> LanguagesApi::countLanguagesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LanguagesApi::countLanguagesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CountryLanguageDtoCollectionQueryParameters>> countryLanguageDtoCollectionQueryParameters) const
 {
 
 
@@ -77,6 +77,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LanguagesApi::countLanguagesAsync(boo
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -94,11 +96,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LanguagesApi::countLanguagesAsync(boo
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (countryLanguageDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*countryLanguageDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(countryLanguageDtoCollectionQueryParameters && (*countryLanguageDtoCollectionQueryParameters).get())
+        {
+            (*countryLanguageDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("countryLanguageDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -299,7 +317,7 @@ pplx::task<std::shared_ptr<CountryLanguageDtoEnvelope>> LanguagesApi::getLanguag
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CountryLanguageDtoListEnvelope>> LanguagesApi::getLanguagesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CountryLanguageDtoListEnvelope>> LanguagesApi::getLanguagesAsync(boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CountryLanguageDtoCollectionQueryParameters>> countryLanguageDtoCollectionQueryParameters) const
 {
 
 
@@ -340,6 +358,8 @@ pplx::task<std::shared_ptr<CountryLanguageDtoListEnvelope>> LanguagesApi::getLan
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (apiVersion)
     {
@@ -357,11 +377,27 @@ pplx::task<std::shared_ptr<CountryLanguageDtoListEnvelope>> LanguagesApi::getLan
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (countryLanguageDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*countryLanguageDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(countryLanguageDtoCollectionQueryParameters && (*countryLanguageDtoCollectionQueryParameters).get())
+        {
+            (*countryLanguageDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("countryLanguageDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

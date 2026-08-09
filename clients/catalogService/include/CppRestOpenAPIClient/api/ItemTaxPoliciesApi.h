@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
+#include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemTaxPolicyDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
@@ -57,11 +58,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTaxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countItemTaxPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTaxPolicyDtoCollectionQueryParameters>> itemTaxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item tax policies
@@ -73,11 +76,13 @@ public:
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemTaxPolicyDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemTaxPolicyDtoListEnvelope>> getItemTaxPoliciesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> itemId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemTaxPolicyDtoCollectionQueryParameters>> itemTaxPolicyDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item tax policy by ID

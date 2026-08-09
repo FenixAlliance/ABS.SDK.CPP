@@ -25,19 +25,28 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/SocialCommentReactionDtoCollectionQueryParameters.h"
+#include "CppRestOpenAPIClient/model/SocialCommentReactionDtoEnvelope.h"
+#include "CppRestOpenAPIClient/model/SocialCommentReactionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostAttachmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialPostAttachmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialPostAttachmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostAttachmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostAttachmentUpdateDto.h"
 #include "CppRestOpenAPIClient/model/SocialPostCommentCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialPostCommentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialPostCommentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostCommentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostCommentUpdateDto.h"
 #include "CppRestOpenAPIClient/model/SocialPostCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialPostDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialPostDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/SocialPostReactionDtoCollectionQueryParameters.h"
+#include "CppRestOpenAPIClient/model/SocialPostReactionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialPostUpdateDto.h"
 #include "CppRestOpenAPIClient/model/SocialReactionCreateDto.h"
 #include "CppRestOpenAPIClient/model/SocialReactionDtoEnvelope.h"
@@ -64,6 +73,26 @@ public:
 
     virtual ~SocialPostsApi();
 
+    /// <summary>
+    /// Create a social comment reaction
+    /// </summary>
+    /// <remarks>
+    /// Creates a new reaction on a specific social comment.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialReactionCreateDto"> (optional)</param>
+    pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> createSocialCommentReactionAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialReactionCreateDto>> socialReactionCreateDto
+    ) const;
     /// <summary>
     /// Create a social post
     /// </summary>
@@ -127,12 +156,32 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="socialReactionCreateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<SocialReactionDtoEnvelope>> createSocialPostReactionAsync(
+    pplx::task<std::shared_ptr<SocialPostReactionDtoEnvelope>> createSocialPostReactionAsync(
         utility::string_t socialPostId,
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::shared_ptr<SocialReactionCreateDto>> socialReactionCreateDto
+    ) const;
+    /// <summary>
+    /// Delete a social comment reaction
+    /// </summary>
+    /// <remarks>
+    /// Deletes a reaction from a specific social comment.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="reactionId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<EmptyEnvelope>> deleteSocialCommentReactionAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t reactionId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
     /// Delete a social post
@@ -205,6 +254,64 @@ public:
         boost::optional<utility::string_t> xApiVersion
     ) const;
     /// <summary>
+    /// Get social comment reaction by ID
+    /// </summary>
+    /// <remarks>
+    /// Retrieves a specific reaction from a social comment by its ID.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="reactionId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> getSocialCommentReactionAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t reactionId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion
+    ) const;
+    /// <summary>
+    /// Get social comment reactions
+    /// </summary>
+    /// <remarks>
+    /// Retrieves a list of reactions for a specific social comment.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialCommentReactionDtoCollectionQueryParameters"> (optional)</param>
+    pplx::task<std::shared_ptr<SocialCommentReactionDtoListEnvelope>> getSocialCommentReactionsAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialCommentReactionDtoCollectionQueryParameters>> socialCommentReactionDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
+    /// Count social comment reactions
+    /// </summary>
+    /// <remarks>
+    /// Returns the count of reactions for a specific social comment.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialCommentReactionDtoCollectionQueryParameters"> (optional)</param>
+    pplx::task<std::shared_ptr<Int32Envelope>> getSocialCommentReactionsCountAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialCommentReactionDtoCollectionQueryParameters>> socialCommentReactionDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
     /// Get social post by ID
     /// </summary>
     /// <remarks>
@@ -245,10 +352,12 @@ public:
     /// <param name="socialPostId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialPostAttachmentDtoListEnvelope>> getSocialPostAttachmentsAsync(
         utility::string_t socialPostId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostAttachmentDtoCollectionQueryParameters>> socialPostAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count social post attachments
@@ -259,10 +368,12 @@ public:
     /// <param name="socialPostId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSocialPostAttachmentsCountAsync(
         utility::string_t socialPostId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostAttachmentDtoCollectionQueryParameters>> socialPostAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social post comment by ID
@@ -290,13 +401,17 @@ public:
     /// </remarks>
     /// <param name="socialProfileId"></param>
     /// <param name="socialPostId"></param>
+    /// <param name="parentCommentId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostCommentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialPostCommentDtoListEnvelope>> getSocialPostCommentsAsync(
         utility::string_t socialProfileId,
         utility::string_t socialPostId,
+        boost::optional<utility::string_t> parentCommentId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostCommentDtoCollectionQueryParameters>> socialPostCommentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count social post comments
@@ -306,13 +421,17 @@ public:
     /// </remarks>
     /// <param name="socialProfileId"></param>
     /// <param name="socialPostId"></param>
+    /// <param name="parentCommentId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostCommentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSocialPostCommentsCountAsync(
         utility::string_t socialProfileId,
         utility::string_t socialPostId,
+        boost::optional<utility::string_t> parentCommentId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostCommentDtoCollectionQueryParameters>> socialPostCommentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social post reaction by ID
@@ -340,11 +459,13 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostReactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialReactionDtoListEnvelope>> getSocialPostReactionsAsync(
         utility::string_t socialPostId,
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostReactionDtoCollectionQueryParameters>> socialPostReactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count social post reactions
@@ -356,11 +477,13 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostReactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSocialPostReactionsCountAsync(
         utility::string_t socialPostId,
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostReactionDtoCollectionQueryParameters>> socialPostReactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social posts
@@ -371,10 +494,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialPostDtoListEnvelope>> getSocialPostsAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostDtoCollectionQueryParameters>> socialPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count social posts
@@ -385,10 +510,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSocialPostsCountAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialPostDtoCollectionQueryParameters>> socialPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a social post
@@ -400,13 +527,35 @@ public:
     /// <param name="socialPostId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSocialPostAsync(
         utility::string_t socialProfileId,
         utility::string_t socialPostId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
+    ) const;
+    /// <summary>
+    /// Update a social comment reaction
+    /// </summary>
+    /// <remarks>
+    /// Updates an existing reaction on a specific social comment.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="commentId"></param>
+    /// <param name="reactionId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialReactionUpdateDto"> (optional)</param>
+    pplx::task<std::shared_ptr<SocialCommentReactionDtoEnvelope>> updateSocialCommentReactionAsync(
+        utility::string_t socialPostId,
+        utility::string_t commentId,
+        utility::string_t reactionId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialReactionUpdateDto>> socialReactionUpdateDto
     ) const;
     /// <summary>
     /// Update a social post
@@ -478,13 +627,31 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="socialReactionUpdateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<EmptyEnvelope>> updateSocialPostReactionAsync(
+    pplx::task<std::shared_ptr<SocialPostReactionDtoEnvelope>> updateSocialPostReactionAsync(
         utility::string_t socialProfileId,
         utility::string_t socialPostId,
         utility::string_t reactionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
         boost::optional<std::shared_ptr<SocialReactionUpdateDto>> socialReactionUpdateDto
+    ) const;
+    /// <summary>
+    /// Upload a social post image attachment
+    /// </summary>
+    /// <remarks>
+    /// Uploads an image and attaches it to a social post, storing the bytes through the storage spine.
+    /// </remarks>
+    /// <param name="socialPostId"></param>
+    /// <param name="socialProfileId"></param>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="file"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<SocialPostAttachmentDtoEnvelope>> uploadSocialPostImageAttachmentAsync(
+        utility::string_t socialPostId,
+        utility::string_t socialProfileId,
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<HttpContent>> file
     ) const;
 
 protected:

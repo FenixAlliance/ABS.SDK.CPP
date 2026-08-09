@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SupplierProfileCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupplierProfileDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupplierProfileDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupplierProfileDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupplierProfileUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supplierProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupplierProfileDtoListEnvelope>> getSupplierProfilesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupplierProfileDtoCollectionQueryParameters>> supplierProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get supplier profiles count
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supplierProfileDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSupplierProfilesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupplierProfileDtoCollectionQueryParameters>> supplierProfileDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a supplier profile
@@ -138,13 +143,13 @@ public:
     /// <param name="supplierProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSupplierProfileAsync(
         utility::string_t tenantId,
         utility::string_t supplierProfileId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a supplier profile

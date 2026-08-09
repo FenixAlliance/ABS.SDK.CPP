@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SocialGroupCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialGroupDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialGroupDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialGroupDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialGroupUpdateDto.h"
@@ -61,10 +62,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countSocialGroupsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialGroupDtoCollectionQueryParameters>> socialGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a social group
@@ -127,10 +130,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialGroupDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialGroupDtoListEnvelope>> getSocialGroupsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialGroupDtoCollectionQueryParameters>> socialGroupDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a social group
@@ -143,14 +148,14 @@ public:
     /// <param name="socialGroupId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSocialGroupAsync(
         utility::string_t tenantId,
         utility::string_t socialProfileId,
         utility::string_t socialGroupId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a social group

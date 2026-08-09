@@ -26,6 +26,7 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/SigningLogDto.h"
+#include "CppRestOpenAPIClient/model/SigningLogDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SigningLogDtoListEnvelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -72,10 +73,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SigningLogDtoListEnvelope>> getSigningLogsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningLogDtoCollectionQueryParameters>> signingLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signing logs count
@@ -86,10 +89,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signingLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSigningLogsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SigningLogDtoCollectionQueryParameters>> signingLogDtoCollectionQueryParameters
     ) const;
 
 protected:

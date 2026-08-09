@@ -23,8 +23,10 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/BlogAuthorDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogAuthorDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BlogAuthorDtoListEnvelope.h"
+#include "CppRestOpenAPIClient/model/BlogPostDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BlogPostDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
@@ -57,10 +59,12 @@ public:
     /// <param name="authorId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countBlogPostsByAuthorAsync(
         utility::string_t authorId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlogPostDtoCollectionQueryParameters>> blogPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get blog author by ID
@@ -85,10 +89,12 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogAuthorDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogAuthorDtoListEnvelope>> getBlogAuthorsAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlogAuthorDtoCollectionQueryParameters>> blogAuthorDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get blog posts by author
@@ -99,10 +105,12 @@ public:
     /// <param name="authorId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="blogPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BlogPostDtoListEnvelope>> getBlogPostsByAuthorAsync(
         utility::string_t authorId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BlogPostDtoCollectionQueryParameters>> blogPostDtoCollectionQueryParameters
     ) const;
 
 protected:

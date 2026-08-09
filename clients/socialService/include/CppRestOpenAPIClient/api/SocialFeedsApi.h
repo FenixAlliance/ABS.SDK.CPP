@@ -26,13 +26,16 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
+#include "CppRestOpenAPIClient/model/SocialFeedDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialFeedDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialFeedDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialFeedPostCreateDto.h"
+#include "CppRestOpenAPIClient/model/SocialFeedPostDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SocialFeedPostDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialFeedPostDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SocialFeedPostUpdateDto.h"
+#include "CppRestOpenAPIClient/model/StringEnvelope.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -65,7 +68,7 @@ public:
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="socialFeedPostCreateDto"> (optional)</param>
-    pplx::task<std::shared_ptr<SocialFeedPostDtoEnvelope>> createFeedPostAsync(
+    pplx::task<std::shared_ptr<StringEnvelope>> createFeedPostAsync(
         utility::string_t socialProfileId,
         utility::string_t socialFeedId,
         boost::optional<utility::string_t> apiVersion,
@@ -99,10 +102,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialFeedDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialFeedDtoListEnvelope>> getFeedNotifications(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialFeedDtoCollectionQueryParameters>> socialFeedDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social feed post by ID
@@ -132,11 +137,13 @@ public:
     /// <param name="socialFeedId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialFeedPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SocialFeedPostDtoListEnvelope>> getFeedPostsAsync(
         utility::string_t socialProfileId,
         utility::string_t socialFeedId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialFeedPostDtoCollectionQueryParameters>> socialFeedPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count social feed posts
@@ -148,11 +155,13 @@ public:
     /// <param name="socialFeedId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialFeedPostDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getFeedPostsCountAsync(
         utility::string_t socialProfileId,
         utility::string_t socialFeedId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialFeedPostDtoCollectionQueryParameters>> socialFeedPostDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get social feed by ID
@@ -179,10 +188,12 @@ public:
     /// <param name="socialProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="socialFeedDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getNotificationsCountAsync(
         utility::string_t socialProfileId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SocialFeedDtoCollectionQueryParameters>> socialFeedDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a social feed post
@@ -195,14 +206,14 @@ public:
     /// <param name="feedPostId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchFeedPostAsync(
         utility::string_t socialProfileId,
         utility::string_t socialFeedId,
         utility::string_t feedPostId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a social feed post

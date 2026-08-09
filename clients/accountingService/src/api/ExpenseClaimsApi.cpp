@@ -464,7 +464,7 @@ pplx::task<std::shared_ptr<ExpenseClaimDtoEnvelope>> ExpenseClaimsApi::getExpens
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> ExpenseClaimsApi::getExpenseClaims(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> ExpenseClaimsApi::getExpenseClaims(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ExpenseClaimDtoCollectionQueryParameters>> expenseClaimDtoCollectionQueryParameters) const
 {
 
 
@@ -505,6 +505,8 @@ pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> ExpenseClaimsApi::getEx
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -525,11 +527,27 @@ pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> ExpenseClaimsApi::getEx
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (expenseClaimDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*expenseClaimDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(expenseClaimDtoCollectionQueryParameters && (*expenseClaimDtoCollectionQueryParameters).get())
+        {
+            (*expenseClaimDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("expenseClaimDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -598,7 +616,7 @@ pplx::task<std::shared_ptr<ExpenseClaimDtoListEnvelope>> ExpenseClaimsApi::getEx
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> ExpenseClaimsApi::getExpenseClaimsCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> ExpenseClaimsApi::getExpenseClaimsCount(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<ExpenseClaimDtoCollectionQueryParameters>> expenseClaimDtoCollectionQueryParameters) const
 {
 
 
@@ -639,6 +657,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> ExpenseClaimsApi::getExpenseClaimsCou
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -659,11 +679,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> ExpenseClaimsApi::getExpenseClaimsCou
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (expenseClaimDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*expenseClaimDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(expenseClaimDtoCollectionQueryParameters && (*expenseClaimDtoCollectionQueryParameters).get())
+        {
+            (*expenseClaimDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("expenseClaimDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -732,7 +768,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> ExpenseClaimsApi::getExpenseClaimsCou
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> ExpenseClaimsApi::patchExpenseClaim(utility::string_t tenantId, utility::string_t expenseClaimId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> ExpenseClaimsApi::patchExpenseClaim(utility::string_t tenantId, utility::string_t expenseClaimId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -800,7 +836,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ExpenseClaimsApi::patchExpenseClaim(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -818,11 +854,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> ExpenseClaimsApi::patchExpenseClaim(u
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

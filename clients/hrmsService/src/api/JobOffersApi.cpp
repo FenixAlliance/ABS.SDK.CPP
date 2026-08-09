@@ -728,7 +728,7 @@ pplx::task<std::shared_ptr<JobOfferDtoEnvelope>> JobOffersApi::getJobOfferByIdAs
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getJobOffersAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getJobOffersAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters) const
 {
 
 
@@ -769,6 +769,8 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getJobOffersA
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -789,11 +791,27 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getJobOffersA
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (jobOfferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*jobOfferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(jobOfferDtoCollectionQueryParameters && (*jobOfferDtoCollectionQueryParameters).get())
+        {
+            (*jobOfferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("jobOfferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -862,7 +880,7 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getJobOffersA
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getJobOffersCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getJobOffersCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters) const
 {
 
 
@@ -903,6 +921,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getJobOffersCountAsync(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -923,11 +943,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getJobOffersCountAsync(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (jobOfferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*jobOfferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(jobOfferDtoCollectionQueryParameters && (*jobOfferDtoCollectionQueryParameters).get())
+        {
+            (*jobOfferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("jobOfferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1132,7 +1168,7 @@ pplx::task<std::shared_ptr<JobOfferDtoEnvelope>> JobOffersApi::getPublicJobOffer
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getPublicJobOffersAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getPublicJobOffersAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters) const
 {
 
 
@@ -1173,6 +1209,8 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getPublicJobO
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -1194,11 +1232,27 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getPublicJobO
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (jobOfferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*jobOfferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(jobOfferDtoCollectionQueryParameters && (*jobOfferDtoCollectionQueryParameters).get())
+        {
+            (*jobOfferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("jobOfferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1267,7 +1321,7 @@ pplx::task<std::shared_ptr<JobOfferDtoListEnvelope>> JobOffersApi::getPublicJobO
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getPublicJobOffersCountAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getPublicJobOffersCountAsync(boost::optional<utility::string_t> tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<JobOfferDtoCollectionQueryParameters>> jobOfferDtoCollectionQueryParameters) const
 {
 
 
@@ -1308,6 +1362,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getPublicJobOffersCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     if (tenantId)
     {
@@ -1329,11 +1385,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getPublicJobOffersCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (jobOfferDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*jobOfferDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(jobOfferDtoCollectionQueryParameters && (*jobOfferDtoCollectionQueryParameters).get())
+        {
+            (*jobOfferDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("jobOfferDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1402,7 +1474,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> JobOffersApi::getPublicJobOffersCount
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> JobOffersApi::patchJobOfferAsync(utility::string_t tenantId, utility::string_t jobOfferId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> JobOffersApi::patchJobOfferAsync(utility::string_t tenantId, utility::string_t jobOfferId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1470,7 +1542,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> JobOffersApi::patchJobOfferAsync(util
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1488,11 +1560,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> JobOffersApi::patchJobOfferAsync(util
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

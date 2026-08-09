@@ -25,10 +25,12 @@
 
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/ExtendedSalesLiteratureDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ExtendedSalesLiteratureDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SalesLiteratureCreateDto.h"
+#include "CppRestOpenAPIClient/model/SalesLiteratureDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SalesLiteratureDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SalesLiteratureDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SalesLiteratureUpdateDto.h"
@@ -60,8 +62,10 @@ public:
     /// Returns the total count of sales literatures for the specified tenant with OData filter support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="salesLiteratureDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> countSalesLiteraturesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<SalesLiteratureDtoCollectionQueryParameters>> salesLiteratureDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Create a sales literature
@@ -94,8 +98,10 @@ public:
     /// Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="extendedSalesLiteratureDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ExtendedSalesLiteratureDtoListEnvelope>> getExtendedSalesLiteraturesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<ExtendedSalesLiteratureDtoCollectionQueryParameters>> extendedSalesLiteratureDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get sales literature by ID
@@ -116,8 +122,10 @@ public:
     /// Retrieves a list of sales literatures for the specified tenant with OData query support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="salesLiteratureDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SalesLiteratureDtoListEnvelope>> getSalesLiteraturesAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<SalesLiteratureDtoCollectionQueryParameters>> salesLiteratureDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a sales literature
@@ -127,11 +135,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="salesLiteratureId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSalesLiteratureAsync(
         utility::string_t tenantId,
         utility::string_t salesLiteratureId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a sales literature

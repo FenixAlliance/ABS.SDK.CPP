@@ -28,7 +28,7 @@
 #include "CppRestOpenAPIClient/model/InstructorProfileCreateDto.h"
 #include "CppRestOpenAPIClient/model/InstructorProfileDto.h"
 #include "CppRestOpenAPIClient/model/InstructorProfileUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -120,13 +120,13 @@ public:
     /// <param name="instructorProfileId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> apiV2LearningServiceInstructorProfilesInstructorProfileIdPatch(
         utility::string_t tenantId,
         utility::string_t instructorProfileId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// 

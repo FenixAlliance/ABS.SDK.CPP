@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AppraisalStageCreateDto.h"
+#include "CppRestOpenAPIClient/model/AppraisalStageDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AppraisalStageDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppraisalStageDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AppraisalStageUpdateDto.h"
@@ -107,10 +108,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appraisalStageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AppraisalStageDtoListEnvelope>> getAppraisalStagesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppraisalStageDtoCollectionQueryParameters>> appraisalStageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count appraisal stages
@@ -121,10 +124,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="appraisalStageDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAppraisalStagesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<AppraisalStageDtoCollectionQueryParameters>> appraisalStageDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Update an appraisal stage

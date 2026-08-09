@@ -27,11 +27,12 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/HttpContent.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/QuickSignSignedDocumentDto.h"
 #include "CppRestOpenAPIClient/model/SignatureVerificationDto.h"
 #include "CppRestOpenAPIClient/model/SignedDocumentCreateDto.h"
 #include "CppRestOpenAPIClient/model/SignedDocumentDto.h"
+#include "CppRestOpenAPIClient/model/SignedDocumentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SignedDocumentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SignedDocumentUpdateDto.h"
 #include <vector>
@@ -112,10 +113,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signedDocumentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SignedDocumentDtoListEnvelope>> getSignedDocumentsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SignedDocumentDtoCollectionQueryParameters>> signedDocumentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get signed documents count
@@ -126,10 +129,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="signedDocumentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSignedDocumentsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SignedDocumentDtoCollectionQueryParameters>> signedDocumentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a signed document
@@ -141,13 +146,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSignedDocumentAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Create, freeze, and quick-sign a document in one call

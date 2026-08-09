@@ -76,6 +76,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isClosed() const;
+    bool closedIsSet() const;
+    void unsetClosed();
+
+    void setClosed(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
@@ -225,6 +234,15 @@ public:
     void unsetCityId();
 
     void setCityId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    double getForexRate() const;
+    bool forexRateIsSet() const;
+    void unsetForexRate();
+
+    void setForexRate(double value);
 
     /// <summary>
     /// 
@@ -481,15 +499,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getForexRate() const;
-    bool forexRateIsSet() const;
-    void unsetForexRate();
-
-    void setForexRate(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     double getTotalAmount() const;
     bool totalAmountIsSet() const;
     void unsetTotalAmount();
@@ -504,15 +513,6 @@ public:
     void unsetTotalAmountInUSD();
 
     void setTotalAmountInUSD(double value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    bool isClosed() const;
-    bool closedIsSet() const;
-    void unsetClosed();
-
-    void setClosed(bool value);
 
     /// <summary>
     /// 
@@ -556,6 +556,8 @@ protected:
     bool m_IdIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
+    bool m_Closed;
+    bool m_ClosedIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
     utility::string_t m_PriceListId;
@@ -590,6 +592,8 @@ protected:
     bool m_StateIdIsSet;
     utility::string_t m_CityId;
     bool m_CityIdIsSet;
+    double m_ForexRate;
+    bool m_ForexRateIsSet;
     utility::string_t m_CurrencyId;
     bool m_CurrencyIdIsSet;
     double m_TotalDetail;
@@ -646,14 +650,10 @@ protected:
     bool m_TaxCalculationMethodIsSet;
     utility::string_t m_PaymentId;
     bool m_PaymentIdIsSet;
-    double m_ForexRate;
-    bool m_ForexRateIsSet;
     double m_TotalAmount;
     bool m_TotalAmountIsSet;
     double m_TotalAmountInUSD;
     bool m_TotalAmountInUSDIsSet;
-    bool m_Closed;
-    bool m_ClosedIsSet;
     utility::string_t m_ContactId;
     bool m_ContactIdIsSet;
     utility::string_t m_ReceiptType;

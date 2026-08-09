@@ -1143,7 +1143,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> OAuthApplicationsApi::getOAuthAuthori
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> OAuthApplicationsApi::patchOAuthApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, std::vector<std::shared_ptr<Operation>> operation, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> OAuthApplicationsApi::patchOAuthApplicationAsync(utility::string_t tenantId, utility::string_t applicationId, std::vector<std::shared_ptr<PatchOperation>> patchOperation, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
 {
 
 
@@ -1211,7 +1211,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> OAuthApplicationsApi::patchOAuthAppli
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation )
+            for( auto& localVarItem : patchOperation )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1229,11 +1229,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> OAuthApplicationsApi::patchOAuthAppli
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation )
+            for( auto& localVarItem : patchOperation )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

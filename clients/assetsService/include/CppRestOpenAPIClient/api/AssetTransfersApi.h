@@ -24,13 +24,14 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/AssetTransferCreateDto.h"
+#include "CppRestOpenAPIClient/model/AssetTransferDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/AssetTransferDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTransferDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/AssetTransferUpdateDto.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -95,8 +96,10 @@ public:
     /// Retrieves all asset transfers for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<AssetTransferDtoListEnvelope>> getAssetTransfersAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the count of asset transfers
@@ -105,8 +108,10 @@ public:
     /// Returns the total number of asset transfers for the authenticated tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="assetTransferDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getAssetTransfersCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<AssetTransferDtoCollectionQueryParameters>> assetTransferDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Partially updates an existing asset transfer
@@ -116,11 +121,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="transferId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchAssetTransferAsync(
         utility::string_t tenantId,
         utility::string_t transferId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates an existing asset transfer

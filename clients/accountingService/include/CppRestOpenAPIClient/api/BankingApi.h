@@ -24,17 +24,21 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/BankAccountCreateDto.h"
+#include "CppRestOpenAPIClient/model/BankAccountDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankAccountDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankAccountDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankAccountUpdateDto.h"
 #include "CppRestOpenAPIClient/model/BankCreateDto.h"
+#include "CppRestOpenAPIClient/model/BankDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankGuaranteeCreateDto.h"
+#include "CppRestOpenAPIClient/model/BankGuaranteeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankGuaranteeDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankGuaranteeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankGuaranteeUpdateDto.h"
 #include "CppRestOpenAPIClient/model/BankTransactionCreateDto.h"
+#include "CppRestOpenAPIClient/model/BankTransactionDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BankTransactionDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankTransactionDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/BankTransactionUpdateDto.h"
@@ -42,7 +46,7 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -248,11 +252,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankAccountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankAccountDtoListEnvelope>> getBankAccounts(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant bank accounts count
@@ -264,11 +270,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankAccountDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBankAccountsCount(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankAccountDtoCollectionQueryParameters>> bankAccountDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant bank guarantee
@@ -298,11 +306,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankGuaranteeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankGuaranteeDtoListEnvelope>> getBankGuarantees(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankGuaranteeDtoCollectionQueryParameters>> bankGuaranteeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant bank guarantees count
@@ -314,11 +324,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankGuaranteeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBankGuaranteesCount(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankGuaranteeDtoCollectionQueryParameters>> bankGuaranteeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant bank transaction
@@ -348,11 +360,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankTransactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankTransactionDtoListEnvelope>> getBankTransactions(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankTransactionDtoCollectionQueryParameters>> bankTransactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant bank transactions count
@@ -364,11 +378,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankTransactionDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBankTransactionsCount(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankTransactionDtoCollectionQueryParameters>> bankTransactionDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant banks
@@ -379,10 +395,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BankDtoListEnvelope>> getBanks(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankDtoCollectionQueryParameters>> bankDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Gets the current tenant banks count
@@ -393,10 +411,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="bankDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getBanksCount(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BankDtoCollectionQueryParameters>> bankDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a bank
@@ -408,13 +428,13 @@ public:
     /// <param name="bankId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBank(
         utility::string_t tenantId,
         utility::string_t bankId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a bank account
@@ -427,14 +447,14 @@ public:
     /// <param name="accountId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBankAccount(
         utility::string_t tenantId,
         utility::string_t bankId,
         utility::string_t accountId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a bank guarantee
@@ -447,14 +467,14 @@ public:
     /// <param name="guaranteeId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBankGuarantee(
         utility::string_t tenantId,
         utility::string_t bankId,
         utility::string_t guaranteeId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a bank transaction
@@ -467,14 +487,14 @@ public:
     /// <param name="transactionId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchBankTransaction(
         utility::string_t tenantId,
         utility::string_t bankId,
         utility::string_t transactionId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a bank

@@ -757,7 +757,7 @@ pplx::task<std::shared_ptr<CommissionDtoEnvelope>> CommissionsApi::getCommission
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> CommissionsApi::getCommissionsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> CommissionsApi::getCommissionsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CommissionDtoCollectionQueryParameters>> commissionDtoCollectionQueryParameters) const
 {
 
 
@@ -798,6 +798,8 @@ pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> CommissionsApi::getCommis
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -818,11 +820,27 @@ pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> CommissionsApi::getCommis
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (commissionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*commissionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(commissionDtoCollectionQueryParameters && (*commissionDtoCollectionQueryParameters).get())
+        {
+            (*commissionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("commissionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -891,7 +909,7 @@ pplx::task<std::shared_ptr<CommissionDtoListEnvelope>> CommissionsApi::getCommis
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getCommissionsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getCommissionsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<CommissionDtoCollectionQueryParameters>> commissionDtoCollectionQueryParameters) const
 {
 
 
@@ -932,6 +950,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getCommissionsCountAs
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -952,11 +972,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getCommissionsCountAs
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (commissionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*commissionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(commissionDtoCollectionQueryParameters && (*commissionDtoCollectionQueryParameters).get())
+        {
+            (*commissionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("commissionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1160,7 +1196,7 @@ pplx::task<std::shared_ptr<PaymentCommissionDtoEnvelope>> CommissionsApi::getPay
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> CommissionsApi::getPaymentCommissionsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> CommissionsApi::getPaymentCommissionsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentCommissionDtoCollectionQueryParameters>> paymentCommissionDtoCollectionQueryParameters) const
 {
 
 
@@ -1201,6 +1237,8 @@ pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> CommissionsApi::ge
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1221,11 +1259,27 @@ pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> CommissionsApi::ge
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentCommissionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentCommissionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentCommissionDtoCollectionQueryParameters && (*paymentCommissionDtoCollectionQueryParameters).get())
+        {
+            (*paymentCommissionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentCommissionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1294,7 +1348,7 @@ pplx::task<std::shared_ptr<PaymentCommissionDtoListEnvelope>> CommissionsApi::ge
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getPaymentCommissionsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getPaymentCommissionsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<PaymentCommissionDtoCollectionQueryParameters>> paymentCommissionDtoCollectionQueryParameters) const
 {
 
 
@@ -1335,6 +1389,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getPaymentCommissions
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -1355,11 +1411,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getPaymentCommissions
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (paymentCommissionDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*paymentCommissionDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(paymentCommissionDtoCollectionQueryParameters && (*paymentCommissionDtoCollectionQueryParameters).get())
+        {
+            (*paymentCommissionDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("paymentCommissionDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1428,7 +1500,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> CommissionsApi::getPaymentCommissions
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchCommissionAsync(utility::string_t tenantId, utility::string_t commissionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchCommissionAsync(utility::string_t tenantId, utility::string_t commissionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1496,7 +1568,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchCommissionAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1514,11 +1586,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchCommissionAsync(
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1592,7 +1664,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchCommissionAsync(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchPaymentCommissionAsync(utility::string_t tenantId, utility::string_t paymentCommissionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchPaymentCommissionAsync(utility::string_t tenantId, utility::string_t paymentCommissionId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1660,7 +1732,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchPaymentCommissio
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1678,11 +1750,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> CommissionsApi::patchPaymentCommissio
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

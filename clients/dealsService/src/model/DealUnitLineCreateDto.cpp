@@ -185,8 +185,6 @@ DealUnitLineCreateDto::DealUnitLineCreateDto()
     m_UnitIdIsSet = false;
     m_UnitGroupId = utility::conversions::to_string_t("");
     m_UnitGroupIdIsSet = false;
-    m_ForexRatesSnapshot = utility::conversions::to_string_t("");
-    m_ForexRatesSnapshotIsSet = false;
     m_TotalBaseAmountInUsd = 0.0;
     m_TotalBaseAmountInUsdIsSet = false;
     m_TotalProfitInUsd = 0.0;
@@ -584,10 +582,6 @@ web::json::value DealUnitLineCreateDto::toJson() const
     if(m_UnitGroupIdIsSet)
     {
         val[utility::conversions::to_string_t(U("unitGroupId"))] = ModelBase::toJson(m_UnitGroupId);
-    }
-    if(m_ForexRatesSnapshotIsSet)
-    {
-        val[utility::conversions::to_string_t(U("forexRatesSnapshot"))] = ModelBase::toJson(m_ForexRatesSnapshot);
     }
     if(m_TotalBaseAmountInUsdIsSet)
     {
@@ -1523,16 +1517,6 @@ bool DealUnitLineCreateDto::fromJson(const web::json::value& val)
             setUnitGroupId(refVal_setUnitGroupId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("forexRatesSnapshot"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("forexRatesSnapshot")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setForexRatesSnapshot;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setForexRatesSnapshot);
-            setForexRatesSnapshot(refVal_setForexRatesSnapshot);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("totalBaseAmountInUsd"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("totalBaseAmountInUsd")));
@@ -2157,10 +2141,6 @@ void DealUnitLineCreateDto::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("unitGroupId")), m_UnitGroupId));
     }
-    if(m_ForexRatesSnapshotIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("forexRatesSnapshot")), m_ForexRatesSnapshot));
-    }
     if(m_TotalBaseAmountInUsdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("totalBaseAmountInUsd")), m_TotalBaseAmountInUsd));
@@ -2773,12 +2753,6 @@ bool DealUnitLineCreateDto::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setUnitGroupId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unitGroupId"))), refVal_setUnitGroupId );
         setUnitGroupId(refVal_setUnitGroupId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("forexRatesSnapshot"))))
-    {
-        utility::string_t refVal_setForexRatesSnapshot;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("forexRatesSnapshot"))), refVal_setForexRatesSnapshot );
-        setForexRatesSnapshot(refVal_setForexRatesSnapshot);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("totalBaseAmountInUsd"))))
     {
@@ -4576,26 +4550,6 @@ bool DealUnitLineCreateDto::unitGroupIdIsSet() const
 void DealUnitLineCreateDto::unsetUnitGroupId()
 {
     m_UnitGroupIdIsSet = false;
-}
-utility::string_t DealUnitLineCreateDto::getForexRatesSnapshot() const
-{
-    return m_ForexRatesSnapshot;
-}
-
-void DealUnitLineCreateDto::setForexRatesSnapshot(const utility::string_t& value)
-{
-    m_ForexRatesSnapshot = value;
-    m_ForexRatesSnapshotIsSet = true;
-}
-
-bool DealUnitLineCreateDto::forexRatesSnapshotIsSet() const
-{
-    return m_ForexRatesSnapshotIsSet;
-}
-
-void DealUnitLineCreateDto::unsetForexRatesSnapshot()
-{
-    m_ForexRatesSnapshotIsSet = false;
 }
 double DealUnitLineCreateDto::getTotalBaseAmountInUsd() const
 {

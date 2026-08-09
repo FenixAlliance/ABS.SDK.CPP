@@ -26,8 +26,9 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/SupportRequestAttachmentCreateDto.h"
+#include "CppRestOpenAPIClient/model/SupportRequestAttachmentDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/SupportRequestAttachmentDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportRequestAttachmentDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/SupportRequestAttachmentUpdateDto.h"
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportRequestAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<SupportRequestAttachmentDtoListEnvelope>> getSupportRequestAttachmentsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportRequestAttachmentDtoCollectionQueryParameters>> supportRequestAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of support request attachments
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="supportRequestAttachmentDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSupportRequestAttachmentsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<SupportRequestAttachmentDtoCollectionQueryParameters>> supportRequestAttachmentDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a support request attachment
@@ -138,13 +143,13 @@ public:
     /// <param name="supportRequestAttachmentId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchSupportRequestAttachmentAsync(
         utility::string_t tenantId,
         utility::string_t supportRequestAttachmentId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a support request attachment

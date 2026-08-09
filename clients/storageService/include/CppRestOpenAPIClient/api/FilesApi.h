@@ -196,10 +196,28 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="top"> (optional, default to 0)</param>
+    /// <param name="skip"> (optional, default to 0)</param>
+    /// <param name="count"> (optional, default to false)</param>
+    /// <param name="filter"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderBy"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="search"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="select"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expand"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="isEmpty"> (optional, default to false)</param>
     pplx::task<std::shared_ptr<FileUploadDtoEnvelope>> getFilesAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<int32_t> top,
+        boost::optional<int32_t> skip,
+        boost::optional<bool> count,
+        boost::optional<utility::string_t> filter,
+        boost::optional<utility::string_t> orderBy,
+        boost::optional<utility::string_t> search,
+        boost::optional<utility::string_t> select,
+        boost::optional<utility::string_t> expand,
+        boost::optional<bool> isEmpty
     ) const;
     /// <summary>
     /// 
@@ -210,10 +228,28 @@ public:
     /// <param name="tenantId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="top"> (optional, default to 0)</param>
+    /// <param name="skip"> (optional, default to 0)</param>
+    /// <param name="count"> (optional, default to false)</param>
+    /// <param name="filter"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderBy"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="search"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="select"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="expand"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="isEmpty"> (optional, default to false)</param>
     pplx::task<int64_t> getFilesCountAsync(
         boost::optional<utility::string_t> tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<int32_t> top,
+        boost::optional<int32_t> skip,
+        boost::optional<bool> count,
+        boost::optional<utility::string_t> filter,
+        boost::optional<utility::string_t> orderBy,
+        boost::optional<utility::string_t> search,
+        boost::optional<utility::string_t> select,
+        boost::optional<utility::string_t> expand,
+        boost::optional<bool> isEmpty
     ) const;
     /// <summary>
     /// 

@@ -27,6 +27,12 @@ SocialFeedPostUpdateDto::SocialFeedPostUpdateDto()
     m_TitleIsSet = false;
     m_Message = utility::conversions::to_string_t("");
     m_MessageIsSet = false;
+    m_BodyHtml = utility::conversions::to_string_t("");
+    m_BodyHtmlIsSet = false;
+    m_BodyFormat = utility::conversions::to_string_t("");
+    m_BodyFormatIsSet = false;
+    m_BackgroundStyle = utility::conversions::to_string_t("");
+    m_BackgroundStyleIsSet = false;
 }
 
 SocialFeedPostUpdateDto::~SocialFeedPostUpdateDto()
@@ -50,6 +56,18 @@ web::json::value SocialFeedPostUpdateDto::toJson() const
     if(m_MessageIsSet)
     {
         val[utility::conversions::to_string_t(U("message"))] = ModelBase::toJson(m_Message);
+    }
+    if(m_BodyHtmlIsSet)
+    {
+        val[utility::conversions::to_string_t(U("bodyHtml"))] = ModelBase::toJson(m_BodyHtml);
+    }
+    if(m_BodyFormatIsSet)
+    {
+        val[utility::conversions::to_string_t(U("bodyFormat"))] = ModelBase::toJson(m_BodyFormat);
+    }
+    if(m_BackgroundStyleIsSet)
+    {
+        val[utility::conversions::to_string_t(U("backgroundStyle"))] = ModelBase::toJson(m_BackgroundStyle);
     }
 
     return val;
@@ -79,6 +97,36 @@ bool SocialFeedPostUpdateDto::fromJson(const web::json::value& val)
             setMessage(refVal_setMessage);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("bodyHtml"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bodyHtml")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBodyHtml;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBodyHtml);
+            setBodyHtml(refVal_setBodyHtml);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("bodyFormat"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bodyFormat")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBodyFormat;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBodyFormat);
+            setBodyFormat(refVal_setBodyFormat);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("backgroundStyle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("backgroundStyle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBackgroundStyle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBackgroundStyle);
+            setBackgroundStyle(refVal_setBackgroundStyle);
+        }
+    }
     return ok;
 }
 
@@ -96,6 +144,18 @@ void SocialFeedPostUpdateDto::toMultipart(std::shared_ptr<MultipartFormData> mul
     if(m_MessageIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("message")), m_Message));
+    }
+    if(m_BodyHtmlIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyHtml")), m_BodyHtml));
+    }
+    if(m_BodyFormatIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyFormat")), m_BodyFormat));
+    }
+    if(m_BackgroundStyleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("backgroundStyle")), m_BackgroundStyle));
     }
 }
 
@@ -119,6 +179,24 @@ bool SocialFeedPostUpdateDto::fromMultiPart(std::shared_ptr<MultipartFormData> m
         utility::string_t refVal_setMessage;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("message"))), refVal_setMessage );
         setMessage(refVal_setMessage);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("bodyHtml"))))
+    {
+        utility::string_t refVal_setBodyHtml;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bodyHtml"))), refVal_setBodyHtml );
+        setBodyHtml(refVal_setBodyHtml);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("bodyFormat"))))
+    {
+        utility::string_t refVal_setBodyFormat;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bodyFormat"))), refVal_setBodyFormat );
+        setBodyFormat(refVal_setBodyFormat);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("backgroundStyle"))))
+    {
+        utility::string_t refVal_setBackgroundStyle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("backgroundStyle"))), refVal_setBackgroundStyle );
+        setBackgroundStyle(refVal_setBackgroundStyle);
     }
     return ok;
 }
@@ -162,6 +240,66 @@ bool SocialFeedPostUpdateDto::messageIsSet() const
 void SocialFeedPostUpdateDto::unsetMessage()
 {
     m_MessageIsSet = false;
+}
+utility::string_t SocialFeedPostUpdateDto::getBodyHtml() const
+{
+    return m_BodyHtml;
+}
+
+void SocialFeedPostUpdateDto::setBodyHtml(const utility::string_t& value)
+{
+    m_BodyHtml = value;
+    m_BodyHtmlIsSet = true;
+}
+
+bool SocialFeedPostUpdateDto::bodyHtmlIsSet() const
+{
+    return m_BodyHtmlIsSet;
+}
+
+void SocialFeedPostUpdateDto::unsetBodyHtml()
+{
+    m_BodyHtmlIsSet = false;
+}
+utility::string_t SocialFeedPostUpdateDto::getBodyFormat() const
+{
+    return m_BodyFormat;
+}
+
+void SocialFeedPostUpdateDto::setBodyFormat(const utility::string_t& value)
+{
+    m_BodyFormat = value;
+    m_BodyFormatIsSet = true;
+}
+
+bool SocialFeedPostUpdateDto::bodyFormatIsSet() const
+{
+    return m_BodyFormatIsSet;
+}
+
+void SocialFeedPostUpdateDto::unsetBodyFormat()
+{
+    m_BodyFormatIsSet = false;
+}
+utility::string_t SocialFeedPostUpdateDto::getBackgroundStyle() const
+{
+    return m_BackgroundStyle;
+}
+
+void SocialFeedPostUpdateDto::setBackgroundStyle(const utility::string_t& value)
+{
+    m_BackgroundStyle = value;
+    m_BackgroundStyleIsSet = true;
+}
+
+bool SocialFeedPostUpdateDto::backgroundStyleIsSet() const
+{
+    return m_BackgroundStyleIsSet;
+}
+
+void SocialFeedPostUpdateDto::unsetBackgroundStyle()
+{
+    m_BackgroundStyleIsSet = false;
 }
 }
 }

@@ -26,12 +26,14 @@
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/RailWaybillCreateDto.h"
+#include "CppRestOpenAPIClient/model/RailWaybillDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/RailWaybillDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/RailWaybillDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/RailWaybillUpdateDto.h"
 #include "CppRestOpenAPIClient/model/WaybillLineCreateDto.h"
+#include "CppRestOpenAPIClient/model/WaybillLineDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WaybillLineDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WaybillLineUpdateDto.h"
 #include <vector>
@@ -147,11 +149,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WaybillLineDtoListEnvelope>> getRailWaybillLinesAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get rail waybill lines count
@@ -163,11 +167,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="waybillLineDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRailWaybillLinesCountAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WaybillLineDtoCollectionQueryParameters>> waybillLineDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get all rail waybills
@@ -178,10 +184,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="railWaybillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<RailWaybillDtoListEnvelope>> getRailWaybillsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RailWaybillDtoCollectionQueryParameters>> railWaybillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get rail waybills count
@@ -192,10 +200,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="railWaybillDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getRailWaybillsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<RailWaybillDtoCollectionQueryParameters>> railWaybillDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Issue a rail waybill
@@ -255,13 +265,13 @@ public:
     /// <param name="waybillId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRailWaybillAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a rail waybill line
@@ -274,14 +284,14 @@ public:
     /// <param name="lineId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchRailWaybillLineAsync(
         utility::string_t tenantId,
         utility::string_t waybillId,
         utility::string_t lineId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Remove a rail waybill line

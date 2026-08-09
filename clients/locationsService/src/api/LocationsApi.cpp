@@ -701,7 +701,7 @@ pplx::task<std::shared_ptr<LocationDtoEnvelope>> LocationsApi::getLocationAsync(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getLocationsAsync(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getLocationsAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -742,6 +742,8 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getL
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -754,11 +756,27 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getL
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -827,7 +845,7 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getL
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getLocationsCountAsync(utility::string_t tenantId) const
+pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getLocationsCountAsync(utility::string_t tenantId, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -868,6 +886,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getLocationsCountAsync(
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -880,11 +900,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getLocationsCountAsync(
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1078,7 +1114,7 @@ pplx::task<std::shared_ptr<LocationDtoEnvelope>> LocationsApi::getWalletLocation
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getWalletLocationsAsync(utility::string_t walletId) const
+pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getWalletLocationsAsync(utility::string_t walletId, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -1120,6 +1156,8 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getW
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1129,11 +1167,27 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getW
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1202,7 +1256,7 @@ pplx::task<std::shared_ptr<LocationDtoIReadOnlyListEnvelope>> LocationsApi::getW
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getWalletLocationsCountAsync(utility::string_t walletId) const
+pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getWalletLocationsCountAsync(utility::string_t walletId, boost::optional<std::shared_ptr<LocationDtoCollectionQueryParameters>> locationDtoCollectionQueryParameters) const
 {
 
 
@@ -1244,6 +1298,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getWalletLocationsCount
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1253,11 +1309,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getWalletLocationsCount
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (locationDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*locationDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(locationDtoCollectionQueryParameters && (*locationDtoCollectionQueryParameters).get())
+        {
+            (*locationDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("locationDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -1326,7 +1398,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> LocationsApi::getWalletLocationsCount
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchLocationAsync(utility::string_t tenantId, utility::string_t locationId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchLocationAsync(utility::string_t tenantId, utility::string_t locationId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1386,7 +1458,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchLocationAsync(util
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1404,11 +1476,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchLocationAsync(util
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 
@@ -1482,7 +1554,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchLocationAsync(util
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchWalletLocationAsync(utility::string_t walletId, utility::string_t locationId, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchWalletLocationAsync(utility::string_t walletId, utility::string_t locationId, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -1540,7 +1612,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchWalletLocationAsyn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -1558,11 +1630,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> LocationsApi::patchWalletLocationAsyn
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

@@ -25,9 +25,10 @@
 
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeCreateDto.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeDto.h"
+#include "CppRestOpenAPIClient/model/WebsiteThemeDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/WebsiteThemeUpdateDto.h"
 #include <vector>
@@ -108,10 +109,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="websiteThemeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<WebsiteThemeDtoListEnvelope>> getWebsiteThemesAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebsiteThemeDtoCollectionQueryParameters>> websiteThemeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get website themes count
@@ -122,10 +125,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="websiteThemeDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getWebsiteThemesCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<WebsiteThemeDtoCollectionQueryParameters>> websiteThemeDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a website theme
@@ -137,13 +142,13 @@ public:
     /// <param name="id"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<void> patchWebsiteThemeAsync(
         utility::string_t tenantId,
         utility::string_t id,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a website theme

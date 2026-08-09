@@ -458,7 +458,7 @@ pplx::task<std::shared_ptr<LeaveTypeDtoEnvelope>> LeaveTypesApi::getLeaveTypeByI
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> LeaveTypesApi::getLeaveTypesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> LeaveTypesApi::getLeaveTypesAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LeaveTypeDtoCollectionQueryParameters>> leaveTypeDtoCollectionQueryParameters) const
 {
 
 
@@ -499,6 +499,8 @@ pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> LeaveTypesApi::getLeaveTyp
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -519,11 +521,27 @@ pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> LeaveTypesApi::getLeaveTyp
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (leaveTypeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*leaveTypeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(leaveTypeDtoCollectionQueryParameters && (*leaveTypeDtoCollectionQueryParameters).get())
+        {
+            (*leaveTypeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("leaveTypeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -592,7 +610,7 @@ pplx::task<std::shared_ptr<LeaveTypeDtoListEnvelope>> LeaveTypesApi::getLeaveTyp
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> LeaveTypesApi::getLeaveTypesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> LeaveTypesApi::getLeaveTypesCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<LeaveTypeDtoCollectionQueryParameters>> leaveTypeDtoCollectionQueryParameters) const
 {
 
 
@@ -633,6 +651,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> LeaveTypesApi::getLeaveTypesCountAsyn
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -653,11 +673,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> LeaveTypesApi::getLeaveTypesCountAsyn
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (leaveTypeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*leaveTypeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(leaveTypeDtoCollectionQueryParameters && (*leaveTypeDtoCollectionQueryParameters).get())
+        {
+            (*leaveTypeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("leaveTypeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

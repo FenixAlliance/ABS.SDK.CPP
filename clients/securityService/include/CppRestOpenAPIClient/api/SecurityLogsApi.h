@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/BusinessSecurityLogDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/BusinessSecurityLogDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
@@ -55,10 +56,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessSecurityLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<BusinessSecurityLogDtoListEnvelope>> getSecurityLogsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessSecurityLogDtoCollectionQueryParameters>> businessSecurityLogDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get business security logs count
@@ -69,10 +72,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="businessSecurityLogDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSecurityLogsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<BusinessSecurityLogDtoCollectionQueryParameters>> businessSecurityLogDtoCollectionQueryParameters
     ) const;
 
 protected:

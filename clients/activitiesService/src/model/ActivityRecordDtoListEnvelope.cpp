@@ -31,6 +31,11 @@ ActivityRecordDtoListEnvelope::ActivityRecordDtoListEnvelope()
     m_CorrelationIdIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
+    m_HttpStatus = 0;
+    m_HttpStatusIsSet = false;
+    m_ErrorCode = utility::conversions::to_string_t("");
+    m_ErrorCodeIsSet = false;
+    m_ValidationDetailsIsSet = false;
     m_ActivityId = utility::conversions::to_string_t("");
     m_ActivityIdIsSet = false;
     m_ResultIsSet = false;
@@ -65,6 +70,18 @@ web::json::value ActivityRecordDtoListEnvelope::toJson() const
     if(m_TimestampIsSet)
     {
         val[utility::conversions::to_string_t(U("timestamp"))] = ModelBase::toJson(m_Timestamp);
+    }
+    if(m_HttpStatusIsSet)
+    {
+        val[utility::conversions::to_string_t(U("httpStatus"))] = ModelBase::toJson(m_HttpStatus);
+    }
+    if(m_ErrorCodeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("errorCode"))] = ModelBase::toJson(m_ErrorCode);
+    }
+    if(m_ValidationDetailsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("validationDetails"))] = ModelBase::toJson(m_ValidationDetails);
     }
     if(m_ActivityIdIsSet)
     {
@@ -122,6 +139,36 @@ bool ActivityRecordDtoListEnvelope::fromJson(const web::json::value& val)
             setTimestamp(refVal_setTimestamp);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("httpStatus"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("httpStatus")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setHttpStatus;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setHttpStatus);
+            setHttpStatus(refVal_setHttpStatus);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("errorCode"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("errorCode")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setErrorCode;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setErrorCode);
+            setErrorCode(refVal_setErrorCode);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("validationDetails"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("validationDetails")));
+        if(!fieldValue.is_null())
+        {
+            std::map<utility::string_t, std::vector<utility::string_t>> refVal_setValidationDetails;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setValidationDetails);
+            setValidationDetails(refVal_setValidationDetails);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("activityId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("activityId")));
@@ -168,6 +215,18 @@ void ActivityRecordDtoListEnvelope::toMultipart(std::shared_ptr<MultipartFormDat
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("timestamp")), m_Timestamp));
     }
+    if(m_HttpStatusIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("httpStatus")), m_HttpStatus));
+    }
+    if(m_ErrorCodeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("errorCode")), m_ErrorCode));
+    }
+    if(m_ValidationDetailsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("validationDetails")), m_ValidationDetails));
+    }
     if(m_ActivityIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("activityId")), m_ActivityId));
@@ -210,6 +269,24 @@ bool ActivityRecordDtoListEnvelope::fromMultiPart(std::shared_ptr<MultipartFormD
         utility::datetime refVal_setTimestamp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("timestamp"))), refVal_setTimestamp );
         setTimestamp(refVal_setTimestamp);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("httpStatus"))))
+    {
+        int32_t refVal_setHttpStatus;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("httpStatus"))), refVal_setHttpStatus );
+        setHttpStatus(refVal_setHttpStatus);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("errorCode"))))
+    {
+        utility::string_t refVal_setErrorCode;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("errorCode"))), refVal_setErrorCode );
+        setErrorCode(refVal_setErrorCode);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("validationDetails"))))
+    {
+        std::map<utility::string_t, std::vector<utility::string_t>> refVal_setValidationDetails;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("validationDetails"))), refVal_setValidationDetails );
+        setValidationDetails(refVal_setValidationDetails);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("activityId"))))
     {
@@ -305,6 +382,66 @@ bool ActivityRecordDtoListEnvelope::timestampIsSet() const
 void ActivityRecordDtoListEnvelope::unsetTimestamp()
 {
     m_TimestampIsSet = false;
+}
+int32_t ActivityRecordDtoListEnvelope::getHttpStatus() const
+{
+    return m_HttpStatus;
+}
+
+void ActivityRecordDtoListEnvelope::setHttpStatus(int32_t value)
+{
+    m_HttpStatus = value;
+    m_HttpStatusIsSet = true;
+}
+
+bool ActivityRecordDtoListEnvelope::httpStatusIsSet() const
+{
+    return m_HttpStatusIsSet;
+}
+
+void ActivityRecordDtoListEnvelope::unsetHttpStatus()
+{
+    m_HttpStatusIsSet = false;
+}
+utility::string_t ActivityRecordDtoListEnvelope::getErrorCode() const
+{
+    return m_ErrorCode;
+}
+
+void ActivityRecordDtoListEnvelope::setErrorCode(const utility::string_t& value)
+{
+    m_ErrorCode = value;
+    m_ErrorCodeIsSet = true;
+}
+
+bool ActivityRecordDtoListEnvelope::errorCodeIsSet() const
+{
+    return m_ErrorCodeIsSet;
+}
+
+void ActivityRecordDtoListEnvelope::unsetErrorCode()
+{
+    m_ErrorCodeIsSet = false;
+}
+std::map<utility::string_t, std::vector<utility::string_t>>& ActivityRecordDtoListEnvelope::getValidationDetails()
+{
+    return m_ValidationDetails;
+}
+
+void ActivityRecordDtoListEnvelope::setValidationDetails(const std::map<utility::string_t, std::vector<utility::string_t>>& value)
+{
+    m_ValidationDetails = value;
+    m_ValidationDetailsIsSet = true;
+}
+
+bool ActivityRecordDtoListEnvelope::validationDetailsIsSet() const
+{
+    return m_ValidationDetailsIsSet;
+}
+
+void ActivityRecordDtoListEnvelope::unsetValidationDetails()
+{
+    m_ValidationDetailsIsSet = false;
 }
 utility::string_t ActivityRecordDtoListEnvelope::getActivityId() const
 {

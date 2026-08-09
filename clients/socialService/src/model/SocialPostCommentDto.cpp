@@ -39,12 +39,23 @@ SocialPostCommentDto::SocialPostCommentDto()
     m_SocialProfileNameIsSet = false;
     m_SocialProfileAvatarUrl = utility::conversions::to_string_t("");
     m_SocialProfileAvatarUrlIsSet = false;
+    m_SocialProfileType = utility::conversions::to_string_t("");
+    m_SocialProfileTypeIsSet = false;
     m_BodyHtml = utility::conversions::to_string_t("");
     m_BodyHtmlIsSet = false;
     m_BodyFormat = utility::conversions::to_string_t("");
     m_BodyFormatIsSet = false;
+    m_ReplyCount = 0;
+    m_ReplyCountIsSet = false;
+    m_ReactionsCount = 0;
+    m_ReactionsCountIsSet = false;
     m_SocialPostId = utility::conversions::to_string_t("");
     m_SocialPostIdIsSet = false;
+    m_FacepileIsSet = false;
+    m_MyReaction = utility::conversions::to_string_t("");
+    m_MyReactionIsSet = false;
+    m_MyReactionId = utility::conversions::to_string_t("");
+    m_MyReactionIdIsSet = false;
 }
 
 SocialPostCommentDto::~SocialPostCommentDto()
@@ -93,6 +104,10 @@ web::json::value SocialPostCommentDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("socialProfileAvatarUrl"))] = ModelBase::toJson(m_SocialProfileAvatarUrl);
     }
+    if(m_SocialProfileTypeIsSet)
+    {
+        val[utility::conversions::to_string_t(U("socialProfileType"))] = ModelBase::toJson(m_SocialProfileType);
+    }
     if(m_BodyHtmlIsSet)
     {
         val[utility::conversions::to_string_t(U("bodyHtml"))] = ModelBase::toJson(m_BodyHtml);
@@ -101,9 +116,29 @@ web::json::value SocialPostCommentDto::toJson() const
     {
         val[utility::conversions::to_string_t(U("bodyFormat"))] = ModelBase::toJson(m_BodyFormat);
     }
+    if(m_ReplyCountIsSet)
+    {
+        val[utility::conversions::to_string_t(U("replyCount"))] = ModelBase::toJson(m_ReplyCount);
+    }
+    if(m_ReactionsCountIsSet)
+    {
+        val[utility::conversions::to_string_t(U("reactionsCount"))] = ModelBase::toJson(m_ReactionsCount);
+    }
     if(m_SocialPostIdIsSet)
     {
         val[utility::conversions::to_string_t(U("socialPostId"))] = ModelBase::toJson(m_SocialPostId);
+    }
+    if(m_FacepileIsSet)
+    {
+        val[utility::conversions::to_string_t(U("facepile"))] = ModelBase::toJson(m_Facepile);
+    }
+    if(m_MyReactionIsSet)
+    {
+        val[utility::conversions::to_string_t(U("myReaction"))] = ModelBase::toJson(m_MyReaction);
+    }
+    if(m_MyReactionIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("myReactionId"))] = ModelBase::toJson(m_MyReactionId);
     }
 
     return val;
@@ -193,6 +228,16 @@ bool SocialPostCommentDto::fromJson(const web::json::value& val)
             setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialProfileType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSocialProfileType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialProfileType);
+            setSocialProfileType(refVal_setSocialProfileType);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("bodyHtml"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("bodyHtml")));
@@ -213,6 +258,26 @@ bool SocialPostCommentDto::fromJson(const web::json::value& val)
             setBodyFormat(refVal_setBodyFormat);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("replyCount"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("replyCount")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setReplyCount;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReplyCount);
+            setReplyCount(refVal_setReplyCount);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("reactionsCount"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("reactionsCount")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setReactionsCount;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReactionsCount);
+            setReactionsCount(refVal_setReactionsCount);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("socialPostId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("socialPostId")));
@@ -221,6 +286,36 @@ bool SocialPostCommentDto::fromJson(const web::json::value& val)
             utility::string_t refVal_setSocialPostId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setSocialPostId);
             setSocialPostId(refVal_setSocialPostId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("facepile"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("facepile")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<SocialPostReactionFacepileDto>> refVal_setFacepile;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFacepile);
+            setFacepile(refVal_setFacepile);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("myReaction"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("myReaction")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setMyReaction;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMyReaction);
+            setMyReaction(refVal_setMyReaction);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("myReactionId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("myReactionId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setMyReactionId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMyReactionId);
+            setMyReactionId(refVal_setMyReactionId);
         }
     }
     return ok;
@@ -265,6 +360,10 @@ void SocialPostCommentDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileAvatarUrl")), m_SocialProfileAvatarUrl));
     }
+    if(m_SocialProfileTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialProfileType")), m_SocialProfileType));
+    }
     if(m_BodyHtmlIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyHtml")), m_BodyHtml));
@@ -273,9 +372,29 @@ void SocialPostCommentDto::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("bodyFormat")), m_BodyFormat));
     }
+    if(m_ReplyCountIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("replyCount")), m_ReplyCount));
+    }
+    if(m_ReactionsCountIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("reactionsCount")), m_ReactionsCount));
+    }
     if(m_SocialPostIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("socialPostId")), m_SocialPostId));
+    }
+    if(m_FacepileIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("facepile")), m_Facepile));
+    }
+    if(m_MyReactionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("myReaction")), m_MyReaction));
+    }
+    if(m_MyReactionIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("myReactionId")), m_MyReactionId));
     }
 }
 
@@ -336,6 +455,12 @@ bool SocialPostCommentDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileAvatarUrl"))), refVal_setSocialProfileAvatarUrl );
         setSocialProfileAvatarUrl(refVal_setSocialProfileAvatarUrl);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("socialProfileType"))))
+    {
+        utility::string_t refVal_setSocialProfileType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialProfileType"))), refVal_setSocialProfileType );
+        setSocialProfileType(refVal_setSocialProfileType);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("bodyHtml"))))
     {
         utility::string_t refVal_setBodyHtml;
@@ -348,11 +473,41 @@ bool SocialPostCommentDto::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("bodyFormat"))), refVal_setBodyFormat );
         setBodyFormat(refVal_setBodyFormat);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("replyCount"))))
+    {
+        int32_t refVal_setReplyCount;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("replyCount"))), refVal_setReplyCount );
+        setReplyCount(refVal_setReplyCount);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("reactionsCount"))))
+    {
+        int32_t refVal_setReactionsCount;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("reactionsCount"))), refVal_setReactionsCount );
+        setReactionsCount(refVal_setReactionsCount);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("socialPostId"))))
     {
         utility::string_t refVal_setSocialPostId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("socialPostId"))), refVal_setSocialPostId );
         setSocialPostId(refVal_setSocialPostId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("facepile"))))
+    {
+        std::vector<std::shared_ptr<SocialPostReactionFacepileDto>> refVal_setFacepile;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("facepile"))), refVal_setFacepile );
+        setFacepile(refVal_setFacepile);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("myReaction"))))
+    {
+        utility::string_t refVal_setMyReaction;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("myReaction"))), refVal_setMyReaction );
+        setMyReaction(refVal_setMyReaction);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("myReactionId"))))
+    {
+        utility::string_t refVal_setMyReactionId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("myReactionId"))), refVal_setMyReactionId );
+        setMyReactionId(refVal_setMyReactionId);
     }
     return ok;
 }
@@ -517,6 +672,26 @@ void SocialPostCommentDto::unsetSocialProfileAvatarUrl()
 {
     m_SocialProfileAvatarUrlIsSet = false;
 }
+utility::string_t SocialPostCommentDto::getSocialProfileType() const
+{
+    return m_SocialProfileType;
+}
+
+void SocialPostCommentDto::setSocialProfileType(const utility::string_t& value)
+{
+    m_SocialProfileType = value;
+    m_SocialProfileTypeIsSet = true;
+}
+
+bool SocialPostCommentDto::socialProfileTypeIsSet() const
+{
+    return m_SocialProfileTypeIsSet;
+}
+
+void SocialPostCommentDto::unsetSocialProfileType()
+{
+    m_SocialProfileTypeIsSet = false;
+}
 utility::string_t SocialPostCommentDto::getBodyHtml() const
 {
     return m_BodyHtml;
@@ -557,6 +732,46 @@ void SocialPostCommentDto::unsetBodyFormat()
 {
     m_BodyFormatIsSet = false;
 }
+int32_t SocialPostCommentDto::getReplyCount() const
+{
+    return m_ReplyCount;
+}
+
+void SocialPostCommentDto::setReplyCount(int32_t value)
+{
+    m_ReplyCount = value;
+    m_ReplyCountIsSet = true;
+}
+
+bool SocialPostCommentDto::replyCountIsSet() const
+{
+    return m_ReplyCountIsSet;
+}
+
+void SocialPostCommentDto::unsetReplyCount()
+{
+    m_ReplyCountIsSet = false;
+}
+int32_t SocialPostCommentDto::getReactionsCount() const
+{
+    return m_ReactionsCount;
+}
+
+void SocialPostCommentDto::setReactionsCount(int32_t value)
+{
+    m_ReactionsCount = value;
+    m_ReactionsCountIsSet = true;
+}
+
+bool SocialPostCommentDto::reactionsCountIsSet() const
+{
+    return m_ReactionsCountIsSet;
+}
+
+void SocialPostCommentDto::unsetReactionsCount()
+{
+    m_ReactionsCountIsSet = false;
+}
 utility::string_t SocialPostCommentDto::getSocialPostId() const
 {
     return m_SocialPostId;
@@ -576,6 +791,66 @@ bool SocialPostCommentDto::socialPostIdIsSet() const
 void SocialPostCommentDto::unsetSocialPostId()
 {
     m_SocialPostIdIsSet = false;
+}
+std::vector<std::shared_ptr<SocialPostReactionFacepileDto>>& SocialPostCommentDto::getFacepile()
+{
+    return m_Facepile;
+}
+
+void SocialPostCommentDto::setFacepile(const std::vector<std::shared_ptr<SocialPostReactionFacepileDto>>& value)
+{
+    m_Facepile = value;
+    m_FacepileIsSet = true;
+}
+
+bool SocialPostCommentDto::facepileIsSet() const
+{
+    return m_FacepileIsSet;
+}
+
+void SocialPostCommentDto::unsetFacepile()
+{
+    m_FacepileIsSet = false;
+}
+utility::string_t SocialPostCommentDto::getMyReaction() const
+{
+    return m_MyReaction;
+}
+
+void SocialPostCommentDto::setMyReaction(const utility::string_t& value)
+{
+    m_MyReaction = value;
+    m_MyReactionIsSet = true;
+}
+
+bool SocialPostCommentDto::myReactionIsSet() const
+{
+    return m_MyReactionIsSet;
+}
+
+void SocialPostCommentDto::unsetMyReaction()
+{
+    m_MyReactionIsSet = false;
+}
+utility::string_t SocialPostCommentDto::getMyReactionId() const
+{
+    return m_MyReactionId;
+}
+
+void SocialPostCommentDto::setMyReactionId(const utility::string_t& value)
+{
+    m_MyReactionId = value;
+    m_MyReactionIdIsSet = true;
+}
+
+bool SocialPostCommentDto::myReactionIdIsSet() const
+{
+    return m_MyReactionIdIsSet;
+}
+
+void SocialPostCommentDto::unsetMyReactionId()
+{
+    m_MyReactionIdIsSet = false;
 }
 }
 }

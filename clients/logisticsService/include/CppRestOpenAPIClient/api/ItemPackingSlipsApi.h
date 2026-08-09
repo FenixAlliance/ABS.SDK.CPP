@@ -27,14 +27,16 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemPackingSlipDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipEntryCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemPackingSlipEntryDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipEntryDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipEntryDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipEntryUpdateDto.h"
 #include "CppRestOpenAPIClient/model/ItemPackingSlipUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -150,11 +152,13 @@ public:
     /// <param name="packingSlipId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPackingSlipEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemPackingSlipEntryDtoListEnvelope>> getItemPackingSlipEntriesAsync(
         utility::string_t tenantId,
         utility::string_t packingSlipId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPackingSlipEntryDtoCollectionQueryParameters>> itemPackingSlipEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get packing slip entries count
@@ -166,11 +170,13 @@ public:
     /// <param name="packingSlipId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPackingSlipEntryDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemPackingSlipEntriesCountAsync(
         utility::string_t tenantId,
         utility::string_t packingSlipId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPackingSlipEntryDtoCollectionQueryParameters>> itemPackingSlipEntryDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get packing slip entry by ID
@@ -199,10 +205,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPackingSlipDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemPackingSlipDtoListEnvelope>> getItemPackingSlipsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPackingSlipDtoCollectionQueryParameters>> itemPackingSlipDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get item packing slips count
@@ -213,10 +221,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPackingSlipDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getItemPackingSlipsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<ItemPackingSlipDtoCollectionQueryParameters>> itemPackingSlipDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch an item packing slip
@@ -228,13 +238,13 @@ public:
     /// <param name="packingSlipId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemPackingSlipAsync(
         utility::string_t tenantId,
         utility::string_t packingSlipId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patch a packing slip entry
@@ -247,14 +257,14 @@ public:
     /// <param name="entryId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchItemPackingSlipEntryAsync(
         utility::string_t tenantId,
         utility::string_t packingSlipId,
         utility::string_t entryId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update an item packing slip

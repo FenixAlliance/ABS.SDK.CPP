@@ -27,10 +27,11 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/LeaveApplicationCreateDto.h"
+#include "CppRestOpenAPIClient/model/LeaveApplicationDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/LeaveApplicationDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/LeaveApplicationDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/LeaveApplicationUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -109,10 +110,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="leaveApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<LeaveApplicationDtoListEnvelope>> getLeaveApplicationsAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LeaveApplicationDtoCollectionQueryParameters>> leaveApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Count leave applications
@@ -123,10 +126,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="leaveApplicationDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getLeaveApplicationsCountAsync(
         utility::string_t tenantId,
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<LeaveApplicationDtoCollectionQueryParameters>> leaveApplicationDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patch a leave application
@@ -138,13 +143,13 @@ public:
     /// <param name="leaveApplicationId"></param>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchLeaveApplicationAsync(
         utility::string_t tenantId,
         utility::string_t leaveApplicationId,
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Update a leave application

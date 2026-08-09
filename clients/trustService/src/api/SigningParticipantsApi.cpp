@@ -171,7 +171,7 @@ pplx::task<std::shared_ptr<SigningParticipantDto>> SigningParticipantsApi::getSi
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> SigningParticipantsApi::getSigningParticipantsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> SigningParticipantsApi::getSigningParticipantsAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SigningParticipantDtoCollectionQueryParameters>> signingParticipantDtoCollectionQueryParameters) const
 {
 
 
@@ -212,6 +212,8 @@ pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> SigningParticipan
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -232,11 +234,27 @@ pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> SigningParticipan
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (signingParticipantDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*signingParticipantDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(signingParticipantDtoCollectionQueryParameters && (*signingParticipantDtoCollectionQueryParameters).get())
+        {
+            (*signingParticipantDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("signingParticipantDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -305,7 +323,7 @@ pplx::task<std::shared_ptr<SigningParticipantDtoListEnvelope>> SigningParticipan
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> SigningParticipantsApi::getSigningParticipantsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> SigningParticipantsApi::getSigningParticipantsCountAsync(utility::string_t tenantId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<SigningParticipantDtoCollectionQueryParameters>> signingParticipantDtoCollectionQueryParameters) const
 {
 
 
@@ -346,6 +364,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> SigningParticipantsApi::getSigningPar
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -366,11 +386,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> SigningParticipantsApi::getSigningPar
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (signingParticipantDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*signingParticipantDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(signingParticipantDtoCollectionQueryParameters && (*signingParticipantDtoCollectionQueryParameters).get())
+        {
+            (*signingParticipantDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("signingParticipantDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {

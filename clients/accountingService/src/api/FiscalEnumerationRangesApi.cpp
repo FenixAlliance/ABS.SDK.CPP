@@ -459,7 +459,7 @@ pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoEnvelope>> FiscalEnumeratio
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoListEnvelope>> FiscalEnumerationRangesApi::getInvoiceEnumerationRanges(utility::string_t tenantId, utility::string_t fiscalAuthorityId, utility::string_t authorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoListEnvelope>> FiscalEnumerationRangesApi::getInvoiceEnumerationRanges(utility::string_t tenantId, utility::string_t fiscalAuthorityId, utility::string_t authorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceEnumerationRangeDtoCollectionQueryParameters>> invoiceEnumerationRangeDtoCollectionQueryParameters) const
 {
 
 
@@ -501,6 +501,8 @@ pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoListEnvelope>> FiscalEnumer
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -524,11 +526,27 @@ pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoListEnvelope>> FiscalEnumer
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceEnumerationRangeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceEnumerationRangeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceEnumerationRangeDtoCollectionQueryParameters && (*invoiceEnumerationRangeDtoCollectionQueryParameters).get())
+        {
+            (*invoiceEnumerationRangeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceEnumerationRangeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -597,7 +615,7 @@ pplx::task<std::shared_ptr<InvoiceEnumerationRangeDtoListEnvelope>> FiscalEnumer
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Int32Envelope>> FiscalEnumerationRangesApi::getInvoiceEnumerationRangesCount(utility::string_t tenantId, utility::string_t fiscalAuthorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion) const
+pplx::task<std::shared_ptr<Int32Envelope>> FiscalEnumerationRangesApi::getInvoiceEnumerationRangesCount(utility::string_t tenantId, utility::string_t fiscalAuthorityId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::shared_ptr<InvoiceEnumerationRangeDtoCollectionQueryParameters>> invoiceEnumerationRangeDtoCollectionQueryParameters) const
 {
 
 
@@ -639,6 +657,8 @@ pplx::task<std::shared_ptr<Int32Envelope>> FiscalEnumerationRangesApi::getInvoic
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/xml") );
 
     {
         localVarQueryParams[utility::conversions::to_string_t("tenantId")] = ApiClient::parameterToString(tenantId);
@@ -659,11 +679,27 @@ pplx::task<std::shared_ptr<Int32Envelope>> FiscalEnumerationRangesApi::getInvoic
     if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value localVarJson;
+
+        if (invoiceEnumerationRangeDtoCollectionQueryParameters)
+            localVarJson = ModelBase::toJson(*invoiceEnumerationRangeDtoCollectionQueryParameters);
+
+        localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
     // multipart formdata
     else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
+
+        if(invoiceEnumerationRangeDtoCollectionQueryParameters && (*invoiceEnumerationRangeDtoCollectionQueryParameters).get())
+        {
+            (*invoiceEnumerationRangeDtoCollectionQueryParameters)->toMultipart(localVarMultipart, utility::conversions::to_string_t("invoiceEnumerationRangeDtoCollectionQueryParameters"));
+        }
+        
+
+        localVarHttpBody = localVarMultipart;
+        localVarRequestHttpContentType += utility::conversions::to_string_t("; boundary=") + localVarMultipart->getBoundary();
     }
     else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
     {
@@ -732,7 +768,7 @@ pplx::task<std::shared_ptr<Int32Envelope>> FiscalEnumerationRangesApi::getInvoic
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<EmptyEnvelope>> FiscalEnumerationRangesApi::patchFiscalEnumerationRangeAsync(utility::string_t tenantId, utility::string_t enumerationRangeId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<Operation>>> operation) const
+pplx::task<std::shared_ptr<EmptyEnvelope>> FiscalEnumerationRangesApi::patchFiscalEnumerationRangeAsync(utility::string_t tenantId, utility::string_t enumerationRangeId, boost::optional<utility::string_t> apiVersion, boost::optional<utility::string_t> xApiVersion, boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation) const
 {
 
 
@@ -800,7 +836,7 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> FiscalEnumerationRangesApi::patchFisc
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back( localVarItem.get() ? localVarItem->toJson() : web::json::value::null() );
                 
@@ -818,11 +854,11 @@ pplx::task<std::shared_ptr<EmptyEnvelope>> FiscalEnumerationRangesApi::patchFisc
 
         {
             std::vector<web::json::value> localVarJsonArray;
-            for( auto& localVarItem : operation.get() )
+            for( auto& localVarItem : patchOperation.get() )
             {
                 localVarJsonArray.push_back(ModelBase::toJson(localVarItem));
             }
-            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("operation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
+            localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("patchOperation"), localVarJsonArray, utility::conversions::to_string_t("application/json")));
         }
         
 

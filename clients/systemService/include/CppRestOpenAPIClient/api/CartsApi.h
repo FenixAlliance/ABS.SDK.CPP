@@ -23,10 +23,12 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
+#include "CppRestOpenAPIClient/model/CartDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/CartDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/CartDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/EmptyEnvelope.h"
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
+#include "CppRestOpenAPIClient/model/GuestCartPurgeResultDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -84,9 +86,11 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="cartDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<CartDtoListEnvelope>> getSystemCarts(
         boost::optional<utility::string_t> apiVersion,
-        boost::optional<utility::string_t> xApiVersion
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CartDtoCollectionQueryParameters>> cartDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Get the count of system carts
@@ -96,7 +100,21 @@ public:
     /// </remarks>
     /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="cartDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getSystemCartsCount(
+        boost::optional<utility::string_t> apiVersion,
+        boost::optional<utility::string_t> xApiVersion,
+        boost::optional<std::shared_ptr<CartDtoCollectionQueryParameters>> cartDtoCollectionQueryParameters
+    ) const;
+    /// <summary>
+    /// Purge all guest carts
+    /// </summary>
+    /// <remarks>
+    /// Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.
+    /// </remarks>
+    /// <param name="apiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="xApiVersion"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<GuestCartPurgeResultDtoEnvelope>> purgeSystemGuestCarts(
         boost::optional<utility::string_t> apiVersion,
         boost::optional<utility::string_t> xApiVersion
     ) const;

@@ -27,11 +27,13 @@
 #include "CppRestOpenAPIClient/model/ErrorEnvelope.h"
 #include "CppRestOpenAPIClient/model/Int32Envelope.h"
 #include "CppRestOpenAPIClient/model/ItemPriceCreateDto.h"
+#include "CppRestOpenAPIClient/model/ItemPriceDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/ItemPriceDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPriceDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/ItemPriceUpdateDto.h"
-#include "CppRestOpenAPIClient/model/Operation.h"
+#include "CppRestOpenAPIClient/model/PatchOperation.h"
 #include "CppRestOpenAPIClient/model/PriceListCreateDto.h"
+#include "CppRestOpenAPIClient/model/PriceListDtoCollectionQueryParameters.h"
 #include "CppRestOpenAPIClient/model/PriceListDtoEnvelope.h"
 #include "CppRestOpenAPIClient/model/PriceListDtoListEnvelope.h"
 #include "CppRestOpenAPIClient/model/PriceListUpdateDto.h"
@@ -143,10 +145,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="priceListId"></param>
     /// <param name="itemId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="itemPriceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<ItemPriceDtoListEnvelope>> getPriceListPricesAsync(
         utility::string_t tenantId,
         utility::string_t priceListId,
-        boost::optional<utility::string_t> itemId
+        boost::optional<utility::string_t> itemId,
+        boost::optional<std::shared_ptr<ItemPriceDtoCollectionQueryParameters>> itemPriceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts prices in a price list
@@ -156,9 +160,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="priceListId"></param>
+    /// <param name="itemPriceDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPriceListPricesCountAsync(
         utility::string_t tenantId,
-        utility::string_t priceListId
+        utility::string_t priceListId,
+        boost::optional<std::shared_ptr<ItemPriceDtoCollectionQueryParameters>> itemPriceDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Retrieves all price lists
@@ -167,8 +173,10 @@ public:
     /// Gets all price lists for the current tenant with OData support.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="priceListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<PriceListDtoListEnvelope>> getPriceListsAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<PriceListDtoCollectionQueryParameters>> priceListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Counts price lists
@@ -177,8 +185,10 @@ public:
     /// Gets the count of price lists for the current tenant.
     /// </remarks>
     /// <param name="tenantId"></param>
+    /// <param name="priceListDtoCollectionQueryParameters"> (optional)</param>
     pplx::task<std::shared_ptr<Int32Envelope>> getPriceListsCountAsync(
-        utility::string_t tenantId
+        utility::string_t tenantId,
+        boost::optional<std::shared_ptr<PriceListDtoCollectionQueryParameters>> priceListDtoCollectionQueryParameters
     ) const;
     /// <summary>
     /// Patches a price list
@@ -188,11 +198,11 @@ public:
     /// </remarks>
     /// <param name="tenantId"></param>
     /// <param name="priceListId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPriceListAsync(
         utility::string_t tenantId,
         utility::string_t priceListId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Patches a price list entry
@@ -203,12 +213,12 @@ public:
     /// <param name="tenantId"></param>
     /// <param name="priceListId"></param>
     /// <param name="priceId"></param>
-    /// <param name="operation"> (optional)</param>
+    /// <param name="patchOperation"> (optional)</param>
     pplx::task<std::shared_ptr<EmptyEnvelope>> patchPriceListPriceAsync(
         utility::string_t tenantId,
         utility::string_t priceListId,
         utility::string_t priceId,
-        boost::optional<std::vector<std::shared_ptr<Operation>>> operation
+        boost::optional<std::vector<std::shared_ptr<PatchOperation>>> patchOperation
     ) const;
     /// <summary>
     /// Updates a price list
